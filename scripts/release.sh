@@ -12,7 +12,7 @@ fi
 echo "Build and releas the image with version ${VERSION}"
 
 # PYTHON PIP
-./release/publish.sh $VERSION
+./scripts/publish.sh $VERSION
 
 # TAG
 git tag -a ${VERSION} -m "ARLAS Command line ${VERSION}"
