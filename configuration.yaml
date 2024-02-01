@@ -1,0 +1,30 @@
+arlas:
+  demo:
+    allow_delete: false
+    elastic: null
+    iam: null
+    keycloak: null
+    server:
+      headers:
+        Content-Type: application/json
+      location: https://demo.cloud.arlas.io/arlas/server
+  local:
+    allow_delete: true
+    elastic:
+      headers:
+        Content-Type: application/json
+      location: http://localhost:9200/
+    iam: null
+    keycloak: null
+    server:
+      headers:
+        Content-Type: application/json
+      location: http://localhost:9999/arlas
+mappings:
+  arlas_eo:
+    headers: null
+    location: https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/mapping.json
+models:
+  arlas_eo:
+    headers: null
+    location: https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/collection.json
