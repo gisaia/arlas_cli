@@ -20,7 +20,7 @@ arlas_cli
 ```
 
 ## Configuration
-The confiuration file `~/.arlas/cli/configuration.yaml` must contain the different ARLAS/elasticsearch endpoints you want to interact with. One is automatically created for your convinience at the first launch. It contains the demo endpoint and the localhost endpoint.
+The confiuration file `~/.arlas/cli/configuration.yaml` must contain the different ARLAS/elasticsearch endpoints you want to interact with. [One is automatically created for your convinience at the first launch](configuration.yaml). It contains the demo endpoint and the localhost endpoint.
 
 The configuration must contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
 It must also contain references to index mappings for creating indices. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
@@ -124,4 +124,9 @@ Note: by default, it is not allowed to delete an index for a given configuration
 ### Deleting a collection
 ```shell
 arlas_cli local collections delete arlas_eo
+```
+
+### Adding data
+```shell
+arlas_cli local indices data arlas_eo --help
 ```
