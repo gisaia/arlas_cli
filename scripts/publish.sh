@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+set -e
 
 [ -z "$1" ] && echo "Please provide the version" && exit 1;
 VERSION=$1
