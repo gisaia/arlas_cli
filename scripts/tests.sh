@@ -18,7 +18,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST infer mapping and add mapping on ES"
 python3 -m arlas.cli.cli local indices mapping tests/sample.json --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: Mapping infered and added"
 else
     echo "ERROR: infer mapping failed"
@@ -46,7 +46,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST add data to ES"
 python3 -m arlas.cli.cli local indices data courses tests/sample.json
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
     echo "ERROR: add data failed"
@@ -67,7 +67,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST add collection"
 python3 -m arlas.cli.cli local collections create courses --index courses --display-name courses --id-path track.id --centroid-path track.location --geometry-path track.trail --date-path track.timestamps.center
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
     echo "ERROR: add data failed"
@@ -87,7 +87,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST describe collection"
 python3 -m arlas.cli.cli local collections describe courses
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: Describe collection ok"
 else
     echo "ERROR: Describe collection failed"
@@ -97,7 +97,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST count collection"
 python3 -m arlas.cli.cli local collections count courses
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: Count collection ok"
 else
     echo "ERROR: Count collection failed"
@@ -108,7 +108,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST delete collection"
 yes | python3 -m arlas.cli.cli local collections delete courses
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: delete collection ok"
 else
     echo "ERROR: delete collection failed"
@@ -128,7 +128,7 @@ fi
 # ----------------------------------------------------------
 echo "TEST delete index"
 yes | python3 -m arlas.cli.cli local indices delete courses
-if [ $? == 0 ] ; then
+if [ "$? -eq 0" ] ; then
     echo "OK: delete index ok"
 else
     echo "ERROR: delete index failed"
