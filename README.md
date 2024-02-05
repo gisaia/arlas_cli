@@ -189,7 +189,7 @@ arlas_cli local indices delete courses
 
 Note: by default, it is not allowed to delete an index for a given configuration. To allow deleting, edit the configuration file and set `allow_delete` to `True`.
 
-## Cconfiguration
+## Configuration
 
 The command line uses the `${HOME}/.arlas/cli/configuration.yaml` configuration file:
 
