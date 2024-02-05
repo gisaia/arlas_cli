@@ -18,7 +18,7 @@ echo "Build and releas the image with version ${VERSION}"
 
 # CONFIG FILE
 rm $HOME/.arlas/cli/configuration.yaml
-python -m arlas.cli.cli
+python3 -m arlas.cli.cli
 cp $HOME/.arlas/cli/configuration.yaml .
 git add configuration.yaml
 git commit -m "ARLAS Command line ${VERSION}"
