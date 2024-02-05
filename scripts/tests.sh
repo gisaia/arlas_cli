@@ -1,5 +1,5 @@
 #!/bin/sh
-set -o errexit -o pipefail
+set -e
 
 #./scripts/start_stack.sh
 
