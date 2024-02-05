@@ -1,11 +1,11 @@
 #!/bin/sh
 set -e
 
-#./scripts/start_stack.sh
+./scripts/start_stack.sh
 
 # ----------------------------------------------------------
 echo "TEST default configuration placed in $HOME/.arlas/cli"
-rm $HOME/.arlas/cli/configuration.yaml
+rm -f $HOME/.arlas/cli/configuration.yaml
 python3 -m arlas.cli.cli --help
 FILE=$HOME/.arlas/cli/configuration.yaml
 if test -f "$FILE"; then
@@ -115,6 +115,7 @@ else
     exit 1
 fi
 
+sleep 2
 # ----------------------------------------------------------
 echo "TEST collection deleted"
 if python3 -m arlas.cli.cli local collections list | grep courses ; then
@@ -134,6 +135,9 @@ else
     exit 1
 fi
 
+
+sleep 2
+
 # ----------------------------------------------------------
 echo "TEST index deleted"
 if python3 -m arlas.cli.cli local indices list | grep courses ; then
@@ -144,4 +148,4 @@ else
 fi
 
 
-#./scripts/stop_stack.sh
+./scripts/stop_stack.sh
