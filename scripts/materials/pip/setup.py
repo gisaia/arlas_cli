@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     python_requires='>=3.11',
-    py_modules=["arlas.cli.cli", "arlas.cli.collections", "arlas.cli.index", "arlas.cli.settings", "arlas.cli.variables", "arlas.cli.service"],
+    py_modules=["arlas.cli.cli", "arlas.cli.collections", "arlas.cli.index", "arlas.cli.settings", "arlas.cli.variables", "arlas.cli.service", "arlas.cli.model_infering"],
     package_dir={'': 'src'},
     install_requires=[
         "click==8.1.7",
