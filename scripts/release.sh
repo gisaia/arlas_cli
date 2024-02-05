@@ -21,6 +21,13 @@ rm $HOME/.arlas/cli/configuration.yaml
 python3 -m arlas.cli.cli
 cp $HOME/.arlas/cli/configuration.yaml .
 git add configuration.yaml
+
+# Model
+export PYTHONPATH=`pwd`
+python3 -m arlas.cli.settings > docs/model/model.schema.json
+jsonschema2md -d docs/model/ -o docs/model/
+git add docs/model
+
 git commit -m "ARLAS Command line ${VERSION}"
 # TAG
 git tag -a ${VERSION} -m "ARLAS Command line ${VERSION}"

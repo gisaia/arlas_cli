@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
 import yaml
+import textwrap
+import json
 
 
 class Resource(BaseModel):
@@ -34,3 +36,24 @@ class Configuration:
         with open(configuration_file, 'r') as file:
             data = yaml.safe_load(file)
             Configuration.settings = Settings.parse_obj(data)
+
+
+def __short_titles(o):
+    if type(o) is dict:
+        d = {}
+        for key in o:
+            if key == "title" and isinstance(o[key], str):
+                d[key] = textwrap.shorten(o[key], 220)
+            else:
+                d[key] = __short_titles(o[key])                   
+        return d
+    if type(o) is list:
+        return list(map(lambda elt: __short_titles(elt), o))
+    else:
+        return o
+
+
+if __name__ == '__main__':
+    model = __short_titles(Settings.model_json_schema())
+    model["$id"] = "airs_model"
+    print(json.dumps(model))
