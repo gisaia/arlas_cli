@@ -13,7 +13,7 @@ arlas:
     elastic:
       headers:
         Content-Type: application/json
-      location: http://localhost:9200/
+      location: http://localhost:9200
     iam: null
     keycloak: null
     server:
