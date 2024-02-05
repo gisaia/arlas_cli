@@ -18,7 +18,7 @@ In a new terminal, you should be able to see the version:
 arlas_cli
 ```
 
-### Initial Cconfiguration
+### Initial configuration
 The confiuration file `~/.arlas/cli/configuration.yaml` must contain the different ARLAS/elasticsearch endpoints you want to interact with. [One is automatically created for your convinience at the first launch](configuration.yaml). It contains the demo endpoint and the localhost endpoint.
 
 The configuration must contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
