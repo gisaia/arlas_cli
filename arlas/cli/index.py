@@ -3,11 +3,11 @@ import typer
 import os
 import sys
 from prettytable import PrettyTable
-from alive_progress import alive_bar
 
 from arlas.cli.settings import Configuration, Resource
 from arlas.cli.service import Service
 from arlas.cli.variables import variables, configuration_file
+from arlas.cli.model_infering import make_mapping
 
 indices = typer.Typer()
 
@@ -47,7 +47,7 @@ def create(
         else:
             print("Error: model {} not found".format(mapping), file=sys.stderr)
             exit(1)
-    Service.create_index(
+    Service.create_index_from_resource(
         variables["arlas"],
         index=index,
         mapping_resource=mapping_resource,
@@ -69,6 +69,35 @@ def data(
         Service.index_hits(variables["arlas"], index=index, file_path=file, bulk_size=bulk, count=count)
 
 
+@indices.command(help="Generate the mapping based on the data")
+def mapping(
+    file: str = typer.Argument(help="Path to the file conaining the data. Format: NDJSON"),
+    nb_lines: int = typer.Option(default=2, help="Number of line to consider for generating the mapping. Avoid going over 10."),
+    field_mapping: list[str] = typer.Option(default=[], help="Overide the mapping with the provided field/type. Example: fragment.location:geo_point"),
+    push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name"),
+):
+    if not os.path.exists(file):
+        print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
+        exit(1)
+    types = {}
+    for fm in field_mapping:
+        tmp = fm.split(":")
+        if len(tmp) == 2:
+            types[tmp[0]] = tmp[1]
+        else:
+            print("Error: invalid field_mapping \"{}\". The format is \"field:type\" like \"fragment.location:geo_point\"".format(fm), file=sys.stderr)
+            exit(1)
+    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types)
+    if push_on:
+        Service.create_index(
+            variables["arlas"],
+            index=push_on,
+            mapping=mapping)
+        print("Index {} created on {}".format(push_on, variables["arlas"]))
+    else:
+        print(json.dumps(mapping, indent=2))
+
+
 @indices.command(help="Delete an index")
 def delete(
     index: str = typer.Argument(help="index's name")
@@ -84,3 +113,4 @@ def delete(
             variables["arlas"],
             index=index)
         print("{} has been deleted on {}.".format(index, variables["arlas"]))
+

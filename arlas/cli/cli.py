@@ -19,7 +19,6 @@ def collections_callback(
 
 
 def main():
-    print("arlas_cli " + arlas_cli_version)
     if os.path.exists(configuration_file):
         Configuration.init(configuration_file=configuration_file)
         if Configuration.settings.arlas and len(Configuration.settings.arlas) > 0:
@@ -37,7 +36,7 @@ def main():
                 "demo": ARLAS(server=Resource(location="https://demo.cloud.arlas.io/arlas/server", headers={"Content-Type": "application/json"})),
                 "local": ARLAS(
                     server=Resource(location="http://localhost:9999/arlas", headers={"Content-Type": "application/json"}),
-                    elastic=Resource(location="http://localhost:9200/", headers={"Content-Type": "application/json"}),
+                    elastic=Resource(location="http://localhost:9200", headers={"Content-Type": "application/json"}),
                     allow_delete=True
                 )
             },
@@ -49,8 +48,8 @@ def main():
             }
         )
         Configuration.save(configuration_file)
-        print("Error : no configuration file found, we created an empty one for you ({}).".format(configuration_file), file=sys.stderr)
-        sys.exit(1)
+        print("Warning : no configuration file found, we created an empty one for you ({}).".format(configuration_file), file=sys.stderr)
+        sys.exit(0)
     app.add_typer(collections, name="collections")
     app.add_typer(indices, name="indices")
     app()

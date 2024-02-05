@@ -57,8 +57,11 @@ class Service:
         sample = Service.__es__(arlas, "/".join([collection, "_search"]) + "?size={}".format(size))
         return sample
     
-    def create_collection(arlas: str, collection: str, model_resource: str, index: str, owner: str, orgs: list[str], is_public: bool):
-        model = json.loads(Service.__fetch__(model_resource))
+    def create_collection(arlas: str, collection: str, model_resource: str, index: str, display_name: str, owner: str, orgs: list[str], is_public: bool, id_path: str, centroid_path: str, geometry_path: str, date_path: str):
+        if model_resource:
+            model = json.loads(Service.__fetch__(model_resource))
+        else:
+            model = {}
         if index:
             model["index_name"] = index
         if owner:
@@ -67,19 +70,34 @@ class Service:
                 "shared": orgs,
                 "public": is_public
             }
+        if id_path:
+            model["id_path"] = id_path
+        if centroid_path:
+            model["centroid_path"] = centroid_path
+        if geometry_path:
+            model["geometry_path"] = geometry_path
+        if date_path:
+            model["timestamp_path"] = date_path
+        if display_name:
+            display_names = model.get("display_names", {})
+            display_names["collection"] = display_name
+            model["display_names"] = display_names
         print(json.dumps(model))
         Service.__arlas__(arlas, "/".join(["collections", collection]), put=json.dumps(model))
 
-    def create_index(arlas: str, index: str, mapping_resource: str, number_of_shards: int):
-        model = json.loads(Service.__fetch__(mapping_resource))
-        if not model.get("mappings"):
+    def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int):
+        mapping = json.loads(Service.__fetch__(mapping_resource))
+        if not mapping.get("mappings"):
             print("Error: mapping {} does not contain \"mappings\" at its root.".format(mapping_resource), file=sys.stderr)
             exit(1)
-        index_doc = {"mappings": model.get("mappings"), "settings": {"number_of_shards": number_of_shards}}
+        Service.create_index(arlas, index, mapping, number_of_shards)
+
+    def create_index(arlas: str, index: str, mapping: str, number_of_shards: int = 1):
+        index_doc = {"mappings": mapping.get("mappings"), "settings": {"number_of_shards": number_of_shards}}
         Service.__es__(arlas, "/".join([index]), put=json.dumps(index_doc))
 
     def delete_collection(arlas: str, collection: str):
-        Service.__arlas__(arlas, "/".join("collections", [collection]), delete=True)
+        Service.__arlas__(arlas, "/".join(["collections", collection]), delete=True)
 
     def delete_index(arlas: str, index: str):
         Service.__es__(arlas, "/".join([index]), delete=True)
@@ -131,7 +149,7 @@ class Service:
                         bulk = []
                         line_in_bulk = 0
                     bar()
-        if bulk:
+        if len(bulk) > 0:
             try:
                 Service.__index_bulk__(arlas, index, bulk)
             except RequestException as e:
@@ -151,7 +169,7 @@ class Service:
                 fields.append([".".join(o), type])
         return fields
     
-    def __arlas__(arlas: str, suffix, post=None, put=None):
+    def __arlas__(arlas: str, suffix, post=None, put=None, delete=None):
         endpoint = Configuration.settings.arlas.get(arlas)
         if endpoint is None:
             print("Error: arlas configuration ({}) not found among [{}].".format(arlas, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
@@ -163,7 +181,10 @@ class Service:
             if put:
                 r = requests.put(url, data=put, headers=endpoint.server.headers)
             else:
-                r = requests.get(url, headers=endpoint.server.headers)
+                if delete:
+                    r = requests.delete(url, headers=endpoint.server.headers)
+                else:
+                    r = requests.get(url, headers=endpoint.server.headers)
         if r.ok:
             return r.json()
         else:
@@ -193,6 +214,7 @@ class Service:
                 else:
                     r = requests.get(url, headers=__headers)
         if r.ok:
+            print(r.content)
             return r.json()
         else:
             if exit_on_failure:

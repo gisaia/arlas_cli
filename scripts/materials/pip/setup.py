@@ -26,6 +26,9 @@ setuptools.setup(
         "requests==2.31.0",
         "prettytable==3.9.0",
         "pydantic==2.5.3",
-        "alive-progress==3.1.5"
+        "alive-progress==3.1.5",
+        "shapely==2.0.2",
+        "python-dateutil==2.8.2",
+        "geojson==3.1.0"
     ]
 )
