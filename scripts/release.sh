@@ -29,7 +29,10 @@ jsonschema2md -d docs/model/ -o docs/model/
 rm -r out
 git add docs/model
 
+echo ${VERSION} > version.txt
+git add version.txt
 git commit -m "ARLAS Command line ${VERSION}"
 # TAG
 git tag -a ${VERSION} -m "ARLAS Command line ${VERSION}"
 git push origin ${VERSION}
+git push origin master
