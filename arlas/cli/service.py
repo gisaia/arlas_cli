@@ -172,21 +172,24 @@ class Service:
         return fields
     
     def __arlas__(arlas: str, suffix, post=None, put=None, delete=None):
+        __headers__ = Configuration.settings.arlas.get(arlas).server.headers.copy()
+        if Configuration.settings.arlas.get(arlas).authorization is not None:
+            __headers__["Authorization"] = "Bearer " + Service.__get_token__()
         endpoint = Configuration.settings.arlas.get(arlas)
         if endpoint is None:
             print("Error: arlas configuration ({}) not found among [{}].".format(arlas, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
             exit(1)
         url = "/".join([endpoint.server.location, suffix])
         if post:
-            r = requests.post(url, data=post, headers=endpoint.server.headers)
+            r = requests.post(url, data=post, headers=__headers__)
         else:
             if put:
-                r = requests.put(url, data=put, headers=endpoint.server.headers)
+                r = requests.put(url, data=put, headers=__headers__)
             else:
                 if delete:
-                    r = requests.delete(url, headers=endpoint.server.headers)
+                    r = requests.delete(url, headers=__headers__)
                 else:
-                    r = requests.get(url, headers=endpoint.server.headers)
+                    r = requests.get(url, headers=__headers__)
         if r.ok:
             return r.json()
         else:
@@ -237,4 +240,32 @@ class Service:
         else:
             print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
             print("   url: {}".format(resource.location), file=sys.stderr)
+            exit(1)
+
+    def __get_token__(arlas: str) -> str:
+        auth = Configuration.settings.arlas[arlas].authorization
+        if Configuration.settings.arlas[arlas].authorization.arlas_iam:
+            data = {
+                "email": auth.login,
+                "password": auth.password
+            }
+        else:
+            data = {
+                "client_id": auth.client_id,
+                "client_secret": auth.client_secret,
+                "username": auth.login,
+                "password": auth.password
+            }
+            if auth.grant_type:
+                data["grant_type"] = auth.grant_type
+
+        r = requests.post(
+            headers=auth.token_url.headers,
+            data=json.dumps(data),
+            url=auth.token_url.location)
+        if r.status_code >= 200 and r.status_code < 300:
+            return r.json()["accessToken"]
+        else:
+            print("Error: request to get token failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+            print("   url: {}".format(auth.token_url.location), file=sys.stderr)
             exit(1)

@@ -9,10 +9,19 @@ class Resource(BaseModel):
     headers: dict[str, str] | None = Field(default=None, title="List of headers, if needed, for http(s) requests")
 
 
+class AuthorizationService(BaseModel):
+    token_url: Resource = Field(default=None, title="Token URL of the authentication service")
+    login: str = Field(default=None, title="login")
+    password: str = Field(default=None, title="password")
+    client_id: str | None = Field(default=None, title="Client ID")
+    client_secret: str | None = Field(default=None, title="Client secret")
+    grant_type: str | None = Field(default=None, title="Grant type (e.g. password)")
+    arlas_iam: bool | None = Field(default=True, title="Is it an ARLAS IAM service?")
+
+
 class ARLAS(BaseModel):
     server: Resource = Field(title="ARLAS Server")
-    iam: Resource | None = Field(default=None, title="ARLAS IAM URL")
-    keycloak: Resource | None = Field(default=None, title="Keycloak URL")
+    authorization: AuthorizationService | None = Field(default=None, title="Keycloak URL")
     elastic: Resource | None = Field(default=None, title="dictionary of name/es resources")
     allow_delete: bool | None = Field(default=False, title="Is delete command allowed for this configuration?")
 
