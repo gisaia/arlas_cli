@@ -81,7 +81,7 @@ def __type_node__(n, name: str = None) -> str:
                 return "geo_point"
             except Exception:
                 ...
-        if n.startswith("LINESTRING ") or n.startswith("POLYGON ") or n.startswith("MULTIPOINT ") or n.startswith("MULTISTRING ") or n.startswith("MULTIPOLYGON "):
+        if n.startswith("LINESTRING ") or n.startswith("POLYGON ") or n.startswith("MULTIPOINT ") or n.startswith("MULTILINESTRING ") or n.startswith("MULTIPOLYGON "):
             try:
                 wkt.loads(n)
                 return "geo_shape"

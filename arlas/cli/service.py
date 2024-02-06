@@ -26,7 +26,7 @@ class Service:
         return table
 
     def list_indices(arlas: str) -> list[list[str]]:
-        data = Service.__es__(arlas, "_cat/indices?format=json")
+        data = json.loads(Service.__es__(arlas, "_cat/indices?format=json"))
         table = [["name", "status", "count", "size"]]
         for index in data:
             table.append([
@@ -44,7 +44,7 @@ class Service:
         return table
     
     def describe_index(arlas: str, index: str) -> list[list[str]]:
-        description = Service.__es__(arlas, "/".join([index, "_mapping"]))
+        description = json.loads(Service.__es__(arlas, "/".join([index, "_mapping"])))
         table = [["field name", "type"]]
         table.extend(Service.__get_fields__([], description.get(index, {}).get("mappings", {}).get("properties", {})))
         return table
@@ -54,7 +54,7 @@ class Service:
         return sample
 
     def sample_index(arlas: str, collection: str, pretty: bool, size: int) -> dict:
-        sample = Service.__es__(arlas, "/".join([collection, "_search"]) + "?size={}".format(size))
+        sample = json.loads(Service.__es__(arlas, "/".join([collection, "_search"]) + "?size={}".format(size)))
         return sample
     
     def create_collection(arlas: str, collection: str, model_resource: str, index: str, display_name: str, owner: str, orgs: list[str], is_public: bool, id_path: str, centroid_path: str, geometry_path: str, date_path: str):
@@ -124,7 +124,9 @@ class Service:
 
     def __index_bulk__(arlas: str, index: str, bulk: []):
         data = os.linesep.join([json.dumps(line) for line in bulk]) + os.linesep
-        Service.__es__(arlas, "/".join([index, "_bulk"]), post=data, exit_on_failure=False, headers={"Content-Type": "application/x-ndjson"})
+        result = json.loads(Service.__es__(arlas, "/".join([index, "_bulk"]), post=data, exit_on_failure=False, headers={"Content-Type": "application/x-ndjson"}))
+        if result["errors"] is True:
+            print("ERROR: " + json.dumps(result))
 
     def index_hits(arlas: str, index: str, file_path: str, bulk_size: int = 100, count: int = -1) -> dict[str, int]:
         line_number = 0
@@ -214,8 +216,7 @@ class Service:
                 else:
                     r = requests.get(url, headers=__headers)
         if r.ok:
-            print(r.content)
-            return r.json()
+            return r.content
         else:
             if exit_on_failure:
                 print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
