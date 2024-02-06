@@ -13,9 +13,9 @@ ARLAS Command Line is for managing collections and indices.
 pip install arlas_cli
 ```
 
-In a new terminal, you should be able to see the version:
+In a new terminal, you should be able to run it:
 ```shell
-arlas_cli
+arlas_cli --help
 ```
 
 ### Initial configuration
@@ -59,7 +59,7 @@ curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/samp
 
 Now we can generate the mapping file based on that sample:
 ```shell
-arlas_cli local indices \
+arlas_cli --config local indices \
    mapping sample.json \
    --field-mapping track.timestamps.center:date-epoch_second \
    --field-mapping track.timestamps.start:date-epoch_second \
@@ -76,14 +76,14 @@ Note that the three timestamps are not identified as datetimes by `arlas_cli`. T
 To add a specific mapping, it is possible to use the `create`` command:
 
 ```shell
-arlas_cli local indices \
+arlas_cli --config local indices \
    create courses \
    --mapping mapping.json 
 ```
 
 ### List indices
 ```shell
-arlas_cli local indices list
+arlas_cli --config local indices list
 ```
 
 returns:
@@ -99,14 +99,14 @@ returns:
 
 ### Add data
 ```shell
-arlas_cli local indices \
+arlas_cli --config local indices \
    data courses sample.json
 ```
 
 ### Describe an index
 
 ```shell
-arlas_cli local indices describe courses
+arlas_cli --config local indices describe courses
 ```
 
 returns:
@@ -128,7 +128,7 @@ returns:
 
 ### Add a collection
 ```shell
-arlas_cli local collections \
+arlas_cli --config local collections \
     create courses \
     --index courses --display-name courses \
     --id-path track.id \
@@ -140,7 +140,7 @@ arlas_cli local collections \
 
 ### List collections
 ```shell
-arlas_cli local collections list
+arlas_cli --config local collections list
 ```
 
 returns:
@@ -156,7 +156,7 @@ returns:
 ### Describe a collection
 
 ```shell
-arlas_cli local collections describe courses
+arlas_cli --config local collections describe courses
 ```
 
 returns:
@@ -179,12 +179,12 @@ returns:
 
 ### Delete a collection
 ```shell
-arlas_cli local collections delete courses
+arlas_cli --config local collections delete courses
 ```
 
 ### Delete an index
 ```shell
-arlas_cli local indices delete courses
+arlas_cli --config local indices delete courses
 ```
 
 Note: by default, it is not allowed to delete an index for a given configuration. To allow deleting, edit the configuration file and set `allow_delete` to `True`.

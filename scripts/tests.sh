@@ -17,7 +17,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST infer mapping and add mapping on ES"
-python3 -m arlas.cli.cli local indices mapping tests/sample.json --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
+python3 -m arlas.cli.cli --config local indices mapping tests/sample.json --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Mapping infered and added"
 else
@@ -27,7 +27,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST retrieve mapping from ES"
-if python3 -m arlas.cli.cli local indices list | grep courses ; then
+if python3 -m arlas.cli.cli --config local indices list | grep courses ; then
     echo "OK: mapping found"
 else
     echo "ERROR: mapping not found"
@@ -36,7 +36,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST describe mapping from ES"
-if python3 -m arlas.cli.cli local indices describe courses | grep "track.timestamps.center" | grep "date      "; then
+if python3 -m arlas.cli.cli --config local indices describe courses | grep "track.timestamps.center" | grep "date      "; then
     echo "OK: describe mapping ok"
 else
     echo "ERROR: describe mapping failled"
@@ -45,7 +45,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add data to ES"
-python3 -m arlas.cli.cli local indices data courses tests/sample.json
+python3 -m arlas.cli.cli --config local indices data courses tests/sample.json
 if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
@@ -56,7 +56,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST retrieve hits from ES"
-if python3 -m arlas.cli.cli local indices list | grep courses | grep " 2     "; then
+if python3 -m arlas.cli.cli --config local indices list | grep courses | grep " 2     "; then
     echo "OK: two hits found"
 else
     echo "ERROR: hits not found"
@@ -66,7 +66,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add collection"
-python3 -m arlas.cli.cli local collections create courses --index courses --display-name courses --id-path track.id --centroid-path track.location --geometry-path track.trail --date-path track.timestamps.center
+python3 -m arlas.cli.cli --config local collections create courses --index courses --display-name courses --id-path track.id --centroid-path track.location --geometry-path track.trail --date-path track.timestamps.center
 if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
@@ -77,7 +77,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST retrieve collection"
-if python3 -m arlas.cli.cli local collections list | grep courses ; then
+if python3 -m arlas.cli.cli --config local collections list | grep courses ; then
     echo "OK: collection found"
 else
     echo "ERROR: collection not found"
@@ -86,7 +86,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST describe collection"
-python3 -m arlas.cli.cli local collections describe courses
+python3 -m arlas.cli.cli --config local collections describe courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Describe collection ok"
 else
@@ -96,7 +96,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST count collection"
-python3 -m arlas.cli.cli local collections count courses
+python3 -m arlas.cli.cli --config local collections count courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Count collection ok"
 else
@@ -107,7 +107,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST delete collection"
-yes | python3 -m arlas.cli.cli local collections delete courses
+yes | python3 -m arlas.cli.cli --config local collections delete courses
 if [ "$? -eq 0" ] ; then
     echo "OK: delete collection ok"
 else
@@ -118,7 +118,7 @@ fi
 sleep 2
 # ----------------------------------------------------------
 echo "TEST collection deleted"
-if python3 -m arlas.cli.cli local collections list | grep courses ; then
+if python3 -m arlas.cli.cli --config local collections list | grep courses ; then
     echo "ERROR: collection found, not deleted"
     exit 1
 else
@@ -127,7 +127,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST delete index"
-yes | python3 -m arlas.cli.cli local indices delete courses
+yes | python3 -m arlas.cli.cli --config local indices delete courses
 if [ "$? -eq 0" ] ; then
     echo "OK: delete index ok"
 else
@@ -140,7 +140,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST index deleted"
-if python3 -m arlas.cli.cli local indices list | grep courses ; then
+if python3 -m arlas.cli.cli --config local indices list | grep courses ; then
     echo "ERROR: index found, not deleted"
     exit 1
 else

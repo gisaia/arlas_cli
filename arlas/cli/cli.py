@@ -7,15 +7,15 @@ from arlas.cli.index import indices
 from arlas.cli.variables import variables, configuration_file
 from arlas.cli.settings import ARLAS, Configuration, Resource, Settings
 
-app = typer.Typer()
+app = typer.Typer(add_completion=False)
 arlas_cli_version = "arlas_cli_versions"
 
 
 @app.callback()
 def collections_callback(
-    arlas_configuration: str = typer.Argument(help="Name of the ARLAS configuration to use from your configuration file ({}).".format(configuration_file))
+    config: str = typer.Option(help="Name of the ARLAS configuration to use from your configuration file ({}).".format(configuration_file))
 ):
-    variables["arlas"] = arlas_configuration
+    variables["arlas"] = config
 
 
 def main():

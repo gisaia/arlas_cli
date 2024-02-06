@@ -31,15 +31,15 @@ echo "" >> README.md
 echo "Actions on collections:" >> README.md
 echo "" >> README.md
 echo "\`\`\`" >> README.md
-echo "python3 -m arlas.cli.cli demo collections  --help" >> README.md
-python3 -m arlas.cli.cli demo collections  --help >> README.md
+echo "python3 -m arlas.cli.cli --config demo collections  --help" >> README.md
+python3 -m arlas.cli.cli --config demo collections  --help >> README.md
 echo "\`\`\`" >> README.md
 echo "" >> README.md
 echo "Actions on indices:" >> README.md
 echo "" >> README.md
 echo "\`\`\`" >> README.md
-echo "python3 -m arlas.cli.cli demo indices  --help" >> README.md
-python3 -m arlas.cli.cli demo indices  --help >> README.md
+echo "python3 -m arlas.cli.cli --config demo indices  --help" >> README.md
+python3 -m arlas.cli.cli --config demo indices  --help >> README.md
 echo "\`\`\`" >> README.md
 
 
