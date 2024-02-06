@@ -109,8 +109,12 @@ def delete(
     if typer.confirm("You are about to delete the index '{}' on the '{}' configuration.\n".format(index, variables["arlas"]),
                      prompt_suffix="Do you want to continue (del {} on {})?".format(index, variables["arlas"]),
                      default=False, ):
+        if variables["arlas"] != "local" and variables["arlas"].find("test") < 0:
+            if typer.prompt("WARNING: You are not on a test environment. To delete {} on {}, type the name of the configuration ({})".format(index, variables["arlas"], variables["arlas"])) != variables["arlas"]:
+                print("Error: delete on \"{}\" cancelled.".format(variables["arlas"]), file=sys.stderr)
+                exit(1)
+
         Service.delete_index(
             variables["arlas"],
             index=index)
         print("{} has been deleted on {}.".format(index, variables["arlas"]))
-
