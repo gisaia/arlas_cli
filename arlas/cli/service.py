@@ -42,6 +42,20 @@ class Service:
         table = [["field name", "type"]]
         table.extend(Service.__get_fields__([], description.get("properties", {})))
         return table
+
+    def metadata_collection(arlas: str, collection: str) -> list[list[str]]:
+        d = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
+        table = [["metadata", "value"]]
+        table.append(["index name", d.get("params", {}).get("index_name", {})])
+        table.append(["id path", d.get("params", {}).get("id_path", "")])
+        table.append(["geometry path", d.get("params", {}).get("geometry_path", "")])
+        table.append(["centroid path", d.get("params", {}).get("centroid_path", "")])
+        table.append(["timestamp path", d.get("params", {}).get("timestamp_path", "")])
+        table.append(["display name", d.get("params", {}).get("display_names", {}).get("collection", "")])
+        table.append(["owner", d.get("params", {}).get("organisations", {}).get("owner", "")])
+        table.append(["is public", str(d.get("params", {}).get("organisations", {}).get("shared", []))])
+        table.append(["organisations", d.get("params", {}).get("organisations", {}).get("public", False)])
+        return table
     
     def describe_index(arlas: str, index: str) -> list[list[str]]:
         description = json.loads(Service.__es__(arlas, "/".join([index, "_mapping"])))
@@ -174,7 +188,7 @@ class Service:
     def __arlas__(arlas: str, suffix, post=None, put=None, delete=None):
         __headers__ = Configuration.settings.arlas.get(arlas).server.headers.copy()
         if Configuration.settings.arlas.get(arlas).authorization is not None:
-            __headers__["Authorization"] = "Bearer " + Service.__get_token__()
+            __headers__["Authorization"] = "Bearer " + Service.__get_token__(arlas)
         endpoint = Configuration.settings.arlas.get(arlas)
         if endpoint is None:
             print("Error: arlas configuration ({}) not found among [{}].".format(arlas, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)

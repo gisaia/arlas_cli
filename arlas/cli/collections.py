@@ -41,9 +41,14 @@ def describe(
     collection: str = typer.Argument(help="Collection's name")
 ):
     config = variables["arlas"]
-    collections = Service.describe_collection(config, collection)
-    tab = PrettyTable(collections[0], sortby="field name", align="l")
-    tab.add_rows(collections[1:])
+    fields = Service.describe_collection(config, collection)
+    tab = PrettyTable(fields[0], sortby="field name", align="l")
+    tab.add_rows(fields[1:])
+    print(tab)
+
+    fields = Service.metadata_collection(config, collection)
+    tab = PrettyTable(fields[0], align="l")
+    tab.add_rows(fields[1:])
     print(tab)
 
 
