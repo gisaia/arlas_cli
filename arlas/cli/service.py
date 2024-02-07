@@ -264,7 +264,7 @@ class Service:
             data=json.dumps(data),
             url=auth.token_url.location)
         if r.status_code >= 200 and r.status_code < 300:
-            return r.json()["accessToken"]
+            return r.json()["access_token"]
         else:
             print("Error: request to get token failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
             print("   url: {}".format(auth.token_url.location), file=sys.stderr)
