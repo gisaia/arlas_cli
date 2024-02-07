@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-from alive_progress import alive_bar, alive_it
+from alive_progress import alive_bar
 import requests
 
 from arlas.cli.settings import Configuration, Resource

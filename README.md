@@ -21,13 +21,13 @@ arlas_cli --help
 ### Initial configuration
 The confiuration file `~/.arlas/cli/configuration.yaml` must contain the different ARLAS/elasticsearch endpoints you want to interact with. [One is automatically created for your convinience at the first launch](configuration.yaml). It contains the demo endpoint and the localhost endpoint.
 
-The configuration must contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
-It must also contain references to index mappings for creating indices. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
+The configuration can contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
+It can also contain references to index mappings for creating indices. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
 
 ## Running
 
 ```shell
-arlas_cli --help
+arlas_cli --version
 ```
 
 ## Examples
@@ -43,6 +43,7 @@ In the following examples, you will see how to:
 - get the structure of a arlas collection
 - delete a collection from arlas
 - delete a mapping from elasticsearch
+- list, create, describe and delete a configuration for `arlas_cli`
 
 ... with the `arlas_cli` command line only!
 
@@ -59,31 +60,46 @@ curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/samp
 
 Now we can generate the mapping file based on that sample:
 ```shell
-arlas_cli --config local indices \
+arlas_cli  indices \
+   --config local \
    mapping sample.json \
    --field-mapping track.timestamps.center:date-epoch_second \
    --field-mapping track.timestamps.start:date-epoch_second \
    --field-mapping track.timestamps.end:date-epoch_second \
-   --push-on courses
+   --push-on courses 
 ```
 
 The `--push-on` option registers the mapping in the specified index.
 
 Note that the three timestamps are not identified as datetimes by `arlas_cli`. The `--field-mapping` allows to overwrite the detected type.
 
+#### Type identification
+
+A geometry is identified as such if
+- it is a geojson
+- it is a WKT string
+- the fielf name contains `geohash`
+- it is a string containing two float seperated by a comma
+
+A date is identified as such if
+- its name is one of `timestamp`, `date`, `start` or `end` and that it can be parsed as a date
+- its name contains `timestamp`, `date`, `start` or `end` and its values are number within [631152000, 4102444800] or [631152000000, 4102444800000] (year 1950 to 2100)
+
+
 ### Generate the elasticsearch mapping
 
 To add a specific mapping, it is possible to use the `create`` command:
 
 ```shell
-arlas_cli --config local indices \
+arlas_cli indices \
+   --config local \
    create courses \
-   --mapping mapping.json 
+   --mapping mapping.json  
 ```
 
 ### List indices
 ```shell
-arlas_cli --config local indices list
+arlas_cli indices --config local list --config local 
 ```
 
 returns:
@@ -99,14 +115,13 @@ returns:
 
 ### Add data
 ```shell
-arlas_cli --config local indices \
-   data courses sample.json
+arlas_cli indices --config local data courses sample.json --config local 
 ```
 
 ### Describe an index
 
 ```shell
-arlas_cli --config local indices describe courses
+arlas_cli indices --config local describe courses --config local 
 ```
 
 returns:
@@ -128,19 +143,20 @@ returns:
 
 ### Add a collection
 ```shell
-arlas_cli --config local collections \
+arlas_cli collections \
+   --config local \
     create courses \
     --index courses --display-name courses \
     --id-path track.id \
     --centroid-path track.location \
     --geometry-path track.trail \
-    --date-path track.timestamps.center
+    --date-path track.timestamps.center 
 ```
 
 
 ### List collections
 ```shell
-arlas_cli --config local collections list
+arlas_cli collections --config local list 
 ```
 
 returns:
@@ -156,7 +172,7 @@ returns:
 ### Describe a collection
 
 ```shell
-arlas_cli --config local collections describe courses
+arlas_cli collections --config local describe courses
 ```
 
 returns:
@@ -179,17 +195,19 @@ returns:
 
 ### Delete a collection
 ```shell
-arlas_cli --config local collections delete courses
+arlas_cli collections --config local delete courses
 ```
 
 ### Delete an index
 ```shell
-arlas_cli --config local indices delete courses
+arlas_cli indices --config local delete courses
 ```
 
 Note: by default, it is not allowed to delete an index for a given configuration. To allow deleting, edit the configuration file and set `allow_delete` to `True`.
 
-## Configuration
+
+
+## Configurations
 
 The command line uses the `${HOME}/.arlas/cli/configuration.yaml` configuration file:
 
@@ -218,3 +236,72 @@ models:
 The `arlas` section contains the different deployment configurations. The mapping section lists the mapping template that you can use.
  Finaly, the models are the templates for the collections. A [detaild description](docs/model/README.md) of the configuration structure is provided.
  
+ ### Create, describe and delete a configuration for `arlas_cli`
+
+You can edit directly the `${HOME}/.arlas/cli/configuration.yaml` configuration file to update your configurations. You can also use the command line itself.
+
+To list the configurations:
+```shell
+arlas_cli confs list 
+```
+
+returns:
+
+```shell
++-----------+-----------------------------+
+| name      | url                         |
++-----------+-----------------------------+
+| local     | http://localhost:9999/arlas |
+| test_conf | http://localhost:9999       |
++-----------+-----------------------------+
+```
+
+To describe a configuration:
+
+```shell
+arlas_cli confs describe local 
+```
+
+returns:
+
+```yaml
+allow_delete: true
+authorization: null
+elastic:
+  headers:
+    Content-Type: application/json
+  location: http://localhost:9200
+server:
+  headers:
+    Content-Type: application/json
+  location: http://localhost:9999/arlas
+```
+
+To create a configuration:
+
+```shell
+arlas_cli confs create dev_conf \
+  --server http://localhost:9999 \
+  --headers "Content-Type:application/json" \
+  --elastic http://localhost:9200 \
+  --elastic-headers "Content-Type:application/json" \
+  --no-allow-delete
+```
+
+To delete the configuration:
+
+```shell
+arlas_cli confs delete dev_conf
+```
+
+Also, it is possible to use a different configuration file than the one placed in your home directory (`$HOME/.arlas/cli/configuration.yaml`):
+
+```shell
+arlas_cli --config-file /tmp/config.yaml        
+```
+
+returns
+
+```shell
+Warning : no configuration file found, we created an empty one for you (/tmp/config.yaml).
+```
