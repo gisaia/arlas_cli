@@ -106,7 +106,7 @@ def __type_node__(n, name: str = None) -> str:
         if all(isinstance(x, (int)) for x in n):
             if name and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or name.find("start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or name.find("end_") >= 0):
                 # all between year 1950 and 2100, in second or milli second
-                if all((x > 631152000 and x < 4102444800) for x in n) or all((x > 631152000000 and x < 4102444800000) for x in n):
+                if all((x > 631152000 and x < 4102444800) for x in n):
                     return "date-epoch_second"
                 if all((x > 631152000000 and x < 4102444800000) for x in n):
                     return "date-epoch_millis"
