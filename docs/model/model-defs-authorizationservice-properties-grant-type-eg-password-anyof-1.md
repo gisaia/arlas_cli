@@ -1,7 +1,7 @@
-# Keycloak URL Schema
+# Untitled null in Settings Schema
 
 ```txt
-airs_model#/$defs/ARLAS/properties/authorization
+airs_model#/$defs/AuthorizationService/properties/grant_type/anyOf/1
 ```
 
 
@@ -10,12 +10,6 @@ airs_model#/$defs/ARLAS/properties/authorization
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [model.schema.json\*](../../out/model.schema.json "open original schema") |
 
-## authorization Type
+## 1 Type
 
-merged type ([Keycloak URL](model-defs-arlas-properties-keycloak-url.md))
-
-any of
-
-*   [AuthorizationService](model-defs-authorizationservice.md "check type definition")
-
-*   [Untitled null in Settings](model-defs-arlas-properties-keycloak-url-anyof-1.md "check type definition")
+`null`, the value must be null

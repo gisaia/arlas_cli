@@ -1,7 +1,7 @@
-# Keycloak URL Schema
+# Grant type (e.g. password) Schema
 
 ```txt
-airs_model#/$defs/ARLAS/properties/authorization
+airs_model#/$defs/AuthorizationService/properties/grant_type
 ```
 
 
@@ -10,12 +10,12 @@ airs_model#/$defs/ARLAS/properties/authorization
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [model.schema.json\*](../../out/model.schema.json "open original schema") |
 
-## authorization Type
+## grant\_type Type
 
-merged type ([Keycloak URL](model-defs-arlas-properties-keycloak-url.md))
+merged type ([Grant type (e.g. password)](model-defs-authorizationservice-properties-grant-type-eg-password.md))
 
 any of
 
-*   [AuthorizationService](model-defs-authorizationservice.md "check type definition")
+*   [Untitled string in Settings](model-defs-authorizationservice-properties-grant-type-eg-password-anyof-0.md "check type definition")
 
-*   [Untitled null in Settings](model-defs-arlas-properties-keycloak-url-anyof-1.md "check type definition")
+*   [Untitled null in Settings](model-defs-authorizationservice-properties-grant-type-eg-password-anyof-1.md "check type definition")

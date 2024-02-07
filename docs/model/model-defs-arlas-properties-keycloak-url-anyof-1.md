@@ -1,7 +1,7 @@
 # Untitled null in Settings Schema
 
 ```txt
-airs_model#/$defs/ARLAS/properties/keycloak/anyOf/1
+airs_model#/$defs/ARLAS/properties/authorization/anyOf/1
 ```
 
 

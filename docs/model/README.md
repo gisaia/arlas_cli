@@ -10,6 +10,8 @@
 
 *   [ARLAS](./model-defs-arlas.md) – `airs_model#/$defs/ARLAS`
 
+*   [AuthorizationService](./model-defs-authorizationservice.md) – `airs_model#/$defs/AuthorizationService`
+
 *   [Resource](./model-defs-resource.md) – `airs_model#/$defs/Resource`
 
 *   [Untitled object in Settings](./model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-0.md) – `airs_model#/$defs/Resource/properties/headers/anyOf/0`

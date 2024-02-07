@@ -1,7 +1,7 @@
-# Keycloak URL Schema
+# Client secret Schema
 
 ```txt
-airs_model#/$defs/ARLAS/properties/authorization
+airs_model#/$defs/AuthorizationService/properties/client_secret
 ```
 
 
@@ -10,12 +10,12 @@ airs_model#/$defs/ARLAS/properties/authorization
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [model.schema.json\*](../../out/model.schema.json "open original schema") |
 
-## authorization Type
+## client\_secret Type
 
-merged type ([Keycloak URL](model-defs-arlas-properties-keycloak-url.md))
+merged type ([Client secret](model-defs-authorizationservice-properties-client-secret.md))
 
 any of
 
-*   [AuthorizationService](model-defs-authorizationservice.md "check type definition")
+*   [Untitled string in Settings](model-defs-authorizationservice-properties-client-secret-anyof-0.md "check type definition")
 
-*   [Untitled null in Settings](model-defs-arlas-properties-keycloak-url-anyof-1.md "check type definition")
+*   [Untitled null in Settings](model-defs-authorizationservice-properties-client-secret-anyof-1.md "check type definition")

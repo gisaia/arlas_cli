@@ -1,7 +1,7 @@
-# Keycloak URL Schema
+# Token URL of the authentication service Schema
 
 ```txt
-airs_model#/$defs/ARLAS/properties/authorization
+airs_model#/$defs/AuthorizationService/properties/token_url
 ```
 
 
@@ -10,12 +10,10 @@ airs_model#/$defs/ARLAS/properties/authorization
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :------------------------------------------------------------------------ |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [model.schema.json\*](../../out/model.schema.json "open original schema") |
 
-## authorization Type
+## token\_url Type
 
-merged type ([Keycloak URL](model-defs-arlas-properties-keycloak-url.md))
+merged type ([Token URL of the authentication service](model-defs-authorizationservice-properties-token-url-of-the-authentication-service.md))
 
-any of
+all of
 
-*   [AuthorizationService](model-defs-authorizationservice.md "check type definition")
-
-*   [Untitled null in Settings](model-defs-arlas-properties-keycloak-url-anyof-1.md "check type definition")
+*   [Resource](model-defs-resource.md "check type definition")

@@ -1,21 +1,19 @@
 arlas:
   demo:
     allow_delete: false
+    authorization: null
     elastic: null
-    iam: null
-    keycloak: null
     server:
       headers:
         Content-Type: application/json
       location: https://demo.cloud.arlas.io/arlas/server
   local:
     allow_delete: true
+    authorization: null
     elastic:
       headers:
         Content-Type: application/json
       location: http://localhost:9200
-    iam: null
-    keycloak: null
     server:
       headers:
         Content-Type: application/json
