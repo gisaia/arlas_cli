@@ -164,7 +164,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}):
     tree = {}
     mapping = {}
     with open(file) as f:
-        for i in range(1, nb_lines):
+        for i in range(1, nb_lines + 1):
             hit = json.loads(f.readline())
             __build_tree__(tree, hit)
         __type_tree__("", tree, types)

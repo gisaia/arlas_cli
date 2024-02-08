@@ -17,7 +17,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST infer mapping and add mapping on ES"
-python3 -m arlas.cli.cli indices --config local mapping tests/sample.json --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
+python3 -m arlas.cli.cli indices --config local mapping tests/sample.json --nb-lines 10 --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Mapping infered and added"
 else
