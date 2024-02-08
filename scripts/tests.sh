@@ -56,9 +56,8 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST retrieve hits from ES"
-python3 -m arlas.cli.cli indices --config local list
 if python3 -m arlas.cli.cli indices --config local list | grep courses | grep " 100   "; then
-    echo "OK: two hits found"
+    echo "OK: hundred hits found"
 else
     echo "ERROR: hits not found"
     exit 1
