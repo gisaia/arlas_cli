@@ -27,6 +27,7 @@ theme:
     accent: 'light-blue'
 
 nav:
+- arlas_cli version: version.md
 - About arlas_cli: index.md
 - Installation: install.md
 - Getting started: started.md
@@ -35,7 +36,7 @@ nav:
   - Indices: indices.md
   - Collections: collections.md
   - Configurations: confs.md
-- arlas_cli version: version.md
+- Configuration data model: model/model.md
 
 
 plugins:
