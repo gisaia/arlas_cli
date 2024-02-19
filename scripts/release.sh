@@ -25,10 +25,10 @@ git add configuration.yaml
 
 # Model
 export PYTHONPATH=`pwd`
-python3 -m arlas.cli.settings > docs/model/model.schema.json
-jsonschema2md -d docs/model/ -o docs/model/
+python3 -m arlas.cli.settings > docs/docs/model/model.schema.json
+jsonschema2md -d docs/model/ -o docs/docs/model/
 rm -r out
-git add docs/model
+git add docs/docs/model
 
 ./scripts/mkdocs.sh
 mkdocs gh-deploy -f docs/mkdocs.yml

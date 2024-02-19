@@ -12,8 +12,10 @@
         <meta name="author" content="Gisaïa - SCALING GEOSPATIAL INTELLIGENCE">
       
       
-        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/confs_2/">
+        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/version/">
       
+      
+        <link rel="prev" href="../confs/">
       
       
       
@@ -22,7 +24,7 @@
     
     
       
-        <title>Confs 2 - ARLAS Command Line (arlas_cli)</title>
+        <title>arlas_cli version - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -73,11 +75,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#create-a-configuration" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -110,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Confs 2
+              arlas_cli version
             
           </span>
         </div>
@@ -373,10 +370,17 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -385,6 +389,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -407,23 +412,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-a-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create a configuration
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -437,23 +425,10 @@
                   
 
 
-  <h1>Confs 2</h1>
+  <h1>arlas_cli version</h1>
 
-<p>```</p>
-<h2 id="create-a-configuration">Create a configuration</h2>
-<p>The configuration file (default is <code>$HOME/.arlas/cli/configuration.yaml</code>) contains 3 sections:</p>
-<ul>
-<li>the list of ARLAS configurations</li>
-<li>the list of mappings</li>
-<li>the list of collection models</li>
-</ul>
-<p>It is possible, with the <code>arlas_cli</code> command line, to manage the ARLAS configurations, but not the two last ones.</p>
-<p>An ARLAS Configuration tells <code>arlas_cli</code> how to contact ARLAS Server and elasticsearch. It supports the addition of http headers. For ARLAS, keycloak and ARLAS IAM authentications are supported. Default is keycloak, use <code>--auth-arlas-iam</code> for ARLAS IAM.</p>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>By default, it is not possible to run the <code>delete</code> command on an elasticsearch with <code>arlas_cli</code>. This is to prevent accidental data loass. In order to allow delete on a configuration, use the <code>--allow-delete</code> option.</p>
-</div>
-<p>```shell</p>
+<p>ARLAS Version:
+0.2.9</p>
 
 
 

@@ -8,10 +8,10 @@ Install `arlas_cli` ([prerequisite](install.md#Prerequisite))
     For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine.
 
 ## Initial configuration
-`arlas_cli` uses a yaml file for storing various ARLAS and elasicsearch configurations. By default, the file is located in `~/.arlas/cli/configuration.yaml`. [One is automatically created for your convinience at the first launch](https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml). It contains the ARLAS demo endpoint and the local ARLAS and elasticsearch endpoints.
+`arlas_cli` uses a yaml file for storing various ARLAS and elasticsearch configurations. By default, the file is located in `~/.arlas/cli/configuration.yaml`. [One is automatically created for your convinience at the first launch](https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml). It contains the ARLAS demo endpoint and the local ARLAS and elasticsearch endpoints.
 
 The configuration can also contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
-It can also contain references to index mappings for creating indices. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
+It can also contain references to index mappings for creating indices. A default one is provided for ARLAS EO.
 
 ## Running
 
@@ -20,27 +20,28 @@ It can also contain references to index mappings for creating indices. A default
 > arlas_cli --version
 0.2.8
 Warning : no configuration file found, we created an empty one for 
-you (/Users/gaudan/.arlas/cli/configuration.yaml).
+you (~/.arlas/cli/configuration.yaml).
 ```
 
 ## Examples
 
 In the following examples, you will see how to:
+
 - generate an elasticsearch mapping based on json objects
 - add the mapping in elasticsearch
 - list the elasticsearch indices
 - add (index) data in the elasticsearch index
 - get the structure of the mapping
-- add a collection in arlas
-- list the arlas collection
-- get the structure of a arlas collection
-- delete a collection from arlas
+- add a collection in ARLAS
+- list the ARLAS collections
+- get the structure of a ARLAS collection
+- delete a collection from ARLAS
 - delete a mapping from elasticsearch
 - list, create, describe and delete a configuration for `arlas_cli`
 
 ... with the `arlas_cli` command line only!
 
-We suppose you hava an elasticsearch and arlas server running.
+We suppose you have an elasticsearch and arlas server running.
 
 ### Generate the elasticsearch mapping
 
@@ -71,12 +72,14 @@ Note that the three timestamps are not identified as datetimes by `arlas_cli`. T
 #### Type identification
 
 A geometry is identified as such if
+
 - it is a geojson
 - it is a WKT string
-- the fielf name contains `geohash`
+- the field name contains `geohash`
 - it is a string containing two float seperated by a comma
 
 A date is identified as such if
+
 - its name is one of `timestamp`, `date`, `start` or `end` and that it can be parsed as a date
 - its name contains `timestamp`, `date`, `start` or `end` and its values are number within [631152000, 4102444800] or [631152000000, 4102444800000] (year 1990 to 2100)
 
@@ -219,7 +222,7 @@ models:
 ```
 
 The `arlas` section contains the different deployment configurations. The mapping section lists the mapping template that you can use.
- Finaly, the models are the templates for the collections. A [detaild description](docs/model/README.md) of the configuration structure is provided.
+ Finally, the models are the templates for the collections. A [detailed description](docs/model/README.md) of the configuration structure is provided.
  
 
  ### Create, describe and delete a configuration for `arlas_cli`
