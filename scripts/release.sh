@@ -3,6 +3,7 @@ set -e
 
 [ -z "$1" ] && echo "Please provide the version" && exit 1;
 VERSION=$1
+echo ${VERSION} > version.txt
 
 if test -f "$HOME/.pypirc"; then
     echo "$HOME/.pypirc found."
@@ -29,7 +30,9 @@ jsonschema2md -d docs/model/ -o docs/model/
 rm -r out
 git add docs/model
 
-echo ${VERSION} > version.txt
+./scripts/mkdocs.sh
+mkdocs gh-deploy -f docs/mkdocs.yml
+
 git add version.txt
 git commit -m "ARLAS Command line ${VERSION}"
 # TAG

@@ -1,0 +1,44 @@
+site_name: ARLAS Command Line (arlas_cli)
+site_url: "https://gisaia.github.io/arlas_cli"
+site_author: Gisaïa - SCALING GEOSPATIAL INTELLIGENCE
+site_description: Documentation for the arlas_cli command line
+
+# Repository
+repo_name: gisaia/arlas_cli
+repo_url: https://github.com/gisaia/arlas_cli
+edit_uri: ""
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - markdown.extensions.admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+theme:
+  name: material
+  highlightjs: true
+  palette:
+    primary: 'pink'
+    accent: 'light-blue'
+
+nav:
+- About arlas_cli: index.md
+- Installation: install.md
+- Getting started: started.md
+- Commands:
+  - Getting help: help.md
+  - Indices: indices.md
+  - Collections: collections.md
+  - Configurations: confs.md
+- arlas_cli version: version.md
+
+
+plugins:
+  - termynal:
+      prompt_literal_start:
+        - ">"
