@@ -26,7 +26,7 @@ git add configuration.yaml
 # Model
 export PYTHONPATH=`pwd`
 python3 -m arlas.cli.settings > docs/docs/model/model.schema.json
-jsonschema2md -d docs/model/ -o docs/docs/model/
+jsonschema2md -d docs/docs/model/ -o docs/docs/model/
 rm -r out
 git add docs/docs/model
 
