@@ -278,7 +278,15 @@ class Service:
             data=json.dumps(data),
             url=auth.token_url.location)
         if r.status_code >= 200 and r.status_code < 300:
-            return r.json()["accessToken"]
+            if r.json().get("accessToken"):
+                return r.json()["accessToken"]
+            else:
+                if r.json().get("access_token"):
+                    return r.json()["access_token"]
+                else:
+                    print("Error: Failed to find access token in response {}".format(r.content), file=sys.stderr)
+                    print("   url: {}".format(auth.token_url.location), file=sys.stderr)
+                    exit(1)
         else:
             print("Error: request to get token failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
             print("   url: {}".format(auth.token_url.location), file=sys.stderr)
