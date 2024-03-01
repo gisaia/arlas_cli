@@ -1,16 +1,22 @@
+from enum import Enum
 import json
 import os
 import sys
 from alive_progress import alive_bar
 import requests
 
-from arlas.cli.settings import Configuration, Resource
+from arlas.cli.settings import ARLAS, Configuration, Resource
 
 
 class RequestException(Exception):
     def __init__(self, code, message):
         self.code = code
         self.message = message
+
+
+class Services(Enum):
+    arlas_server = "server"
+    persistence_server = "persistence"
 
 
 class Service:
@@ -134,7 +140,50 @@ class Service:
         with open(file_path) as f:
             for line in f:
                 line_number = line_number + 1
-        return line_number                
+        return line_number
+
+    def persistence_add_file(arlas: str, file: Resource, zone: str, name: str, encode: bool = False, readers: list[str] = [], writers: list[str] = []):
+        content = Service.__fetch__(file)
+        url = "/".join(["persist", "resource", zone, name]) + "?" + "&readers=".join(readers) + "&writers=".join(writers)
+        return Service.__arlas__(arlas, url, post=content, service=Services.persistence_server).get("id")
+
+    def persistence_delete(arlas: str, id: str):
+        url = "/".join(["persist", "resource", "id", id])
+        return Service.__arlas__(arlas, url, delete=True, service=Services.persistence_server)
+
+    def persistence_get(arlas: str, id: str):
+        url = "/".join(["persist", "resource", "id", id])
+        return Service.__arlas__(arlas, url, service=Services.persistence_server)
+    
+    def persistence_zone(arlas: str, zone: str):
+        url = "/".join(["persist", "resources", zone]) + "?size=10&page=1&order=desc&pretty=false"
+        table = [["id", "name", "zone", "last_update_date", "owner"]]
+        entries = Service.__arlas__(arlas, url, service=Services.persistence_server).get("data", [])
+        for entry in entries:
+            table.append([entry["id"], entry["doc_key"], entry["doc_zone"], entry["last_update_date"], entry["doc_owner"]])
+        return table
+
+    def persistence_groups(arlas: str, zone: str):
+        url = "/".join(["persist", "groups", zone])
+        table = [["group"]]
+        groups = Service.__arlas__(arlas, url, service=Services.persistence_server)
+        for group in groups:
+            table.append([group])
+        return table
+
+    def persistence_describe(arlas: str, id: str):
+        url = "/".join(["persist", "resource", "id", id])
+        r = Service.__arlas__(arlas, url, service=Services.persistence_server)
+        table = [["metadata", "value"]]
+        table.append(["ID", r.get("id")])
+        table.append(["name", r.get("doc_key")])
+        table.append(["zone", r.get("doc_zone")])
+        table.append(["last_update_date", r.get("last_update_date")])
+        table.append(["owner", r.get("doc_owner")])
+        table.append(["organization", r.get("doc_organization")])
+        table.append(["ispublic", r.get("ispublic")])
+        table.append(["updatable", r.get("updatable")])
+        return table
 
     def __index_bulk__(arlas: str, index: str, bulk: []):
         data = os.linesep.join([json.dumps(line) for line in bulk]) + os.linesep
@@ -185,29 +234,38 @@ class Service:
                 fields.append([".".join(o), type])
         return fields
     
-    def __arlas__(arlas: str, suffix, post=None, put=None, delete=None):
+    def __arlas__(arlas: str, suffix, post=None, put=None, delete=None, service=Services.arlas_server):
+        configuration: ARLAS = Configuration.settings.arlas.get(arlas, {})
+        if configuration is None:
+            print("Error: arlas configuration ({}) not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
+            exit(1)
+        if service == Services.arlas_server:
+            endpoint: Resource = configuration.server
+        else:
+            endpoint: Resource = configuration.persistence
         __headers__ = Configuration.settings.arlas.get(arlas).server.headers.copy()
         if Configuration.settings.arlas.get(arlas).authorization is not None:
             __headers__["Authorization"] = "Bearer " + Service.__get_token__(arlas)
-        endpoint = Configuration.settings.arlas.get(arlas)
-        if endpoint is None:
-            print("Error: arlas configuration ({}) not found among [{}].".format(arlas, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
-            exit(1)
-        url = "/".join([endpoint.server.location, suffix])
-        if post:
-            r = requests.post(url, data=post, headers=__headers__)
-        else:
-            if put:
-                r = requests.put(url, data=put, headers=__headers__)
+        url = "/".join([endpoint.location, suffix])
+        try:
+            if post:
+                r = requests.post(url, data=post, headers=__headers__)
             else:
-                if delete:
-                    r = requests.delete(url, headers=__headers__)
+                if put:
+                    r = requests.put(url, data=put, headers=__headers__)
                 else:
-                    r = requests.get(url, headers=__headers__)
-        if r.ok:
-            return r.json()
-        else:
-            print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+                    if delete:
+                        r = requests.delete(url, headers=__headers__)
+                    else:
+                        r = requests.get(url, headers=__headers__)
+            if r.ok:
+                return r.json()
+            else:
+                print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+                print("   url: {}".format(url), file=sys.stderr)
+                exit(1)
+        except Exception as e:
+            print("Error: request failed: {}".format(e), file=sys.stderr)
             print("   url: {}".format(url), file=sys.stderr)
             exit(1)
 

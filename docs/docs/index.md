@@ -15,6 +15,12 @@ __ARLAS Exploration__ is an Open Source software for exploring and analysing Geo
     - list collections
     - describe a collection
     - delete a collection
+- managing ARLAS persistence
+    - create a entry in a zone
+    - list entries within a zone
+    - describe an entry
+    - delete an entry
+    - get the groups accessing a zone
 - managing configurations
     - register an ARLAS/elasticsearch configuration, with headers and authentication parameters
     - delete a configuration
