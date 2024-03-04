@@ -4,7 +4,7 @@ import os
 import sys
 from prettytable import PrettyTable
 
-from arlas.cli.settings import Resource
+from arlas.cli.settings import Configuration, Resource
 from arlas.cli.service import Service
 from arlas.cli.variables import variables
 
@@ -35,6 +35,18 @@ def delete(
     id: str = typer.Argument(help="entry identifier")
 ):
     config = variables["arlas"]
+    if not Configuration.settings.arlas.get(config).allow_delete:
+        print("Error: delete on \"{}\" is not allowed. To allow delete, change your configuration file ({}).".format(config, variables["configuration_file"]), file=sys.stderr)
+        exit(1)
+
+    if typer.confirm("You are about to delete the entry '{}' on '{}' configuration.\n".format(id, config),
+                     prompt_suffix="Do you want to continue (del {} on {})?".format(id, config),
+                     default=False, ):
+        if config != "local" and config.find("test") < 0:
+            if typer.prompt("WARNING: You are not on a test environment. To delete {} on {}, type the name of the configuration ({})".format(id, config, config)) != config:
+                print("Error: delete on \"{}\" cancelled.".format(config), file=sys.stderr)
+                exit(1)
+
     Service.persistence_delete(config, id=id)
     print("Resource {} deleted.".format(id))
 

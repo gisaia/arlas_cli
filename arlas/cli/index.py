@@ -121,10 +121,10 @@ def delete(
 ):
     config = variables["arlas"]
     if not Configuration.settings.arlas.get(config).allow_delete:
-        print("Error: delete on \"{}\" is not allowed. To allow delete, change your configuration file ({}).".format(config, configuration_file), file=sys.stderr)
+        print("Error: delete on \"{}\" is not allowed. To allow delete, change your configuration file ({}).".format(config, variables["configuration_file"]), file=sys.stderr)
         exit(1)
 
-    if typer.confirm("You are about to delete the index '{}' on the '{}' configuration.\n".format(index, config),
+    if typer.confirm("You are about to delete the index '{}' on  '{}' configuration.\n".format(index, config),
                      prompt_suffix="Do you want to continue (del {} on {})?".format(index, config),
                      default=False, ):
         if config != "local" and config.find("test") < 0:

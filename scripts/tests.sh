@@ -2,12 +2,27 @@
 set -e
 
 ./scripts/start_stack.sh
+if test -f "/tmp/arlas_cli.yaml"; then
+    rm /tmp/arlas_cli.yaml
+fi
+
+if test -f "/tmp/arlas_cli_persist"; then
+    rm -rf /tmp/arlas_cli_persist
+fi
+
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml --config-file /tmp/arlas_cli.yaml --version
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml --config-file /tmp/arlas_cli.yaml confs \
+    create tests \
+    --server http://localhost:9999/arlas \
+    --persistence http://localhost:9997/arlas_persistence_server \
+    --headers "Content-Type:application/json" \
+    --elastic http://localhost:9200 \
+    --elastic-headers "Content-Type:application/json" \
+    --allow-delete 
 
 # ----------------------------------------------------------
-echo "TEST default configuration placed in $HOME/.arlas/cli"
-rm -f $HOME/.arlas/cli/configuration.yaml
-python3 -m arlas.cli.cli --version
-FILE=$HOME/.arlas/cli/configuration.yaml
+echo "TEST configuration placed in /tmp/"
+FILE=/tmp/arlas_cli.yaml
 if test -f "$FILE"; then
     echo "OK: $FILE exists."
 else
@@ -17,7 +32,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST infer mapping and add mapping on ES"
-python3 -m arlas.cli.cli indices --config local mapping tests/sample.json --nb-lines 10 --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests mapping tests/sample.json --nb-lines 10 --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Mapping infered and added"
 else
@@ -27,7 +42,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST retrieve mapping from ES"
-if python3 -m arlas.cli.cli indices --config local list | grep courses ; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep courses ; then
     echo "OK: mapping found"
 else
     echo "ERROR: mapping not found"
@@ -36,7 +51,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST describe mapping from ES"
-if python3 -m arlas.cli.cli indices --config local describe courses | grep "track.timestamps.center" | grep "date      "; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests describe courses | grep "track.timestamps.center" | grep "date      "; then
     echo "OK: describe mapping ok"
 else
     echo "ERROR: describe mapping failled"
@@ -45,7 +60,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add data to ES"
-python3 -m arlas.cli.cli indices --config local data courses tests/sample.json
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests data courses tests/sample.json
 if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
@@ -56,7 +71,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST retrieve hits from ES"
-if python3 -m arlas.cli.cli indices --config local list | grep courses | grep " 100   "; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep courses | grep " 100   "; then
     echo "OK: hundred hits found"
 else
     echo "ERROR: hits not found"
@@ -66,7 +81,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add collection"
-python3 -m arlas.cli.cli collections --config local create courses --index courses --display-name courses --id-path track.id --centroid-path track.location --geometry-path track.trail --date-path track.timestamps.center
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests create courses --index courses --display-name courses --id-path track.id --centroid-path track.location --geometry-path track.trail --date-path track.timestamps.center
 if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
@@ -77,7 +92,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST retrieve collection"
-if python3 -m arlas.cli.cli collections --config local list | grep courses ; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests list | grep courses ; then
     echo "OK: collection found"
 else
     echo "ERROR: collection not found"
@@ -86,7 +101,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST describe collection"
-python3 -m arlas.cli.cli collections --config local describe courses
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests describe courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Describe collection ok"
 else
@@ -96,7 +111,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST count collection"
-python3 -m arlas.cli.cli collections --config local count courses
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests count courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Count collection ok"
 else
@@ -107,7 +122,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST delete collection"
-yes | python3 -m arlas.cli.cli collections --config local delete courses
+yes | python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests delete courses
 if [ "$? -eq 0" ] ; then
     echo "OK: delete collection ok"
 else
@@ -118,7 +133,7 @@ fi
 sleep 2
 # ----------------------------------------------------------
 echo "TEST collection deleted"
-if python3 -m arlas.cli.cli collections --config local list| grep courses ; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests list| grep courses ; then
     echo "ERROR: collection found, not deleted"
     exit 1
 else
@@ -127,7 +142,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST delete index"
-yes | python3 -m arlas.cli.cli indices --config local delete courses
+yes | python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests delete courses
 if [ "$? -eq 0" ] ; then
     echo "OK: delete index ok"
 else
@@ -140,7 +155,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST index deleted"
-if python3 -m arlas.cli.cli indices --config local list| grep courses ; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list| grep courses ; then
     echo "ERROR: index found, not deleted"
     exit 1
 else
@@ -149,7 +164,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST list configurations"
-if python3 -m arlas.cli.cli confs list | grep local ; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs list | grep local ; then
     echo "OK: configuration found"
 else
     echo "ERROR: configuration not found"
@@ -158,7 +173,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST create configuration"
-python3 -m arlas.cli.cli confs create toto --server http://localhost:9999
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs create toto --server http://localhost:9999
 if [ "$? -eq 0" ] ; then
     echo "OK: configuration found"
 else
@@ -168,7 +183,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST  configuration added"
-if python3 -m arlas.cli.cli confs list | grep toto ; then
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs list | grep toto ; then
     echo "OK: configuration found"
 else
     echo "ERROR: configuration not found"
@@ -177,7 +192,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST delete configuration"
-python3 -m arlas.cli.cli confs delete toto
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs delete toto
 if [ "$? -eq 0" ] ; then
     echo "OK: configuration deleted"
 else
@@ -185,5 +200,35 @@ else
     exit 1
 fi
 
+# ----------------------------------------------------------
+echo "TEST add entry"
+id=`python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests add README.md my_zone --name toto`
+
+# ----------------------------------------------------------
+echo "TEST entry found"
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests zone my_zone | grep toto ; then
+    echo "OK: entry found"
+else
+    echo "ERROR: entry not found"
+    exit 1
+fi
+
+# ----------------------------------------------------------
+echo "TEST entry describe"
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests describe $id | grep toto ; then
+    echo "OK: entry described"
+else
+    echo "ERROR: describe not found"
+    exit 1
+fi
+
+# ----------------------------------------------------------
+echo "TEST entry describe"
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests groups my_zone | grep "group/public" ; then
+    echo "OK: groups found "
+else
+    echo "ERROR: groups not found"
+    exit 1
+fi
 
 ./scripts/stop_stack.sh

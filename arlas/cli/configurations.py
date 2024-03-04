@@ -22,6 +22,7 @@ def list_configurations():
 def create_configuration(
     name: str = typer.Argument(help="Name of the configuration"),
     server: str = typer.Option(help="ARLAS Server url"),
+    persistence: str = typer.Option(default=None, help="ARLAS Persistence url"),
     headers: list[str] = typer.Option([], help="header (name:value)"),
     elastic: str = typer.Option(default=None, help="dictionary of name/es resources"),
     elastic_headers: list[str] = typer.Option([], help="header (name:value)"),
@@ -42,6 +43,9 @@ def create_configuration(
     conf = ARLAS(
         server=Resource(location=server, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), headers))),
         allow_delete=allow_delete)
+    if persistence:
+        conf.persistence = Resource(location=persistence, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), headers)))
+
     if auth_token_url:
         conf.authorization = AuthorizationService(
             token_url=Resource(location=auth_token_url, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), auth_headers))),
