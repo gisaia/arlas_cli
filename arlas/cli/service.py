@@ -105,12 +105,12 @@ class Service:
         print(json.dumps(model))
         Service.__arlas__(arlas, "/".join(["collections", collection]), put=json.dumps(model))
 
-    def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int):
+    def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int, add_uuid: str = None):
         mapping = json.loads(Service.__fetch__(mapping_resource))
         if not mapping.get("mappings"):
             print("Error: mapping {} does not contain \"mappings\" at its root.".format(mapping_resource), file=sys.stderr)
             exit(1)
-        Service.create_index(arlas, index, mapping, number_of_shards)
+        Service.create_index(arlas, index, mapping, number_of_shards, add_uuid)
 
     def create_index(arlas: str, index: str, mapping: str, number_of_shards: int = 1):
         index_doc = {"mappings": mapping.get("mappings"), "settings": {"number_of_shards": number_of_shards}}
@@ -143,7 +143,7 @@ class Service:
         return line_number
 
     def persistence_add_file(arlas: str, file: Resource, zone: str, name: str, encode: bool = False, readers: list[str] = [], writers: list[str] = []):
-        content = Service.__fetch__(file)
+        content = Service.__fetch__(file, bytes=True)
         url = "/".join(["persist", "resource", zone, name]) + "?" + "&readers=".join(readers) + "&writers=".join(writers)
         return Service.__arlas__(arlas, url, post=content, service=Services.persistence_server).get("id")
 
@@ -240,10 +240,11 @@ class Service:
             print("Error: arlas configuration ({}) not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
             exit(1)
         if service == Services.arlas_server:
+            __headers__ = configuration.server.headers.copy()
             endpoint: Resource = configuration.server
         else:
+            __headers__ = configuration.persistence.headers.copy()
             endpoint: Resource = configuration.persistence
-        __headers__ = Configuration.settings.arlas.get(arlas).server.headers.copy()
         if Configuration.settings.arlas.get(arlas).authorization is not None:
             __headers__["Authorization"] = "Bearer " + Service.__get_token__(arlas)
         url = "/".join([endpoint.location, suffix])
@@ -300,10 +301,13 @@ class Service:
             else:
                 raise RequestException(r.status_code, r.content)
 
-    def __fetch__(resource: Resource):
+    def __fetch__(resource: Resource, bytes: bool = False):
         if os.path.exists(resource.location):
             content = None
-            with open(resource.location) as f:
+            mode = "r"
+            if bytes:
+                mode = "rb"
+            with open(resource.location, mode) as f:
                 content = f.read()
             return content
         r = requests.get(resource.location, headers=resource.headers)

@@ -26,7 +26,7 @@ def add(
     encode: bool = typer.Option(help="Encode in BASE64", default=False)
 ):
     config = variables["arlas"]
-    id = Service.persistence_add_file(config, Resource(location=file), zone=zone, name=name, readers=reader, encode=encode)
+    id = Service.persistence_add_file(config, Resource(location=file), zone=zone, name=name, readers=reader, writers=writer, encode=encode)
     print(id)
 
 
@@ -56,7 +56,7 @@ def get(
     id: str = typer.Argument(help="entry identifier")
 ):
     config = variables["arlas"]
-    print(Service.persistence_get(config, id=id).get("doc_value"))
+    print(Service.persistence_get(config, id=id).get("doc_value"), end="")
 
 
 @persist.command(help="List entries within a zone", name="zone")

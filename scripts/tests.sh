@@ -214,6 +214,17 @@ else
 fi
 
 # ----------------------------------------------------------
+echo "TEST entry content is same as sent"
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist  --config tests get $id > /tmp/result
+
+if cmp --silent -- /tmp/result README.md; then
+    echo "OK: content is the same"
+else
+    echo "ERROR: content differs"
+    exit 1
+fi
+
+# ----------------------------------------------------------
 echo "TEST entry describe"
 if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests describe $id | grep toto ; then
     echo "OK: entry described"
@@ -223,7 +234,7 @@ else
 fi
 
 # ----------------------------------------------------------
-echo "TEST entry describe"
+echo "TEST list groups"
 if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests groups my_zone | grep "group/public" ; then
     echo "OK: groups found "
 else
