@@ -3,6 +3,7 @@ arlas:
     allow_delete: false
     authorization: null
     elastic: null
+    persistence: null
     server:
       headers:
         Content-Type: application/json
@@ -14,10 +15,14 @@ arlas:
       headers:
         Content-Type: application/json
       location: http://localhost:9200
+    persistence:
+      headers:
+        Content-Type: application/json
+      location: http://localhost/persist
     server:
       headers:
         Content-Type: application/json
-      location: http://localhost:9999/arlas
+      location: http://localhost/server
 mappings:
   arlas_eo:
     headers: null

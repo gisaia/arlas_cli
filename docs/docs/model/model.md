@@ -88,10 +88,35 @@ Reference this group by using
 
 | Property                        | Type   | Required | Nullable       | Defined by                                                                                                                                    |
 | :------------------------------ | :----- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| [persistence](#persistence)     | Merged | Optional | cannot be null | [Settings](model-defs-arlas-properties-arlas-persistence-server.md "airs_model#/$defs/ARLAS/properties/persistence")                          |
 | [server](#server)               | Merged | Required | cannot be null | [Settings](model-defs-arlas-properties-arlas-server.md "airs_model#/$defs/ARLAS/properties/server")                                           |
 | [authorization](#authorization) | Merged | Optional | cannot be null | [Settings](model-defs-arlas-properties-keycloak-url.md "airs_model#/$defs/ARLAS/properties/authorization")                                    |
 | [elastic](#elastic)             | Merged | Optional | cannot be null | [Settings](model-defs-arlas-properties-dictionary-of-namees-resources.md "airs_model#/$defs/ARLAS/properties/elastic")                        |
 | [allow\_delete](#allow_delete)  | Merged | Optional | cannot be null | [Settings](model-defs-arlas-properties-is-delete-command-allowed-for-this-configuration.md "airs_model#/$defs/ARLAS/properties/allow_delete") |
+
+### persistence
+
+
+
+`persistence`
+
+*   is optional
+
+*   Type: merged type ([ARLAS Persistence Server](model-defs-arlas-properties-arlas-persistence-server.md))
+
+*   cannot be null
+
+*   defined in: [Settings](model-defs-arlas-properties-arlas-persistence-server.md "airs_model#/$defs/ARLAS/properties/persistence")
+
+#### persistence Type
+
+merged type ([ARLAS Persistence Server](model-defs-arlas-properties-arlas-persistence-server.md))
+
+any of
+
+*   [Resource](model-defs-resource.md "check type definition")
+
+*   [Untitled null in Settings](model-defs-arlas-properties-arlas-persistence-server-anyof-1.md "check type definition")
 
 ### server
 
