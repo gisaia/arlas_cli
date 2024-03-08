@@ -12,24 +12,24 @@
         <meta name="author" content="Gisaïa - SCALING GEOSPATIAL INTELLIGENCE">
       
       
-        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/indices_4/">
+        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/model/model-defs-arlas-properties-arlas-persistence-server/">
       
       
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.9">
     
     
       
-        <title>Indices 4 - ARLAS Command Line (arlas_cli)</title>
+        <title>ARLAS Persistence Server Schema - ARLAS Command Line (arlas_cli)</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.f2e4d321.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.f2e4d321.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,9 +48,9 @@
       
     
     
-      <link rel="stylesheet" href="../termynal.css">
+      <link rel="stylesheet" href="../../termynal.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#index-data" class="md-skip">
+        <a href="#arlas-persistence-server-schema" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ARLAS Command Line (arlas_cli)" class="md-header__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
+    <a href="../.." title="ARLAS Command Line (arlas_cli)" class="md-header__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Indices 4
+              ARLAS Persistence Server Schema
             
           </span>
         </div>
@@ -160,7 +160,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ARLAS Command Line (arlas_cli)" class="md-nav__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
+    <a href="../.." title="ARLAS Command Line (arlas_cli)" class="md-nav__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -190,7 +190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href="../../version/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -210,7 +210,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -230,7 +230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
+      <a href="../../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -250,7 +250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -305,7 +305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../help/" class="md-nav__link">
+      <a href="../../help/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -326,7 +326,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../indices/" class="md-nav__link">
+      <a href="../../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -347,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../collections/" class="md-nav__link">
+      <a href="../../collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -368,7 +368,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../persist/" class="md-nav__link">
+      <a href="../../persist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -389,7 +389,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
+      <a href="../../confs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -417,7 +417,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../model/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -447,6 +447,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -455,9 +457,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#index-data" class="md-nav__link">
+  <a href="#persistence-type" class="md-nav__link">
     <span class="md-ellipsis">
-      Index data
+      persistence Type
     </span>
   </a>
   
@@ -478,12 +480,46 @@
                   
 
 
-  <h1>Indices 4</h1>
-
-<p>```</p>
-<h2 id="index-data">Index data</h2>
-<p>For indexing data, you'll need to provide one ore several NDJSON file(s). Indexing uses bulks for optimal performances.</p>
-<p>```shell</p>
+<h1 id="arlas-persistence-server-schema">ARLAS Persistence Server Schema</h1>
+<div class="highlight"><pre><span></span><code>airs_model#/$defs/ARLAS/properties/persistence
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Abstract</th>
+<th style="text-align: left;">Extensible</th>
+<th style="text-align: left;">Status</th>
+<th style="text-align: left;">Identifiable</th>
+<th style="text-align: left;">Custom Properties</th>
+<th style="text-align: left;">Additional Properties</th>
+<th style="text-align: left;">Access Restrictions</th>
+<th style="text-align: left;">Defined In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Can be instantiated</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Unknown status</td>
+<td style="text-align: left;">Unknown identifiability</td>
+<td style="text-align: left;">Forbidden</td>
+<td style="text-align: left;">Allowed</td>
+<td style="text-align: left;">none</td>
+<td style="text-align: left;"><a href="../../../out/model.schema.json" title="open original schema">model.schema.json*</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="persistence-type">persistence Type</h2>
+<p>merged type (<a href="./">ARLAS Persistence Server</a>)</p>
+<p>any of</p>
+<ul>
+<li>
+<p><a href="../model-defs-resource/" title="check type definition">Resource</a></p>
+</li>
+<li>
+<p><a href="../model-defs-arlas-properties-arlas-persistence-server-anyof-1/" title="check type definition">Untitled null in Settings</a></p>
+</li>
+</ul>
 
 
 
@@ -530,12 +566,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
       
-        <script src="../termynal.js"></script>
+        <script src="../../termynal.js"></script>
       
     
   </body>

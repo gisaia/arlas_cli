@@ -301,11 +301,9 @@ models:
 ```
 
 The `arlas` section contains the different deployment configurations. The mapping section lists the mapping template that you can use.
- Finally, the models are the templates for the collections. A [detailed description](docs/model/README.md) of the configuration structure is provided.
+ Finally, the models are the templates for the collections. A [detailed description](model/README.md) of the configuration structure is provided.
  
-
- ### Create, describe and delete a configuration for `arlas_cli`
-
+### Create, describe and delete a configuration for `arlas_cli`
 
 You can edit directly the `${HOME}/.arlas/cli/configuration.yaml` configuration file to update your configurations. You can also use the command line itself.
 

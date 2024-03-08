@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://gisaia.github.io/arlas_cli/confs/">
       
       
-        <link rel="prev" href="../collections/">
+        <link rel="prev" href="../persist/">
       
       
-        <link rel="next" href="../version/">
+        <link rel="next" href="../model/model/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -194,6 +194,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../version/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    arlas_cli version
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
   
@@ -263,10 +283,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -277,8 +297,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Commands
           </label>
@@ -338,6 +358,27 @@
   
   <span class="md-ellipsis">
     Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistence
   </span>
   
 
@@ -436,11 +477,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href="../model/model/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    Configuration data model
   </span>
   
 
@@ -532,7 +573,7 @@
 <p class="admonition-title">Danger</p>
 <p>By default, it is not possible to run the <code>delete</code> command on an elasticsearch with <code>arlas_cli</code>. This is to prevent accidental data loass. In order to allow delete on a configuration, use the <code>--allow-delete</code> option.</p>
 </div>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs create --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli confs create [OPTIONS] NAME           <br>                                                                      <br> Add a configuration                                                  <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    name      TEXT  Name of the configuration [default: None]     │<br>│                      [required]                                    │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ *  --server                                TEXT  ARLAS Server url  │<br>│                                                  [default: None]   │<br>│                                                  [required]        │<br>│    --headers                               TEXT  header            │<br>│                                                  (name:value)      │<br>│    --elastic                               TEXT  dictionary of     │<br>│                                                  name/es resources │<br>│                                                  [default: None]   │<br>│    --elastic-heade…                        TEXT  header            │<br>│                                                  (name:value)      │<br>│    --allow-delete      --no-allow-dele…          Is delete command │<br>│                                                  allowed for this  │<br>│                                                  configuration?    │<br>│                                                  [default:         │<br>│                                                  no-allow-delete]  │<br>│    --auth-token-url                        TEXT  Token URL of the  │<br>│                                                  authentication    │<br>│                                                  service           │<br>│                                                  [default: None]   │<br>│    --auth-headers                          TEXT  header            │<br>│                                                  (name:value)      │<br>│    --auth-login                            TEXT  login             │<br>│                                                  [default: None]   │<br>│    --auth-password                         TEXT  password          │<br>│                                                  [default: None]   │<br>│    --auth-client-id                        TEXT  Client ID         │<br>│                                                  [default: None]   │<br>│    --auth-client-s…                        TEXT  Client secret     │<br>│                                                  [default: None]   │<br>│    --auth-grant-ty…                        TEXT  Grant type (e.g.  │<br>│                                                  password)         │<br>│                                                  [default: None]   │<br>│    --auth-arlas-iam    --no-auth-arlas…          Is it an ARLAS    │<br>│                                                  IAM service?      │<br>│                                                  [default:         │<br>│                                                  auth-arlas-iam]   │<br>│    --help                                        Show this message │<br>│                                                  and exit.         │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs create --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli confs create [OPTIONS] NAME           <br>                                                                      <br> Add a configuration                                                  <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    name      TEXT  Name of the configuration [default: None]     │<br>│                      [required]                                    │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ *  --server                                TEXT  ARLAS Server url  │<br>│                                                  [default: None]   │<br>│                                                  [required]        │<br>│    --persistence                           TEXT  ARLAS Persistence │<br>│                                                  url               │<br>│                                                  [default: None]   │<br>│    --headers                               TEXT  header            │<br>│                                                  (name:value)      │<br>│    --elastic                               TEXT  dictionary of     │<br>│                                                  name/es resources │<br>│                                                  [default: None]   │<br>│    --elastic-heade…                        TEXT  header            │<br>│                                                  (name:value)      │<br>│    --allow-delete      --no-allow-dele…          Is delete command │<br>│                                                  allowed for this  │<br>│                                                  configuration?    │<br>│                                                  [default:         │<br>│                                                  no-allow-delete]  │<br>│    --auth-token-url                        TEXT  Token URL of the  │<br>│                                                  authentication    │<br>│                                                  service           │<br>│                                                  [default: None]   │<br>│    --auth-headers                          TEXT  header            │<br>│                                                  (name:value)      │<br>│    --auth-login                            TEXT  login             │<br>│                                                  [default: None]   │<br>│    --auth-password                         TEXT  password          │<br>│                                                  [default: None]   │<br>│    --auth-client-id                        TEXT  Client ID         │<br>│                                                  [default: None]   │<br>│    --auth-client-s…                        TEXT  Client secret     │<br>│                                                  [default: None]   │<br>│    --auth-grant-ty…                        TEXT  Grant type (e.g.  │<br>│                                                  password)         │<br>│                                                  [default: None]   │<br>│    --auth-arlas-iam    --no-auth-arlas…          Is it an ARLAS    │<br>│                                                  IAM service?      │<br>│                                                  [default:         │<br>│                                                  auth-arlas-iam]   │<br>│    --help                                        Show this message │<br>│                                                  and exit.         │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
 
 

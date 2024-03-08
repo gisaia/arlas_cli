@@ -56,6 +56,9 @@ An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elastic
 │ *  --server                                TEXT  ARLAS Server url  │
 │                                                  [default: None]   │
 │                                                  [required]        │
+│    --persistence                           TEXT  ARLAS Persistence │
+│                                                  url               │
+│                                                  [default: None]   │
 │    --headers                               TEXT  header            │
 │                                                  (name:value)      │
 │    --elastic                               TEXT  dictionary of     │
