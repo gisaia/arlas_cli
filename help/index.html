@@ -419,6 +419,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../persist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../confs/" class="md-nav__link">
         
   
@@ -513,7 +534,7 @@
 <h2 id="getting-help">Getting help</h2>
 <p>At any time, if you need some help on how to use the command line or one of its sub command, simply add <code>--help</code>.</p>
 <p>Whether you are at the top level:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --help</span><span data-ty> Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...                         <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --config-file        TEXT  Path to the configuration file if you   │<br>│                            do not want to use the default one:     │<br>│                            .arlas/cli/configuration.yaml.          │<br>│                            [default: None]                         │<br>│ --version                  Print command line version              │<br>│ --help                     Show this message and exit.             │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ collections                                                        │<br>│ confs                                                              │<br>│ indices                                                            │<br>╰────────────────────────────────────────────────────────────────────╯<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --help</span><span data-ty> Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...                         <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --config-file        TEXT  Path to the configuration file if you   │<br>│                            do not want to use the default one:     │<br>│                            .arlas/cli/configuration.yaml.          │<br>│                            [default: None]                         │<br>│ --version                  Print command line version              │<br>│ --help                     Show this message and exit.             │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ collections                                                        │<br>│ confs                                                              │<br>│ indices                                                            │<br>│ persist                                                            │<br>╰────────────────────────────────────────────────────────────────────╯<br></span></div>
 
 <p>or within a sub command:</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config demo mapping --help</span><span data-ty>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    file      TEXT  Path to the file conaining the data. Format:  │<br>│                      NDJSON                                        │<br>│                      [default: None]                               │<br>│                      [required]                                    │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --nb-lines             INTEGER  Number of line to consider for     │<br>│                                 generating the mapping. Avoid      │<br>│                                 going over 10.                     │<br>│                                 [default: 2]                       │<br>│ --field-mapping        TEXT     Overide the mapping with the       │<br>│                                 provided field/type. Example:      │<br>│                                 fragment.location:geo_point        │<br>│ --push-on              TEXT     Push the generated mapping for the │<br>│                                 provided index name                │<br>│                                 [default: None]                    │<br>│ --help                          Show this message and exit.        │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>

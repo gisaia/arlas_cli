@@ -434,6 +434,75 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#arlas-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ARLAS Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add an entry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describe-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describe an entry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-an-entry-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get an entry value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-entries-within-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List entries within a zone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-groups-accessing-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List groups accessing a zone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete an entry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configurations" class="md-nav__link">
     <span class="md-ellipsis">
       Configurations
@@ -539,6 +608,27 @@
   
   <span class="md-ellipsis">
     Collections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistence
   </span>
   
 
@@ -759,6 +849,75 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#arlas-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ARLAS Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add an entry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#describe-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describe an entry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-an-entry-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get an entry value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-entries-within-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List entries within a zone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-groups-accessing-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List groups accessing a zone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete an entry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configurations" class="md-nav__link">
     <span class="md-ellipsis">
       Configurations
@@ -811,6 +970,7 @@ It can also contain references to index mappings for creating indices. A default
 <li>get the structure of a ARLAS collection</li>
 <li>delete a collection from ARLAS</li>
 <li>delete a mapping from elasticsearch</li>
+<li>add, describe, get, list and delete an entry from ARLAS Persistence</li>
 <li>list, create, describe and delete a configuration for <code>arlas_cli</code></li>
 </ul>
 <p>... with the <code>arlas_cli</code> command line only!</p>
@@ -886,6 +1046,25 @@ It can also contain references to index mappings for creating indices. A default
 <p class="admonition-title">Note</p>
 <p>By default, it is not allowed to delete an index for a given configuration. To allow deleting, edit the configuration file and set <code>allow_delete</code> to <code>True</code>.</p>
 </div>
+<h2 id="arlas-persistence">ARLAS Persistence</h2>
+<h3 id="add-an-entry">Add an entry</h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local add ../arlas-stacks4tests/conf/config.json config.json --name courses_dashboard</span><span data-ty>32d2624b-d7cd-11ee-9a91-0242ac130004<br></span></div>
+
+<h3 id="describe-an-entry">Describe an entry</h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local describe 32d2624b-d7cd-11ee-9a91-0242ac130004</span><span data-ty>+------------------+--------------------------------------+<br>| metadata         | value                                |<br>+------------------+--------------------------------------+<br>| ID               | 6a415cec-d7cd-11ee-9a91-0242ac130004 |<br>| ispublic         | None                                 |<br>| last_update_date | 1709298774600                        |<br>| name             | courses_dashboard                    |<br>| organization     | None                                 |<br>| owner            | anonymous                            |<br>| updatable        | True                                 |<br>| zone             | config.json                          |<br>+------------------+--------------------------------------+<br></span></div>
+
+<h3 id="get-an-entry-value">Get an entry value</h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local get 32d2624b-d7cd-11ee-9a91-0242ac130004</span><span data-ty>{<br>  &quot;arlas&quot;: {<br>    &quot;web&quot;: {<br>      &quot;contributors&quot;: [<br>...<br>}<br></span></div>
+
+<h3 id="list-entries-within-a-zone">List entries within a zone</h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local zone config.json</span><span data-ty>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| id                                   | name              | zone        | last_update_date | owner     |<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| 66984014-d0a1-11ee-b41c-0242ac190004 | Courses           | config.json | 1708510231303    | anonymous |<br>...<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br></span></div>
+
+<h3 id="list-groups-accessing-a-zone">List groups accessing a zone</h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local groups config.json</span><span data-ty>+--------------+<br>| group        |<br>+--------------+<br>| group/public |<br>+--------------+<br></span></div>
+
+<h3 id="delete-an-entry">Delete an entry</h3>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local delete 32d2624b-d7cd-11ee-9a91-0242ac130004</span><span data-ty>Resource 32d2624b-d7cd-11ee-9a91-0242ac130004 deleted.<br></span></div>
+
 <h2 id="configurations">Configurations</h2>
 <p>The command line uses the <code>${HOME}/.arlas/cli/configuration.yaml</code> configuration file:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">arlas</span><span class="p">:</span>
