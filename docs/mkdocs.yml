@@ -35,6 +35,7 @@ nav:
   - Getting help: help.md
   - Indices: indices.md
   - Collections: collections.md
+  - Persistence: persist.md
   - Configurations: confs.md
 - Configuration data model: model/model.md
 

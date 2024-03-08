@@ -4,6 +4,7 @@ import sys
 
 from arlas.cli.collections import collections
 from arlas.cli.configurations import configurations
+from arlas.cli.persist import persist
 from arlas.cli.index import indices
 from arlas.cli.variables import variables
 from arlas.cli.settings import ARLAS, Configuration, Resource, Settings
@@ -36,7 +37,8 @@ def init(
             arlas={
                 "demo": ARLAS(server=Resource(location="https://demo.cloud.arlas.io/arlas/server", headers={"Content-Type": "application/json"})),
                 "local": ARLAS(
-                    server=Resource(location="http://localhost:9999/arlas", headers={"Content-Type": "application/json"}),
+                    server=Resource(location="http://localhost/server", headers={"Content-Type": "application/json"}),
+                    persistence=Resource(location="http://localhost/persist", headers={"Content-Type": "application/json"}),
                     elastic=Resource(location="http://localhost:9200", headers={"Content-Type": "application/json"}),
                     allow_delete=True
                 )
@@ -56,6 +58,7 @@ def init(
 def main():
     app.add_typer(collections, name="collections")
     app.add_typer(indices, name="indices")
+    app.add_typer(persist, name="persist")
     app.add_typer(configurations, name="confs")
     app()
 

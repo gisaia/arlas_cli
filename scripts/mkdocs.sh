@@ -48,6 +48,13 @@ python3 -m arlas.cli.cli collections --config local describe --help >> docs/docs
 cat docs/docs/collections_4.md >> docs/docs/collections.md
 
 
+# PERSISTENCE
+cat docs/docs/persist_1.md > docs/docs/persist.md
+# general
+echo "> arlas_cli persist --help" >> docs/docs/persist.md
+python3 -m arlas.cli.cli persist --help >> docs/docs/persist.md
+cat docs/docs/persist_2.md >> docs/docs/persist.md
+
 # CONFIGURATIONS
 cat docs/docs/confs_1.md > docs/docs/confs.md
 

@@ -20,6 +20,7 @@ Whether you are at the top level:
 │ collections                                                        │
 │ confs                                                              │
 │ indices                                                            │
+│ persist                                                            │
 ╰────────────────────────────────────────────────────────────────────╯
 ```
 

@@ -35,8 +35,6 @@ services:
       - arlas-net
     logging:
       driver: ${DOCKER_LOGGING_DRIVER:-json-file}
-      options:
-        tag: "urms"
     healthcheck:
           test: ["CMD","java","HttpHealthcheck.java","http://localhost:9999/admin/healthcheck"]
           interval: 5s
@@ -51,7 +49,7 @@ services:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
       - discovery.type=single-node
       - cluster.name=arlas-es-cluster
-      - node.name=urms-data-node-1
+      - node.name=data-node-1
       - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       - xpack.security.enabled=false
       - tracing.apm.enabled=false
@@ -68,10 +66,29 @@ services:
       - arlas-net
     logging:
       driver: ${DOCKER_LOGGING_DRIVER:-json-file}
-      options:
-        tag: "urms"
     healthcheck:
       test: "curl -s --user ${ELASTIC_USER}:${ELASTIC_PASSWORD} -X GET http://localhost:9200/_cluster/health?pretty | grep status | grep -q '\\(green\\|yellow\\)'"
       interval: 10s
       timeout: 10s
       retries: 24
+
+  arlas-persistence:
+    image: ${ARLAS_PERSISTENCE_SERVER_VERSION}
+    container_name: arlas-persistence
+    restart: always
+    environment:
+      - ARLAS_PERSISTENCE_HIBERNATE_DRIVER=org.postgresql.Driver
+      - ARLAS_PERSISTENCE_LOCAL_FOLDER=/tmp/
+    ports:
+      - "9997:9997"
+    expose:
+      - "9997"
+    networks:
+      - arlas-net
+    logging:
+      driver: ${DOCKER_LOGGING_DRIVER:-json-file}
+    healthcheck:
+          test: ["CMD","java","HttpHealthcheck.java","http://localhost:9997/arlas_persistence_server/swagger.json"]
+          interval: 5s
+          timeout: 10s
+          retries: 3

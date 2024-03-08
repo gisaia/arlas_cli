@@ -52,7 +52,8 @@ def sample(
 def create(
     index: str = typer.Argument(help="index's name"),
     mapping: str = typer.Option(help="Name of the mapping within your configuration, or URL or file path"),
-    shards: int = typer.Option(default=1, help="Number of shards for the index")
+    shards: int = typer.Option(default=1, help="Number of shards for the index"),
+    add_uuid: str = typer.Argument(default=None, help="Set a UUID for the provided json path field")
 ):
     config = variables["arlas"]
     mapping_resource = Configuration.settings.mappings.get(mapping, None)
@@ -66,7 +67,8 @@ def create(
         config,
         index=index,
         mapping_resource=mapping_resource,
-        number_of_shards=shards)
+        number_of_shards=shards,
+        add_uuid=add_uuid)
     print("Index {} created on {}".format(index, config))
 
 
@@ -121,10 +123,10 @@ def delete(
 ):
     config = variables["arlas"]
     if not Configuration.settings.arlas.get(config).allow_delete:
-        print("Error: delete on \"{}\" is not allowed. To allow delete, change your configuration file ({}).".format(config, configuration_file), file=sys.stderr)
+        print("Error: delete on \"{}\" is not allowed. To allow delete, change your configuration file ({}).".format(config, variables["configuration_file"]), file=sys.stderr)
         exit(1)
 
-    if typer.confirm("You are about to delete the index '{}' on the '{}' configuration.\n".format(index, config),
+    if typer.confirm("You are about to delete the index '{}' on  '{}' configuration.\n".format(index, config),
                      prompt_suffix="Do you want to continue (del {} on {})?".format(index, config),
                      default=False, ):
         if config != "local" and config.find("test") < 0:

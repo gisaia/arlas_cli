@@ -20,6 +20,7 @@ class AuthorizationService(BaseModel):
 
 
 class ARLAS(BaseModel):
+    persistence: Resource | None = Field(title="ARLAS Persistence Server", default=None)
     server: Resource = Field(title="ARLAS Server")
     authorization: AuthorizationService | None = Field(default=None, title="Keycloak URL")
     elastic: Resource | None = Field(default=None, title="dictionary of name/es resources")
