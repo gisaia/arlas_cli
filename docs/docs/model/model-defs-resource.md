@@ -20,6 +20,8 @@ airs_model#/properties/models/additionalProperties
 | :-------------------- | :------- | :------- | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
 | [location](#location) | `string` | Optional | cannot be null | [Settings](model-defs-resource-properties-file-or-http-location.md "airs_model#/$defs/Resource/properties/location")                       |
 | [headers](#headers)   | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests.md "airs_model#/$defs/Resource/properties/headers") |
+| [login](#login)       | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-user.md "airs_model#/$defs/Resource/properties/login")                                           |
+| [password](#password) | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-pasword.md "airs_model#/$defs/Resource/properties/password")                                     |
 
 ## location
 
@@ -62,3 +64,51 @@ any of
 *   [Untitled object in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-0.md "check type definition")
 
 *   [Untitled null in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-1.md "check type definition")
+
+## login
+
+
+
+`login`
+
+*   is optional
+
+*   Type: merged type ([user](model-defs-resource-properties-user.md))
+
+*   cannot be null
+
+*   defined in: [Settings](model-defs-resource-properties-user.md "airs_model#/$defs/Resource/properties/login")
+
+### login Type
+
+merged type ([user](model-defs-resource-properties-user.md))
+
+any of
+
+*   [Untitled string in Settings](model-defs-resource-properties-user-anyof-0.md "check type definition")
+
+*   [Untitled null in Settings](model-defs-resource-properties-user-anyof-1.md "check type definition")
+
+## password
+
+
+
+`password`
+
+*   is optional
+
+*   Type: merged type ([pasword](model-defs-resource-properties-pasword.md))
+
+*   cannot be null
+
+*   defined in: [Settings](model-defs-resource-properties-pasword.md "airs_model#/$defs/Resource/properties/password")
+
+### password Type
+
+merged type ([pasword](model-defs-resource-properties-pasword.md))
+
+any of
+
+*   [Untitled string in Settings](model-defs-resource-properties-pasword-anyof-0.md "check type definition")
+
+*   [Untitled null in Settings](model-defs-resource-properties-pasword-anyof-1.md "check type definition")
