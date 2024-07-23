@@ -105,12 +105,12 @@ class Service:
         print(json.dumps(model))
         Service.__arlas__(arlas, "/".join(["collections", collection]), put=json.dumps(model))
 
-    def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int, add_uuid: str = None):
+    def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int):
         mapping = json.loads(Service.__fetch__(mapping_resource))
         if not mapping.get("mappings"):
             print("Error: mapping {} does not contain \"mappings\" at its root.".format(mapping_resource), file=sys.stderr)
             exit(1)
-        Service.create_index(arlas, index, mapping, number_of_shards, add_uuid)
+        Service.create_index(arlas, index, mapping, number_of_shards)
 
     def create_index(arlas: str, index: str, mapping: str, number_of_shards: int = 1):
         index_doc = {"mappings": mapping.get("mappings"), "settings": {"number_of_shards": number_of_shards}}
