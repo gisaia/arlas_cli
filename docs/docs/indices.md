@@ -67,17 +67,13 @@ To generate a mapping, you need to provide a NDJSON file (New line delimiter JSO
 ```shell
 > arlas_cli indices --config local create --help
                                                                       
- Usage: python -m arlas.cli.cli indices create [OPTIONS] INDEX        
- [ADD_UUID]                                                           
+ Usage: python -m arlas.cli.cli indices create [OPTIONS] INDEX                                                               
                                                                       
  Create an index                                                      
                                                                       
 ╭─ Arguments ────────────────────────────────────────────────────────╮
 │ *    index         TEXT        index's name [default: None]        │
 │                                [required]                          │
-│      add_uuid      [ADD_UUID]  Set a UUID for the provided json    │
-│                                path field                          │
-│                                [default: None]                     │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Options ──────────────────────────────────────────────────────────╮
 │ *  --mapping        TEXT     Name of the mapping within your       │

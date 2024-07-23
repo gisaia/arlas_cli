@@ -52,8 +52,7 @@ def sample(
 def create(
     index: str = typer.Argument(help="index's name"),
     mapping: str = typer.Option(help="Name of the mapping within your configuration, or URL or file path"),
-    shards: int = typer.Option(default=1, help="Number of shards for the index"),
-    add_uuid: str = typer.Argument(default=None, help="Set a UUID for the provided json path field")
+    shards: int = typer.Option(default=1, help="Number of shards for the index")
 ):
     config = variables["arlas"]
     mapping_resource = Configuration.settings.mappings.get(mapping, None)
@@ -67,8 +66,7 @@ def create(
         config,
         index=index,
         mapping_resource=mapping_resource,
-        number_of_shards=shards,
-        add_uuid=add_uuid)
+        number_of_shards=shards)
     print("Index {} created on {}".format(index, config))
 
 

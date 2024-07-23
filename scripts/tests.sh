@@ -31,6 +31,25 @@ else
 fi
 
 # ----------------------------------------------------------
+echo "TEST add direct mapping on ES"
+python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests create direct_mappping_index --mapping tests/mapping.json
+if [ "$? -eq 0" ] ; then
+    echo "OK: Mapping added"
+else
+    echo "ERROR: add direct mapping failed"
+    exit 1
+fi
+
+# ----------------------------------------------------------
+echo "TEST retrieve direct mapping from ES"
+if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep direct_mappping_index ; then
+    echo "OK: direct mapping found"
+else
+    echo "ERROR: direct mapping not found"
+    exit 1
+fi
+
+# ----------------------------------------------------------
 echo "TEST infer mapping and add mapping on ES"
 python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests mapping tests/sample.json --nb-lines 10 --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
 if [ "$? -eq 0" ] ; then
