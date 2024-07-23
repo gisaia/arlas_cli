@@ -1,0 +1,474 @@
+{
+  "mappings": {
+    "properties": {
+      "tagging": {
+        "properties": {}
+      },
+      "arrival": {
+        "properties": {
+          "stop_after": {
+            "properties": {
+              "visibility_proportion": {
+                "type": "double"
+              },
+              "location_precision": {
+                "properties": {
+                  "geometry": {
+                    "type": "geo_shape"
+                  },
+                  "value": {
+                    "properties": {
+                      "lon": {
+                        "type": "double"
+                      },
+                      "lat": {
+                        "type": "double"
+                      }
+                    }
+                  }
+                }
+              },
+              "location": {
+                "type": "geo_point"
+              },
+              "duration_s": {
+                "type": "long"
+              }
+            }
+          },
+          "address": {
+            "properties": {
+              "country": {
+                "type": "keyword",
+                "copy_to": [
+                  "internal.fulltext",
+                  "internal.autocomplete"
+                ]
+              },
+              "port": {
+                "type": "keyword",
+                "copy_to": [
+                  "internal.fulltext",
+                  "internal.autocomplete"
+                ]
+              }
+            }
+          },
+          "location": {
+            "type": "geo_point"
+          },
+          "timestamp": {
+            "type": "date",
+            "format": "epoch_second"
+          }
+        }
+      },
+      "departure": {
+        "properties": {
+          "stop_before": {
+            "properties": {
+              "visibility_proportion": {
+                "type": "double"
+              },
+              "location_precision": {
+                "properties": {
+                  "geometry": {
+                    "type": "geo_shape"
+                  },
+                  "value": {
+                    "properties": {
+                      "lon": {
+                        "type": "double"
+                      },
+                      "lat": {
+                        "type": "double"
+                      }
+                    }
+                  }
+                }
+              },
+              "location": {
+                "type": "geo_point"
+              },
+              "duration_s": {
+                "type": "long"
+              }
+            }
+          },
+          "address": {
+            "properties": {
+              "country": {
+                "type": "keyword",
+                "copy_to": [
+                  "internal.fulltext",
+                  "internal.autocomplete"
+                ]
+              },
+              "port": {
+                "type": "keyword",
+                "copy_to": [
+                  "internal.fulltext",
+                  "internal.autocomplete"
+                ]
+              }
+            }
+          },
+          "location": {
+            "type": "geo_point"
+          },
+          "timestamp": {
+            "type": "date",
+            "format": "epoch_second"
+          }
+        }
+      },
+      "track": {
+        "properties": {
+          "distance": {
+            "properties": {
+              "gps": {
+                "properties": {
+                  "straight_line_m": {
+                    "type": "double"
+                  },
+                  "straightness": {
+                    "type": "double"
+                  },
+                  "travelled_m": {
+                    "type": "double"
+                  }
+                }
+              }
+            }
+          },
+          "visibility": {
+            "properties": {
+              "proportion": {
+                "type": "double"
+              }
+            }
+          },
+          "timestamps": {
+            "properties": {
+              "center": {
+                "type": "date",
+                "format": "epoch_second"
+              },
+              "start": {
+                "type": "date",
+                "format": "epoch_second"
+              },
+              "end": {
+                "type": "date",
+                "format": "epoch_second"
+              }
+            }
+          },
+          "nb_geopoints": {
+            "type": "long"
+          },
+          "trail_geohashes_6": {
+            "type": "geo_point"
+          },
+          "duration_s": {
+            "type": "long"
+          },
+          "trail": {
+            "type": "geo_shape"
+          },
+          "pauses": {
+            "properties": {
+              "proportion": {
+                "type": "double"
+              },
+              "short": {
+                "properties": {
+                  "number": {
+                    "type": "long"
+                  }
+                }
+              },
+              "location": {
+                "type": "geo_point"
+              },
+              "long": {
+                "properties": {
+                  "number": {
+                    "type": "long"
+                  }
+                }
+              },
+              "duration_s": {
+                "type": "long"
+              },
+              "visibility_proportion": {
+                "type": "double"
+              },
+              "trail": {
+                "type": "geo_shape"
+              }
+            }
+          },
+          "dynamics": {
+            "properties": {
+              "sensor": {
+                "properties": {
+                  "speed_nd": {
+                    "type": "double"
+                  },
+                  "bearing": {
+                    "type": "double"
+                  },
+                  "heading": {
+                    "type": "double"
+                  },
+                  "rot": {
+                    "type": "double"
+                  }
+                }
+              },
+              "gps": {
+                "properties": {
+                  "speed_nd": {
+                    "type": "double"
+                  },
+                  "bearing": {
+                    "type": "double"
+                  }
+                }
+              }
+            }
+          },
+          "location_precision": {
+            "properties": {
+              "value": {
+                "properties": {
+                  "lon": {
+                    "type": "double"
+                  },
+                  "lat": {
+                    "type": "double"
+                  }
+                }
+              }
+            }
+          },
+          "motions": {
+            "properties": {
+              "visibility_proportion": {
+                "properties": {}
+              },
+              "visible": {
+                "properties": {
+                  "duration_s": {
+                    "type": "long"
+                  },
+                  "length_m": {
+                    "type": "double"
+                  }
+                }
+              },
+              "invisible": {
+                "properties": {
+                  "duration_s": {
+                    "type": "long"
+                  },
+                  "length_m": {
+                    "type": "double"
+                  }
+                }
+              }
+            }
+          },
+          "end_location": {
+            "properties": {
+              "lon": {
+                "type": "double"
+              },
+              "lat": {
+                "type": "double"
+              }
+            }
+          },
+          "location": {
+            "type": "geo_point"
+          },
+          "id": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "tempo_emission": {
+            "properties": {
+              "proportion": {
+                "properties": {
+                  "tempo_3m": {
+                    "type": "double"
+                  },
+                  "tempo_30s": {
+                    "type": "double"
+                  },
+                  "tempo_10s": {
+                    "type": "double"
+                  },
+                  "tempo_2s": {
+                    "type": "double"
+                  },
+                  "tempo_6s": {
+                    "type": "double"
+                  },
+                  "tempo_irregular": {
+                    "type": "double"
+                  },
+                  "tempo_3_3s": {
+                    "type": "double"
+                  }
+                }
+              },
+              "main": {
+                "type": "keyword",
+                "copy_to": [
+                  "internal.fulltext",
+                  "internal.autocomplete"
+                ]
+              },
+              "is_multi": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      },
+      "object": {
+        "properties": {
+          "positioning_system": {
+            "properties": {
+              "length_m": {
+                "properties": {
+                  "b_stern": {
+                    "type": "keyword",
+                    "copy_to": [
+                      "internal.fulltext",
+                      "internal.autocomplete"
+                    ]
+                  },
+                  "c_starboard": {
+                    "type": "keyword",
+                    "copy_to": [
+                      "internal.fulltext",
+                      "internal.autocomplete"
+                    ]
+                  },
+                  "a_bow": {
+                    "type": "keyword",
+                    "copy_to": [
+                      "internal.fulltext",
+                      "internal.autocomplete"
+                    ]
+                  },
+                  "d_port": {
+                    "type": "keyword",
+                    "copy_to": [
+                      "internal.fulltext",
+                      "internal.autocomplete"
+                    ]
+                  }
+                }
+              },
+              "type": {
+                "type": "keyword",
+                "copy_to": [
+                  "internal.fulltext",
+                  "internal.autocomplete"
+                ]
+              }
+            }
+          },
+          "mmsi": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "mobile_type": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "callsign": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "name": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "width": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "length": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "imo": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "source_type": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "id": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          },
+          "ship_type": {
+            "type": "keyword",
+            "copy_to": [
+              "internal.fulltext",
+              "internal.autocomplete"
+            ]
+          }
+        }
+      },
+      "internal": {
+        "properties": {
+          "autocomplete": {
+            "type": "keyword"
+          },
+          "fulltext": {
+            "type": "text",
+            "fielddata": true
+          }
+        }
+      }
+    }
+  }
+}
