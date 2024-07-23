@@ -8,7 +8,7 @@ Install `arlas_cli` ([prerequisite](install.md#Prerequisite))
     For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine.
 
 ## Initial configuration
-`arlas_cli` uses a yaml file for storing various ARLAS and elasticsearch configurations. By default, the file is located in `~/.arlas/cli/configuration.yaml`. [One is automatically created for your convinience at the first launch](https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml). It contains the ARLAS demo endpoint and the local ARLAS and elasticsearch endpoints.
+`arlas_cli` uses a yaml file for storing various ARLAS and elasticsearch configurations. By default, the file is located in `~/.arlas/cli/configuration.yaml`. [One is automatically created for your convenience at the first launch](https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml). It contains the ARLAS demo endpoint and the local ARLAS and elasticsearch endpoints.
 
 The configuration can also contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
 It can also contain references to index mappings for creating indices. A default one is provided for ARLAS EO.
@@ -100,7 +100,7 @@ To add a specific mapping, it is possible to use the `create`` command:
 ### List indices
 <!-- termynal -->
 ```shell
-> arlas_cli indices --config local list --config local 
+> arlas_cli indices --config local list
 +----------+--------+-------+--------+
 | name     | status | count | size   |
 +----------+--------+-------+--------+
@@ -112,14 +112,14 @@ To add a specific mapping, it is possible to use the `create`` command:
 ### Add data
 <!-- termynal -->
 ```shell
-> arlas_cli indices --config local data courses sample.json --config local 
+> arlas_cli indices --config local data courses sample.json
 ```
 
 ### Describe an index
 
 <!-- termynal -->
 ```shell
-> arlas_cli indices --config local describe courses --config local 
+> arlas_cli indices --config local describe courses
 +----------------------------------------------------+-----------+
 | field name                                         | type      |
 +----------------------------------------------------+-----------+

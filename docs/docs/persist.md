@@ -11,7 +11,7 @@ ARLAS Persistence allows you to place files within zones. A zone is visible by g
 ╭─ Options ──────────────────────────────────────────────────────────╮
 │ *  --config        TEXT  Name of the ARLAS configuration to use    │
 │                          from your configuration file              │
-│                          (/Users/gaudan/.arlas/cli/configuration.… │
+│                          (/Users/User/.arlas/cli/configuration.…   │
 │                          [default: None]                           │
 │                          [required]                                │
 │    --help                Show this message and exit.               │
