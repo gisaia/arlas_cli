@@ -9,7 +9,7 @@
 ╭─ Options ──────────────────────────────────────────────────────────╮
 │ *  --config        TEXT  Name of the ARLAS configuration to use    │
 │                          from your configuration file              │
-│                          (/Users/gaudan/.arlas/cli/configuration.… │
+│                          (/Users/User/.arlas/cli/configuration.…   │
 │                          [default: None]                           │
 │                          [required]                                │
 │    --help                Show this message and exit.               │
@@ -29,7 +29,7 @@
 ## Generate mapping from a data file
 
 
-To generate a mapping, you need to provide a NDJSON file (New line delimiter JSON). The first N lines are used for infering the mapping. If the mapping is wrong, you can overwrite the typing with the `--field-mapping` option. Once you're happy with the mapping, you can directly push it on elasticsearch (`--push-on`).
+To generate a mapping, you need to provide a NDJSON file (New line delimiter JSON). The first N lines are used for inferring the mapping. If the mapping is wrong, you can overwrite the typing with the `--field-mapping` option. Once you're happy with the mapping, you can directly push it on elasticsearch (`--push-on`).
 
 <!-- termynal -->
 ```shell
@@ -40,8 +40,8 @@ To generate a mapping, you need to provide a NDJSON file (New line delimiter JSO
  Generate the mapping based on the data                               
                                                                       
 ╭─ Arguments ────────────────────────────────────────────────────────╮
-│ *    file      TEXT  Path to the file conaining the data. Format:  │
-│                      NDJSON                                        │
+│ *    file      TEXT  Path to the file containing the data.         │
+│                      Format: NDJSON                                │
 │                      [default: None]                               │
 │                      [required]                                    │
 ╰────────────────────────────────────────────────────────────────────╯
@@ -50,7 +50,7 @@ To generate a mapping, you need to provide a NDJSON file (New line delimiter JSO
 │                                 generating the mapping. Avoid      │
 │                                 going over 10.                     │
 │                                 [default: 2]                       │
-│ --field-mapping        TEXT     Overide the mapping with the       │
+│ --field-mapping        TEXT     Override the mapping with the      │
 │                                 provided field/type. Example:      │
 │                                 fragment.location:geo_point        │
 │ --push-on              TEXT     Push the generated mapping for the │
@@ -89,7 +89,7 @@ To generate a mapping, you need to provide a NDJSON file (New line delimiter JSO
 
 ## Index data
 
-For indexing data, you'll need to provide one ore several NDJSON file(s). Indexing uses bulks for optimal performances.
+For indexing data, you'll need to provide one or several NDJSON file(s). Indexing uses bulks for optimal performances.
 
 <!-- termynal -->
 ```shell
@@ -101,8 +101,8 @@ For indexing data, you'll need to provide one ore several NDJSON file(s). Indexi
                                                                       
 ╭─ Arguments ────────────────────────────────────────────────────────╮
 │ *    index      TEXT      index's name [default: None] [required]  │
-│ *    files      FILES...  List of pathes to the file conaining the │
-│                           data. Format: NDJSON                     │
+│ *    files      FILES...  List of path's to the file containing    │
+│                           the data. Format: NDJSON                 │
 │                           [default: None]                          │
 │                           [required]                               │
 ╰────────────────────────────────────────────────────────────────────╯
