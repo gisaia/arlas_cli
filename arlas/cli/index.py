@@ -77,8 +77,8 @@ def data(
     bulk: int = typer.Option(default=100, help="Bulk size for indexing data")
 ):
     config = variables["arlas"]
+    i = 1
     for file in files:
-        i = 1
         if not os.path.exists(file):
             print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
             exit(1)
