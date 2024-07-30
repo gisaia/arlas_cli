@@ -14,7 +14,7 @@ def list_configurations():
     for (name, conf) in Configuration.settings.arlas.items():
         confs.append([name, conf.server.location])
     tab = PrettyTable(["name", "url"], sortby="name", align="l")
-    tab.add_rows(confs[1:])
+    tab.add_rows(confs)
     print(tab)
 
 
