@@ -25,28 +25,28 @@ export PYTHONPATH=`pwd`/target/src
 cd target
 echo "\`\`\`" >> README.md
 echo "python3 -m arlas.cli.cli  --help" >> README.md
-python3 -m arlas.cli.cli  --help >> README.md
+python3.10 -m arlas.cli.cli  --help >> README.md
 echo "\`\`\`" >> README.md
 echo "" >> README.md
 echo "Actions on collections:" >> README.md
 echo "" >> README.md
 echo "\`\`\`" >> README.md
 echo "python3 -m arlas.cli.cli collections --help" >> README.md
-python3 -m arlas.cli.cli collections  --config demo --help >> README.md
+python3.10 -m arlas.cli.cli collections  --config demo --help >> README.md
 echo "\`\`\`" >> README.md
 echo "" >> README.md
 echo "Actions on indices:" >> README.md
 echo "" >> README.md
 echo "\`\`\`" >> README.md
 echo "python3 -m arlas.cli.cli indices --help" >> README.md
-python3 -m arlas.cli.cli indices  --config demo --help >> README.md
+python3.10 -m arlas.cli.cli indices  --config demo --help >> README.md
 echo "\`\`\`" >> README.md
 echo "" >> README.md
 echo "Actions on configurations:" >> README.md
 echo "" >> README.md
 echo "\`\`\`" >> README.md
 echo "python3 -m arlas.cli.cli confs --help" >> README.md
-python3 -m arlas.cli.cli confs --help >> README.md
+python3.10 -m arlas.cli.cli confs --help >> README.md
 echo "\`\`\`" >> README.md
 
 

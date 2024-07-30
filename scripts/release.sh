@@ -19,13 +19,13 @@ echo "Build and releas the image with version ${VERSION}"
 
 # CONFIG FILE
 rm $HOME/.arlas/cli/configuration.yaml
-python3 -m arlas.cli.cli --version
+python3.10 -m arlas.cli.cli --version
 cp $HOME/.arlas/cli/configuration.yaml .
 git add configuration.yaml
 
 # Model
 export PYTHONPATH=`pwd`
-python3 -m arlas.cli.settings > docs/docs/model/model.schema.json
+python3.10 -m arlas.cli.settings > docs/docs/model/model.schema.json
 jsonschema2md -d docs/docs/model/ -o docs/docs/model/
 rm -r out
 git add docs/docs/model

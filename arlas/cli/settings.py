@@ -6,7 +6,9 @@ import json
 
 class Resource(BaseModel):
     location: str = Field(default=None, title="file or http location")
-    headers: dict[str, str] | None = Field(default=None, title="List of headers, if needed, for http(s) requests")
+    headers: dict[str, str] | None = Field(default={}, title="List of headers, if needed, for http(s) requests")
+    login: str | None = Field(default=None, title="user")
+    password: str | None = Field(default=None, title="pasword")
 
 
 class AuthorizationService(BaseModel):

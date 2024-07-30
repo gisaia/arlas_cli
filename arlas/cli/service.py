@@ -156,7 +156,7 @@ class Service:
         return Service.__arlas__(arlas, url, service=Services.persistence_server)
     
     def persistence_zone(arlas: str, zone: str):
-        url = "/".join(["persist", "resources", zone]) + "?size=10&page=1&order=desc&pretty=false"
+        url = "/".join(["persist", "resources", zone]) + "?size=10000&page=1&order=desc&pretty=false"
         table = [["id", "name", "zone", "last_update_date", "owner"]]
         entries = Service.__arlas__(arlas, url, service=Services.persistence_server).get("data", [])
         for entry in entries:
@@ -281,16 +281,17 @@ class Service:
         url = "/".join([endpoint.elastic.location, suffix])
         __headers = endpoint.elastic.headers
         __headers.update(headers)
+        auth = (endpoint.elastic.login, endpoint.elastic.password) if endpoint.elastic.login else None
         if post:
-            r = requests.post(url, data=post, headers=__headers)
+            r = requests.post(url, data=post, headers=__headers, auth=auth)
         else:
             if put:
-                r = requests.put(url, data=put, headers=__headers)
+                r = requests.put(url, data=put, headers=__headers, auth=auth)
             else:
                 if delete:
-                    r = requests.delete(url, headers=__headers)
+                    r = requests.delete(url, headers=__headers, auth=auth)
                 else:
-                    r = requests.get(url, headers=__headers)
+                    r = requests.get(url, headers=__headers, auth=auth)
         if r.ok:
             return r.content
         else:
