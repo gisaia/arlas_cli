@@ -25,6 +25,8 @@ def create_configuration(
     persistence: str = typer.Option(default=None, help="ARLAS Persistence url"),
     headers: list[str] = typer.Option([], help="header (name:value)"),
     elastic: str = typer.Option(default=None, help="dictionary of name/es resources"),
+    elastic_login: str = typer.Option(default=None, help="elasticsearch login"),
+    elastic_password: str = typer.Option(default=None, help="elasticsearch password"),
     elastic_headers: list[str] = typer.Option([], help="header (name:value)"),
     allow_delete: bool = typer.Option(default=False, help="Is delete command allowed for this configuration?"),
     auth_token_url: str = typer.Option(default=None, help="Token URL of the authentication service"),
@@ -57,7 +59,7 @@ def create_configuration(
             arlas_iam=auth_arlas_iam
         )
     if elastic:
-        conf.elastic = Resource(location=elastic, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), elastic_headers)))
+        conf.elastic = Resource(location=elastic, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), elastic_headers)), login=elastic_login, password=elastic_password)
     Configuration.settings.arlas[name] = conf
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
