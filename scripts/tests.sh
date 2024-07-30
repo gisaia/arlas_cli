@@ -32,7 +32,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add direct mapping on ES"
-python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests create direct_mappping_index --mapping tests/mapping.json
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests create direct_mappping_index --mapping tests/mapping.json
 if [ "$? -eq 0" ] ; then
     echo "OK: Mapping added"
 else
@@ -42,7 +42,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST retrieve direct mapping from ES"
-if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep direct_mappping_index ; then
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep direct_mappping_index ; then
     echo "OK: direct mapping found"
 else
     echo "ERROR: direct mapping not found"
@@ -79,7 +79,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add data to ES"
-python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests data courses tests/sample.json
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests data courses tests/sample.json tests/sample.json
 if [ "$? -eq 0" ] ; then
     echo "OK: data added"
 else
@@ -90,7 +90,7 @@ sleep 2
 
 # ----------------------------------------------------------
 echo "TEST retrieve hits from ES"
-if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep courses | grep " 100   "; then
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep courses | grep " 200   "; then
     echo "OK: hundred hits found"
 else
     echo "ERROR: hits not found"
