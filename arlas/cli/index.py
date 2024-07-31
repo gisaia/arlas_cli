@@ -77,13 +77,15 @@ def data(
     bulk: int = typer.Option(default=100, help="Bulk size for indexing data")
 ):
     config = variables["arlas"]
+    i = 1
     for file in files:
         if not os.path.exists(file):
             print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
             exit(1)
+        print("Processing file {}/{} ...".format(i, len(files)))
         count = Service.count_hits(file_path=file)
         Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count)
-
+        i = i + 1
 
 @indices.command(help="Generate the mapping based on the data")
 def mapping(
