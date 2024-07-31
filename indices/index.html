@@ -508,6 +508,26 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arlas_cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring ARLAS Cloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -590,10 +610,10 @@
 
 <h2 id="generate-mapping-from-a-data-file">Generate mapping from a data file</h2>
 <p>To generate a mapping, you need to provide a NDJSON file (New line delimiter JSON). The first N lines are used for infering the mapping. If the mapping is wrong, you can overwrite the typing with the <code>--field-mapping</code> option. Once you're happy with the mapping, you can directly push it on elasticsearch (<code>--push-on</code>).</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local mapping --help</span><span data-ty>Usage: python -m arlas.cli.cli indices mapping [OPTIONS] FILE<br><br>  Generate the mapping based on the data<br><br>Arguments:<br>  FILE  Path to the file conaining the data. Format: NDJSON  [required]<br><br>Options:<br>  --nb-lines INTEGER    Number of line to consider for generating the mapping.<br>                        Avoid going over 10.  [default: 2]<br>  --field-mapping TEXT  Overide the mapping with the provided field/type.<br>                        Example: fragment.location:geo_point<br>  --push-on TEXT        Push the generated mapping for the provided index name<br>  --help                Show this message and exit.<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local mapping --help</span><span data-ty>Usage: python -m arlas.cli.cli indices mapping [OPTIONS] FILE<br><br>  Generate the mapping based on the data<br><br>Arguments:<br>  FILE  Path to the file conaining the data. Format: NDJSON  [required]<br><br>Options:<br>  --nb-lines INTEGER    Number of line to consider for generating the mapping.<br>                        Avoid going over 10.  [default: 2]<br>  --field-mapping TEXT  Overide the mapping with the provided field path/type.<br>                        Example: fragment.location:geo_point. Important: the<br>                        full field path must be provided.<br>  --no-fulltext TEXT    List of keyword or text fields that should not be in<br>                        the fulltext search. Important: the field name only<br>                        must be provided.<br>  --push-on TEXT        Push the generated mapping for the provided index name<br>  --help                Show this message and exit.<br></span></div>
 
 <h2 id="create-an-index-with-its-mapping">Create an index with its mapping</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local create --help</span><span data-ty>Usage: python -m arlas.cli.cli indices create [OPTIONS] INDEX [ADD_UUID]<br><br>  Create an index<br><br>Arguments:<br>  INDEX       index's name  [required]<br>  [ADD_UUID]  Set a UUID for the provided json path field<br><br>Options:<br>  --mapping TEXT    Name of the mapping within your configuration, or URL or<br>                    file path  [required]<br>  --shards INTEGER  Number of shards for the index  [default: 1]<br>  --help            Show this message and exit.<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local create --help</span><span data-ty>Usage: python -m arlas.cli.cli indices create [OPTIONS] INDEX<br><br>  Create an index<br><br>Arguments:<br>  INDEX  index's name  [required]<br><br>Options:<br>  --mapping TEXT    Name of the mapping within your configuration, or URL or<br>                    file path  [required]<br>  --shards INTEGER  Number of shards for the index  [default: 1]<br>  --help            Show this message and exit.<br></span></div>
 
 <h2 id="index-data">Index data</h2>
 <p>For indexing data, you'll need to provide one ore several NDJSON file(s). Indexing uses bulks for optimal performances.</p>

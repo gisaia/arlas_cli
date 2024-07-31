@@ -18,6 +18,8 @@
         <link rel="prev" href="../../confs/">
       
       
+        <link rel="next" href="../../arlas_cloud/">
+      
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
@@ -481,6 +483,26 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arlas_cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring ARLAS Cloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -857,20 +879,6 @@
 <td style="text-align: left;"><a href="../model-defs-authorizationservice-properties-token-url-of-the-authentication-service/" title="airs_model#/$defs/AuthorizationService/properties/token_url">Settings</a></td>
 </tr>
 <tr>
-<td style="text-align: left;"><a href="#login">login</a></td>
-<td style="text-align: left;"><code>string</code></td>
-<td style="text-align: left;">Optional</td>
-<td style="text-align: left;">cannot be null</td>
-<td style="text-align: left;"><a href="../model-defs-authorizationservice-properties-login/" title="airs_model#/$defs/AuthorizationService/properties/login">Settings</a></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a href="#password">password</a></td>
-<td style="text-align: left;"><code>string</code></td>
-<td style="text-align: left;">Optional</td>
-<td style="text-align: left;">cannot be null</td>
-<td style="text-align: left;"><a href="../model-defs-authorizationservice-properties-password/" title="airs_model#/$defs/AuthorizationService/properties/password">Settings</a></td>
-</tr>
-<tr>
 <td style="text-align: left;"><a href="#client_id">client_id</a></td>
 <td style="text-align: left;">Merged</td>
 <td style="text-align: left;">Optional</td>
@@ -922,42 +930,6 @@
 <ul>
 <li><a href="../model-defs-resource/" title="check type definition">Resource</a></li>
 </ul>
-<h3 id="login">login</h3>
-<p><code>login</code></p>
-<ul>
-<li>
-<p>is optional</p>
-</li>
-<li>
-<p>Type: <code>string</code> (<a href="../model-defs-authorizationservice-properties-login/">login</a>)</p>
-</li>
-<li>
-<p>cannot be null</p>
-</li>
-<li>
-<p>defined in: <a href="../model-defs-authorizationservice-properties-login/" title="airs_model#/$defs/AuthorizationService/properties/login">Settings</a></p>
-</li>
-</ul>
-<h4 id="login-type">login Type</h4>
-<p><code>string</code> (<a href="../model-defs-authorizationservice-properties-login/">login</a>)</p>
-<h3 id="password">password</h3>
-<p><code>password</code></p>
-<ul>
-<li>
-<p>is optional</p>
-</li>
-<li>
-<p>Type: <code>string</code> (<a href="../model-defs-authorizationservice-properties-password/">password</a>)</p>
-</li>
-<li>
-<p>cannot be null</p>
-</li>
-<li>
-<p>defined in: <a href="../model-defs-authorizationservice-properties-password/" title="airs_model#/$defs/AuthorizationService/properties/password">Settings</a></p>
-</li>
-</ul>
-<h4 id="password-type">password Type</h4>
-<p><code>string</code> (<a href="../model-defs-authorizationservice-properties-password/">password</a>)</p>
 <h3 id="client_id">client_id</h3>
 <p><code>client_id</code></p>
 <ul>
@@ -1100,14 +1072,14 @@
 <td style="text-align: left;"><a href="../model-defs-resource-properties-list-of-headers-if-needed-for-https-requests/" title="airs_model#/$defs/Resource/properties/headers">Settings</a></td>
 </tr>
 <tr>
-<td style="text-align: left;"><a href="#login-1">login</a></td>
+<td style="text-align: left;"><a href="#login">login</a></td>
 <td style="text-align: left;">Merged</td>
 <td style="text-align: left;">Optional</td>
 <td style="text-align: left;">cannot be null</td>
 <td style="text-align: left;"><a href="../model-defs-resource-properties-user/" title="airs_model#/$defs/Resource/properties/login">Settings</a></td>
 </tr>
 <tr>
-<td style="text-align: left;"><a href="#password-1">password</a></td>
+<td style="text-align: left;"><a href="#password">password</a></td>
 <td style="text-align: left;">Merged</td>
 <td style="text-align: left;">Optional</td>
 <td style="text-align: left;">cannot be null</td>
@@ -1160,7 +1132,11 @@
 <p><a href="../model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-1/" title="check type definition">Untitled null in Settings</a></p>
 </li>
 </ul>
-<h3 id="login_1">login</h3>
+<h4 id="headers-default-value">headers Default Value</h4>
+<p>The default value is:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{}</span>
+</code></pre></div>
+<h3 id="login">login</h3>
 <p><code>login</code></p>
 <ul>
 <li>
@@ -1176,7 +1152,7 @@
 <p>defined in: <a href="../model-defs-resource-properties-user/" title="airs_model#/$defs/Resource/properties/login">Settings</a></p>
 </li>
 </ul>
-<h4 id="login-type_1">login Type</h4>
+<h4 id="login-type">login Type</h4>
 <p>merged type (<a href="../model-defs-resource-properties-user/">user</a>)</p>
 <p>any of</p>
 <ul>
@@ -1187,7 +1163,7 @@
 <p><a href="../model-defs-resource-properties-user-anyof-1/" title="check type definition">Untitled null in Settings</a></p>
 </li>
 </ul>
-<h3 id="password_1">password</h3>
+<h3 id="password">password</h3>
 <p><code>password</code></p>
 <ul>
 <li>
@@ -1203,7 +1179,7 @@
 <p>defined in: <a href="../model-defs-resource-properties-pasword/" title="airs_model#/$defs/Resource/properties/password">Settings</a></p>
 </li>
 </ul>
-<h4 id="password-type_1">password Type</h4>
+<h4 id="password-type">password Type</h4>
 <p>merged type (<a href="../model-defs-resource-properties-pasword/">pasword</a>)</p>
 <p>any of</p>
 <ul>
