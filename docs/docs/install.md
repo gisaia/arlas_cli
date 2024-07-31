@@ -1,9 +1,10 @@
 
 ## Prerequisite
 
-- python 3.11
+- python 3.10
 - pip
-- elasticsearch
+
+If you manage your own ARLAS stack, you will also need:
 - [ARLAS](https://github.com/gisaia/ARLAS-Exploration-stack)
 
 ## Install
@@ -18,5 +19,6 @@ In a new terminal, you should be able to run it:
 <!-- termynal -->
 ```shell
 > arlas_cli --version
-0.2.8
+X.X.X
 ```
+

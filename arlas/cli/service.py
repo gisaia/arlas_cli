@@ -5,7 +5,7 @@ import sys
 from alive_progress import alive_bar
 import requests
 
-from arlas.cli.settings import ARLAS, Configuration, Resource
+from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
 
 
 class RequestException(Exception):
@@ -320,18 +320,18 @@ class Service:
             exit(1)
 
     def __get_token__(arlas: str) -> str:
-        auth = Configuration.settings.arlas[arlas].authorization
-        if Configuration.settings.arlas[arlas].authorization.arlas_iam:
+        auth: AuthorizationService = Configuration.settings.arlas[arlas].authorization
+        if auth.arlas_iam:
             data = {
-                "email": auth.login,
-                "password": auth.password
+                "email": auth.token_url.login,
+                "password": auth.token_url.password
             }
         else:
             data = {
                 "client_id": auth.client_id,
                 "client_secret": auth.client_secret,
-                "username": auth.login,
-                "password": auth.password
+                "username": auth.token_url.login,
+                "password": auth.token_url.password
             }
             if auth.grant_type:
                 data["grant_type"] = auth.grant_type

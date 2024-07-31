@@ -13,8 +13,6 @@ class Resource(BaseModel):
 
 class AuthorizationService(BaseModel):
     token_url: Resource = Field(default=None, title="Token URL of the authentication service")
-    login: str = Field(default=None, title="login")
-    password: str = Field(default=None, title="password")
     client_id: str | None = Field(default=None, title="Client ID")
     client_secret: str | None = Field(default=None, title="Client secret")
     grant_type: str | None = Field(default=None, title="Grant type (e.g. password)")
