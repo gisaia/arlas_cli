@@ -22,15 +22,20 @@ def list_configurations():
 def create_configuration(
     name: str = typer.Argument(help="Name of the configuration"),
     server: str = typer.Option(help="ARLAS Server url"),
-    persistence: str = typer.Option(default=None, help="ARLAS Persistence url"),
     headers: list[str] = typer.Option([], help="header (name:value)"),
+
+    persistence: str = typer.Option(default=None, help="ARLAS Persistence url"),
+    persistence_headers: list[str] = typer.Option([], help="header (name:value)"),
+
     elastic: str = typer.Option(default=None, help="dictionary of name/es resources"),
     elastic_login: str = typer.Option(default=None, help="elasticsearch login"),
     elastic_password: str = typer.Option(default=None, help="elasticsearch password"),
     elastic_headers: list[str] = typer.Option([], help="header (name:value)"),
     allow_delete: bool = typer.Option(default=False, help="Is delete command allowed for this configuration?"),
+
     auth_token_url: str = typer.Option(default=None, help="Token URL of the authentication service"),
     auth_headers: list[str] = typer.Option([], help="header (name:value)"),
+    auth_org: str = typer.Option(default=None, help="ARLAS IAM Organization"),
     auth_login: str = typer.Option(default=None, help="login"),
     auth_password: str = typer.Option(default=None, help="password"),
     auth_client_id: str = typer.Option(default=None, help="Client ID"),
@@ -42,17 +47,20 @@ def create_configuration(
         print("Error: a configuration with that name already exists, please remove it first.", file=sys.stderr)
         exit(1)
 
+    if auth_org:
+        headers.append("arlas-org-filter:" + auth_org)
+        auth_headers.append("arlas-org-filter:" + auth_org)
+        persistence_headers.append("arlas-org-filter:" + auth_org)
+
     conf = ARLAS(
         server=Resource(location=server, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), headers))),
         allow_delete=allow_delete)
     if persistence:
-        conf.persistence = Resource(location=persistence, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), headers)))
+        conf.persistence = Resource(location=persistence, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), persistence_headers)))
 
     if auth_token_url:
         conf.authorization = AuthorizationService(
-            token_url=Resource(location=auth_token_url, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), auth_headers))),
-            login=auth_login,
-            password=auth_password,
+            token_url=Resource(login=auth_login, password=auth_password, location=auth_token_url, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), auth_headers))),
             client_id=auth_client_id,
             client_secret=auth_client_secret,
             grant_type=auth_grant_type,

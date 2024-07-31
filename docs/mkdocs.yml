@@ -38,7 +38,7 @@ nav:
   - Persistence: persist.md
   - Configurations: confs.md
 - Configuration data model: model/model.md
-
+- Configuring ARLAS Cloud: arlas_cloud.md
 
 plugins:
   - termynal:

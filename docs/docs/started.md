@@ -5,7 +5,7 @@ Install `arlas_cli` ([prerequisite](install.md#Prerequisite))
 ```
 
 !!! warning "Prerequisite"
-    For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine.
+    For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine: clone the [ARLAS Stack Exploration](https://github.com/gisaia/ARLAS-Exploration-stack) project and run `./start.sh` .
 
 ## Initial configuration
 `arlas_cli` uses a yaml file for storing various ARLAS and elasticsearch configurations. By default, the file is located in `~/.arlas/cli/configuration.yaml`. [One is automatically created for your convenience at the first launch](https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml). It contains the ARLAS demo endpoint and the local ARLAS and elasticsearch endpoints.
@@ -18,7 +18,7 @@ It can also contain references to index mappings for creating indices. A default
 <!-- termynal -->
 ```shell
 > arlas_cli --version
-0.2.8
+X.X.X
 Warning : no configuration file found, we created an empty one for 
 you (~/.arlas/cli/configuration.yaml).
 ```
