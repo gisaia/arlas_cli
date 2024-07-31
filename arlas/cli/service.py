@@ -235,7 +235,7 @@ class Service:
         return fields
     
     def __arlas__(arlas: str, suffix, post=None, put=None, delete=None, service=Services.arlas_server):
-        configuration: ARLAS = Configuration.settings.arlas.get(arlas, {})
+        configuration: ARLAS = Configuration.settings.arlas.get(arlas, None)
         if configuration is None:
             print("Error: arlas configuration ({}) not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
             exit(1)
