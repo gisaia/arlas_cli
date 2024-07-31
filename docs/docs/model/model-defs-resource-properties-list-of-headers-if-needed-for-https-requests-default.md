@@ -1,7 +1,7 @@
-# List of headers, if needed, for http(s) requests Schema
+# Untitled undefined type in Settings Schema
 
 ```txt
-airs_model#/$defs/Resource/properties/headers
+airs_model#/$defs/Resource/properties/headers/default
 ```
 
 
@@ -10,20 +10,6 @@ airs_model#/$defs/Resource/properties/headers
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [model.schema.json\*](../../../out/model.schema.json "open original schema") |
 
-## headers Type
+## default Type
 
-merged type ([List of headers, if needed, for http(s) requests](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests.md))
-
-any of
-
-*   [Untitled object in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-0.md "check type definition")
-
-*   [Untitled null in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-1.md "check type definition")
-
-## headers Default Value
-
-The default value is:
-
-```json
-{}
-```
+unknown

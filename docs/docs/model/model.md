@@ -220,15 +220,13 @@ Reference this group by using
 {"$ref":"airs_model#/$defs/AuthorizationService"}
 ```
 
-| Property                         | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
-| :------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [token\_url](#token_url)         | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-token-url-of-the-authentication-service.md "airs_model#/$defs/AuthorizationService/properties/token_url") |
-| [login](#login)                  | `string` | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-login.md "airs_model#/$defs/AuthorizationService/properties/login")                                       |
-| [password](#password)            | `string` | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-password.md "airs_model#/$defs/AuthorizationService/properties/password")                                 |
-| [client\_id](#client_id)         | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-id.md "airs_model#/$defs/AuthorizationService/properties/client_id")                               |
-| [client\_secret](#client_secret) | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-secret.md "airs_model#/$defs/AuthorizationService/properties/client_secret")                       |
-| [grant\_type](#grant_type)       | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-grant-type-eg-password.md "airs_model#/$defs/AuthorizationService/properties/grant_type")                 |
-| [arlas\_iam](#arlas_iam)         | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-is-it-an-arlas-iam-service.md "airs_model#/$defs/AuthorizationService/properties/arlas_iam")              |
+| Property                         | Type   | Required | Nullable       | Defined by                                                                                                                                                      |
+| :------------------------------- | :----- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [token\_url](#token_url)         | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-token-url-of-the-authentication-service.md "airs_model#/$defs/AuthorizationService/properties/token_url") |
+| [client\_id](#client_id)         | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-id.md "airs_model#/$defs/AuthorizationService/properties/client_id")                               |
+| [client\_secret](#client_secret) | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-secret.md "airs_model#/$defs/AuthorizationService/properties/client_secret")                       |
+| [grant\_type](#grant_type)       | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-grant-type-eg-password.md "airs_model#/$defs/AuthorizationService/properties/grant_type")                 |
+| [arlas\_iam](#arlas_iam)         | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-is-it-an-arlas-iam-service.md "airs_model#/$defs/AuthorizationService/properties/arlas_iam")              |
 
 ### token\_url
 
@@ -251,42 +249,6 @@ merged type ([Token URL of the authentication service](model-defs-authorizations
 all of
 
 *   [Resource](model-defs-resource.md "check type definition")
-
-### login
-
-
-
-`login`
-
-*   is optional
-
-*   Type: `string` ([login](model-defs-authorizationservice-properties-login.md))
-
-*   cannot be null
-
-*   defined in: [Settings](model-defs-authorizationservice-properties-login.md "airs_model#/$defs/AuthorizationService/properties/login")
-
-#### login Type
-
-`string` ([login](model-defs-authorizationservice-properties-login.md))
-
-### password
-
-
-
-`password`
-
-*   is optional
-
-*   Type: `string` ([password](model-defs-authorizationservice-properties-password.md))
-
-*   cannot be null
-
-*   defined in: [Settings](model-defs-authorizationservice-properties-password.md "airs_model#/$defs/AuthorizationService/properties/password")
-
-#### password Type
-
-`string` ([password](model-defs-authorizationservice-properties-password.md))
 
 ### client\_id
 
@@ -400,12 +362,12 @@ Reference this group by using
 {"$ref":"airs_model#/$defs/Resource"}
 ```
 
-| Property                | Type     | Required | Nullable       | Defined by                                                                                                                                 |
-| :---------------------- | :------- | :------- | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| [location](#location)   | `string` | Optional | cannot be null | [Settings](model-defs-resource-properties-file-or-http-location.md "airs_model#/$defs/Resource/properties/location")                       |
-| [headers](#headers)     | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests.md "airs_model#/$defs/Resource/properties/headers") |
-| [login](#login-1)       | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-user.md "airs_model#/$defs/Resource/properties/login")                                           |
-| [password](#password-1) | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-pasword.md "airs_model#/$defs/Resource/properties/password")                                     |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                 |
+| :-------------------- | :------- | :------- | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| [location](#location) | `string` | Optional | cannot be null | [Settings](model-defs-resource-properties-file-or-http-location.md "airs_model#/$defs/Resource/properties/location")                       |
+| [headers](#headers)   | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests.md "airs_model#/$defs/Resource/properties/headers") |
+| [login](#login)       | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-user.md "airs_model#/$defs/Resource/properties/login")                                           |
+| [password](#password) | Merged   | Optional | cannot be null | [Settings](model-defs-resource-properties-pasword.md "airs_model#/$defs/Resource/properties/password")                                     |
 
 ### location
 
@@ -448,6 +410,14 @@ any of
 *   [Untitled object in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-0.md "check type definition")
 
 *   [Untitled null in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-1.md "check type definition")
+
+#### headers Default Value
+
+The default value is:
+
+```json
+{}
+```
 
 ### login
 

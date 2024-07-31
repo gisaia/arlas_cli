@@ -33,13 +33,13 @@ arlas:
       password: null
 mappings:
   arlas_eo:
-    headers: null
+    headers: {}
     location: https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/mapping.json
     login: null
     password: null
 models:
   arlas_eo:
-    headers: null
+    headers: {}
     location: https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/collection.json
     login: null
     password: null

@@ -16,15 +16,13 @@ airs_model#/$defs/AuthorizationService
 
 # AuthorizationService Properties
 
-| Property                         | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
-| :------------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [token\_url](#token_url)         | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-token-url-of-the-authentication-service.md "airs_model#/$defs/AuthorizationService/properties/token_url") |
-| [login](#login)                  | `string` | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-login.md "airs_model#/$defs/AuthorizationService/properties/login")                                       |
-| [password](#password)            | `string` | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-password.md "airs_model#/$defs/AuthorizationService/properties/password")                                 |
-| [client\_id](#client_id)         | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-id.md "airs_model#/$defs/AuthorizationService/properties/client_id")                               |
-| [client\_secret](#client_secret) | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-secret.md "airs_model#/$defs/AuthorizationService/properties/client_secret")                       |
-| [grant\_type](#grant_type)       | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-grant-type-eg-password.md "airs_model#/$defs/AuthorizationService/properties/grant_type")                 |
-| [arlas\_iam](#arlas_iam)         | Merged   | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-is-it-an-arlas-iam-service.md "airs_model#/$defs/AuthorizationService/properties/arlas_iam")              |
+| Property                         | Type   | Required | Nullable       | Defined by                                                                                                                                                      |
+| :------------------------------- | :----- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [token\_url](#token_url)         | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-token-url-of-the-authentication-service.md "airs_model#/$defs/AuthorizationService/properties/token_url") |
+| [client\_id](#client_id)         | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-id.md "airs_model#/$defs/AuthorizationService/properties/client_id")                               |
+| [client\_secret](#client_secret) | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-client-secret.md "airs_model#/$defs/AuthorizationService/properties/client_secret")                       |
+| [grant\_type](#grant_type)       | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-grant-type-eg-password.md "airs_model#/$defs/AuthorizationService/properties/grant_type")                 |
+| [arlas\_iam](#arlas_iam)         | Merged | Optional | cannot be null | [Settings](model-defs-authorizationservice-properties-is-it-an-arlas-iam-service.md "airs_model#/$defs/AuthorizationService/properties/arlas_iam")              |
 
 ## token\_url
 
@@ -47,42 +45,6 @@ merged type ([Token URL of the authentication service](model-defs-authorizations
 all of
 
 *   [Resource](model-defs-resource.md "check type definition")
-
-## login
-
-
-
-`login`
-
-*   is optional
-
-*   Type: `string` ([login](model-defs-authorizationservice-properties-login.md))
-
-*   cannot be null
-
-*   defined in: [Settings](model-defs-authorizationservice-properties-login.md "airs_model#/$defs/AuthorizationService/properties/login")
-
-### login Type
-
-`string` ([login](model-defs-authorizationservice-properties-login.md))
-
-## password
-
-
-
-`password`
-
-*   is optional
-
-*   Type: `string` ([password](model-defs-authorizationservice-properties-password.md))
-
-*   cannot be null
-
-*   defined in: [Settings](model-defs-authorizationservice-properties-password.md "airs_model#/$defs/AuthorizationService/properties/password")
-
-### password Type
-
-`string` ([password](model-defs-authorizationservice-properties-password.md))
 
 ## client\_id
 

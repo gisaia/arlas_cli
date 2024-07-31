@@ -65,6 +65,14 @@ any of
 
 *   [Untitled null in Settings](model-defs-resource-properties-list-of-headers-if-needed-for-https-requests-anyof-1.md "check type definition")
 
+### headers Default Value
+
+The default value is:
+
+```json
+{}
+```
+
 ## login
 
 
