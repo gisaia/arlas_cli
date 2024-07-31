@@ -13,7 +13,7 @@ export ELASTIC_PWD=SET_THIS_VALUE
 Then run the command `arlas_cli confs create cloud.arlas.io` with all the parameters:
 
 ```shell
-> arlas_cli confs \
+arlas_cli confs \
     create cloud.arlas.io \
     --server "https://cloud.arlas.io/arlas/server" \
     --headers "arlas-org-filter:${MY_ORGANIZATION}" \
@@ -38,23 +38,23 @@ Then run the command `arlas_cli confs create cloud.arlas.io` with all the parame
 Check the configuration exists:
 
 ```shell
-> arlas_cli confs list
+arlas_cli confs list
 ```
 
 You can now list the collections:
 
 ```shell
-> arlas_cli collections --config cloud.arlas.io list
+arlas_cli collections --config cloud.arlas.io list
 ```
 
 List the indices:
 
 ```shell
-> arlas_cli indices --config cloud.arlas.io list
+arlas_cli indices --config cloud.arlas.io list
 ```
 
 List the persisted elements:
 
 ```shell
-> arlas_cli persist --config cloud.arlas.io groups config.json
+arlas_cli persist --config cloud.arlas.io groups config.json
 ```

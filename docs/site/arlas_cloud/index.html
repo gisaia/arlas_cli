@@ -498,7 +498,7 @@
 <span class="nb">export</span><span class="w"> </span><span class="nv">ELASTIC_PWD</span><span class="o">=</span>SET_THIS_VALUE
 </code></pre></div></p>
 <p>Then run the command <code>arlas_cli confs create cloud.arlas.io</code> with all the parameters:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>confs<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>confs<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>create<span class="w"> </span>cloud.arlas.io<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--server<span class="w"> </span><span class="s2">&quot;https://cloud.arlas.io/arlas/server&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--headers<span class="w"> </span><span class="s2">&quot;arlas-org-filter:</span><span class="si">${</span><span class="nv">MY_ORGANIZATION</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
@@ -520,16 +520,16 @@
 <span class="w">    </span>--auth-arlas-iam
 </code></pre></div>
 <p>Check the configuration exists:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>confs<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>confs<span class="w"> </span>list
 </code></pre></div>
 <p>You can now list the collections:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>collections<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>collections<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
 </code></pre></div>
 <p>List the indices:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
 </code></pre></div>
 <p>List the persisted elements:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>persist<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>groups<span class="w"> </span>config.json
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>persist<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>groups<span class="w"> </span>config.json
 </code></pre></div>
 
 
