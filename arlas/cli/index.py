@@ -89,7 +89,8 @@ def data(
 def mapping(
     file: str = typer.Argument(help="Path to the file conaining the data. Format: NDJSON"),
     nb_lines: int = typer.Option(default=2, help="Number of line to consider for generating the mapping. Avoid going over 10."),
-    field_mapping: list[str] = typer.Option(default=[], help="Overide the mapping with the provided field/type. Example: fragment.location:geo_point"),
+    field_mapping: list[str] = typer.Option(default=[], help="Overide the mapping with the provided field path/type. Example: fragment.location:geo_point. Important: the full field path must be provided."),
+    no_fulltext: list[str] = typer.Option(default=[], help="List of keyword or text fields that should not be in the fulltext search. Important: the field name only must be provided."),
     push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name"),
 ):
     config = variables["arlas"]
@@ -104,7 +105,7 @@ def mapping(
         else:
             print("Error: invalid field_mapping \"{}\". The format is \"field:type\" like \"fragment.location:geo_point\"".format(fm), file=sys.stderr)
             exit(1)
-    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types)
+    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext)
     if push_on and config:
         Service.create_index(
             config,

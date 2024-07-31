@@ -141,26 +141,28 @@ def __type_node__(n, name: str = None) -> str:
     return "UNDEFINED"
 
 # from the typed tree, generate the mapping.
-def __generate_mapping__(tree, mapping):
+def __generate_mapping__(tree, mapping, no_fulltext: list[str]):
     if type(tree) is dict:
         for (k, v) in tree.items():
             if k not in ["__type__", "__values__"]:
                 t: str = v.get("__type__")
                 if t == "object":
                     mapping[k] = {"properties": {}}
-                    __generate_mapping__(v, mapping[k]["properties"])
+                    __generate_mapping__(v, mapping[k]["properties"], no_fulltext)
                 else:
                     if t.startswith("date-"):
                         mapping[k] = {"type": "date", "format": t.split("-")[1]}
                     else:
                         mapping[k] = {"type": t}
                         if t in ["keyword", "text"]:
-                            mapping[k]["copy_to"] = ["internal.fulltext", "internal.autocomplete"]
+                            print("-->{}".format(k))
+                            if k not in no_fulltext:
+                                mapping[k]["copy_to"] = ["internal.fulltext", "internal.autocomplete"]
     else:
         raise Exception("Unexpected state")
 
 
-def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}):
+def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fulltext: list[str] = []):
     tree = {}
     mapping = {}
     with open(file) as f:
@@ -173,7 +175,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}):
                 hit = json.loads(line)
                 __build_tree__(tree, hit)
         __type_tree__("", tree, types)
-        __generate_mapping__(tree, mapping)
+        __generate_mapping__(tree, mapping, no_fulltext)
     mapping["internal"] = {
         "properties": {
             "autocomplete": {

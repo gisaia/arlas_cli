@@ -32,7 +32,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST add direct mapping on ES"
-python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests create direct_mappping_index --mapping tests/mapping.json
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests create direct_mappping_index --mapping tests/mapping.json
 if [ "$? -eq 0" ] ; then
     echo "OK: Mapping added"
 else
@@ -42,7 +42,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST retrieve direct mapping from ES"
-if python3 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep direct_mappping_index ; then
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests list | grep direct_mappping_index ; then
     echo "OK: direct mapping found"
 else
     echo "ERROR: direct mapping not found"
@@ -51,7 +51,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST infer mapping and add mapping on ES"
-python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests mapping tests/sample.json --nb-lines 200 --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --push-on courses
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests mapping tests/sample.json --nb-lines 200 --field-mapping track.timestamps.center:date-epoch_second --field-mapping track.timestamps.start:date-epoch_second --field-mapping track.timestamps.end:date-epoch_second --no-fulltext cargo_type --push-on courses
 if [ "$? -eq 0" ] ; then
     echo "OK: Mapping inferred and added"
 else
