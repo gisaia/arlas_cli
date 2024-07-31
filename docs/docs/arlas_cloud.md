@@ -10,7 +10,8 @@ export ELASTIC_USER=SET_THIS_VALUE
 export ELASTIC_PWD=SET_THIS_VALUE
 ```
 
-<!-- termynal -->
+Then run the command `arlas_cli confs create cloud.arlas.io` with all the parameters:
+
 ```shell
 > arlas_cli confs \
     create cloud.arlas.io \
@@ -35,22 +36,25 @@ export ELASTIC_PWD=SET_THIS_VALUE
 ```
 
 Check the configuration exists:
-<!-- termynal -->
+
 ```shell
 > arlas_cli confs list
 ```
 
-You can now try the configuration:
-<!-- termynal -->
+You can now list the collections:
+
 ```shell
 > arlas_cli collections --config cloud.arlas.io list
 ```
 
-<!-- termynal -->
+List the indices:
+
 ```shell
 > arlas_cli indices --config cloud.arlas.io list
 ```
-<!-- termynal -->
+
+List the persisted elements:
+
 ```shell
 > arlas_cli persist --config cloud.arlas.io groups config.json
 ```

@@ -34,6 +34,7 @@ git add docs/docs/model
 mkdocs gh-deploy -f docs/mkdocs.yml
 
 git add version.txt
+git add docs
 git commit -m "ARLAS Command line ${VERSION}"
 # TAG
 git tag -a ${VERSION} -m "ARLAS Command line ${VERSION}"
