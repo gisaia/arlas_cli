@@ -497,36 +497,40 @@
 <span class="nb">export</span><span class="w"> </span><span class="nv">ELASTIC_USER</span><span class="o">=</span>SET_THIS_VALUE
 <span class="nb">export</span><span class="w"> </span><span class="nv">ELASTIC_PWD</span><span class="o">=</span>SET_THIS_VALUE
 </code></pre></div></p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs \
-    create cloud.arlas.io \
-    --server &quot;https://cloud.arlas.io/arlas/server&quot; \
-    --headers &quot;arlas-org-filter:${MY_ORGANIZATION}&quot; \
-    --headers &quot;Content-Type:application/json&quot; \
-    --no-allow-delete \
-    --auth-token-url https://cloud.arlas.io/arlas/iam/session \
-    --auth-login &quot;${ARLAS_USER}&quot; \
-    --auth-password &quot;${ARLAS_PWD}&quot; \
-    --auth-headers &quot;Content-Type:application/json;charset=utf-8&quot; \
-    --auth-org &quot;${MY_ORGANIZATION}&quot; \
-    --elastic &quot;${ELASTIC_ENDPOINT}&quot; \
-    --elastic-headers &quot;Content-Type:application/json&quot; \
-    --elastic-login &quot;${ELASTIC_USER}&quot; \
-    --elastic-password &quot;${ELASTIC_PWD}&quot; \
-    --elastic-headers &quot;Content-Type:application/json&quot; \
-    --auth-headers &quot;Content-Type:application/json;charset=utf-8&quot; \
-    --persistence &quot;https://cloud.arlas.io/arlas/persistence&quot; \
-    --persistence-headers &quot;Content-Type:application/json&quot; \
-    --auth-arlas-iam</span><span data-ty></span></div>
-
+<p>Then run the command <code>arlas_cli confs create cloud.arlas.io</code> with all the parameters:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>confs<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>create<span class="w"> </span>cloud.arlas.io<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--server<span class="w"> </span><span class="s2">&quot;https://cloud.arlas.io/arlas/server&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--headers<span class="w"> </span><span class="s2">&quot;arlas-org-filter:</span><span class="si">${</span><span class="nv">MY_ORGANIZATION</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--no-allow-delete<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-token-url<span class="w"> </span>https://cloud.arlas.io/arlas/iam/session<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-login<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ARLAS_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-password<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ARLAS_PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json;charset=utf-8&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-org<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_ORGANIZATION</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--elastic<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_ENDPOINT</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--elastic-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--elastic-login<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--elastic-password<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--elastic-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json;charset=utf-8&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--persistence<span class="w"> </span><span class="s2">&quot;https://cloud.arlas.io/arlas/persistence&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--persistence-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-arlas-iam
+</code></pre></div>
 <p>Check the configuration exists:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs list</span><span data-ty></span></div>
-
-<p>You can now try the configuration:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config cloud.arlas.io list</span><span data-ty></span></div>
-
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config cloud.arlas.io list</span><span data-ty></span></div>
-
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config cloud.arlas.io groups config.json</span><span data-ty></span></div>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>confs<span class="w"> </span>list
+</code></pre></div>
+<p>You can now list the collections:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>collections<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
+</code></pre></div>
+<p>List the indices:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
+</code></pre></div>
+<p>List the persisted elements:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>persist<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>groups<span class="w"> </span>config.json
+</code></pre></div>
 
 
 
