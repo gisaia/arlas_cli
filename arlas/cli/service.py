@@ -75,6 +75,12 @@ class Service:
                                       ],
                         groups))
 
+    def add_user_in_organisation(arlas: str, oid: str, email: str, groups: list[str]):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), post=json.dumps({"email": email, "rids": groups}), service=Services.iam)
+
+    def delete_user_in_organisation(arlas: str, oid: str, user_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", user_id]), delete=True, service=Services.iam)
+
     def add_group_in_organisation(arlas: str, oid: str, group_name: str, group_description: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "groups"]), post=json.dumps({"name": group_name, "description": group_description}), service=Services.iam)
 

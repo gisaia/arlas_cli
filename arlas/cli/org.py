@@ -48,6 +48,21 @@ def users(org_id: str = typer.Argument(help="Organisation's identifier")):
     print(tab)
 
 
+@org.command(help="Add a user to the organisation, and optionally within groups", name="add_user")
+def add_user(org_id: str = typer.Argument(help="Organisation's identifier"),
+             email: str = typer.Argument(help="User's email"),
+             group: list[str] = typer.Option([], help="Group identifier")):
+    config = variables["arlas"]
+    print(Service.add_user_in_organisation(config, org_id, email, group))
+
+
+@org.command(help="Remove the user from the organisation", name="delete_user")
+def delete_user(org_id: str = typer.Argument(help="Organisation's identifier"),
+                user_id: str = typer.Argument(help="User ID")):
+    config = variables["arlas"]
+    Service.delete_user_in_organisation(config, org_id, user_id)
+
+
 @org.command(help="List the groups of the organisation", name="groups")
 def groups(org_id: str = typer.Argument(help="Organisation's identifier")):
     config = variables["arlas"]
