@@ -25,7 +25,7 @@ class Services(Enum):
 class Service:
 
     def create_user(arlas: str, email: str):
-        return Service.__arlas__(arlas, "/users", post=json.dumps({"email": email}), service=Services.iam)
+        return Service.__arlas__(arlas, "users", post=json.dumps({"email": email}), service=Services.iam)
 
     def delete_user(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id]), delete=True, service=Services.iam)
