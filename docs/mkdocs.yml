@@ -36,6 +36,7 @@ nav:
   - Indices: indices.md
   - Collections: collections.md
   - Persistence: persist.md
+  - Identity & Access: iam.md
   - Configurations: confs.md
 - Configuration data model: model/model.md
 - Configuring ARLAS Cloud: arlas_cloud.md

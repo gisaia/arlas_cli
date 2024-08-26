@@ -2,6 +2,9 @@ import typer
 import os
 import sys
 
+from arlas.cli.user import user
+from arlas.cli.iam import iam
+from arlas.cli.org import org
 from arlas.cli.collections import collections
 from arlas.cli.configurations import configurations
 from arlas.cli.persist import persist
@@ -60,6 +63,9 @@ def main():
     app.add_typer(indices, name="indices")
     app.add_typer(persist, name="persist")
     app.add_typer(configurations, name="confs")
+    iam.add_typer(org, name="orgs")
+    iam.add_typer(user, name="users")
+    app.add_typer(iam, name="iam")
     app()
 
 

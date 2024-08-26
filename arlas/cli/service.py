@@ -7,6 +7,8 @@ import requests
 
 from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
 
+requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
+
 
 class RequestException(Exception):
     def __init__(self, code, message):
@@ -17,9 +19,104 @@ class RequestException(Exception):
 class Services(Enum):
     arlas_server = "server"
     persistence_server = "persistence"
+    iam = "iam"
 
 
 class Service:
+
+    def create_user(arlas: str, email: str):
+        return Service.__arlas__(arlas, "/users", post=json.dumps({"email": email}), service=Services.iam)
+
+    def delete_user(arlas: str, id: str):
+        return Service.__arlas__(arlas, "/".join(["users", id]), delete=True, service=Services.iam)
+
+    def activate(arlas: str, id: str):
+        return Service.__arlas__(arlas, "/".join(["users", id, "activate"]), post="{}", service=Services.iam)
+    
+    def deactivate(arlas: str, id: str):
+        return Service.__arlas__(arlas, "/".join(["users", id, "deactivate"]), post="{}", service=Services.iam)
+
+    def list_organisations(arlas: str) -> list[list[str]]:
+        data = Service.__arlas__(arlas, "organisations", service=Services.iam)
+        table = [["id", "name", "Am I owner?"]]
+        for org in data:
+            table.append([
+                org.get("id"),
+                org.get("name") + " (" + org.get("displayName") + ")",
+                org.get("isOwner"),
+            ])
+        return table
+
+    def create_organisation(arlas: str, org: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", org]), post="{}", service=Services.iam)
+
+    def delete_organisation(arlas: str, oid: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid]), delete="{}", service=Services.iam)
+
+    def list_organisation_collections(arlas: str, oid: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "collections"]), service=Services.iam)
+
+    def list_organisation_users(arlas: str, oid: str):
+        users: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), service=Services.iam)
+        print(users)
+        return list(map(lambda user: [user.get("member").get("id"),
+                                      user.get("member").get("email"),
+                                      user.get("isOwner"),
+                                      "\n".join(list(map(lambda role: role.get("fullName"), user.get("member").get("roles"))))],
+                        users))
+
+    def list_organisation_groups(arlas: str, oid: str):
+        groups: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "groups"]), service=Services.iam)
+        return list(map(lambda user: [user.get("id"),
+                                      user.get("fullName"),
+                                      user.get("description"),
+                                      user.get("isTechnical"),
+                                      "group"
+                                      ],
+                        groups))
+
+    def add_group_in_organisation(arlas: str, oid: str, group_name: str, group_description: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "groups"]), post=json.dumps({"name": group_name, "description": group_description}), service=Services.iam)
+
+    def delete_group_in_organisation(arlas: str, oid: str, group_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "groups", group_id]), delete=True, service=Services.iam)
+
+    def add_permission_in_organisation(arlas: str, oid: str, permission_value: str, permission_description: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "permissions"]), post=json.dumps({"value": permission_value, "description": permission_description}), service=Services.iam)
+
+    def delete_permission_in_organisation(arlas: str, oid: str, permission_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "permissions", permission_id]), delete=True, service=Services.iam)
+
+    def add_permission_to_group_in_organisation(arlas: str, oid: str, role_id: str, permission_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id, "permissions", permission_id]), post="{}", service=Services.iam)
+
+    def delete_permission_from_group_in_organisation(arlas: str, oid: str, role_id: str, permission_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id, "permissions", permission_id]), delete=True, service=Services.iam)
+
+    def add_role_in_organisation(arlas: str, oid: str, role_name: str, role_description: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles"]), post=json.dumps({"name": role_name, "description": role_description}), service=Services.iam)
+
+    def delete_role_in_organisation(arlas: str, oid: str, role_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id]), delete=True, service=Services.iam)
+
+    def list_organisation_roles(arlas: str, oid: str):
+        roles: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "roles"]), service=Services.iam)
+        return list(map(lambda user: [user.get("id"),
+                                      user.get("name"),
+                                      user.get("description"),
+                                      user.get("isTechnical"),
+                                      "role"
+                                      ],
+                        roles))
+
+    def list_organisation_permissions(arlas: str, oid: str):
+        permissions: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "permissions"]), service=Services.iam)
+        return list(map(lambda perm: [perm.get("id"),
+                                      perm.get("description"),
+                                      perm.get("value"),
+                                      "\n".join(list(map(lambda role: role.get("fullName"), perm.get("roles"))))
+                                      ],
+                        permissions))
 
     def list_collections(arlas: str) -> list[list[str]]:
         data = Service.__arlas__(arlas, "explore/_list")
@@ -102,7 +199,6 @@ class Service:
             display_names = model.get("display_names", {})
             display_names["collection"] = display_name
             model["display_names"] = display_names
-        print(json.dumps(model))
         Service.__arlas__(arlas, "/".join(["collections", collection]), put=json.dumps(model))
 
     def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int):
@@ -243,22 +339,29 @@ class Service:
             __headers__ = configuration.server.headers.copy()
             endpoint: Resource = configuration.server
         else:
-            __headers__ = configuration.persistence.headers.copy()
-            endpoint: Resource = configuration.persistence
+            if service == Services.persistence_server:
+                __headers__ = configuration.persistence.headers.copy()
+                endpoint: Resource = configuration.persistence
+            else:
+                if service == Services.iam:
+                    __headers__ = configuration.authorization.token_url.headers.copy()
+                    endpoint: Resource = configuration.authorization.token_url.model_copy()
+                    endpoint.location = endpoint.location.rsplit('/', 1)[0]
+
         if Configuration.settings.arlas.get(arlas).authorization is not None:
             __headers__["Authorization"] = "Bearer " + Service.__get_token__(arlas)
         url = "/".join([endpoint.location, suffix])
         try:
             if post:
-                r = requests.post(url, data=post, headers=__headers__)
+                r = requests.post(url, data=post, headers=__headers__, verify=False)
             else:
                 if put:
-                    r = requests.put(url, data=put, headers=__headers__)
+                    r = requests.put(url, data=put, headers=__headers__, verify=False)
                 else:
                     if delete:
-                        r = requests.delete(url, headers=__headers__)
+                        r = requests.delete(url, headers=__headers__, verify=False)
                     else:
-                        r = requests.get(url, headers=__headers__)
+                        r = requests.get(url, headers=__headers__, verify=False)
             if r.ok:
                 return r.json()
             else:
@@ -283,15 +386,15 @@ class Service:
         __headers.update(headers)
         auth = (endpoint.elastic.login, endpoint.elastic.password) if endpoint.elastic.login else None
         if post:
-            r = requests.post(url, data=post, headers=__headers, auth=auth)
+            r = requests.post(url, data=post, headers=__headers, auth=auth, verify=False)
         else:
             if put:
-                r = requests.put(url, data=put, headers=__headers, auth=auth)
+                r = requests.put(url, data=put, headers=__headers, auth=auth, verify=False)
             else:
                 if delete:
-                    r = requests.delete(url, headers=__headers, auth=auth)
+                    r = requests.delete(url, headers=__headers, auth=auth, verify=False)
                 else:
-                    r = requests.get(url, headers=__headers, auth=auth)
+                    r = requests.get(url, headers=__headers, auth=auth, verify=False)
         if r.ok:
             return r.content
         else:
@@ -311,7 +414,7 @@ class Service:
             with open(resource.location, mode) as f:
                 content = f.read()
             return content
-        r = requests.get(resource.location, headers=resource.headers)
+        r = requests.get(resource.location, headers=resource.headers, verify=False)
         if r.ok:
             return r.content
         else:
@@ -335,11 +438,11 @@ class Service:
             }
             if auth.grant_type:
                 data["grant_type"] = auth.grant_type
-
         r = requests.post(
             headers=auth.token_url.headers,
             data=json.dumps(data),
-            url=auth.token_url.location)
+            url=auth.token_url.location,
+            verify=False)
         if r.status_code >= 200 and r.status_code < 300:
             if r.json().get("accessToken"):
                 return r.json()["accessToken"]

@@ -55,6 +55,17 @@ echo "> arlas_cli persist --help" >> docs/docs/persist.md
 python3.10 -m arlas.cli.cli persist --help >> docs/docs/persist.md
 cat docs/docs/persist_2.md >> docs/docs/persist.md
 
+
+# IAM
+cat docs/docs/iam_1.md > docs/docs/iam.md
+echo "> arlas_cli iam --config local orgs --help" >> docs/docs/iam.md
+python3.10 -m arlas.cli.cli iam --config local orgs --help >> docs/docs/iam.md
+cat docs/docs/iam_2.md >> docs/docs/iam.md
+echo "> arlas_cli iam --config local users --help" >> docs/docs/iam.md
+python3.10 -m arlas.cli.cli iam --config local users --help >> docs/docs/iam.md
+cat docs/docs/iam_3.md >> docs/docs/iam.md
+
+
 # CONFIGURATIONS
 cat docs/docs/confs_1.md > docs/docs/confs.md
 
