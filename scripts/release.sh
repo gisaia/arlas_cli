@@ -18,9 +18,8 @@ echo "Build and releas the image with version ${VERSION}"
 ./scripts/publish.sh $VERSION
 
 # CONFIG FILE
-rm $HOME/.arlas/cli/configuration.yaml
-python3.10 -m arlas.cli.cli --version
-cp $HOME/.arlas/cli/configuration.yaml .
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas-cli-release.conf --version
+cp /tmp/arlas-cli-release.conf ./configuration.yaml
 git add configuration.yaml
 
 # Model
