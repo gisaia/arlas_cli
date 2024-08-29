@@ -575,30 +575,10 @@
 <h2 id="getting-help">Getting help</h2>
 <p>At any time, if you need some help on how to use the command line or one of its sub command, simply add <code>--help</code>.</p>
 <p>Whether you are at the top level:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --help</span><span data-ty>Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...<br><br>Options:<br>  --config-file TEXT  Path to the configuration file if you do not want to use<br>                      the default one: .arlas/cli/configuration.yaml.<br>  --version           Print command line version<br>  --help              Show this message and exit.<br><br>Commands:<br>  collections<br>  confs<br>  iam<br>  indices<br>  persist<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --help</span><span data-ty>Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...<br><br>Options:<br>  --config-file TEXT              Path to the configuration file if you do not<br>                                  want to use the default one:<br>                                  .arlas/cli/configuration.yaml.<br>  --print-curl / --no-print-curl  Print curl command  [default: no-print-curl]<br>  --version                       Print command line version<br>  --help                          Show this message and exit.<br><br>Commands:<br>  collections<br>  confs<br>  iam<br>  indices<br>  persist<br></span></div>
 
 <p>or within a sub command:</p>
-<!-- termynal -->
-<p>```shell</p>
-<blockquote>
-<p>arlas_cli indices --config demo mapping --help
-Usage: arlas_cli indices mapping [OPTIONS] FILE</p>
-</blockquote>
-<p>Generate the mapping based on the data</p>
-<p>Arguments:
-  FILE  Path to the file conaining the data. Format: NDJSON  [required]</p>
-<p>Options:
-  --nb-lines INTEGER    Number of line to consider for generating the mapping.
-                        Avoid going over 10.  [default: 2]
-  --field-mapping TEXT  Overide the mapping with the provided field path/type.
-                        Example: fragment.location:geo_point. Important: the
-                        full field path must be provided.
-  --no-fulltext TEXT    List of keyword or text fields that should not be in
-                        the fulltext search. Important: the field name only
-                        must be provided.
-  --push-on TEXT        Push the generated mapping for the provided index name
-  --help                Show this message and exit.
-  ```</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config demo mapping --help</span><span data-ty>Usage: arlas_cli indices mapping [OPTIONS] FILE<br><br>  Generate the mapping based on the data<br><br>Arguments:<br>  FILE  Path to the file conaining the data. Format: NDJSON  [required]<br><br>Options:<br>  --nb-lines INTEGER    Number of line to consider for generating the mapping.<br>                        Avoid going over 10.  [default: 2]<br>  --field-mapping TEXT  Overide the mapping with the provided field path/type.<br>                        Example: fragment.location:geo_point. Important: the<br>                        full field path must be provided.<br>  --no-fulltext TEXT    List of keyword or text fields that should not be in<br>                        the fulltext search. Important: the field name only<br>                        must be provided.<br>  --push-on TEXT        Push the generated mapping for the provided index name<br>  --help                Show this message and exit.<br></span></div>
 
 
 
