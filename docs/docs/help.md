@@ -9,10 +9,12 @@ Whether you are at the top level:
 Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  --config-file TEXT  Path to the configuration file if you do not want to use
-                      the default one: .arlas/cli/configuration.yaml.
-  --version           Print command line version
-  --help              Show this message and exit.
+  --config-file TEXT              Path to the configuration file if you do not
+                                  want to use the default one:
+                                  .arlas/cli/configuration.yaml.
+  --print-curl / --no-print-curl  Print curl command  [default: no-print-curl]
+  --version                       Print command line version
+  --help                          Show this message and exit.
 
 Commands:
   collections
@@ -45,4 +47,4 @@ Options:
                         must be provided.
   --push-on TEXT        Push the generated mapping for the provided index name
   --help                Show this message and exit.
-  ```
+```
