@@ -224,7 +224,7 @@ echo "TEST add entry"
 id=`python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests add README.md my_zone --name toto`
 
 # ----------------------------------------------------------
-echo "TEST entry found"
+echo "TEST entry found (${id})"
 if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml persist --config tests zone my_zone | grep toto ; then
     echo "OK: entry found"
 else

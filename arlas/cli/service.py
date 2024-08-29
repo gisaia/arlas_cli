@@ -248,7 +248,6 @@ class Service:
     def persistence_add_file(arlas: str, file: Resource, zone: str, name: str, encode: bool = False, readers: list[str] = [], writers: list[str] = []):
         content = Service.__fetch__(file, bytes=True)
         url = "/".join(["persist", "resource", zone, name]) + "?" + "&".join(list(map(lambda r: "readers=" + urllib.parse.quote_plus(r), readers)) + list(map(lambda w: "writers=" + urllib.parse.quote_plus(w), writers)))
-        print(url)
         return Service.__arlas__(arlas, url, post=content, service=Services.persistence_server).get("id")
 
     def persistence_delete(arlas: str, id: str):
@@ -363,13 +362,16 @@ class Service:
         url = "/".join([endpoint.location, suffix])
         try:
             method = "GET"
+            data = None
             if post:
+                data = post
                 method = "POST"
             if put:
+                data = put
                 method = "PUT"
             if delete:
                 method = "DELETE"
-            r = Service.__request__(url, method, post, __headers__)
+            r = Service.__request__(url, method, data, __headers__)
             if r.ok:
                 return r.json()
             else:
@@ -394,13 +396,16 @@ class Service:
         __headers.update(headers)
         auth = (endpoint.elastic.login, endpoint.elastic.password) if endpoint.elastic.login else None
         method = "GET"
+        data = None
         if post:
+            data = post
             method = "POST"
         if put:
+            data = put
             method = "PUT"
         if delete:
             method = "DELETE"
-        r = Service.__request__(url, method, post, __headers, auth)
+        r = Service.__request__(url, method, data, __headers, auth)
         if r.ok:
             return r.content
         else:
