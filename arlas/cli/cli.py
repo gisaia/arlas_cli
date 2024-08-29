@@ -2,6 +2,7 @@ import typer
 import os
 import sys
 
+from .service import Service
 from arlas.cli.user import user
 from arlas.cli.iam import iam
 from arlas.cli.org import org
@@ -19,8 +20,10 @@ arlas_cli_version = "arlas_cli_versions"
 @app.callback(invoke_without_command=True)
 def init(
     config_file: str = typer.Option(None, help="Path to the configuration file if you do not want to use the default one: .arlas/cli/configuration.yaml."),
+    print_curl: bool = typer.Option(False, help="Print curl command"),
     version: bool = typer.Option(False, "--version", help="Print command line version")
 ):
+    Service.curl = print_curl
     if config_file:
         variables["configuration_file"] = config_file
     if version:

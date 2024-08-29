@@ -2,10 +2,11 @@ from enum import Enum
 import json
 import os
 import sys
+import urllib.parse
 from alive_progress import alive_bar
 import requests
-
 from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
+from datetime import datetime
 
 requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
@@ -23,6 +24,7 @@ class Services(Enum):
 
 
 class Service:
+    curl: bool = False
 
     def create_user(arlas: str, email: str):
         return Service.__arlas__(arlas, "users", post=json.dumps({"email": email}), service=Services.iam)
@@ -58,7 +60,6 @@ class Service:
 
     def list_organisation_users(arlas: str, oid: str):
         users: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), service=Services.iam)
-        print(users)
         return list(map(lambda user: [user.get("member").get("id"),
                                       user.get("member").get("email"),
                                       user.get("isOwner"),
@@ -246,7 +247,8 @@ class Service:
 
     def persistence_add_file(arlas: str, file: Resource, zone: str, name: str, encode: bool = False, readers: list[str] = [], writers: list[str] = []):
         content = Service.__fetch__(file, bytes=True)
-        url = "/".join(["persist", "resource", zone, name]) + "?" + "&readers=".join(readers) + "&writers=".join(writers)
+        url = "/".join(["persist", "resource", zone, name]) + "?" + "&".join(list(map(lambda r: "readers=" + urllib.parse.quote_plus(r), readers)) + list(map(lambda w: "writers=" + urllib.parse.quote_plus(w), writers)))
+        print(url)
         return Service.__arlas__(arlas, url, post=content, service=Services.persistence_server).get("id")
 
     def persistence_delete(arlas: str, id: str):
@@ -280,11 +282,13 @@ class Service:
         table.append(["ID", r.get("id")])
         table.append(["name", r.get("doc_key")])
         table.append(["zone", r.get("doc_zone")])
-        table.append(["last_update_date", r.get("last_update_date")])
+        table.append(["last_update_date", datetime.fromtimestamp(r.get("last_update_date") / 1000.0).isoformat()])
         table.append(["owner", r.get("doc_owner")])
         table.append(["organization", r.get("doc_organization")])
         table.append(["ispublic", r.get("ispublic")])
         table.append(["updatable", r.get("updatable")])
+        table.append(["readers", ", ".join(r.get("doc_readers", []))])
+        table.append(["writers", ", ".join(r.get("doc_writers", []))])
         return table
 
     def __index_bulk__(arlas: str, index: str, bulk: []):
@@ -358,16 +362,14 @@ class Service:
             __headers__["Authorization"] = "Bearer " + Service.__get_token__(arlas)
         url = "/".join([endpoint.location, suffix])
         try:
+            method = "GET"
             if post:
-                r = requests.post(url, data=post, headers=__headers__, verify=False)
-            else:
-                if put:
-                    r = requests.put(url, data=put, headers=__headers__, verify=False)
-                else:
-                    if delete:
-                        r = requests.delete(url, headers=__headers__, verify=False)
-                    else:
-                        r = requests.get(url, headers=__headers__, verify=False)
+                method = "POST"
+            if put:
+                method = "PUT"
+            if delete:
+                method = "DELETE"
+            r = Service.__request__(url, method, post, __headers__)
             if r.ok:
                 return r.json()
             else:
@@ -391,16 +393,14 @@ class Service:
         __headers = endpoint.elastic.headers
         __headers.update(headers)
         auth = (endpoint.elastic.login, endpoint.elastic.password) if endpoint.elastic.login else None
+        method = "GET"
         if post:
-            r = requests.post(url, data=post, headers=__headers, auth=auth, verify=False)
-        else:
-            if put:
-                r = requests.put(url, data=put, headers=__headers, auth=auth, verify=False)
-            else:
-                if delete:
-                    r = requests.delete(url, headers=__headers, auth=auth, verify=False)
-                else:
-                    r = requests.get(url, headers=__headers, auth=auth, verify=False)
+            method = "POST"
+        if put:
+            method = "PUT"
+        if delete:
+            method = "DELETE"
+        r = Service.__request__(url, method, post, __headers, auth)
         if r.ok:
             return r.content
         else:
@@ -410,6 +410,23 @@ class Service:
                 exit(1)
             else:
                 raise RequestException(r.status_code, r.content)
+
+    def __request__(url: str, method: str, data: any = None, headers: dict[str, str] = {}, auth: tuple[str, str | None] = None) -> requests.Response:
+        if Service.curl:
+            print('curl -k -X {} "{}" {}'.format(method.upper(), url, " ".join(list(map(lambda h: '--header "' + h + ":" + headers.get(h) + '"', headers)))), end="")
+            if (method.upper() in ["POST", "PUT"]):
+                print(" -d {}".format(data))
+        if method.upper() == "POST":
+            r = requests.post(url, data=data, headers=headers, auth=auth, verify=False)
+        else:
+            if method == "PUT":
+                r = requests.put(url, data=data, headers=headers, auth=auth, verify=False)
+            else:
+                if method == "DELETE":
+                    r = requests.delete(url, headers=headers, auth=auth, verify=False)
+                else:
+                    r = requests.get(url, headers=headers, auth=auth, verify=False)
+        return r
 
     def __fetch__(resource: Resource, bytes: bool = False):
         if os.path.exists(resource.location):

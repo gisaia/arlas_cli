@@ -87,6 +87,6 @@ def describe(
 ):
     config = variables["arlas"]
     table = Service.persistence_describe(config, id=id)
-    tab = PrettyTable(table[0], sortby="metadata", align="l")
+    tab = PrettyTable(table[0], align="l")
     tab.add_rows(table[1:])
     print(tab)
