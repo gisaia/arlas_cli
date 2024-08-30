@@ -147,6 +147,52 @@ class Service:
             ])
         return table
 
+    def set_collection_visibility(arlas: str, collection: str, public: bool):
+        description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
+        doc = {
+            "organisations": {
+                "shared": description.get("params", {}).get("organisations", {}).get("shared", []),
+                "public": public
+            }
+        }
+        return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("public")
+
+    def set_collection_display_name(arlas: str, collection: str, name: str):
+        doc = {
+            "display_names": {
+                "collection": name
+            }
+        }
+        return Service.__arlas__(arlas, "/".join(["collections", collection, "display_names"]), patch=json.dumps(doc)).get("params", {}).get("display_names", {}).get("collection")
+
+    def share_with(arlas: str, collection: str, organisation: str):
+        description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
+        orgs = description.get("params", {}).get("organisations", {}).get("shared", [])
+        if organisation not in orgs:
+            orgs.append(organisation)
+        doc = {
+            "organisations": {
+                "shared": orgs,
+                "public": description.get("params", {}).get("organisations", {}).get("public", False)
+            }
+        }
+        return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("shared")
+
+    def unshare_with(arlas: str, collection: str, organisation: str):
+        description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
+        orgs: list = description.get("params", {}).get("organisations", {}).get("shared", [])
+        if organisation in orgs:
+            orgs.remove(organisation)
+        else:
+            print("Warning: {} not shared with {}".format(collection, organisation))
+        doc = {
+            "organisations": {
+                "shared": orgs,
+                "public": description.get("params", {}).get("organisations", {}).get("public", False)
+            }
+        }
+        return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("shared")
+
     def describe_collection(arlas: str, collection: str) -> list[list[str]]:
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         table = [["field name", "type"]]
@@ -339,7 +385,7 @@ class Service:
                 fields.append([".".join(o), type])
         return fields
     
-    def __arlas__(arlas: str, suffix, post=None, put=None, delete=None, service=Services.arlas_server):
+    def __arlas__(arlas: str, suffix, post=None, put=None, patch=None, delete=None, service=Services.arlas_server):
         configuration: ARLAS = Configuration.settings.arlas.get(arlas, None)
         if configuration is None:
             print("Error: arlas configuration ({}) not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
@@ -366,6 +412,9 @@ class Service:
             if post:
                 data = post
                 method = "POST"
+            if patch:
+                data = patch
+                method = "PATCH"
             if put:
                 data = put
                 method = "PUT"
@@ -424,13 +473,16 @@ class Service:
         if method.upper() == "POST":
             r = requests.post(url, data=data, headers=headers, auth=auth, verify=False)
         else:
-            if method == "PUT":
-                r = requests.put(url, data=data, headers=headers, auth=auth, verify=False)
+            if method.upper() == "PATCH":
+                r = requests.patch(url, data=data, headers=headers, auth=auth, verify=False)
             else:
-                if method == "DELETE":
-                    r = requests.delete(url, headers=headers, auth=auth, verify=False)
+                if method == "PUT":
+                    r = requests.put(url, data=data, headers=headers, auth=auth, verify=False)
                 else:
-                    r = requests.get(url, headers=headers, auth=auth, verify=False)
+                    if method == "DELETE":
+                        r = requests.delete(url, headers=headers, auth=auth, verify=False)
+                    else:
+                        r = requests.get(url, headers=headers, auth=auth, verify=False)
         return r
 
     def __fetch__(resource: Resource, bytes: bool = False):
