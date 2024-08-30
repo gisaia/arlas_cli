@@ -29,6 +29,7 @@ setuptools.setup(
         "alive-progress==3.1.5",
         "shapely==2.0.2",
         "python-dateutil==2.8.2",
-        "geojson==3.1.0"
+        "geojson==3.1.0",
+        "numpy==1.26.4"
     ]
 )
