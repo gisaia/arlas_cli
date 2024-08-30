@@ -8,7 +8,7 @@ setuptools.setup(
     entry_points={'console_scripts': ['arlas_cli=arlas.cli.cli:main']},
     version="arlas_cli_versions",
     author="Gisaïa",
-    description="ARLAS Command line for collection management",
+    description="ARLAS Command line for ARLAS Management",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
