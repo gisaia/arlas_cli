@@ -150,19 +150,13 @@ class Service:
     def set_collection_visibility(arlas: str, collection: str, public: bool):
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         doc = {
-            "organisations": {
-                "shared": description.get("params", {}).get("organisations", {}).get("shared", []),
-                "public": public
-            }
+            "shared": description.get("params", {}).get("organisations", {}).get("shared", []),
+            "public": public
         }
         return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("public")
 
     def set_collection_display_name(arlas: str, collection: str, name: str):
-        doc = {
-            "display_names": {
-                "collection": name
-            }
-        }
+        doc = name
         return Service.__arlas__(arlas, "/".join(["collections", collection, "display_names"]), patch=json.dumps(doc)).get("params", {}).get("display_names", {}).get("collection")
 
     def share_with(arlas: str, collection: str, organisation: str):
