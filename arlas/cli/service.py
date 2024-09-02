@@ -387,15 +387,13 @@ class Service:
         if service == Services.arlas_server:
             __headers__ = configuration.server.headers.copy()
             endpoint: Resource = configuration.server
-        else:
-            if service == Services.persistence_server:
-                __headers__ = configuration.persistence.headers.copy()
-                endpoint: Resource = configuration.persistence
-            else:
-                if service == Services.iam:
-                    __headers__ = configuration.authorization.token_url.headers.copy()
-                    endpoint: Resource = configuration.authorization.token_url.model_copy()
-                    endpoint.location = endpoint.location.rsplit('/', 1)[0]
+        elif service == Services.persistence_server:
+            __headers__ = configuration.persistence.headers.copy()
+            endpoint: Resource = configuration.persistence
+        elif service == Services.iam:
+            __headers__ = configuration.authorization.token_url.headers.copy()
+            endpoint: Resource = configuration.authorization.token_url.model_copy()
+            endpoint.location = endpoint.location.rsplit('/', 1)[0]
 
         if Configuration.settings.arlas.get(arlas).authorization is not None:
             __headers__["Authorization"] = "Bearer " + Service.__get_token__(arlas)
@@ -451,13 +449,12 @@ class Service:
         r = Service.__request__(url, method, data, __headers, auth)
         if r.ok:
             return r.content
+        elif exit_on_failure:
+            print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+            print("   url: {}".format(url), file=sys.stderr)
+            exit(1)
         else:
-            if exit_on_failure:
-                print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
-                print("   url: {}".format(url), file=sys.stderr)
-                exit(1)
-            else:
-                raise RequestException(r.status_code, r.content)
+            raise RequestException(r.status_code, r.content)
 
     def __request__(url: str, method: str, data: any = None, headers: dict[str, str] = {}, auth: tuple[str, str | None] = None) -> requests.Response:
         if Service.curl:
@@ -466,17 +463,14 @@ class Service:
                 print(" -d {}".format(data))
         if method.upper() == "POST":
             r = requests.post(url, data=data, headers=headers, auth=auth, verify=False)
+        elif method.upper() == "PATCH":
+            r = requests.patch(url, data=data, headers=headers, auth=auth, verify=False)
+        elif method == "PUT":
+            r = requests.put(url, data=data, headers=headers, auth=auth, verify=False)
+        elif method == "DELETE":
+            r = requests.delete(url, headers=headers, auth=auth, verify=False)
         else:
-            if method.upper() == "PATCH":
-                r = requests.patch(url, data=data, headers=headers, auth=auth, verify=False)
-            else:
-                if method == "PUT":
-                    r = requests.put(url, data=data, headers=headers, auth=auth, verify=False)
-                else:
-                    if method == "DELETE":
-                        r = requests.delete(url, headers=headers, auth=auth, verify=False)
-                    else:
-                        r = requests.get(url, headers=headers, auth=auth, verify=False)
+            r = requests.get(url, headers=headers, auth=auth, verify=False)
         return r
 
     def __fetch__(resource: Resource, bytes: bool = False):
@@ -520,13 +514,12 @@ class Service:
         if r.status_code >= 200 and r.status_code < 300:
             if r.json().get("accessToken"):
                 return r.json()["accessToken"]
+            elif r.json().get("access_token"):
+                return r.json()["access_token"]
             else:
-                if r.json().get("access_token"):
-                    return r.json()["access_token"]
-                else:
-                    print("Error: Failed to find access token in response {}".format(r.content), file=sys.stderr)
-                    print("   url: {}".format(auth.token_url.location), file=sys.stderr)
-                    exit(1)
+                print("Error: Failed to find access token in response {}".format(r.content), file=sys.stderr)
+                print("   url: {}".format(auth.token_url.location), file=sys.stderr)
+                exit(1)
         else:
             print("Error: request to get token failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
             print("   url: {}".format(auth.token_url.location), file=sys.stderr)
