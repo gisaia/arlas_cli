@@ -1,3 +1,4 @@
+import requests
 import typer
 import os
 import sys
@@ -62,6 +63,18 @@ def init(
 
 
 def main():
+    try:
+        json = requests.get('https://pypi.org/pypi/arlas.cli/json').json()
+        if json:
+            version = json.get("info", {}).get("version", None)
+            if version:
+                if not version == arlas_cli_version:
+                    print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
+                    print("pip3.10 install arlas_cli==" + version, file=sys.stderr)
+            else:
+                print("WARNING: Can not identify arlas.cli version.", file=sys.stderr)
+    except Exception:
+        print("WARNING: Can not contact pypi.org to identify if this arlas_cli is the latest version.", file=sys.stderr)
     app.add_typer(collections, name="collections")
     app.add_typer(indices, name="indices")
     app.add_typer(persist, name="persist")

@@ -52,6 +52,54 @@ def describe(
     print(tab)
 
 
+@collections.command(help="Set collection visibility to public")
+def public(
+    collection: str = typer.Argument(help="Collection's name")
+):
+    config = variables["arlas"]
+    ispublic = Service.set_collection_visibility(config, collection, public=True)
+    print("{} is {}".format(collection, "public" if ispublic else "private"))
+
+
+@collections.command(help="Set collection visibility to private")
+def private(
+    collection: str = typer.Argument(help="Collection's name")
+):
+    config = variables["arlas"]
+    ispublic = Service.set_collection_visibility(config, collection, public=False)
+    print("{} is {}".format(collection, "public" if ispublic else "private"))
+
+
+@collections.command(help="Share the collection with the organisation")
+def share(
+    collection: str = typer.Argument(help="Collection's name"),
+    organisation: str = typer.Argument(help="Organisation's name")
+):
+    config = variables["arlas"]
+    shared = Service.share_with(config, collection, organisation)
+    print("{} is shared with {}".format(collection, ", ".join(shared)))
+
+
+@collections.command(help="Share the collection with the organisation")
+def unshare(
+    collection: str = typer.Argument(help="Collection's name"),
+    organisation: str = typer.Argument(help="Organisation's name")
+):
+    config = variables["arlas"]
+    shared = Service.unshare_with(config, collection, organisation)
+    print("{} is shared with {}".format(collection, ", ".join(shared)))
+
+
+@collections.command(help="Set the collection display name", name="name")
+def set_display_name(
+    collection: str = typer.Argument(help="Collection's name"),
+    name: str = typer.Argument(help="The display name")
+):
+    config = variables["arlas"]
+    name = Service.set_collection_display_name(config, collection, name)
+    print("{} display name is {}".format(collection, name))
+
+
 @collections.command(help="Display a sample of a collection")
 def sample(
     collection: str = typer.Argument(help="Collection's name"),
