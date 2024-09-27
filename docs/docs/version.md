@@ -1,2 +1,2 @@
 ARLAS Version:
-0.5.7
+26.0.0

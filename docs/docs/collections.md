@@ -6,6 +6,7 @@
                                                                       
  Usage: python -m arlas.cli.cli collections [OPTIONS] COMMAND         
  [ARGS]...                                                            
+                                                                      
 ╭─ Options ──────────────────────────────────────────────────────────╮
 │ *  --config        TEXT  Name of the ARLAS configuration to use    │
 │                          from your configuration file              │
