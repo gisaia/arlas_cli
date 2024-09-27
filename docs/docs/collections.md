@@ -6,7 +6,6 @@
                                                                       
  Usage: python -m arlas.cli.cli collections [OPTIONS] COMMAND         
  [ARGS]...                                                            
-                                                                      
 ╭─ Options ──────────────────────────────────────────────────────────╮
 │ *  --config        TEXT  Name of the ARLAS configuration to use    │
 │                          from your configuration file              │
@@ -16,18 +15,19 @@
 │    --help                Show this message and exit.               │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────╮
-│ count     Count the number of hits within a collection (or all     │
-│           collection if not provided)                              │
-│ create    Create a collection                                      │
-│ delete    Delete a collection                                      │
-│ describe  Describe a collection                                    │
-│ list      List collections                                         │
-│ name      Set the collection display name                          │
-│ private   Set collection visibility to private                     │
-│ public    Set collection visibility to public                      │
-│ sample    Display a sample of a collection                         │
-│ share     Share the collection with the organisation               │
-│ unshare   Share the collection with the organisation               │
+│ count      Count the number of hits within a collection (or all    │
+│            collection if not provided)                             │
+│ create     Create a collection                                     │
+│ delete     Delete a collection                                     │
+│ describe   Describe a collection                                   │
+│ list       List collections                                        │
+│ name       Set the collection display name                         │
+│ private    Set collection visibility to private                    │
+│ public     Set collection visibility to public                     │
+│ sample     Display a sample of a collection                        │
+│ set_alias  Set the collection display name                         │
+│ share      Share the collection with the organisation              │
+│ unshare    Share the collection with the organisation              │
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```

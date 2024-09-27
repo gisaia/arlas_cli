@@ -4,6 +4,8 @@ Install `arlas_cli` ([prerequisite](install.md#Prerequisite))
 > pip install arlas_cli
 ```
 
+The version of `arlas_cli` is `xxx.yyy` where `xxx` is ARLAS Stack main version and `yyy` is the increment of arlas_cli version.
+
 !!! warning "Prerequisite"
     For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine: clone the [ARLAS Stack Exploration](https://github.com/gisaia/ARLAS-Exploration-stack) project and run `./start.sh` .
 

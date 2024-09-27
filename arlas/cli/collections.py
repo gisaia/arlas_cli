@@ -20,9 +20,7 @@ def configuration(config: str = typer.Option(help="Name of the ARLAS configurati
 def list_collections():
     config = variables["arlas"]
     collections = Service.list_collections(config)
-    tab = PrettyTable(collections[0], sortby="name", align="l")
-    tab.add_rows(collections[1:])
-    print(tab)
+    __print_table(collections[0], collections[1:], sortby="name")
 
 
 @collections.command(help="Count the number of hits within a collection (or all collection if not provided)")
@@ -31,9 +29,7 @@ def count(
 ):
     config = variables["arlas"]
     count = Service.count_collection(config, collection)
-    tab = PrettyTable(count[0], sortby="collection name", align="l")
-    tab.add_rows(count[1:])
-    print(tab)
+    __print_table(count[0], count[1:], sortby="collection name")
 
 
 @collections.command(help="Describe a collection")
@@ -42,14 +38,10 @@ def describe(
 ):
     config = variables["arlas"]
     fields = Service.describe_collection(config, collection)
-    tab = PrettyTable(fields[0], sortby="field name", align="l")
-    tab.add_rows(fields[1:])
-    print(tab)
+    __print_table(fields[0], fields[1:], sortby="field name")
 
     fields = Service.metadata_collection(config, collection)
-    tab = PrettyTable(fields[0], align="l")
-    tab.add_rows(fields[1:])
-    print(tab)
+    __print_table(fields[0], fields[1:], sortby=None)
 
 
 @collections.command(help="Set collection visibility to public")
@@ -98,6 +90,17 @@ def set_display_name(
     config = variables["arlas"]
     name = Service.set_collection_display_name(config, collection, name)
     print("{} display name is {}".format(collection, name))
+
+
+@collections.command(help="Set the collection display name", name="set_alias")
+def set_field_display_name(
+    collection: str = typer.Argument(help="Collection's name"),
+    field_path: str = typer.Argument(help="The field path"),
+    display_name: str = typer.Argument(help="The field's display name. If none provided, then the alias is removed if it existed", default=None)
+):
+    config = variables["arlas"]
+    fields = Service.set_collection_field_display_name(config, collection, field_path, display_name)
+    __print_table(fields[0], fields[1:], sortby=None)
 
 
 @collections.command(help="Display a sample of a collection")
@@ -166,3 +169,10 @@ def create(
         geometry_path=geometry_path,
         date_path=date_path)
     print("Collection {} created on {}".format(collection, config))
+
+
+def __print_table(field_names: list[str], rows, sortby: str = None):
+    tab = PrettyTable(field_names, sortby=sortby, align="l")
+    tab.add_rows(rows)
+    print(tab)
+

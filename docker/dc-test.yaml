@@ -88,7 +88,7 @@ services:
     logging:
       driver: ${DOCKER_LOGGING_DRIVER:-json-file}
     healthcheck:
-          test: ["CMD","java","HttpHealthcheck.java","http://localhost:9997/arlas_persistence_server/swagger.json"]
+          test: ["CMD","java","HttpHealthcheck.java","http://localhost:9997/arlas_persistence_server/openapi.json"]
           interval: 5s
           timeout: 10s
           retries: 3
