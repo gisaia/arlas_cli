@@ -1,7 +1,6 @@
 #!/bin/sh
 set -e
 
-./scripts/start_stack.sh
 if test -f "/tmp/arlas_cli.yaml"; then
     rm /tmp/arlas_cli.yaml
 fi
@@ -115,6 +114,24 @@ if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --c
     echo "OK: collection found"
 else
     echo "ERROR: collection not found"
+    exit 1
+fi
+
+# ----------------------------------------------------------
+echo "TEST set field alias"
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests set_alias courses track.visibility.proportion Proportion | grep Proportion ; then
+    echo "OK: Alias found"
+else
+    echo "ERROR: alias not found"
+    exit 1
+fi
+
+# ----------------------------------------------------------
+echo "TEST set collection name"
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml collections --config tests name courses thecourses | grep thecourses ; then
+    echo "OK: Collection name found"
+else
+    echo "ERROR: Collection name not found"
     exit 1
 fi
 
@@ -260,5 +277,3 @@ else
     echo "ERROR: groups not found"
     exit 1
 fi
-
-./scripts/stop_stack.sh

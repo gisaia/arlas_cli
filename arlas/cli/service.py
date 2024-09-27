@@ -157,7 +157,21 @@ class Service:
 
     def set_collection_display_name(arlas: str, collection: str, name: str):
         doc = name
-        return Service.__arlas__(arlas, "/".join(["collections", collection, "display_names"]), patch=json.dumps(doc)).get("params", {}).get("display_names", {}).get("collection")
+        return Service.__arlas__(arlas, "/".join(["collections", collection, "display_names", "collection"]), patch=json.dumps(doc)).get("params", {}).get("display_names", {}).get("collection")
+
+    def set_collection_field_display_name(arlas: str, collection: str, field_name: str, field_display_name: str):
+        collection_description = Service.__arlas__(arlas, "/".join(["collections", collection]))
+        aliasses: dict[str, str] = collection_description.get("display_names", {}).get("fields", {})
+        if field_display_name:
+            aliasses[field_name] = field_display_name
+        else:
+            if aliasses.get(field_display_name):
+                # Remove the alias
+                aliasses.pop(field_display_name)
+        table = [["field path", "display name"]]
+        for path, name in Service.__arlas__(arlas, "/".join(["collections", collection, "display_names", "fields"]), patch=json.dumps(aliasses)).get("params", {}).get("display_names", {}).get("fields", {}).items():
+            table.append([path, name])
+        return table
 
     def share_with(arlas: str, collection: str, organisation: str):
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
@@ -412,15 +426,15 @@ class Service:
                 method = "PUT"
             if delete:
                 method = "DELETE"
-            r = Service.__request__(url, method, data, __headers__)
+            r: requests.Response = Service.__request__(url, method, data, __headers__)
             if r.ok:
                 return r.json()
             else:
-                print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+                print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
                 print("   url: {}".format(url), file=sys.stderr)
                 exit(1)
         except Exception as e:
-            print("Error: request failed: {}".format(e), file=sys.stderr)
+            print("Error: request {} failed on {}".format(method, e), file=sys.stderr)
             print("   url: {}".format(url), file=sys.stderr)
             exit(1)
 
@@ -446,11 +460,11 @@ class Service:
             method = "PUT"
         if delete:
             method = "DELETE"
-        r = Service.__request__(url, method, data, __headers, auth)
+        r: requests.Response = Service.__request__(url, method, data, __headers, auth)
         if r.ok:
             return r.content
         elif exit_on_failure:
-            print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+            print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
             print("   url: {}".format(url), file=sys.stderr)
             exit(1)
         else:
@@ -482,11 +496,11 @@ class Service:
             with open(resource.location, mode) as f:
                 content = f.read()
             return content
-        r = requests.get(resource.location, headers=resource.headers, verify=False)
+        r: requests.Response = requests.get(resource.location, headers=resource.headers, verify=False)
         if r.ok:
             return r.content
         else:
-            print("Error: request failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
+            print("Error: request failed with status {}: {}".format(str(r.status_code), str(r.reason)), file=sys.stderr)
             print("   url: {}".format(resource.location), file=sys.stderr)
             exit(1)
 

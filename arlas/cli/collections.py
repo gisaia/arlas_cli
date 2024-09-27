@@ -100,6 +100,19 @@ def set_display_name(
     print("{} display name is {}".format(collection, name))
 
 
+@collections.command(help="Set the collection display name", name="set_alias")
+def set_field_display_name(
+    collection: str = typer.Argument(help="Collection's name"),
+    field_path: str = typer.Argument(help="The field path"),
+    display_name: str = typer.Argument(help="The field's display name. If none provided, then the alias is removed if it existed", default=None)
+):
+    config = variables["arlas"]
+    fields = Service.set_collection_field_display_name(config, collection, field_path, display_name)
+    tab = PrettyTable(fields[0], align="l")
+    tab.add_rows(fields[1:])
+    print(tab)
+
+
 @collections.command(help="Display a sample of a collection")
 def sample(
     collection: str = typer.Argument(help="Collection's name"),
