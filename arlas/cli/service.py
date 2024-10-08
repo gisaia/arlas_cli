@@ -432,6 +432,7 @@ class Service:
             else:
                 print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
                 print("   url: {}".format(url), file=sys.stderr)
+                print(r.content)
                 exit(1)
         except Exception as e:
             print("Error: request {} failed on {}".format(method, e), file=sys.stderr)
@@ -466,6 +467,7 @@ class Service:
         elif exit_on_failure:
             print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
             print("   url: {}".format(url), file=sys.stderr)
+            print(r.content)
             exit(1)
         else:
             raise RequestException(r.status_code, r.content)
