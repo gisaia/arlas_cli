@@ -1,11 +1,21 @@
+# Configurations
 
-!!! tip  
-    At its first launch, `arlas_cli` will create a first configuration file for you (`$HOME/.arlas/cli/configuration.yaml`), with two ARLAS configurations, one pointing at a local deployment, one on ARLAS demo (without elasticsearch).
 
-!!! bug 
-    If you used the ARLAS Exploration Stack, it is possible that you already have a directory named `$HOME/.arlas`. This directory has been created by docker as root. The owner of the directory must be changed to the local user (`sudo chown ${USER}: $HOME/.arlas`).
+## ARLAS configurations
 
-## List configuration management commands
+The configuration file (default is `$HOME/.arlas/cli/configuration.yaml`) contains 3 sections:
+
+- the list of ARLAS configurations
+- the list of mappings
+- the list of collection models
+
+An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elasticsearch.
+
+It supports the addition of http headers.
+
+It is possible, with the `arlas_cli` command line, to manage the ARLAS configurations, but not the two last ones.
+
+**List configurations (confs) management commands**
 
 <!-- termynal -->
 ```shell
@@ -25,20 +35,8 @@
 
 ```
 
-## Create a configuration
 
-The configuration file (default is `$HOME/.arlas/cli/configuration.yaml`) contains 3 sections:
-
-- the list of ARLAS configurations
-- the list of mappings
-- the list of collection models
-
-It is possible, with the `arlas_cli` command line, to manage the ARLAS configurations, but not the two last ones.
-
-An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elasticsearch. It supports the addition of http headers. For ARLAS, keycloak and ARLAS IAM authentications are supported. Default is keycloak, use `--auth-arlas-iam` for ARLAS IAM.
-
-!!! danger  
-    By default, it is not possible to run the `delete` command on an elasticsearch with `arlas_cli`. This is to prevent accidental data loass. In order to allow delete on a configuration, use the `--allow-delete` option.
+## create
 
 <!-- termynal -->
 ```shell
@@ -108,3 +106,23 @@ An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elastic
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```
+
+A configuration is meant to communicate with a deployed ARLAS. 
+
+
+For ARLAS, keycloak and ARLAS IAM authentications are supported. 
+
+!!! note "--auth-arlas-iam "
+    Default is ARLAS IAM, use `--no-auth-arlas-iam` for keycloak.
+
+
+## delete
+
+!!! danger  
+    By default, it is not possible to run the `delete` command on an elasticsearch with `arlas_cli`. This is to prevent accidental data loss. In order to allow delete on a configuration, use the `--allow-delete` option.
+
+
+## describe
+
+
+## list
