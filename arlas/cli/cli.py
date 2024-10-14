@@ -43,7 +43,7 @@ def init(
         Configuration.settings = Settings(
             arlas={
                 "local": ARLAS(
-                    server=Resource(location="http://localhost/server", headers={"Content-Type": "application/json"}),
+                    server=Resource(location="http://localhost/arlas", headers={"Content-Type": "application/json"}),
                     persistence=Resource(location="http://localhost/persist", headers={"Content-Type": "application/json"}),
                     elastic=Resource(location="http://localhost:9200", headers={"Content-Type": "application/json"}),
                     allow_delete=True
