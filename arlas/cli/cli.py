@@ -50,10 +50,8 @@ def init(
                 )
             },
             mappings={
-                "arlas_eo": Resource(location="https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/mapping.json")
             },
             models={
-                "arlas_eo": Resource(location="https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/collection.json")
             }
         )
         Configuration.save(variables["configuration_file"])
