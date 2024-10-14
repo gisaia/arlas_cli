@@ -42,7 +42,6 @@ def init(
         os.makedirs(os.path.dirname(variables["configuration_file"]), exist_ok=True)
         Configuration.settings = Settings(
             arlas={
-                "demo": ARLAS(server=Resource(location="https://demo.cloud.arlas.io/arlas/server", headers={"Content-Type": "application/json"})),
                 "local": ARLAS(
                     server=Resource(location="http://localhost/server", headers={"Content-Type": "application/json"}),
                     persistence=Resource(location="http://localhost/persist", headers={"Content-Type": "application/json"}),
