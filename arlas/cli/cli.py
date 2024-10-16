@@ -55,7 +55,7 @@ def init(
             }
         )
         Configuration.save(variables["configuration_file"])
-        print("Warning : no configuration file found, we created an empty one for you ({}).".format(variables["configuration_file"]), file=sys.stderr)
+        print("Warning : no configuration file found, we created a default one with a 'local' confs accessing local ARLAS exploration stack ({}).".format(variables["configuration_file"]), file=sys.stderr)
         sys.exit(0)
 
 
