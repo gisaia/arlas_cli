@@ -151,7 +151,8 @@ def __generate_mapping__(tree, mapping, no_fulltext: list[str]):
                     __generate_mapping__(v, mapping[k]["properties"], no_fulltext)
                 else:
                     if t.startswith("date-"):
-                        mapping[k] = {"type": "date", "format": t.split("-")[1]}
+                        # Dates can have format patterns containing '-'
+                        mapping[k] = {"type": "date", "format": t.split("-", 1)[1]}
                     else:
                         mapping[k] = {"type": t}
                         if t in ["keyword", "text"]:
