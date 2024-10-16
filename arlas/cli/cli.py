@@ -42,23 +42,20 @@ def init(
         os.makedirs(os.path.dirname(variables["configuration_file"]), exist_ok=True)
         Configuration.settings = Settings(
             arlas={
-                "demo": ARLAS(server=Resource(location="https://demo.cloud.arlas.io/arlas/server", headers={"Content-Type": "application/json"})),
                 "local": ARLAS(
-                    server=Resource(location="http://localhost/server", headers={"Content-Type": "application/json"}),
+                    server=Resource(location="http://localhost/arlas", headers={"Content-Type": "application/json"}),
                     persistence=Resource(location="http://localhost/persist", headers={"Content-Type": "application/json"}),
                     elastic=Resource(location="http://localhost:9200", headers={"Content-Type": "application/json"}),
                     allow_delete=True
                 )
             },
             mappings={
-                "arlas_eo": Resource(location="https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/mapping.json")
             },
             models={
-                "arlas_eo": Resource(location="https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/collection.json")
             }
         )
         Configuration.save(variables["configuration_file"])
-        print("Warning : no configuration file found, we created an empty one for you ({}).".format(variables["configuration_file"]), file=sys.stderr)
+        print("Warning : no configuration file found, we created a default one with a 'local' confs accessing local ARLAS exploration stack ({}).".format(variables["configuration_file"]), file=sys.stderr)
         sys.exit(0)
 
 
