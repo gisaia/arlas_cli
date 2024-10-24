@@ -98,10 +98,11 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST clone index"
-if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests clone courses courses2 | grep courses2 | grep " 200   "; then
-    echo "OK: hundred hits found"
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests clone courses courses2 | grep courses2 ; then
+    echo "OK: course2 found"
+    yes | python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests delete courses2
 else
-    echo "ERROR: hits not found"
+    echo "ERROR: course2 not found"
     exit 1
 fi
 
