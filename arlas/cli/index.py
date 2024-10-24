@@ -105,8 +105,13 @@ def mapping(
         if len(tmp) == 2:
             types[tmp[0]] = tmp[1]
         else:
-            print("Error: invalid field_mapping \"{}\". The format is \"field:type\" like \"fragment.location:geo_point\"".format(fm), file=sys.stderr)
-            exit(1)
+            if tmp[1].startswith("date-"):
+                # Dates can have format patterns containing ':'
+                tmp = fm.split(":", 1)
+                types[tmp[0]] = tmp[1]
+            else:
+                print(f"Error: invalid field_mapping \"{fm}\". The format is \"field:type\" like \"fragment.location:geo_point\"", file=sys.stderr)
+                exit(1)
     mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext)
     if push_on and config:
         Service.create_index(
