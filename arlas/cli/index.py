@@ -112,6 +112,7 @@ def data(
         Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count)
         i = i + 1
 
+
 @indices.command(help="Generate the mapping based on the data")
 def mapping(
     file: str = typer.Argument(help="Path to the file conaining the data. Format: NDJSON"),

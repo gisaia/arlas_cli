@@ -135,7 +135,7 @@ class Service:
             ])
         return table
 
-    def list_indices(arlas: str, keeponly: None) -> list[list[str]]:
+    def list_indices(arlas: str, keeponly: str = None) -> list[list[str]]:
         data = json.loads(Service.__es__(arlas, "_cat/indices?format=json"))
         table = [["name", "status", "count", "size"]]
         for index in data:
