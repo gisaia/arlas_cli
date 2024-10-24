@@ -98,7 +98,7 @@ fi
 
 # ----------------------------------------------------------
 echo "TEST clone index"
-if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests clone courses courses2 | grep courses | grep " 200   "; then
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests clone courses courses2 | grep courses2 | grep " 200   "; then
     echo "OK: hundred hits found"
 else
     echo "ERROR: hits not found"
