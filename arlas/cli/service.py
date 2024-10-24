@@ -272,6 +272,10 @@ class Service:
             model = {}
         if index:
             model["index_name"] = index
+        if not owner:
+            configuration: ARLAS = Configuration.settings.arlas.get(arlas, None)
+            if configuration and configuration.authorization and configuration.authorization.token_url and configuration.authorization.token_url.headers and configuration.authorization.token_url.headers.get("arlas-org-filter"):
+                owner = configuration.authorization.token_url.headers.get("arlas-org-filter")
         if owner:
             model["organisations"] = {
                 "owner": owner,
