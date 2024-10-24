@@ -37,6 +37,31 @@ def describe(
     print(tab)
 
 
+@indices.command(help="Clone an index and set its name")
+def clone(
+    index: str = typer.Argument(help="Source index name"),
+    name: str = typer.Argument(help="Target cloned index name")
+):
+    config = variables["arlas"]
+    indices = Service.clone_index(config, index, name)
+    tab = PrettyTable(indices[0], sortby="name", align="l")
+    tab.add_rows(indices[1:])
+    print(tab)
+
+
+@indices.command(help="Migrate an index on another arlas configuration, and set the target index name")
+def migrate(
+    index: str = typer.Argument(help="Source index name"),
+    arlas_target: str = typer.Argument(help="Target ARLAS Configuration name"),
+    name: str = typer.Argument(help="Target migrated index name")
+):
+    config = variables["arlas"]
+    indices = Service.migrate_index(config, index, arlas_target, name)
+    tab = PrettyTable(indices[0], sortby="name", align="l")
+    tab.add_rows(indices[1:])
+    print(tab)
+
+
 @indices.command(help="Display a sample of an index")
 def sample(
     index: str = typer.Argument(help="index's name"),
@@ -86,6 +111,7 @@ def data(
         count = Service.count_hits(file_path=file)
         Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count)
         i = i + 1
+
 
 @indices.command(help="Generate the mapping based on the data")
 def mapping(
