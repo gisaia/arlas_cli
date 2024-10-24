@@ -15,13 +15,16 @@
 │    --help                Show this message and exit.               │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────╮
-│ create        Create an index                                      │
-│ data          Index data                                           │
-│ delete        Delete an index                                      │
-│ describe      Describe an index                                    │
-│ list          List indices                                         │
-│ mapping       Generate the mapping based on the data               │
-│ sample        Display a sample of an index                         │
+│ clone     Clone an index and set its name                          │
+│ create    Create an index                                          │
+│ data      Index data                                               │
+│ delete    Delete an index                                          │
+│ describe  Describe an index                                        │
+│ list      List indices                                             │
+│ mapping   Generate the mapping based on the data                   │
+│ migrate   Migrate an index on another arlas configuration, and set │
+│           the target index name                                    │
+│ sample    Display a sample of an index                             │
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```

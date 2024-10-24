@@ -1,15 +1,4 @@
 arlas:
-  demo:
-    allow_delete: false
-    authorization: null
-    elastic: null
-    persistence: null
-    server:
-      headers:
-        Content-Type: application/json
-      location: https://demo.cloud.arlas.io/arlas/server
-      login: null
-      password: null
   local:
     allow_delete: true
     authorization: null
@@ -28,18 +17,8 @@ arlas:
     server:
       headers:
         Content-Type: application/json
-      location: http://localhost/server
+      location: http://localhost/arlas
       login: null
       password: null
-mappings:
-  arlas_eo:
-    headers: {}
-    location: https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/mapping.json
-    login: null
-    password: null
-models:
-  arlas_eo:
-    headers: {}
-    location: https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/collection.json
-    login: null
-    password: null
+mappings: {}
+models: {}
