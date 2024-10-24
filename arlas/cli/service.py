@@ -135,16 +135,17 @@ class Service:
             ])
         return table
 
-    def list_indices(arlas: str) -> list[list[str]]:
+    def list_indices(arlas: str, keeponly: None) -> list[list[str]]:
         data = json.loads(Service.__es__(arlas, "_cat/indices?format=json"))
         table = [["name", "status", "count", "size"]]
         for index in data:
-            table.append([
-                index.get("index"),
-                index.get("status"),
-                index.get("docs.count"),
-                index.get("store.size")
-            ])
+            if keeponly is None or keeponly == index.get("index"):
+                table.append([
+                    index.get("index"),
+                    index.get("status"),
+                    index.get("docs.count"),
+                    index.get("store.size")
+                ])
         return table
 
     def set_collection_visibility(arlas: str, collection: str, public: bool):
@@ -226,6 +227,35 @@ class Service:
         table = [["field name", "type"]]
         table.extend(Service.__get_fields__([], description.get(index, {}).get("mappings", {}).get("properties", {})))
         return table
+    
+    def clone_index(arlas: str, index: str, name: str) -> list[list[str]]:
+        Service.__es__(arlas, "/".join([index, "_block", "write"]), put="")
+        Service.__es__(arlas, "/".join([index, "_clone", name]), put="")
+        Service.__es__(arlas, "/".join([index, "_settings"]), put='{"index.blocks.write": false}')
+        return Service.list_indices(arlas, keeponly=name)
+    
+    def migrate_index(arlas: str, index: str, target_arlas: str, target_name: str) -> list[list[str]]:
+        source = Configuration.settings.arlas.get(arlas)
+        migration = {
+            "source": {
+                "remote": {
+                    "host": source.elastic.location,
+                    "username": source.elastic.login,
+                    "password": source.elastic.password,
+                },
+                "index": index,
+                "query": {"match_all": {}},
+            },
+            "dest": {"index": target_name},
+        }
+        print("1/3: fetch mapping ...")
+        mapping = Service.__es__(arlas, "/".join([index, "_mapping"]))
+        mapping = json.dumps(json.loads(mapping).get(index))
+        print("2/3: copy mapping ...")
+        Service.__es__(target_arlas, "/".join([target_name]), put=mapping)
+        print("3/3: copy data ...")
+        print(Service.__es__(target_arlas, "/".join(["_reindex"]), post=json.dumps(migration)))
+        return Service.list_indices(target_arlas, keeponly=target_name)
     
     def sample_collection(arlas: str, collection: str, pretty: bool, size: int) -> dict:
         sample = Service.__arlas__(arlas, "/".join(["explore", collection, "_search"]) + "?size={}".format(size))
@@ -432,6 +462,7 @@ class Service:
             else:
                 print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
                 print("   url: {}".format(url), file=sys.stderr)
+                print(r.content)
                 exit(1)
         except Exception as e:
             print("Error: request {} failed on {}".format(method, e), file=sys.stderr)
@@ -452,13 +483,13 @@ class Service:
         auth = (endpoint.elastic.login, endpoint.elastic.password) if endpoint.elastic.login else None
         method = "GET"
         data = None
-        if post:
+        if post is not None:
             data = post
             method = "POST"
-        if put:
+        if put is not None:
             data = put
             method = "PUT"
-        if delete:
+        if delete is not None:
             method = "DELETE"
         r: requests.Response = Service.__request__(url, method, data, __headers, auth)
         if r.ok:
@@ -466,6 +497,7 @@ class Service:
         elif exit_on_failure:
             print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
             print("   url: {}".format(url), file=sys.stderr)
+            print(r.content)
             exit(1)
         else:
             raise RequestException(r.status_code, r.content)
