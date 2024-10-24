@@ -135,11 +135,11 @@ class Service:
             ])
         return table
 
-    def list_indices(arlas: str, keeponly: str = None) -> list[list[str]]:
+    def list_indices(arlas: str, keep_only: str = None) -> list[list[str]]:
         data = json.loads(Service.__es__(arlas, "_cat/indices?format=json"))
         table = [["name", "status", "count", "size"]]
         for index in data:
-            if keeponly is None or keeponly == index.get("index"):
+            if keep_only is None or keep_only == index.get("index"):
                 table.append([
                     index.get("index"),
                     index.get("status"),
@@ -232,7 +232,7 @@ class Service:
         Service.__es__(arlas, "/".join([index, "_block", "write"]), put="")
         Service.__es__(arlas, "/".join([index, "_clone", name]), put="")
         Service.__es__(arlas, "/".join([index, "_settings"]), put='{"index.blocks.write": false}')
-        return Service.list_indices(arlas, keeponly=name)
+        return Service.list_indices(arlas, keep_only=name)
     
     def migrate_index(arlas: str, index: str, target_arlas: str, target_name: str) -> list[list[str]]:
         source = Configuration.settings.arlas.get(arlas)
@@ -255,7 +255,7 @@ class Service:
         Service.__es__(target_arlas, "/".join([target_name]), put=mapping)
         print("3/3: copy data ...")
         print(Service.__es__(target_arlas, "/".join(["_reindex"]), post=json.dumps(migration)))
-        return Service.list_indices(target_arlas, keeponly=target_name)
+        return Service.list_indices(target_arlas, keep_only=target_name)
     
     def sample_collection(arlas: str, collection: str, pretty: bool, size: int) -> dict:
         sample = Service.__arlas__(arlas, "/".join(["explore", collection, "_search"]) + "?size={}".format(size))

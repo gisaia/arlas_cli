@@ -39,8 +39,8 @@ def describe(
 
 @indices.command(help="Clone an index and set its name")
 def clone(
-    index: str = typer.Argument(help="index's name"),
-    name: str = typer.Argument(help="Cloned index's name")
+    index: str = typer.Argument(help="Source index name"),
+    name: str = typer.Argument(help="Target cloned index name")
 ):
     config = variables["arlas"]
     indices = Service.clone_index(config, index, name)
@@ -51,9 +51,9 @@ def clone(
 
 @indices.command(help="Migrate an index on another arlas configuration, and set the target index name")
 def migrate(
-    index: str = typer.Argument(help="index's name"),
-    arlas_target: str = typer.Argument(help="ARLAS Configuration name"),
-    name: str = typer.Argument(help="Migrated index's name")
+    index: str = typer.Argument(help="Source index name"),
+    arlas_target: str = typer.Argument(help="Target ARLAS Configuration name"),
+    name: str = typer.Argument(help="Target migrated index name")
 ):
     config = variables["arlas"]
     indices = Service.migrate_index(config, index, arlas_target, name)
