@@ -4,6 +4,18 @@ __ARLAS Exploration__ is an Open Source software for exploring and analysing Geo
 
 `arlas_cli` is a python command line for:
 
+TODO: Definition of concepts and schema, at least:
+- ES index
+- ES mapping
+- ARLAS collection
+- configuration
+- persistence / entry
+- organisation
+- group
+- user
+- permission
+
+
 - managing elasticsearch indices:
     - generate an index mapping based on [NDJSON data](https://jsonlines.org/)
     - create an index
@@ -24,7 +36,7 @@ __ARLAS Exploration__ is an Open Source software for exploring and analysing Geo
 - managing ARLAS Identity and Access (ARLAS IAM)
     - list organisations
     - add an organisation
-    - within an oganisation:
+    - within an organisation:
         - list visible collections
         - list groups
         - list users

@@ -1,4 +1,10 @@
-## List collections management commands
+## ARLAS Collections
+
+ARLAS collection are built on top on ES index describe basic data structure for visualization and handle data access policy.
+
+`arlas_cli` provide tools to manage the ARLAS collections with the `collections` command. 
+
+**List collections management commands**
 
 <!-- termynal -->
 ```shell
@@ -33,7 +39,7 @@
 
 ```
 
-## Create a collection
+## create
 
 You can create a collection from scratch or by providing a collection model (`--model`). The command line options let you specify how the index should be used by the collection. The visibility options (`--public`, `--owner` and `--orgs`)  allow you to choose who can access the collection.
 
@@ -86,8 +92,19 @@ You can create a collection from scratch or by providing a collection model (`--
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```
+### Create an ARLAS collection
 
-## Describe a collection
+## name
+
+### Change the collection display name
+
+## set_alias?
+
+## list
+
+### List available collections
+
+## describe
 
 This command line provides a description of the collection structure (fields) and of its metadata.
 
@@ -109,3 +126,22 @@ This command line provides a description of the collection structure (fields) an
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```
+### Describe a collection
+
+## count
+
+### Count the number of element within a collection
+
+## sample
+
+## private
+
+## public
+
+### Define visibility policy for collections
+
+## share
+
+## unshare
+
+###  Share collections between organisations
