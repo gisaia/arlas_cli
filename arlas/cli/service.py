@@ -218,8 +218,8 @@ class Service:
         table.append(["timestamp path", d.get("params", {}).get("timestamp_path", "")])
         table.append(["display name", d.get("params", {}).get("display_names", {}).get("collection", "")])
         table.append(["owner", d.get("params", {}).get("organisations", {}).get("owner", "")])
-        table.append(["is public", str(d.get("params", {}).get("organisations", {}).get("shared", []))])
-        table.append(["organisations", d.get("params", {}).get("organisations", {}).get("public", False)])
+        table.append(["is public", d.get("params", {}).get("organisations", {}).get("public", False)])
+        table.append(["organisations", str(d.get("params", {}).get("organisations", {}).get("shared", []))])
         return table
     
     def describe_index(arlas: str, index: str) -> list[list[str]]:
