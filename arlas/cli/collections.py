@@ -72,7 +72,7 @@ def share(
     print("{} is shared with {}".format(collection, ", ".join(shared)))
 
 
-@collections.command(help="Share the collection with the organisation")
+@collections.command(help="Unshare the collection with the organisation")
 def unshare(
     collection: str = typer.Argument(help="Collection's name"),
     organisation: str = typer.Argument(help="Organisation's name")
@@ -92,7 +92,7 @@ def set_display_name(
     print("{} display name is {}".format(collection, name))
 
 
-@collections.command(help="Set the collection display name", name="set_alias")
+@collections.command(help="Set the field display name", name="set_alias")
 def set_field_display_name(
     collection: str = typer.Argument(help="Collection's name"),
     field_path: str = typer.Argument(help="The field path"),
@@ -137,10 +137,10 @@ def create(
     public: bool = typer.Option(default=False, help="Whether the collection is public or not"),
     owner: str = typer.Option(default=None, help="Organisation's owner"),
     orgs: list[str] = typer.Option(default=[], help="List of organisations accessing the collection"),
-    id_path: str = typer.Option(default=None, help="Overide the JSON path to the id field."),
-    centroid_path: str = typer.Option(default=None, help="Overide the JSON path to the centroid field."),
-    geometry_path: str = typer.Option(default=None, help="Overide the JSON path to the geometry field."),
-    date_path: str = typer.Option(default=None, help="Overide the JSON path to the date field.")
+    id_path: str = typer.Option(default=None, help="Override the JSON path to the id field."),
+    centroid_path: str = typer.Option(default=None, help="Override the JSON path to the centroid field."),
+    geometry_path: str = typer.Option(default=None, help="Override the JSON path to the geometry field."),
+    date_path: str = typer.Option(default=None, help="Override the JSON path to the date field.")
 ):
     config = variables["arlas"]
     if not owner and (orgs or public):
