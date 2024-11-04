@@ -78,7 +78,7 @@ def create_configuration(
 def delete_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
-    if Configuration.settings.arlas.get(config, None):
+    if Configuration.settings.arlas.get(config, None) is None:
         print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
         exit(1)
     Configuration.settings.arlas.pop(config)
@@ -91,7 +91,7 @@ def delete_configuration(
 def describe_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
-    if Configuration.settings.arlas.get(config, None):
+    if Configuration.settings.arlas.get(config, None) is None:
         print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
         exit(1)
     print(yaml.dump(Configuration.settings.arlas[config].model_dump()))
