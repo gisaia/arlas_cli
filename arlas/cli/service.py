@@ -461,7 +461,7 @@ class Service:
             if delete:
                 method = "DELETE"
             r: requests.Response = Service.__request__(url, method, data, __headers__)
-            if r.ok:
+            if r.status_code >= 200 and r.status_code < 300:
                 return r.json()
             else:
                 print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
@@ -496,12 +496,14 @@ class Service:
         if delete is not None:
             method = "DELETE"
         r: requests.Response = Service.__request__(url, method, data, __headers, auth)
-        if r.ok:
+        if r.status_code >= 200 and r.status_code < 300:
             return r.content
         elif exit_on_failure:
             print("Error: request {} failed with status {}: {}".format(method, str(r.status_code), str(r.reason)), file=sys.stderr)
             print("   url: {}".format(url), file=sys.stderr)
             print(r.content)
+            if r.status_code == 403:
+                print("IMPORTANT: This error occurs because you are not allowed to trigger this arlas_cli action. If you are using ARLAS Cloud, please check that you have not used up your quota. You can contact support@gisaia.com for help.", file=sys.stderr)
             exit(1)
         else:
             raise RequestException(r.status_code, r.content)
@@ -533,7 +535,7 @@ class Service:
                 content = f.read()
             return content
         r: requests.Response = requests.get(resource.location, headers=resource.headers, verify=False)
-        if r.ok:
+        if r.status_code >= 200 and r.status_code < 300:
             return r.content
         else:
             print("Error: request failed with status {}: {}".format(str(r.status_code), str(r.reason)), file=sys.stderr)
