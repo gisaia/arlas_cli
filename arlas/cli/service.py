@@ -503,7 +503,7 @@ class Service:
             print("   url: {}".format(url), file=sys.stderr)
             print(r.content)
             if r.status_code == 403:
-                print("IMPORTANT: This error occurs because you are not allowed to trigger this action. If you are using ARLAS Cloud, please check that you have not used up your quota. You can contact support@gisaia.com for help.", file=sys.stderr)
+                print("IMPORTANT: This error occurs because you are not allowed to trigger this arlas_cli action. If you are using ARLAS Cloud, please check that you have not used up your quota. You can contact support@gisaia.com for help.", file=sys.stderr)
             exit(1)
         else:
             raise RequestException(r.status_code, r.content)
