@@ -14,6 +14,9 @@ collections = typer.Typer()
 @collections.callback()
 def configuration(config: str = typer.Option(help="Name of the ARLAS configuration to use from your configuration file ({}).".format(variables["configuration_file"]))):
     variables["arlas"] = config
+    if Configuration.settings.arlas.get(config, None):
+        print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+        exit(1)
 
 
 @collections.command(help="List collections", name="list")

@@ -430,7 +430,7 @@ class Service:
     def __arlas__(arlas: str, suffix, post=None, put=None, patch=None, delete=None, service=Services.arlas_server):
         configuration: ARLAS = Configuration.settings.arlas.get(arlas, None)
         if configuration is None:
-            print("Error: arlas configuration ({}) not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
+            print("Error: arlas configuration {} not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
             exit(1)
         if service == Services.arlas_server:
             __headers__ = configuration.server.headers.copy()
@@ -476,10 +476,10 @@ class Service:
     def __es__(arlas: str, suffix, post=None, put=None, delete=None, exit_on_failure: bool = True, headers: dict[str, str] = {}):
         endpoint = Configuration.settings.arlas.get(arlas)
         if endpoint is None:
-            print("Error: arlas configuration ({}) not found among [{}].".format(arlas, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+            print("Error: arlas configuration {} not found among [{}].".format(arlas, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
             exit(1)
         if endpoint.elastic is None:
-            print("Error: arlas configuration ({}) misses an elasticsearch configuration.".format(arlas), file=sys.stderr)
+            print("Error: arlas configuration {} misses an elasticsearch configuration.".format(arlas), file=sys.stderr)
             exit(1)
         url = "/".join([endpoint.elastic.location, suffix])
         __headers = endpoint.elastic.headers

@@ -76,22 +76,22 @@ def create_configuration(
 
 @configurations.command(help="Delete a configuration", name="delete")
 def delete_configuration(
-    name: str = typer.Argument(help="Name of the configuration"),
+    config: str = typer.Argument(help="Name of the configuration"),
 ):
-    if Configuration.settings.arlas.get(name) is None:
-        print("Error: no configuration found for {}.".format(name), file=sys.stderr)
+    if Configuration.settings.arlas.get(config, None):
+        print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
         exit(1)
-    Configuration.settings.arlas.pop(name)
+    Configuration.settings.arlas.pop(config)
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
-    print("Configuration {} deleted.".format(name))
+    print("Configuration {} deleted.".format(config))
 
 
 @configurations.command(help="Describe a configuration", name="describe")
 def describe_configuration(
-    name: str = typer.Argument(help="Name of the configuration"),
+    config: str = typer.Argument(help="Name of the configuration"),
 ):
-    if Configuration.settings.arlas.get(name) is None:
-        print("Error: no configuration found for {}.".format(name), file=sys.stderr)
+    if Configuration.settings.arlas.get(config, None):
+        print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
         exit(1)
-    print(yaml.dump(Configuration.settings.arlas[name].model_dump()))
+    print(yaml.dump(Configuration.settings.arlas[config].model_dump()))

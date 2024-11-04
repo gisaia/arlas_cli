@@ -1,5 +1,4 @@
 import typer
-from prettytable import PrettyTable
 
 from arlas.cli.service import Service
 from arlas.cli.variables import variables
@@ -29,4 +28,3 @@ def activate(id: str = typer.Argument(help="User's identifier")):
 def deactivate(id: str = typer.Argument(help="User's identifier")):
     config = variables["arlas"]
     print(Service.deactivate(config, id).get("message"))
-
