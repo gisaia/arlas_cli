@@ -98,8 +98,8 @@ def create(
 @indices.command(help="Index data")
 def data(
     index: str = typer.Argument(help="index's name"),
-    files: list[str] = typer.Argument(help="List of pathes to the file conaining the data. Format: NDJSON"),
-    bulk: int = typer.Option(default=100, help="Bulk size for indexing data")
+    files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON"),
+    bulk: int = typer.Option(default=5000, help="Bulk size for indexing data")
 ):
     config = variables["arlas"]
     i = 1
@@ -115,9 +115,9 @@ def data(
 
 @indices.command(help="Generate the mapping based on the data")
 def mapping(
-    file: str = typer.Argument(help="Path to the file conaining the data. Format: NDJSON"),
+    file: str = typer.Argument(help="Path to the file containing the data. Format: NDJSON"),
     nb_lines: int = typer.Option(default=2, help="Number of line to consider for generating the mapping. Avoid going over 10."),
-    field_mapping: list[str] = typer.Option(default=[], help="Overide the mapping with the provided field path/type. Example: fragment.location:geo_point. Important: the full field path must be provided."),
+    field_mapping: list[str] = typer.Option(default=[], help="Override the mapping with the provided field path/type. Example: fragment.location:geo_point. Important: the full field path must be provided."),
     no_fulltext: list[str] = typer.Option(default=[], help="List of keyword or text fields that should not be in the fulltext search. Important: the field name only must be provided."),
     push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name"),
 ):

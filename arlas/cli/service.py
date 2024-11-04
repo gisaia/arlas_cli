@@ -384,7 +384,7 @@ class Service:
         if result["errors"] is True:
             print("ERROR: " + json.dumps(result))
 
-    def index_hits(arlas: str, index: str, file_path: str, bulk_size: int = 100, count: int = -1) -> dict[str, int]:
+    def index_hits(arlas: str, index: str, file_path: str, bulk_size: int = 5000, count: int = -1) -> dict[str, int]:
         line_number = 0
         line_in_bulk = 0
         bulk = []
