@@ -15,6 +15,9 @@ indices = typer.Typer()
 @indices.callback()
 def configuration(config: str = typer.Option(help="Name of the ARLAS configuration to use from your configuration file ({}).".format(variables["configuration_file"]))):
     variables["arlas"] = config
+    if Configuration.settings.arlas.get(config, None) is None:
+        print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+        exit(1)
 
 
 @indices.command(help="List indices", name="list")
