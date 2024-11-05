@@ -31,9 +31,12 @@ def init(
         print(arlas_cli_version)
     if os.path.exists(variables["configuration_file"]):
         Configuration.init(configuration_file=variables["configuration_file"])
-        if Configuration.settings.arlas and len(Configuration.settings.arlas) > 0:
-            # Configuration is ok.
-            ...
+        if "arlas" in dict(Configuration.settings):
+            if len(Configuration.settings.arlas) > 0:
+                # Configuration is ok.
+                ...
+            else:
+                print("Warning : no configuration available")
         else:
             print("Error : no arlas endpoint found in {}.".format(variables["configuration_file"]), file=sys.stderr)
             sys.exit(1)
