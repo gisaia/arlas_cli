@@ -66,13 +66,16 @@ def main():
     try:
         json = requests.get('https://pypi.org/pypi/arlas.cli/json').json()
         if json:
-            version = json.get("info", {}).get("version", None)
-            if version:
-                if not version == arlas_cli_version:
+            latest_version = json.get("info", {}).get("version", None)
+            if latest_version:
+                if arlas_cli_version == "_".join(["arlas", "cli", "versions"]):
+                    # Local dev 'python3.10 -m arlas.cli.cli' usage
+                    ...
+                elif arlas_cli_version != latest_version:
                     print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
-                    print("pip3.10 install arlas_cli==" + version, file=sys.stderr)
+                    print("pip3.10 install arlas_cli==" + latest_version, file=sys.stderr)
             else:
-                print("WARNING: Can not identify arlas.cli version.", file=sys.stderr)
+                print("WARNING: Can not identify arlas.cli latest version.", file=sys.stderr)
     except Exception:
         print("WARNING: Can not contact pypi.org to identify if this arlas_cli is the latest version.", file=sys.stderr)
     app.add_typer(collections, name="collections")
