@@ -12,7 +12,7 @@ else
     exit 1
 fi
 
-echo "Build and releas the image with version ${VERSION}"
+echo "Build and release the image with version ${VERSION}"
 
 # PYTHON PIP
 ./scripts/publish.sh $VERSION
