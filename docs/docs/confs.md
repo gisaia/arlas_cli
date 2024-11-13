@@ -1,11 +1,15 @@
+# Configurations
 
-!!! tip  
-    At its first launch, `arlas_cli` will create a first configuration file for you (`$HOME/.arlas/cli/configuration.yaml`), with two ARLAS configurations, one pointing at a local deployment, one on ARLAS demo (without elasticsearch).
 
-!!! bug 
-    If you used the ARLAS Exploration Stack, it is possible that you already have a directory named `$HOME/.arlas`. This directory has been created by docker as root. The owner of the directory must be changed to the local user (`sudo chown ${USER}: $HOME/.arlas`).
+## ARLAS configurations
 
-## List configuration management commands
+An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elasticsearch.
+
+See [more information about configuration](confs.md).
+
+It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS configurations.
+
+**List configurations (confs) management commands**
 
 <!-- termynal -->
 ```shell
@@ -22,23 +26,12 @@
 │ describe           Describe a configuration                        │
 │ list               List configurations                             │
 ╰────────────────────────────────────────────────────────────────────╯
-
 ```
 
-## Create a configuration
 
-The configuration file (default is `$HOME/.arlas/cli/configuration.yaml`) contains 3 sections:
+## create
 
-- the list of ARLAS configurations
-- the list of mappings
-- the list of collection models
-
-It is possible, with the `arlas_cli` command line, to manage the ARLAS configurations, but not the two last ones.
-
-An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elasticsearch. It supports the addition of http headers. For ARLAS, keycloak and ARLAS IAM authentications are supported. Default is keycloak, use `--auth-arlas-iam` for ARLAS IAM.
-
-!!! danger  
-    By default, it is not possible to run the `delete` command on an elasticsearch with `arlas_cli`. This is to prevent accidental data loass. In order to allow delete on a configuration, use the `--allow-delete` option.
+`arlas_cli` is meant to communicate with a deployed ARLAS. This link is configured by creating a new configuration.
 
 <!-- termynal -->
 ```shell
@@ -107,4 +100,206 @@ An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elastic
 │                                                  and exit.         │
 ╰────────────────────────────────────────────────────────────────────╯
 
+```
+
+
+### Create a new configuration
+
+The `arlas_cli confs create` command has to be filled with options specific to your ARLAS deployment.
+
+Those options can be filled as describe in the following sections.
+
+!!! note
+
+    For ARLAS cloud deployment, a pre-filled variables file is furnished with a simple command to copy/paste.
+
+#### ARLAS Authentication
+For ARLAS, keycloak and ARLAS IAM authentications are supported. 
+
+=== "ARLAS IAM"
+    
+    To create a configuration using ARLAS IAM, the following parameters have to be set with your values:
+
+    - The IAM session url `IAM_URL`
+    - Your IAM user `ARLAS_USER`
+    - Your IAM password `ARLAS_PWD`
+    - Your ARLAS organization `ARLAS_ORGANIZATION`
+
+    The following options are used to create the conf:
+    ```
+    arlas_cli confs create
+        --auth-arlas-iam
+        --auth-token-url {IAM_URL} \
+        --auth-login {ARLAS_USER} \
+        --auth-password {ARLAS_PWD} \
+        --auth-headers "Content-Type:application/json;charset=utf-8" \
+        --auth-org {ARLAS_ORGANIZATION}
+        ...
+    ```
+
+=== "Keycloak"
+    Default is ARLAS IAM, use `--no-auth-arlas-iam` for keycloak.
+
+    Keycloak authentication details coming soon...
+
+#### ARLAS Server and Persistence
+
+The ARLAS server url (`ARLAS_SERVER_URL`) and the persistence server URL (`ARLAS_PERSISTENCE_URL`) has to be set in the configuration:
+```
+arlas_cli confs create
+    ...
+    --server "${ARLAS_SERVER_URL}" \
+    --headers "Content-Type:application/json" \
+    --persistence "${ARLAS_PERSISTENCE_URL}" \
+    --persistence-headers "Content-Type:application/json" \
+    ...
+```
+
+TODO: Check: org filter:
+    --headers "arlas-org-filter:${MY_ORGANIZATION}" \
+
+#### Elasticsearch 
+
+The used elasticsearch instance and your credentials has to be set in the configuration:
+
+- `ELASTIC_ENDPOINT`: The used elasticsearch endpoint (eg: http://localhost:9200)
+- `ELASTIC_USER`: Your ES user name
+- `ELASTIC_PWD`: Your ES user password
+
+The following options are used to create the conf:
+```
+arlas_cli confs create
+    ...
+    --elastic "${ELASTIC_ENDPOINT}" \
+    --elastic-headers "Content-Type:application/json" \
+    --elastic-login "${ELASTIC_USER}" \
+    --elastic-password "${ELASTIC_PWD}" \
+    ...
+```
+
+#### Allow data deletion
+
+By default, it is not possible to run the `indices delete` command on an elasticsearch with `arlas_cli`. 
+This is to prevent accidental data loss.
+
+!!! warning "--allow-delete"
+    In order to allow delete on a configuration, use the `--allow-delete` option.
+
+
+## delete
+
+An existing configuration can be deleted with `confs delete` sub command:.
+
+<!-- termynal -->
+```shell
+> arlas_cli confs delete --help
+Usage: arlas_cli confs delete [OPTIONS] NAME
+
+  Delete a configuration
+
+Arguments:
+  NAME  Name of the configuration  [required]
+
+Options:
+  --help  Show this message and exit.
+
+```
+
+### Delete an existing configuration
+
+To remove an existing configuration from the default configuration file, simply run the following command:
+
+```shell
+arlas_cli confs delete {conf_name}
+```
+
+The configuration will no longer appear in the configuration file.
+
+!!! warning
+    The configuration deletion cannot be undone, make sure to not lost contained information
+
+## describe
+
+The content of a configuration can be detailed with `confs describe` sub command:
+
+<!-- termynal -->
+```shell
+> arlas_cli confs describe --help
+Usage: arlas_cli confs describe [OPTIONS] NAME
+
+  Describe a configuration
+
+Arguments:
+  NAME  Name of the configuration  [required]
+
+Options:
+  --help  Show this message and exit.
+
+```
+
+### Describe the content of a configuration
+
+For example, the default local configuration looks like:
+<!-- termynal -->
+```shell
+> arlas_cli confs describe local
+allow_delete: true
+authorization: null
+elastic:
+  headers:
+    Content-Type: application/json
+  location: http://localhost:9200
+  login: null
+  password: null
+persistence:
+  headers:
+    Content-Type: application/json
+  location: http://localhost/persist
+  login: null
+  password: null
+server:
+  headers:
+    Content-Type: application/json
+  location: http://localhost/arlas
+  login: null
+  password: null
+```
+
+We get the different elements of the configurations:
+
+- authorization: The authentication system configuration
+- elastic: The link to elasticsearch cluster
+- persistence: The link to ARLAS persistence system
+- server: The link to ARLAS server
+
+See [more about the configuration](configuration.md).
+
+## list
+
+The list of available configurations can be obtained with `confs list` sub command:
+
+<!-- termynal -->
+```shell
+> arlas_cli confs list --help
+Usage: arlas_cli confs list [OPTIONS]
+
+  List configurations
+
+Options:
+  --help  Show this message and exit.
+```
+
+### List the available configurations
+
+The `confs list` sub-command returns the list of available configuration names and their ARLAS server url.
+
+For example:
+<!-- termynal -->
+```shell
+> arlas_cli confs list
++-------+------------------------+
+| name  | url                    |
++-------+------------------------+
+| local | http://localhost/arlas |
++-------+------------------------+
 ```
