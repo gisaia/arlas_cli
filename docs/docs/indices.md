@@ -403,6 +403,64 @@ By default, the json representation of the data is pretty printed (clear indenta
     > arlas_cli indices --config local sample index_name --no-pretty
     ```
 
+## clone
+
+### Duplicate an index with a new index name
+
+An ES index can be cloned on the same ES deployment with the `indices clone` sub-command:
+
+<!-- termynal -->
+```shell
+> arlas_cli indices --config local clone --help
+                                                                      
+Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET
+
+  Clone an index and set its name
+
+Arguments:
+  SOURCE  Source index name  [required]
+  TARGET  Target cloned index name  [required]
+
+Options:
+  --help  Show this message and exit.
+
+```
+
+Both indices co-exist with exactly the same mapping and data content.
+
+## migrate
+
+### Copy an index in another arlas configuration
+
+An index can be copied from an ES instance to another. 
+
+!!! note
+    The two instances have to be accessible by `arlas_cli` with two configurations (see [Configuration guide](configuration.md)).
+
+The target configuration and the name of the new created index are given to the `indices migrate` sub-command.
+
+<!-- termynal -->
+```shell
+> arlas_cli indices --config local clone --help
+                                                                      
+Usage: arlas_cli indices migrate [OPTIONS] SOURCE ARLAS_TARGET TARGET
+
+  Migrate an index on another arlas configuration, and set the target index
+  name
+
+Arguments:
+  SOURCE        Source index name  [required]
+  ARLAS_TARGET  Target ARLAS Configuration name  [required]
+  TARGET        Target migrated index name  [required]
+
+Options:
+  --help  Show this message and exit.
+
+
+```
+
+Both indices co-exist with exactly the same mapping and data content.
+
 ## delete
 
 The ES index can be deleted with `indices delete` sub command to free space on ES cluster.

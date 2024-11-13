@@ -7,40 +7,43 @@ __ARLAS Command Line__ (`arlas_cli`) is for managing the ARLAS data and configur
 
 `arlas_cli` is a python command line for:
 
-- managing elasticsearch indices:
-    - generate an index mapping based on [NDJSON data](https://jsonlines.org/)
-    - create an index
-    - list indices
-    - describe an index
-    - delete an index
-- managing [ARLAS collections](https://docs.arlas.io/arlas-api-collection/)
-    - create a collection
-    - list collections
-    - describe a collection
-    - delete a collection
-- managing ARLAS persistence
-    - create a entry in a zone
-    - list entries within a zone
-    - describe an entry
-    - delete an entry
-    - get the groups accessing a zone
-- managing ARLAS Identity and Access (ARLAS IAM)
-    - list organisations
-    - add an organisation
-    - within an organisation:
-        - list visible collections
-        - list groups
-        - list users
-        - list permissions
-        - add/delete a permission
-        - add/delete a group
-        - add/delete a permission to/from a group
-        - add/delete a user
-        - add/delete a user to/from a group
-    - create a user
-    - activate a user
-    - deactivate a user
-- managing configurations
-    - register an ARLAS/elasticsearch configuration, with headers and authentication parameters
-    - delete a configuration
+- Managing [elasticsearch indices](concepts.md#es-index):
+    - Generate an index mapping based on [NDJSON data](https://jsonlines.org/)
+    - Create an index
+    - List indices
+    - Describe an index
+    - Clone an index
+    - Migrate an index
+    - Delete an index
+- Managing [ARLAS collections](concepts.md#arlas-collection)
+    - Create a collection
+    - List collections
+    - Describe a collection
+    - Delete a collection
+- Managing [arlas_cli configurations](concepts.md#configuration)
+    - Register an ARLAS/elasticsearch configuration, with headers and authentication parameters
+    - List your configurations
+    - Delete a configuration
+- Managing [ARLAS Dashboards](concepts.md#arlas-dashboards) persistence
+    - Create a dashboard from a configuration file
+    - List available dashboard
+    - Describe a dashboard
+    - Delete a dashboard
+    - Get the groups accessing dashboards
+- Managing [ARLAS Identity and Access](concepts.md#arlas-iam) (ARLAS IAM)
+    - List organisations
+    - Add an organisation
+    - Within an organisation:
+        - List visible collections
+        - List groups
+        - List users
+        - List permissions
+        - Add/delete a permission
+        - Add/delete a group
+        - Add/delete a permission to/from a group
+        - Add/delete a user
+        - Add/delete a user to/from a group
+    - Create a user
+    - Activate a user
+    - Deactivate a user
 

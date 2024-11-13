@@ -183,8 +183,11 @@ By default, it is not possible to run the `indices delete` command on an elastic
 This is to prevent accidental data loss.
 
 !!! warning "--allow-delete"
-    In order to allow delete on a configuration, use the `--allow-delete` option.
+    In order to allow to delete on a configuration, use the `--allow-delete` option.
 
+### ARLAS Cloud
+
+If you want to connect `arlas_cli` to an existing ARLAS Cloud account, follow the [ARLAS Cloud configuration guide](configuration.md#arlas-cloud-configuration).
 
 ## delete
 

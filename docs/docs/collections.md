@@ -152,7 +152,7 @@ To create the collection, run the following command:
 ```shell
 > arlas_cli  collections \
    --config local \
-   collection_name \
+   create collection_name \
    --index index_name \
    --id-path unique_id_field \
    --centroid-path point_geom_field \
@@ -163,40 +163,93 @@ To create the collection, run the following command:
 
 ## name
 
+The collection can be defined by a pretty name. It can be set with `name` subcommand:
+
 <!-- termynal -->
 ```shell
-> arlas_cli collections --config local create --help
-                                                                      
- Usage: python -m arlas.cli.cli collections create [OPTIONS]          
- COLLECTION                                                           
-                                                                      
- Create a collection                                                  
-                                                                      
-╭─ Arguments ────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [default: None]       │
-│                            [required]                              │
+> arlas_cli collections --config local name --help
 
-╰────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────╮
-│ --help                                  Show this message and      │
-│                                         exit.                      │
-╰────────────────────────────────────────────────────────────────────╯
+Usage: arlas_cli collections name [OPTIONS] COLLECTION NAME
+
+  Set the collection display name
+
+Arguments:
+  COLLECTION  Collection's name  [required]
+  NAME        The display name  [required]
+
+Options:
+  --help  Show this message and exit.
 
 ```
 
 ### Set a pretty name for the collection
 
+The pretty name can be used in ARLAS to display the collection. It can also be set by the `--display-name` option at the [collection creation](#create).
+
+To set it with the `name` subcommand:
+```shell
+> arlas_cli  collections \
+   --config local \
+   name collection_name "Pretty Collection Name"
+```
+
 ## set_alias
 
+The data fields are sometimes not very readable. You can set aliases to improve their display in the ARLAS Dashboards configuration.
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local set_alias --help
+
+Usage: arlas_cli collections set_alias [OPTIONS] COLLECTION FIELD_PATH
+                                       [DISPLAY_NAME]
+
+  Set the collection display name
+
+Arguments:
+  COLLECTION      Collection's name  [required]
+  FIELD_PATH      The field path  [required]
+  [DISPLAY_NAME]  The field's display name. If none provided, then the alias
+                  is removed if it existed
+
+Options:
+  --help  Show this message and exit.
+```
 ### Set a pretty name for a data field
+
+Each field of the data has a raw name. It can be replaced by a pretty name to display. For example:
+```shell
+> arlas_cli  collections \
+   --config local \
+   set_alias collection_name \
+   raw_field_name "Pretty Field Name (unit)"
+```
 
 ## list
 
 ### List available collections
 
+You can access the list of available collections with the `list` subcommand:
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local set_alias --help
+
+Usage: arlas_cli collections list [OPTIONS]
+
+  List collections
+
+Options:
+  --help  Show this message and exit.
+
+```
+
+
 ## describe
 
-This command line provides a description of the collection structure (fields) and of its metadata.
+### Describe a collection
+
+The `describe` command line provides a description of the collection's structure (fields) and its metadata.
 
 <!-- termynal -->
 ```shell
@@ -216,32 +269,172 @@ This command line provides a description of the collection structure (fields) an
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```
-### Describe a collection
 
 ## count
 
 ### Count the number of element within a collection
 
+The `count` command show the total number of elements (data rows) accessible in a collection.
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local count --help
+                                                                      
+Usage: arlas_cli collections count [OPTIONS] [COLLECTION]
+
+  Count the number of hits within a collection (or all collection if not
+  provided)
+
+Arguments:
+  [COLLECTION]  Collection's name
+
+Options:
+  --help  Show this message and exit.
+
+```
+
 ## sample
 
 ### Display a sample of the collection data
 
+The `sample` command show few data rows accessible in a collection.
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local sample --help
+                                                                      
+Usage: arlas_cli collections sample [OPTIONS] COLLECTION
+
+  Display a sample of a collection
+
+Arguments:
+  COLLECTION  Collection's name  [required]
+
+Options:
+  --pretty / --no-pretty  [default: pretty]
+  --size INTEGER          [default: 10]
+  --help                  Show this message and exit.
+```
+
+!!! note
+    The number of rows to display can be set with `--size` option
+
 ## private
+
+By default, a collection is private, it can be seen only from the members of the owner or shared organisation.
+
+ARLAS user has to be logged and have the correct rights to access the collection.
 
 ### Set the collection as private
 
+To switch a collection from **public** to **private**, use the `private` command:
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local private --help
+                                                                      
+Usage: arlas_cli collections private [OPTIONS] COLLECTION
+
+  Set collection visibility to private
+
+Arguments:
+  COLLECTION  Collection's name  [required]
+
+Options:
+  --help  Show this message and exit.
+```
+
 ## public
+
+A public collection can be accessed in ARLAS dashboards without any logging. It can be used to host demo dashboards for example.
 
 ### Set the collection as public
 
-### Define visibility policy for collections
+To switch a collection from **private** to **public**, use the `public` command:
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local public --help
+                                                                      
+Usage: arlas_cli collections public [OPTIONS] COLLECTION
+
+  Set collection visibility to public
+
+Arguments:
+  COLLECTION  Collection's name  [required]
+
+Options:
+  --help  Show this message and exit.
+
+```
 
 ## share
 
-## unshare
+A collection can be shared between different organisations to make it available for its users.
 
 ###  Share collections between organisations
 
+A collection can be shared to other organisation with the `share` command:
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local share --help
+                                                                      
+Usage: arlas_cli collections public [OPTIONS] COLLECTION
+
+  Set collection visibility to public
+
+Arguments:
+  COLLECTION  Collection's name  [required]
+
+Options:
+  --help  Show this message and exit.
+```
+
+## unshare
+
+The right to access a collection can be removed to the users of an organisation.
+
+###  Remove collection access for an organisation
+
+The access to a collection can be removed with the `unshare` command:
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local unshare --help
+                                                                      
+Usage: arlas_cli collections unshare [OPTIONS] COLLECTION ORGANISATION
+
+  Share the collection with the organisation
+
+Arguments:
+  COLLECTION    Collection's name  [required]
+  ORGANISATION  Organisation's name  [required]
+
+Options:
+  --help  Show this message and exit.
+
+```
+
 ## delete
 
-### Delete an organisation
+A collection can be deleted. It doesn't delete the data (ES index can still exist) but it will no longer be accessible in ARLAS.
+
+### Delete a collection
+
+The collection can be removed with the `delete` command:
+
+<!-- termynal -->
+```shell
+> arlas_cli collections --config local delete --help
+   
+Usage: arlas_cli collections delete [OPTIONS] COLLECTION
+
+  Delete a collection
+
+Arguments:
+  COLLECTION  collection's name  [required]
+
+Options:
+  --help  Show this message and exit.
+```

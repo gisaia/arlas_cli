@@ -28,7 +28,7 @@ or within a sub command:
 
 <!-- termynal -->
 ```shell
-> arlas_cli indices --config demo mapping --help
+> arlas_cli indices --config local mapping --help
 Usage: arlas_cli indices mapping [OPTIONS] FILE
 
   Generate the mapping based on the data

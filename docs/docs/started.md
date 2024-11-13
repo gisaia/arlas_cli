@@ -18,6 +18,9 @@ For more details, in particular for installation on Microsoft Windows, see the [
     
     Clone the [ARLAS Stack Exploration](https://github.com/gisaia/ARLAS-Exploration-stack) project and run `./start.sh` at project root.
 
+!!! tip
+    If you want to connect `arlas_cli` to an existing ARLAS Cloud account, simply follow the [configuration guide](configuration.md#arlas-cloud-configuration).
+
 By default, the local configuration is created during the installation. 
 
 To list the available configurations, run the following command from the command line:
@@ -299,49 +302,29 @@ To delete the `ais_courses` course collection
 > arlas_cli collections --config local delete courses
 ```
 
-## ARLAS Persistence
+### Add an ARLAS Dashboard from configuration file
 
-### Add an entry
+The configuration of an ARLAS Dashboard describe all its elements (widgets, map layers...). A such file can be directly imported to create a dashboard.
+
+First, let's get an example of dashboard configuration file:
+<!-- termynal -->
+```shell
+> curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/dashboard.json -o dashboard.json
+```
+The downloaded `dashboard.json` contains the configuration of a dashboard to explore AIS data.
 
 <!-- termynal -->
 ```shell
-> arlas_cli persist --config local add ../arlas-stacks4tests/conf/config.json config.json --name courses_dashboard
+> arlas_cli persist --config local add ./dashboard.json config.json --name courses_dashboard
 32d2624b-d7cd-11ee-9a91-0242ac130004
 ```
 
-### Describe an entry
+!!! note
+    The dashboard generated unique identifier is returned
 
-<!-- termynal -->
-```shell
-> arlas_cli persist --config local describe 32d2624b-d7cd-11ee-9a91-0242ac130004
-+------------------+--------------------------------------+
-| metadata         | value                                |
-+------------------+--------------------------------------+
-| ID               | 6a415cec-d7cd-11ee-9a91-0242ac130004 |
-| ispublic         | None                                 |
-| last_update_date | 1709298774600                        |
-| name             | courses_dashboard                    |
-| organization     | None                                 |
-| owner            | anonymous                            |
-| updatable        | True                                 |
-| zone             | config.json                          |
-+------------------+--------------------------------------+
-```
+### List available dashboards
 
-### Get an entry value
-
-<!-- termynal -->
-```shell
-> arlas_cli persist --config local get 32d2624b-d7cd-11ee-9a91-0242ac130004
-{
-  "arlas": {
-    "web": {
-      "contributors": [
-...
-}
-```
-
-### List entries within a zone
+The available dashboards can be list with the following command:
 
 <!-- termynal -->
 ```shell
@@ -349,32 +332,12 @@ To delete the `ais_courses` course collection
 +--------------------------------------+-------------------+-------------+------------------+-----------+
 | id                                   | name              | zone        | last_update_date | owner     |
 +--------------------------------------+-------------------+-------------+------------------+-----------+
-| 66984014-d0a1-11ee-b41c-0242ac190004 | Courses           | config.json | 1708510231303    | anonymous |
+| 32d2624b-d7cd-11ee-9a91-0242ac130004 | courses_dashboard | config.json | 1708510231303    | anonymous |
 ...
 +--------------------------------------+-------------------+-------------+------------------+-----------+
 ```
 
+!!! note
+    The created dashboards can be accessed and managed in [ARLAS Hub](concepts.md#arlas-hub) and edited with [ARLAS Builder](concepts.md#arlas-builder).
 
-### List groups accessing a zone
-
-<!-- termynal -->
-```shell
-> arlas_cli persist --config local groups config.json
-+--------------+
-| group        |
-+--------------+
-| group/public |
-+--------------+
-```
-
-
-### Delete an entry
-
-<!-- termynal -->
-```shell
-> arlas_cli persist --config local delete 32d2624b-d7cd-11ee-9a91-0242ac130004
-Resource 32d2624b-d7cd-11ee-9a91-0242ac130004 deleted.
-```
-
-
-
+    The `arlas_cli` commands to manage dashboards are detailed in [Persistence Documentation](persist.md).
