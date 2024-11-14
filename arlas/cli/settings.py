@@ -31,10 +31,25 @@ class Settings(BaseModel):
     arlas: dict[str, ARLAS] = Field(default=None, title="dictionary of name/arlas configurations")
     mappings: dict[str, Resource] = Field(default=None, title="dictionary of name/mapping resources")
     models: dict[str, Resource] = Field(default=None, title="dictionary of name/model resources")
+    default: str | None = Field(default=None, title="Name of the default configuration")
 
 
 class Configuration:
     settings: Settings = None
+
+    @staticmethod
+    def solve_config(config: str):
+        if not config:
+            if Configuration.settings.default:
+                print("Using default configuration {}".format(Configuration.settings.default))
+                return Configuration.settings.default
+            else:
+                print("Error: No default configuration, please provide one among [{}]".format(", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+                exit(1)
+        if Configuration.settings.arlas.get(config, None) is None:
+            print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+            exit(1)
+        return config
 
     @staticmethod
     def save(configuration_file: str):
