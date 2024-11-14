@@ -69,11 +69,6 @@ For exemple, you can list the available configuration contained in the file:
 +-------+------------------------+
 ```
 
-You can also use the command line itself.
-
-!!! tip
-    Carefully, you can also edit directly the `${HOME}/.arlas/cli/configuration.yaml` configuration file to update your configurations.
-
 ## Custom configuration file path
 
 It is possible to use a different configuration file than the one placed in your home directory (`$HOME/.arlas/cli/configuration.yaml`):

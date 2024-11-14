@@ -125,16 +125,14 @@ For ARLAS, keycloak and ARLAS IAM authentications are supported.
     - Your IAM password `ARLAS_PWD`
     - Your ARLAS organization `ARLAS_ORGANIZATION`
 
-    The following options are used to create the conf:
+    The following options are used by `confs create` sub-command to generate the conf:
     ```
-    arlas_cli confs create
-        --auth-arlas-iam
-        --auth-token-url {IAM_URL} \
-        --auth-login {ARLAS_USER} \
-        --auth-password {ARLAS_PWD} \
-        --auth-headers "Content-Type:application/json;charset=utf-8" \
-        --auth-org {ARLAS_ORGANIZATION}
-        ...
+    --auth-arlas-iam
+    --auth-token-url {IAM_URL}
+    --auth-login {ARLAS_USER}
+    --auth-password {ARLAS_PWD}
+    --auth-headers "Content-Type:application/json;charset=utf-8"
+    --auth-org {ARLAS_ORGANIZATION}
     ```
 
 === "Keycloak"
@@ -144,19 +142,14 @@ For ARLAS, keycloak and ARLAS IAM authentications are supported.
 
 #### ARLAS Server and Persistence
 
-The ARLAS server url (`ARLAS_SERVER_URL`) and the persistence server URL (`ARLAS_PERSISTENCE_URL`) has to be set in the configuration:
+The ARLAS server url (`ARLAS_SERVER_URL`) and the persistence server URL (`ARLAS_PERSISTENCE_URL`) has to be set in the configuration using the following options in the `confs create` sub-command:
 ```
-arlas_cli confs create
-    ...
-    --server "${ARLAS_SERVER_URL}" \
-    --headers "Content-Type:application/json" \
-    --persistence "${ARLAS_PERSISTENCE_URL}" \
-    --persistence-headers "Content-Type:application/json" \
-    ...
+--server {ARLAS_SERVER_URL}
+--headers "Content-Type:application/json"
+--persistence {ARLAS_PERSISTENCE_URL}
+--persistence-headers "Content-Type:application/json"
 ```
 
-TODO: Check: org filter:
-    --headers "arlas-org-filter:${MY_ORGANIZATION}" \
 
 #### Elasticsearch 
 
@@ -166,15 +159,12 @@ The used elasticsearch instance and your credentials has to be set in the config
 - `ELASTIC_USER`: Your ES user name
 - `ELASTIC_PWD`: Your ES user password
 
-The following options are used to create the conf:
+The link to ES instance is configured by using the following options in the `confs create` sub-command:
 ```
-arlas_cli confs create
-    ...
-    --elastic "${ELASTIC_ENDPOINT}" \
-    --elastic-headers "Content-Type:application/json" \
-    --elastic-login "${ELASTIC_USER}" \
-    --elastic-password "${ELASTIC_PWD}" \
-    ...
+--elastic {ELASTIC_ENDPOINT}
+--elastic-headers "Content-Type:application/json"
+--elastic-login {ELASTIC_USER}
+--elastic-password {ELASTIC_PWD}
 ```
 
 #### Allow data deletion

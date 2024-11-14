@@ -160,11 +160,11 @@ Once you're happy with the mapping, you can either store it in a file or directl
     <!-- termynal -->
     ```shell
     > arlas_cli  indices \
-       --config local \
-       mapping path/to/data.json \
-       --field-mapping timestamps.start:date-epoch_second \
-       --field-mapping timestamps.end:date-epoch_second \
-       > path/to/mapping.json
+       --config {local} \
+       mapping {path/to/data.json} \
+       --field-mapping {timestamps.start:date-epoch_second} \
+       --field-mapping {timestamps.end:date-epoch_second} \
+       > {path/to/mapping.json}
     ```
 
 !!! note "--push-on"
@@ -175,9 +175,9 @@ Once you're happy with the mapping, you can either store it in a file or directl
     <!-- termynal -->
     ```shell
     > arlas_cli  indices \
-       --config local \
-       mapping path/to/data.json \
-       --push-on index_name
+       --config {local} \
+       mapping {path/to/data.json} \
+       --push-on {index_name}
     ```
     
     The index is then created and the [index creation command](#create) can be skipped.
@@ -221,8 +221,8 @@ Example:
 ```shell
 > arlas_cli  indices \
    --config local \
-   create index_name \
-   --mapping path/to/mapping.json
+   create {index_name} \
+   --mapping {path/to/mapping.json}
 ```
 
 Once the index is created, it is ready to [ingest data](#data).
@@ -263,8 +263,8 @@ Example:
 <!-- termynal -->
 ```shell
 > arlas_cli  indices \
-   --config local \
-   data index_name path/to/data.json
+   --config {local} \
+   data {index_name} {path/to/data.json}
 ```
 
 !!! warning 
@@ -302,7 +302,7 @@ It displays for each ES index its status, the number of elements it contains and
 Example:
 
 ```shell
-> arlas_cli indices --config local list
+> arlas_cli indices --config {local} list
 +--------------+--------+-------+--------+
 | name         | status | count | size   |
 +--------------+--------+-------+--------+
@@ -339,7 +339,7 @@ For a given index, the description of its fields and their type can be displayed
 For example:
 
 ```shell
-> arlas_cli indices --config local describe index_name
+> arlas_cli indices --config {local} describe {index_name}
 +------------------+-----------+
 | field name       | type      |
 +------------------+-----------+
@@ -389,7 +389,7 @@ For a given index `index_name`, the first rows of data can be displayed as a val
     Example:
     
     ```shell
-    > arlas_cli indices --config local sample index_name --size 10
+    > arlas_cli indices --config {local} sample {index_name} --size {10}
     ```
 
 By default, the json representation of the data is pretty printed (clear indentation and one line per field)
@@ -400,7 +400,7 @@ By default, the json representation of the data is pretty printed (clear indenta
     Example:
     
     ```shell
-    > arlas_cli indices --config local sample index_name --no-pretty
+    > arlas_cli indices --config {local} sample {index_name} --no-pretty
     ```
 
 ## clone
@@ -488,7 +488,7 @@ To delete an ES index `index_name` on `local` configuration, run the following c
 
 <!-- termynal -->
 ```shell
-> arlas_cli indices --config local delete index_name
+> arlas_cli indices --config {local} delete {index_name}
 ```
 !!! warning 
     Delete an index is not reversible. Make sure you don't lost any data. 

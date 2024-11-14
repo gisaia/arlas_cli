@@ -101,7 +101,7 @@ The command line options let you specify how the index should be used by the col
 
 !!! note "--owner"
     
-    The collection can be associated to an organisation.
+    If ARLAS is used with ARLAS IAM (like ARLAS Cloud), then a collection must be associated to an organisation.
     
     Example:
 
@@ -151,14 +151,14 @@ To create the collection, run the following command:
 <!-- termynal -->
 ```shell
 > arlas_cli  collections \
-   --config local \
-   create collection_name \
-   --index index_name \
-   --id-path unique_id_field \
-   --centroid-path point_geom_field \
-   --geometry-path element_geom_field \
-   --date-path date_field \
-   --display-name "Pretty Collection Name"
+   --config {local} \
+   create {collection_name} \
+   --index {index_name} \
+   --id-path {unique_id_field} \
+   --centroid-path {point_geom_field} \
+   --geometry-path {element_geom_field} \
+   --date-path {date_field} \
+   --display-name {"Pretty Collection Name"}
 ```
 
 ## name
@@ -189,13 +189,13 @@ The pretty name can be used in ARLAS to display the collection. It can also be s
 To set it with the `name` subcommand:
 ```shell
 > arlas_cli  collections \
-   --config local \
-   name collection_name "Pretty Collection Name"
+   --config {local} \
+   name {collection_name} {"Pretty Collection Name"}
 ```
 
 ## set_alias
 
-The data fields are sometimes not very readable. You can set aliases to improve their display in the ARLAS Dashboards configuration.
+The data fields are sometimes not very suitable in ARLAS Exploration dashboards. You can set aliases to improve their display in the interface.
 
 <!-- termynal -->
 ```shell
@@ -220,9 +220,9 @@ Options:
 Each field of the data has a raw name. It can be replaced by a pretty name to display. For example:
 ```shell
 > arlas_cli  collections \
-   --config local \
-   set_alias collection_name \
-   raw_field_name "Pretty Field Name (unit)"
+   --config {local} \
+   set_alias {collection_name} \
+   {raw_field_name} {"Pretty Field Name (unit)"}
 ```
 
 ## list

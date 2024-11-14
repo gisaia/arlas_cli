@@ -64,9 +64,9 @@ For example to create an ARLAS dashboard directly from a json file, run the foll
 <!-- termynal -->
 ```shell
 > arlas_cli persist \
-    --config local \
-    add path/to/config.dashboard.json config.json \  
-    --name dashboard_name
+    --config {local} \
+    add {path/to/config.dashboard.json} config.json \  
+    --name {dashboard_name}
 32d2624b-d7cd-11ee-9a91-0242ac130004
 ```
 
@@ -100,7 +100,7 @@ For example, to list all the available ARLAS dashboards (`config.json` zone), ru
 
 <!-- termynal -->
 ```shell
-> arlas_cli persist --config local zone config.json
+> arlas_cli persist --config {local} zone config.json
 +--------------------------------------+-------------------+-------------+------------------+-----------+
 | id                                   | name              | zone        | last_update_date | owner     |
 +--------------------------------------+-------------------+-------------+------------------+-----------+
@@ -136,7 +136,7 @@ For example, a dashboard configuration can be described by its metadata with the
 
 <!-- termynal -->
 ```shell
-> arlas_cli persist --config cloud.arlas.io describe 99acb6b7-3cfd-11ef-aee2-2e6497b109c4
+> arlas_cli persist --config {local} describe {99acb6b7-3cfd-11ef-aee2-2e6497b109c4}
 +------------------+--------------------------------------------+
 | metadata         | value                                      |
 +------------------+--------------------------------------------+
@@ -181,7 +181,7 @@ The content of the configuration file of an ARLAS dashboard can be read directly
 
 <!-- termynal -->
 ```shell
-> arlas_cli persist --config local get 32d2624b-d7cd-11ee-9a91-0242ac130004
+> arlas_cli persist --config {local} get {32d2624b-d7cd-11ee-9a91-0242ac130004}
 {
   "arlas": {
     "web": {
@@ -193,7 +193,7 @@ The content of the configuration file of an ARLAS dashboard can be read directly
 !!! tip
     The content of the dashboard configuration file can be directly stored in a json file:
     ```
-    arlas_cli persist --config local get 32d2624b-d7cd-11ee-9a91-0242ac130004 > config.dashboard.json
+    arlas_cli persist --config {local} get {32d2624b-d7cd-11ee-9a91-0242ac130004} > {config.dashboard.json}
     ```
 
 
@@ -222,7 +222,7 @@ For example, the groups accessing the dashboards `config.json` zone can be liste
 
 <!-- termynal -->
 ```shell
-> arlas_cli persist --config local groups config.json
+> arlas_cli persist --config {local} groups config.json
 +-------------------------------+
 | group                         |
 +-------------------------------+
@@ -256,7 +256,7 @@ For example, to delete a dashboard from its identifier, run the following comman
 
 <!-- termynal -->
 ```shell
-> arlas_cli persist --config local delete 32d2624b-d7cd-11ee-9a91-0242ac130004
+> arlas_cli persist --config {local} delete {32d2624b-d7cd-11ee-9a91-0242ac130004}
 Resource 32d2624b-d7cd-11ee-9a91-0242ac130004 deleted.
 ```
 
