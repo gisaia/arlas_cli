@@ -13,11 +13,8 @@ indices = typer.Typer()
 
 
 @indices.callback()
-def configuration(config: str = typer.Option(help="Name of the ARLAS configuration to use from your configuration file ({}).".format(variables["configuration_file"]))):
-    variables["arlas"] = config
-    if Configuration.settings.arlas.get(config, None) is None:
-        print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
-        exit(1)
+def configuration(config: str = typer.Option(default=None, help="Name of the ARLAS configuration to use from your configuration file ({}).".format(variables["configuration_file"]))):
+    variables["arlas"] = Configuration.solve_config(config)
 
 
 @indices.command(help="List indices", name="list")
@@ -161,8 +158,8 @@ def delete(
         print("Error: delete on \"{}\" is not allowed. To allow delete, change your configuration file ({}).".format(config, variables["configuration_file"]), file=sys.stderr)
         exit(1)
 
-    if typer.confirm("You are about to delete the index '{}' on  '{}' configuration.\n".format(index, config),
-                     prompt_suffix="Do you want to continue (del {} on {})?".format(index, config),
+    if typer.confirm("You are about to delete the index '{}' on  '{}' configuration.\n".format(index, config),
+                     prompt_suffix="Do you want to continue (del {} on {})?".format(index, config),
                      default=False, ):
         if config != "local" and config.find("test") < 0:
             if typer.prompt("WARNING: You are not on a test environment. To delete {} on {}, type the name of the configuration ({})".format(index, config, config)) != config:
