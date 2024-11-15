@@ -20,5 +20,6 @@ arlas:
       location: http://localhost/arlas
       login: null
       password: null
+default: null
 mappings: {}
 models: {}

@@ -9,12 +9,11 @@ ARLAS Persistence allows you to place files within zones. A zone is visible by g
  Usage: python -m arlas.cli.cli persist [OPTIONS] COMMAND [ARGS]...   
                                                                       
 ╭─ Options ──────────────────────────────────────────────────────────╮
-│ *  --config        TEXT  Name of the ARLAS configuration to use    │
-│                          from your configuration file              │
-│                          (/Users/gaudan/.arlas/cli/configuration.… │
-│                          [default: None]                           │
-│                          [required]                                │
-│    --help                Show this message and exit.               │
+│ --config        TEXT  Name of the ARLAS configuration to use from  │
+│                       your configuration file                      │
+│                       (/Users/gaudan/.arlas/cli/configuration.yam… │
+│                       [default: None]                              │
+│ --help                Show this message and exit.                  │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────╮
 │ add           Add an entry, returns its ID                         │

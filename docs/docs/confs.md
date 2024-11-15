@@ -17,10 +17,11 @@
 │ --help          Show this message and exit.                        │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────╮
-│ create             Add a configuration                             │
-│ delete             Delete a configuration                          │
-│ describe           Describe a configuration                        │
-│ list               List configurations                             │
+│ create         Add a configuration                                 │
+│ delete         Delete a configuration                              │
+│ describe       Describe a configuration                            │
+│ list           List configurations                                 │
+│ login          Add a configuration for ARLAS Cloud                 │
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```
@@ -63,8 +64,7 @@ An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elastic
 │                                                  [default: None]   │
 │    --persistence-h…                        TEXT  header            │
 │                                                  (name:value)      │
-│    --elastic                               TEXT  dictionary of     │
-│                                                  name/es resources │
+│    --elastic                               TEXT  elasticsearch url │
 │                                                  [default: None]   │
 │    --elastic-login                         TEXT  elasticsearch     │
 │                                                  login             │

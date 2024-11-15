@@ -7,12 +7,11 @@
  Usage: python -m arlas.cli.cli indices [OPTIONS] COMMAND [ARGS]...   
                                                                       
 ╭─ Options ──────────────────────────────────────────────────────────╮
-│ *  --config        TEXT  Name of the ARLAS configuration to use    │
-│                          from your configuration file              │
-│                          (/Users/gaudan/.arlas/cli/configuration.… │
-│                          [default: None]                           │
-│                          [required]                                │
-│    --help                Show this message and exit.               │
+│ --config        TEXT  Name of the ARLAS configuration to use from  │
+│                       your configuration file                      │
+│                       (/Users/gaudan/.arlas/cli/configuration.yam… │
+│                       [default: None]                              │
+│ --help                Show this message and exit.                  │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────╮
 │ clone     Clone an index and set its name                          │
@@ -43,7 +42,7 @@ To generate a mapping, you need to provide a NDJSON file (New line delimiter JSO
  Generate the mapping based on the data                               
                                                                       
 ╭─ Arguments ────────────────────────────────────────────────────────╮
-│ *    file      TEXT  Path to the file conaining the data. Format:  │
+│ *    file      TEXT  Path to the file containing the data. Format: │
 │                      NDJSON                                        │
 │                      [default: None]                               │
 │                      [required]                                    │
@@ -53,7 +52,7 @@ To generate a mapping, you need to provide a NDJSON file (New line delimiter JSO
 │                                 generating the mapping. Avoid      │
 │                                 going over 10.                     │
 │                                 [default: 2]                       │
-│ --field-mapping        TEXT     Overide the mapping with the       │
+│ --field-mapping        TEXT     Override the mapping with the      │
 │                                 provided field path/type. Example: │
 │                                 fragment.location:geo_point.       │
 │                                 Important: the full field path     │
@@ -109,13 +108,13 @@ For indexing data, you'll need to provide one ore several NDJSON file(s). Indexi
                                                                       
 ╭─ Arguments ────────────────────────────────────────────────────────╮
 │ *    index      TEXT      index's name [default: None] [required]  │
-│ *    files      FILES...  List of pathes to the file conaining the │
-│                           data. Format: NDJSON                     │
+│ *    files      FILES...  List of paths to the file(s) containing  │
+│                           the data. Format: NDJSON                 │
 │                           [default: None]                          │
 │                           [required]                               │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Options ──────────────────────────────────────────────────────────╮
-│ --bulk        INTEGER  Bulk size for indexing data [default: 100]  │
+│ --bulk        INTEGER  Bulk size for indexing data [default: 5000] │
 │ --help                 Show this message and exit.                 │
 ╰────────────────────────────────────────────────────────────────────╯
 

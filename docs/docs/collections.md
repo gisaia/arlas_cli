@@ -8,12 +8,11 @@
  [ARGS]...                                                            
                                                                       
 ╭─ Options ──────────────────────────────────────────────────────────╮
-│ *  --config        TEXT  Name of the ARLAS configuration to use    │
-│                          from your configuration file              │
-│                          (/Users/gaudan/.arlas/cli/configuration.… │
-│                          [default: None]                           │
-│                          [required]                                │
-│    --help                Show this message and exit.               │
+│ --config        TEXT  Name of the ARLAS configuration to use from  │
+│                       your configuration file                      │
+│                       (/Users/gaudan/.arlas/cli/configuration.yam… │
+│                       [default: None]                              │
+│ --help                Show this message and exit.                  │
 ╰────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────╮
 │ count      Count the number of hits within a collection (or all    │
@@ -26,9 +25,9 @@
 │ private    Set collection visibility to private                    │
 │ public     Set collection visibility to public                     │
 │ sample     Display a sample of a collection                        │
-│ set_alias  Set the collection display name                         │
+│ set_alias  Set the field display name                              │
 │ share      Share the collection with the organisation              │
-│ unshare    Share the collection with the organisation              │
+│ unshare    Unshare the collection with the organisation            │
 ╰────────────────────────────────────────────────────────────────────╯
 
 ```
@@ -69,16 +68,16 @@ You can create a collection from scratch or by providing a collection model (`--
 │                                         [default: None]            │
 │ --orgs                            TEXT  List of organisations      │
 │                                         accessing the collection   │
-│ --id-path                         TEXT  Overide the JSON path to   │
+│ --id-path                         TEXT  Override the JSON path to  │
 │                                         the id field.              │
 │                                         [default: None]            │
-│ --centroid-path                   TEXT  Overide the JSON path to   │
+│ --centroid-path                   TEXT  Override the JSON path to  │
 │                                         the centroid field.        │
 │                                         [default: None]            │
-│ --geometry-path                   TEXT  Overide the JSON path to   │
+│ --geometry-path                   TEXT  Override the JSON path to  │
 │                                         the geometry field.        │
 │                                         [default: None]            │
-│ --date-path                       TEXT  Overide the JSON path to   │
+│ --date-path                       TEXT  Override the JSON path to  │
 │                                         the date field.            │
 │                                         [default: None]            │
 │ --help                                  Show this message and      │

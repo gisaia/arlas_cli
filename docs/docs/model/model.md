@@ -21,6 +21,7 @@ airs_model
 | [arlas](#arlas)       | `object` | Optional | cannot be null | [Settings](model-properties-dictionary-of-namearlas-configurations.md "airs_model#/properties/arlas") |
 | [mappings](#mappings) | `object` | Optional | cannot be null | [Settings](model-properties-dictionary-of-namemapping-resources.md "airs_model#/properties/mappings") |
 | [models](#models)     | `object` | Optional | cannot be null | [Settings](model-properties-dictionary-of-namemodel-resources.md "airs_model#/properties/models")     |
+| [default](#default)   | Merged   | Optional | cannot be null | [Settings](model-properties-name-of-the-default-configuration.md "airs_model#/properties/default")    |
 
 ## arlas
 
@@ -75,6 +76,30 @@ airs_model
 ### models Type
 
 `object` ([dictionary of name/model resources](model-properties-dictionary-of-namemodel-resources.md))
+
+## default
+
+
+
+`default`
+
+*   is optional
+
+*   Type: merged type ([Name of the default configuration](model-properties-name-of-the-default-configuration.md))
+
+*   cannot be null
+
+*   defined in: [Settings](model-properties-name-of-the-default-configuration.md "airs_model#/properties/default")
+
+### default Type
+
+merged type ([Name of the default configuration](model-properties-name-of-the-default-configuration.md))
+
+any of
+
+*   [Untitled string in Settings](model-properties-name-of-the-default-configuration-anyof-0.md "check type definition")
+
+*   [Untitled null in Settings](model-properties-name-of-the-default-configuration-anyof-1.md "check type definition")
 
 # Settings Definitions
 
