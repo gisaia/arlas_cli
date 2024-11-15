@@ -76,14 +76,14 @@ def create_configuration(
     print("Configuration {} created.".format(name))
 
 
-@configurations.command(help="Add a configuration for arlas cloud", name="login")
+@configurations.command(help="Add a configuration for ARLAS Cloud", name="login")
 def login(
     auth_login: str = typer.Argument(help="login"),
-    elastic_login: str = typer.Argument(help="elasticsearch login"),
-    elastic: str = typer.Argument(help="elasticsearch url"),
+    elastic_login: str = typer.Argument(help="Elasticsearch login"),
+    elastic: str = typer.Argument(help="Elasticsearch url"),
     auth_org: str = typer.Option(default=None, help="ARLAS IAM Organization, default is your email domain name"),
     allow_delete: bool = typer.Option(default=True, help="Is delete command allowed for this configuration?"),
-    auth_password: str = typer.Option(default=None, help="password"),
+    auth_password: str = typer.Option(default=None, help="ARLAS password"),
     elastic_password: str = typer.Option(default=None, help="elasticsearch password")
 ):
     if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', auth_login):
