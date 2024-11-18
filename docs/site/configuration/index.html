@@ -12,11 +12,13 @@
         <meta name="author" content="Gisaïa - SCALING GEOSPATIAL INTELLIGENCE">
       
       
-        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/arlas_cloud/">
+        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/configuration/">
       
       
-        <link rel="prev" href="../model/model/">
+        <link rel="prev" href="../install/">
       
+      
+        <link rel="next" href="../help/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +26,7 @@
     
     
       
-        <title>Configuring ARLAS Cloud - ARLAS Command Line (arlas_cli)</title>
+        <title>Configuration - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -75,6 +77,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -107,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuring ARLAS Cloud
+              Configuration
             
           </span>
         </div>
@@ -187,11 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -207,11 +214,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -244,18 +251,94 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurations-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurations file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-configuration-file-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom configuration file path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-cloud-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Cloud configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -323,11 +406,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -348,7 +452,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -369,7 +473,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -390,28 +494,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -435,43 +518,15 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
+    Concepts
   </span>
   
 
       </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
-  </span>
-  
-
-      </a>
-      
     </li>
   
 
@@ -493,6 +548,52 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configurations-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurations file
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-configuration-file-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom configuration file path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-cloud-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Cloud configuration
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -507,50 +608,105 @@
                   
 
 
-  <h1>Configuring ARLAS Cloud</h1>
+<h1 id="configuration">Configuration</h1>
+<p><code>arlas_cli</code> uses a yaml file for storing various ARLAS and elasticsearch configurations. </p>
+<h2 id="initial-configuration">Initial configuration</h2>
+<p>At its first launch, <code>arlas_cli</code> will create a first <a href="https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml">configuration file</a> for you.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --version</span><span data-ty>X.X.X<br>Warning : no configuration file found, we created an empty one for <br>you (~/.arlas/cli/configuration.yaml).<br></span></div>
 
-<p>To configure <code>arlas_cli</code> for your cloud.arlas.io account:</p>
-<p>First, set the following environment variables by changing appropriately <code>SET_THIS_VALUE</code>:
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">MY_ORGANIZATION</span><span class="o">=</span>SET_THIS_VALUE
-<span class="nb">export</span><span class="w"> </span><span class="nv">ARLAS_USER</span><span class="o">=</span>SET_THIS_VALUE
-<span class="nb">export</span><span class="w"> </span><span class="nv">ARLAS_PWD</span><span class="o">=</span>SET_THIS_VALUE
-<span class="nb">export</span><span class="w"> </span><span class="nv">ELASTIC_ENDPOINT</span><span class="o">=</span>SET_THIS_VALUE
-<span class="nb">export</span><span class="w"> </span><span class="nv">ELASTIC_USER</span><span class="o">=</span>SET_THIS_VALUE
-<span class="nb">export</span><span class="w"> </span><span class="nv">ELASTIC_PWD</span><span class="o">=</span>SET_THIS_VALUE
+<p>By default, the file is located in <code>$HOME/.arlas/cli/configuration.yaml</code>.</p>
+<p>It contains one ARLAS configuration linked to a local deployment.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you used the ARLAS Exploration Stack, it is possible that you already have a directory named <code>$HOME/.arlas</code>. 
+This directory has been created by docker as root. </p>
+<p>The owner of the directory must be changed to the local user (<code>sudo chown ${USER}: $HOME/.arlas</code>).</p>
+</div>
+<h2 id="configurations-file">Configurations file</h2>
+<p>By default, the command line uses the <code>${HOME}/.arlas/cli/configuration.yaml</code> configuration file:</p>
+<p>For example, the default configuration file with only the <code>local</code> configuration looks like: 
+<div class="highlight"><pre><span></span><code><span class="nt">arlas</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">allow_delete</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">authorization</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">    </span><span class="nt">elastic</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9200</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost/persist</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">server</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost/arlas</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </code></pre></div></p>
-<p>Then run the command <code>arlas_cli confs create cloud.arlas.io</code> with all the parameters:</p>
-<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>confs<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>create<span class="w"> </span>cloud.arlas.io<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--server<span class="w"> </span><span class="s2">&quot;https://cloud.arlas.io/arlas/server&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--headers<span class="w"> </span><span class="s2">&quot;arlas-org-filter:</span><span class="si">${</span><span class="nv">MY_ORGANIZATION</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--no-allow-delete<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-token-url<span class="w"> </span>https://cloud.arlas.io/arlas/iam/session<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-login<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ARLAS_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-password<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ARLAS_PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json;charset=utf-8&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-org<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_ORGANIZATION</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--elastic<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_ENDPOINT</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--elastic-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--elastic-login<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_USER</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--elastic-password<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--elastic-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json;charset=utf-8&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--persistence<span class="w"> </span><span class="s2">&quot;https://cloud.arlas.io/arlas/persistence&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--persistence-headers<span class="w"> </span><span class="s2">&quot;Content-Type:application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--auth-arlas-iam
+<p>The <code>arlas</code> section contains the different deployment configurations (here only <code>local</code>).</p>
+<p>Each deployment configuration is defined by:</p>
+<ul>
+<li>authorization: The authentication system configuration</li>
+<li>elastic: The link to the elasticsearch cluster</li>
+<li>persistence: The link to ARLAS persistence</li>
+<li>server: The link to ARLAS server</li>
+</ul>
+<p>You can interact with this configuration file directly with the command line itself with the <a href="../confs/#configurations"><code>arlas_cli confs</code></a> commands:</p>
+<ul>
+<li><a href="../confs/#list">confs list</a>: List the available configurations</li>
+<li><a href="../confs/#describe">confs describe</a>: Describe the content of a configuration</li>
+<li><a href="../confs/#create">confs create</a>: Create a new configuration</li>
+<li><a href="../confs/#delete">confs delete</a>: Delete a configuration</li>
+</ul>
+<h2 id="custom-configuration-file-path">Custom configuration file path</h2>
+<p>It is possible to use a different configuration file than the one placed in your home directory (<code>$HOME/.arlas/cli/configuration.yaml</code>):</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --config-file /tmp/config.yaml        </span><span data-ty>Warning : no configuration file found, we created a default one with a 'local' confs accessing local ARLAS exploration stack (/tmp/config.yaml).<br></span></div>
+
+<p>All the arlas_cli commands can then be run on this configuration file, for example to list the available confs:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --config-file /tmp/config.yaml confs list</span><span data-ty>+-------+------------------------+<br>| name  | url                    |<br>+-------+------------------------+<br>| local | http://localhost/arlas |<br>+-------+------------------------+<br></span></div>
+
+<h2 id="arlas-cloud-configuration">ARLAS Cloud configuration</h2>
+<p>If you have an ARLAS cloud account, you can directly create the configurations to access your space with <code>arlas_cli login</code>.</p>
+<p>First, set the environment variables provided by Gisaïa and change appropriately <code>SET_THIS_VALUE</code> with your own ARLAS user login/password:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux/Mac</label><label for="__tabbed_1_2">Windows PowerShell</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>export MY_ORGANIZATION=&lt;SET_THIS_VALUE&gt;
+export ARLAS_USER=&lt;SET_THIS_VALUE&gt;
+export ARLAS_PWD=&lt;SET_THIS_VALUE&gt;
+export ELASTIC_ENDPOINT=&lt;SET_THIS_VALUE&gt;
+export ELASTIC_USER=&lt;SET_THIS_VALUE&gt;
+export ELASTIC_PWD=&lt;SET_THIS_VALUE&gt;
 </code></pre></div>
-<p>Check the configuration exists:</p>
+<p>Then run the command <code>arlas_cli confs create</code> with all the parameters to create the <code>cloud.arlas.io.{USER_NAME}</code> configuration:</p>
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>confs<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>login<span class="w"> </span><span class="si">${</span><span class="nv">ARLAS_USER</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">ELASTIC_USER</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">ELASTIC_ENDPOINT</span><span class="si">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-password<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ARLAS_PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--auth-org<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">MY_ORGANIZATION</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--elastic-password<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">ELASTIC_PWD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--allow-delete
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>$env:MY_ORGANIZATION = &quot;&lt;SET_THIS_VALUE&gt;&quot;
+$env:ARLAS_USER = &quot;&lt;SET_THIS_VALUE&gt;&quot;
+$env:ARLAS_PWD = &quot;&lt;SET_THIS_VALUE&gt;&quot;
+$env:ELASTIC_ENDPOINT = &quot;&lt;SET_THIS_VALUE&gt;&quot;
+$env:ELASTIC_USER = &quot;&lt;SET_THIS_VALUE&gt;&quot;
+$env:ELASTIC_PWD = &quot;&lt;SET_THIS_VALUE&gt;&quot;
+</code></pre></div>
+<p>Then run the command <code>arlas_cli confs create</code> with all the parameters to create the <code>cloud.arlas.io.{USER_NAME}</code> configuration:</p>
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>confs<span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>login<span class="w"> </span><span class="nv">$env</span>:ARLAS_USER<span class="w"> </span><span class="nv">$env</span>:ELASTIC_USER<span class="w"> </span><span class="nv">$env</span>:ELASTIC_ENDPOINT<span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>--auth-password<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$env</span><span class="s2">:ARLAS_PWD&quot;</span><span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>--auth-org<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$env</span><span class="s2">:MY_ORGANIZATION&quot;</span><span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>--elastic-password<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$env</span><span class="s2">:ELASTIC_PWD&quot;</span><span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>--allow-delete
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>Check that the configuration exist:</p>
 <div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>confs<span class="w"> </span>list
 </code></pre></div>
-<p>You can now list the collections:</p>
-<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>collections<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
-</code></pre></div>
-<p>List the indices:</p>
-<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>list
-</code></pre></div>
-<p>List the persisted elements:</p>
-<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>persist<span class="w"> </span>--config<span class="w"> </span>cloud.arlas.io<span class="w"> </span>groups<span class="w"> </span>config.json
+<p>You can now, for example, list the available collections:</p>
+<div class="highlight"><pre><span></span><code>arlas_cli<span class="w"> </span>collections<span class="w"> </span>list
 </code></pre></div>
 
 

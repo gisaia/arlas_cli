@@ -2,7 +2,7 @@
 
 ARLAS collections are built on top of [elasticsearch (ES) index](concepts.md#es-index). They describe the basic data structure for its visualization and elements needed for the data access policy.
 
-`arlas_cli` provide tools to manage the ARLAS collections with the `collections` command. 
+`arlas_cli` provide tools to manage the ARLAS collections with the `collections` command.
 
 **List collections management commands**
 
@@ -41,7 +41,7 @@ ARLAS collections are built on top of [elasticsearch (ES) index](concepts.md#es-
 
 An ARLAS Collection is linked to an index or even an index pattern.
 
-The command line options let you specify how the index should be used by the collection. 
+The command line options let you specify how the index should be used by the collection.
 
 <!-- termynal -->
 ```shell
@@ -88,13 +88,13 @@ The command line options let you specify how the index should be used by the col
 ```
 
 !!! note "Collection visibility"
-    
+
     The visibility options (`--public`, `--private`, `--owner` and `--orgs`)  allow you to choose who can access the collection.
 
 !!! note "--owner"
-    
+
     If ARLAS is used with ARLAS IAM (for example with ARLAS Cloud), then a collection must be associated to an organisation.
-    
+
     Example:
 
     `--owner your.organisation.com`
@@ -110,31 +110,31 @@ The index option sets the targeted index:`--index index_name`
 
 !!! tip "Index pattern"
 
-    The collection can target an index pattern. 
+    The collection can target an index pattern.
     Instead of an index name, the target is an expression using `*` to reference multiple ES indices.
 
     Example:
-    
+
     `--index index_name_prefix*`
 
     All the indices have to share exactly the same data mapping.
-    
+
     The data contained in all referenced indices are then explorable together in ARLAS.
-    
+
 
 The collection also describe a basic structure for spatio-temporel datasets:
 
 - **ID path**: A data field containing unique element identifier. `--id-path unique_id_field`
 - **Centroid path**: A data field containing a point geometry used for aggregations `--centroid-path point_geom_field`
 - **Geometry path**: A data field containing a geometry representing the element `--geometry-path element_geom_field`
-- **Date path**: A data field containing the date associated to each element `--date-path date_field` 
+- **Date path**: A data field containing the date associated to each element `--date-path date_field`
 
 !!! tip "Pretty name"
 
     A pretty name for the collection can be set at the creation with the `display-name` option
 
     Example:
-    
+
     `--display-name "Pretty Collection Name"`
 
 

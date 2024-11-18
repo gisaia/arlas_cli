@@ -2,10 +2,10 @@
 
 ## Elasticsearch index
 
-To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](concepts.md#elasticsearch) (ES) [index](concepts.md#es-index). 
+To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](concepts.md#elasticsearch) (ES) [index](concepts.md#es-index).
 An index contains the data and a [mapping](concepts.md#es-mapping) to describe how fields have to be interpreted (types).
 
-`arlas_cli` provide tools to infer mapping from data and manage the ES indices with the `indices` command. 
+`arlas_cli` provide tools to infer mapping from data and manage the ES indices with the `indices` command.
 
 **List index management commands**
 
@@ -80,7 +80,7 @@ To generate a mapping, you need to provide a NDJSON `file` (New line delimiter J
 The values of the first lines of the files are used to infer the mapping for each field of the data.
 
 !!! note "--nb_lines"
-    The `indices mapping` function uses the first rows to infer mapping. 
+    The `indices mapping` function uses the first rows to infer mapping.
     If a field is not present in the first rows, it will not appear in the mapping.
 
     Make sure to take enough rows to get all the fields with the option `--nb_lines`
@@ -136,15 +136,15 @@ A **date** is identified as such if
 By default, the keywords and text fields are searchable as fulltext to be accessible in the search bar.
 
 !!! note "--no-fulltext "
-     
-    If searching through a field value is not needed, it can be deactivated. 
+
+    If searching through a field value is not needed, it can be deactivated.
     That would result in better performances for the fulltext search.
 
     Example:
 
     - `--no-fulltext field_keyword`
 
-### Created mapping 
+### Created mapping
 
 By default, the `arlas_cli indices mapping` directly returns the mapping in the command line.
 
@@ -176,7 +176,7 @@ Once you're happy with the mapping, you can either store it in a file or directl
        mapping {path/to/data.json} \
        --push-on {index_name}
     ```
-    
+
     The index is then created and the [index creation command](#create) can be skipped.
 
 ## create
@@ -253,7 +253,7 @@ The `indices data` sub-function ingest the data in a given index.
 ```
 ### Ingest data
 
-To index data, you'll need to provide one or several NDJSON (New line delimiter JSON) file(s). 
+To index data, you'll need to provide one or several NDJSON (New line delimiter JSON) file(s).
 Indexing uses bulks for optimal performances.
 
 Example:
@@ -264,13 +264,13 @@ Example:
    data {index_name} {path/to/data.json}
 ```
 
-!!! warning 
+!!! warning
     If the index already contains data, the data is added to the index.
-    
+
     To reindex the same data, delete the index, and do not forget to recreate it with the correct mapping before ingesting the data.
 
 !!! note "--bulk"
-    Indexing uses bulks for optimal performances. 
+    Indexing uses bulks for optimal performances.
 
     The size of bulk can be changed with the `--bulk` option
 
@@ -294,7 +294,7 @@ To list the available ES indices, simply use the `indices list` sub-function. No
 
 ### List available ES indices
 
-It displays for each ES index its status, the number of elements it contains and the size of the index. 
+It displays for each ES index its status, the number of elements it contains and the size of the index.
 
 Example:
 
@@ -386,7 +386,7 @@ For a given index `index_name`, the first rows of data can be displayed as a val
     The number of rows to display (default 100) can be changed
 
     Example:
-    
+
     ```shell
     > arlas_cli indices --config {local} sample {index_name} --size {10}
     ```
@@ -397,7 +397,7 @@ By default, the json representation of the data is pretty printed (clear indenta
     The pretty printing can be deactivated and data is displayed in a compact way
 
     Example:
-    
+
     ```shell
     > arlas_cli indices --config {local} sample {index_name} --no-pretty
     ```
@@ -432,7 +432,7 @@ Both indices co-exist with exactly the same mapping and data content.
 
 ### Copy an index in another arlas configuration
 
-An index can be copied from an ES instance to another. 
+An index can be copied from an ES instance to another.
 
 !!! note
     The two instances have to be accessible by `arlas_cli` with two configurations (see [Configuration guide](configuration.md)).
@@ -488,11 +488,11 @@ To delete an ES index `index_name` on `local` configuration, run the following c
 ```shell
 > arlas_cli indices --config {local} delete {index_name}
 ```
-!!! warning 
+!!! warning
     A deleted index cannot be restored.
 
 !!! Note Delete is not always allowed
-    By default, it is not allowed to delete an index for a given configuration. 
+    By default, it is not allowed to delete an index for a given configuration.
 
     To allow deleting, [edit the configuration file](configuration.md) and set `allow_delete` to `True`.
 

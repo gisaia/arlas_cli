@@ -106,10 +106,10 @@ Those options can be filled as described in the following sections.
 
 #### ARLAS Authentication
 
-For ARLAS, keycloak and ARLAS IAM authentications are supported. 
+For ARLAS, keycloak and ARLAS IAM authentications are supported.
 
 === "ARLAS IAM"
-    
+
     To create a configuration using ARLAS IAM, the following parameters have to be set with your values:
 
     - The IAM session url `IAM_URL`
@@ -143,7 +143,7 @@ The ARLAS server URL (`ARLAS_SERVER_URL`) and the ARLAS persistence server URL (
 ```
 
 
-#### Elasticsearch 
+#### Elasticsearch
 
 The used Elasticsearch instance and your credentials has to be set in the configuration:
 
@@ -161,7 +161,7 @@ The link to the ES instance is configured by using the following options in the 
 
 #### Allow data deletion
 
-By default, it is not possible to run the `indices delete` command on an elasticsearch with `arlas_cli`. 
+By default, it is not possible to run the `indices delete` command on an elasticsearch with `arlas_cli`.
 This is to prevent accidental data loss.
 
 !!! warning "--allow-delete"
@@ -175,7 +175,34 @@ The `confs longin` allows to create a configuration linked to an ARLAS Cloud acc
 
 <!-- termynal -->
 ```shell
-> !!!execute arlas_cli confs login --help
+> arlas_cli confs login --help
+                                                                              
+ Usage: arlas_cli confs login [OPTIONS] AUTH_LOGIN ELASTIC_LOGIN ELASTIC      
+                                                                              
+ Add a configuration for ARLAS Cloud                                          
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    auth_login         TEXT  ARLAS login [default: None] [required]       │
+│ *    elastic_login      TEXT  Elasticsearch login [default: None]          │
+│                               [required]                                   │
+│ *    elastic            TEXT  Elasticsearch url [default: None] [required] │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --auth-org                                 TEXT  ARLAS IAM Organization,   │
+│                                                  default is your email     │
+│                                                  domain name               │
+│                                                  [default: None]           │
+│ --allow-delete        --no-allow-delete          Is delete command allowed │
+│                                                  for this configuration?   │
+│                                                  [default: allow-delete]   │
+│ --auth-password                            TEXT  ARLAS password            │
+│                                                  [default: None]           │
+│ --elastic-password                         TEXT  elasticsearch password    │
+│                                                  [default: None]           │
+│ --help                                           Show this message and     │
+│                                                  exit.                     │
+╰────────────────────────────────────────────────────────────────────────────╯
+
 ```
 
 Only your own ES and ARLAS credentials have to be set, the configuration is directly linked to the ARLAS Cloud instance.
@@ -185,7 +212,7 @@ It creates a configuration based on your username (extracted from your ARLAS log
 !!! note
     This created configuration is used as default.
 
-    You no longer need to declare the `--config` in the arlas_cli commands 
+    You no longer need to declare the `--config` in the arlas_cli commands
 
 See the [ARLAS Cloud configuration guide](configuration.md#arlas-cloud-configuration).
 
@@ -210,6 +237,8 @@ An existing configuration can be deleted with the `confs delete` sub command:
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
+
+```
 
 ```
 
@@ -245,6 +274,8 @@ The content of a configuration can be detailed with `confs describe` sub command
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
+
+```
 
 ```
 
@@ -301,6 +332,8 @@ The list of available configurations can be obtained with `confs list` sub comma
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
+
+```
 
 ```
 

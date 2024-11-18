@@ -26,7 +26,7 @@
     
     
       
-        <title>Collections - ARLAS Command Line (arlas_cli)</title>
+        <title>collections - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#list-collections-management-commands" class="md-skip">
+        <a href="#arlas-collections" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Collections
+              collections
             
           </span>
         </div>
@@ -194,11 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -214,11 +214,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -254,11 +254,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -332,11 +332,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -364,7 +385,7 @@
           
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -375,7 +396,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -395,29 +416,299 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#list-collections-management-commands" class="md-nav__link">
+  <a href="#arlas-collections" class="md-nav__link">
     <span class="md-ellipsis">
-      List collections management commands
+      ARLAS Collections
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-collection" class="md-nav__link">
+  <a href="#create" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a collection
+      create
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-arlas-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an ARLAS collection
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-a-pretty-name-for-the-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set a pretty name for the collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set_alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_alias
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set_alias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-a-pretty-name-for-a-data-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set a pretty name for a data field
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      List available collections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">
+      describe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="describe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#describe-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
       Describe a collection
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      count
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="count">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-the-number-of-element-within-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Count the number of element within a collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      sample
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#display-a-sample-of-the-collection-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display a sample of the collection data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private" class="md-nav__link">
+    <span class="md-ellipsis">
+      private
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="private">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-the-collection-as-private" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set the collection as private
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public" class="md-nav__link">
+    <span class="md-ellipsis">
+      public
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="public">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-the-collection-as-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set the collection as public
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#share" class="md-nav__link">
+    <span class="md-ellipsis">
+      share
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="share">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#share-collections-between-organisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Share collections between organisations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unshare" class="md-nav__link">
+    <span class="md-ellipsis">
+      unshare
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="unshare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-collection-access-for-an-organisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove collection access for an organisation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="delete">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete a collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -441,7 +732,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -462,28 +753,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -507,31 +777,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -565,29 +815,299 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#list-collections-management-commands" class="md-nav__link">
+  <a href="#arlas-collections" class="md-nav__link">
     <span class="md-ellipsis">
-      List collections management commands
+      ARLAS Collections
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#create-a-collection" class="md-nav__link">
+  <a href="#create" class="md-nav__link">
     <span class="md-ellipsis">
-      Create a collection
+      create
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-arlas-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an ARLAS collection
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    <span class="md-ellipsis">
+      name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-a-pretty-name-for-the-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set a pretty name for the collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set_alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_alias
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="set_alias">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-a-pretty-name-for-a-data-field" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set a pretty name for a data field
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      List available collections
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">
+      describe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="describe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#describe-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
       Describe a collection
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#count" class="md-nav__link">
+    <span class="md-ellipsis">
+      count
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="count">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#count-the-number-of-element-within-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Count the number of element within a collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      sample
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#display-a-sample-of-the-collection-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display a sample of the collection data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private" class="md-nav__link">
+    <span class="md-ellipsis">
+      private
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="private">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-the-collection-as-private" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set the collection as private
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public" class="md-nav__link">
+    <span class="md-ellipsis">
+      public
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="public">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#set-the-collection-as-public" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set the collection as public
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#share" class="md-nav__link">
+    <span class="md-ellipsis">
+      share
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="share">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#share-collections-between-organisations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Share collections between organisations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unshare" class="md-nav__link">
+    <span class="md-ellipsis">
+      unshare
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="unshare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remove-collection-access-for-an-organisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove collection access for an organisation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="delete">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-a-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete a collection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -606,18 +1126,142 @@
                   
 
 
-  <h1>Collections</h1>
+  <h1>collections</h1>
 
-<h2 id="list-collections-management-commands">List collections management commands</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli collections [OPTIONS] COMMAND         <br> [ARGS]...                                                            <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from  │<br>│                       your configuration file                      │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yam… │<br>│                       [default: None]                              │<br>│ --help                Show this message and exit.                  │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ count      Count the number of hits within a collection (or all    │<br>│            collection if not provided)                             │<br>│ create     Create a collection                                     │<br>│ delete     Delete a collection                                     │<br>│ describe   Describe a collection                                   │<br>│ list       List collections                                        │<br>│ name       Set the collection display name                         │<br>│ private    Set collection visibility to private                    │<br>│ public     Set collection visibility to public                     │<br>│ sample     Display a sample of a collection                        │<br>│ set_alias  Set the field display name                              │<br>│ share      Share the collection with the organisation              │<br>│ unshare    Unshare the collection with the organisation            │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<h2 id="arlas-collections">ARLAS Collections</h2>
+<p>ARLAS collections are built on top of <a href="../concepts/#es-index">elasticsearch (ES) index</a>. They describe the basic data structure for its visualization and elements needed for the data access policy.</p>
+<p><code>arlas_cli</code> provide tools to manage the ARLAS collections with the <code>collections</code> command.</p>
+<p><strong>List collections management commands</strong></p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections [OPTIONS] COMMAND [ARGS]...                     <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from your     │<br>│                       configuration file                                   │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │<br>│                       [default: None]                                      │<br>│ --help                Show this message and exit.                          │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ count      Count the number of hits within a collection (or all collection │<br>│            if not provided)                                                │<br>│ create     Create a collection                                             │<br>│ delete     Delete a collection                                             │<br>│ describe   Describe a collection                                           │<br>│ list       List collections                                                │<br>│ name       Set the collection display name                                 │<br>│ private    Set collection visibility to private                            │<br>│ public     Set collection visibility to public                             │<br>│ sample     Display a sample of a collection                                │<br>│ set_alias  Set the field display name                                      │<br>│ share      Share the collection with the organisation                      │<br>│ unshare    Unshare the collection with the organisation                    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
-<h2 id="create-a-collection">Create a collection</h2>
-<p>You can create a collection from scratch or by providing a collection model (<code>--model</code>). The command line options let you specify how the index should be used by the collection. The visibility options (<code>--public</code>, <code>--owner</code> and <code>--orgs</code>)  allow you to choose who can access the collection.</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local create --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli collections create [OPTIONS]          <br> COLLECTION                                                           <br>                                                                      <br> Create a collection                                                  <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None]       │<br>│                            [required]                              │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --model                           TEXT  Name of the model within   │<br>│                                         your configuration, or URL │<br>│                                         or file path               │<br>│                                         [default: None]            │<br>│ --index                           TEXT  Name of the index          │<br>│                                         referenced by the          │<br>│                                         collection                 │<br>│                                         [default: None]            │<br>│ --display-name                    TEXT  Display name of the        │<br>│                                         collection                 │<br>│                                         [default: None]            │<br>│ --public           --no-public          Whether the collection is  │<br>│                                         public or not              │<br>│                                         [default: no-public]       │<br>│ --owner                           TEXT  Organisation's owner       │<br>│                                         [default: None]            │<br>│ --orgs                            TEXT  List of organisations      │<br>│                                         accessing the collection   │<br>│ --id-path                         TEXT  Override the JSON path to  │<br>│                                         the id field.              │<br>│                                         [default: None]            │<br>│ --centroid-path                   TEXT  Override the JSON path to  │<br>│                                         the centroid field.        │<br>│                                         [default: None]            │<br>│ --geometry-path                   TEXT  Override the JSON path to  │<br>│                                         the geometry field.        │<br>│                                         [default: None]            │<br>│ --date-path                       TEXT  Override the JSON path to  │<br>│                                         the date field.            │<br>│                                         [default: None]            │<br>│ --help                                  Show this message and      │<br>│                                         exit.                      │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<h2 id="create">create</h2>
+<p>An ARLAS Collection is linked to an index or even an index pattern.</p>
+<p>The command line options let you specify how the index should be used by the collection.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local create --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections create [OPTIONS] COLLECTION                     <br>                                                                              <br> Create a collection                                                          <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None] [required]    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --model                           TEXT  Name of the model within your      │<br>│                                         configuration, or URL or file path │<br>│                                         [default: None]                    │<br>│ --index                           TEXT  Name of the index referenced by    │<br>│                                         the collection                     │<br>│                                         [default: None]                    │<br>│ --display-name                    TEXT  Display name of the collection     │<br>│                                         [default: None]                    │<br>│ --public           --no-public          Whether the collection is public   │<br>│                                         or not                             │<br>│                                         [default: no-public]               │<br>│ --owner                           TEXT  Organisation's owner               │<br>│                                         [default: None]                    │<br>│ --orgs                            TEXT  List of organisations accessing    │<br>│                                         the collection                     │<br>│ --id-path                         TEXT  Override the JSON path to the id   │<br>│                                         field.                             │<br>│                                         [default: None]                    │<br>│ --centroid-path                   TEXT  Override the JSON path to the      │<br>│                                         centroid field.                    │<br>│                                         [default: None]                    │<br>│ --geometry-path                   TEXT  Override the JSON path to the      │<br>│                                         geometry field.                    │<br>│                                         [default: None]                    │<br>│ --date-path                       TEXT  Override the JSON path to the date │<br>│                                         field.                             │<br>│                                         [default: None]                    │<br>│ --help                                  Show this message and exit.        │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
-<h2 id="describe-a-collection">Describe a collection</h2>
-<p>This command line provides a description of the collection structure (fields) and of its metadata.</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local describe --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli collections describe [OPTIONS]        <br> COLLECTION                                                           <br>                                                                      <br> Describe a collection                                                <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None]       │<br>│                            [required]                              │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                        │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<div class="admonition note">
+<p class="admonition-title">Collection visibility</p>
+<p>The visibility options (<code>--public</code>, <code>--private</code>, <code>--owner</code> and <code>--orgs</code>)  allow you to choose who can access the collection.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">--owner</p>
+<p>If ARLAS is used with ARLAS IAM (for example with ARLAS Cloud), then a collection must be associated to an organisation.</p>
+<p>Example:</p>
+<p><code>--owner your.organisation.com</code></p>
+<p>By default, the organisation referenced in your <code>config</code> is used as owner.</p>
+</div>
+<h3 id="create-an-arlas-collection">Create an ARLAS collection</h3>
+<p>The collection has to reference an available ES index or index pattern with the <a href="../confs/#configurations">arlas_cli configuration</a>.</p>
+<p>The index option sets the targeted index:<code>--index index_name</code></p>
+<div class="admonition tip">
+<p class="admonition-title">Index pattern</p>
+<p>The collection can target an index pattern.
+Instead of an index name, the target is an expression using <code>*</code> to reference multiple ES indices.</p>
+<p>Example:</p>
+<p><code>--index index_name_prefix*</code></p>
+<p>All the indices have to share exactly the same data mapping.</p>
+<p>The data contained in all referenced indices are then explorable together in ARLAS.</p>
+</div>
+<p>The collection also describe a basic structure for spatio-temporel datasets:</p>
+<ul>
+<li><strong>ID path</strong>: A data field containing unique element identifier. <code>--id-path unique_id_field</code></li>
+<li><strong>Centroid path</strong>: A data field containing a point geometry used for aggregations <code>--centroid-path point_geom_field</code></li>
+<li><strong>Geometry path</strong>: A data field containing a geometry representing the element <code>--geometry-path element_geom_field</code></li>
+<li><strong>Date path</strong>: A data field containing the date associated to each element <code>--date-path date_field</code></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Pretty name</p>
+<p>A pretty name for the collection can be set at the creation with the <code>display-name</code> option</p>
+<p>Example:</p>
+<p><code>--display-name "Pretty Collection Name"</code></p>
+</div>
+<p>To create the collection, run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli  collections \
+   --config {local} \
+   create {collection_name} \
+   --index {index_name} \
+   --id-path {unique_id_field} \
+   --centroid-path {point_geom_field} \
+   --geometry-path {element_geom_field} \
+   --date-path {date_field} \
+   --display-name {&quot;Pretty Collection Name&quot;}</span><span data-ty></span></div>
+
+<h2 id="name">name</h2>
+<p>The collection can be defined by a pretty name. It can be set with <code>name</code> subcommand:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local name --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections name [OPTIONS] COLLECTION NAME                  <br>                                                                              <br> Set the collection display name                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None] [required]    │<br>│ *    name            TEXT  The display name [default: None] [required]     │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="set-a-pretty-name-for-the-collection">Set a pretty name for the collection</h3>
+<p>The pretty name can be used in ARLAS to display the collection. It can also be set by the <code>--display-name</code> option at the <a href="#create">collection creation</a>.</p>
+<p>To set it with the <code>name</code> subcommand:
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>collections<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--config<span class="w"> </span><span class="o">{</span>local<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>name<span class="w"> </span><span class="o">{</span>collection_name<span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;Pretty Collection Name&quot;</span><span class="o">}</span>
+</code></pre></div></p>
+<h2 id="set_alias">set_alias</h2>
+<p>The data fields are sometimes not very suitable in ARLAS Exploration dashboards. You can set aliases to improve their display in the interface.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local set_alias --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections set_alias [OPTIONS] COLLECTION FIELD_PATH       <br>                                        [DISPLAY_NAME]                        <br>                                                                              <br> Set the field display name                                                   <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection        TEXT            Collection's name [default: None]   │<br>│                                        [required]                          │<br>│ *    field_path        TEXT            The field path [default: None]      │<br>│                                        [required]                          │<br>│      display_name      [DISPLAY_NAME]  The field's display name. If none   │<br>│                                        provided, then the alias is removed │<br>│                                        if it existed                       │<br>│                                        [default: None]                     │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="set-a-pretty-name-for-a-data-field">Set a pretty name for a data field</h3>
+<p>Each field of the data has a raw name. It can be replaced by a pretty name to display. For example:
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>collections<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--config<span class="w"> </span><span class="o">{</span>local<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>set_alias<span class="w"> </span><span class="o">{</span>collection_name<span class="o">}</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span><span class="o">{</span>raw_field_name<span class="o">}</span><span class="w"> </span><span class="o">{</span><span class="s2">&quot;Pretty Field Name (unit)&quot;</span><span class="o">}</span>
+</code></pre></div></p>
+<h2 id="list">list</h2>
+<h3 id="list-available-collections">List available collections</h3>
+<p>You can access the list of available collections with the <code>list</code> subcommand:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local set_alias --help</span><span data-ty><br>Usage: arlas_cli collections list [OPTIONS]<br><br>  List collections<br><br>Options:<br>  --help  Show this message and exit.<br><br></span></div>
+
+<h2 id="describe">describe</h2>
+<h3 id="describe-a-collection">Describe a collection</h3>
+<p>The <code>describe</code> command line provides a description of the collection's structure (fields) and its metadata.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local describe --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections describe [OPTIONS] COLLECTION                   <br>                                                                              <br> Describe a collection                                                        <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None] [required]    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="count">count</h2>
+<h3 id="count-the-number-of-element-within-a-collection">Count the number of element within a collection</h3>
+<p>The <code>count</code> command show the total number of elements (data rows) accessible in a collection.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local count --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections count [OPTIONS] [COLLECTION]                    <br>                                                                              <br> Count the number of hits within a collection (or all collection if not       <br> provided)                                                                    <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│   collection      [COLLECTION]  Collection's name [default: None]          │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="sample">sample</h2>
+<h3 id="display-a-sample-of-the-collection-data">Display a sample of the collection data</h3>
+<p>The <code>sample</code> command show few data rows accessible in a collection.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local sample --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections sample [OPTIONS] COLLECTION                     <br>                                                                              <br> Display a sample of a collection                                             <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None] [required]    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --pretty    --no-pretty             [default: pretty]                      │<br>│ --size                     INTEGER  [default: 10]                          │<br>│ --help                              Show this message and exit.            │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The number of rows to display can be set with <code>--size</code> option</p>
+</div>
+<h2 id="private">private</h2>
+<p>By default, a collection is private, it can only be seen by the members of the owner or shared organisation.</p>
+<p>In that case, an ARLAS user has to be logged and have the correct authorisations.</p>
+<h3 id="set-the-collection-as-private">Set the collection as private</h3>
+<p>To switch a collection from <strong>public</strong> to <strong>private</strong>, use the <code>private</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local private --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections private [OPTIONS] COLLECTION                    <br>                                                                              <br> Set collection visibility to private                                         <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None] [required]    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="public">public</h2>
+<p>A public collection can be accessed in ARLAS dashboards without being logged. It can be used to host demo dashboards for example.</p>
+<h3 id="set-the-collection-as-public">Set the collection as public</h3>
+<p>To switch a collection from <strong>private</strong> to <strong>public</strong>, use the <code>public</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local public --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections public [OPTIONS] COLLECTION                     <br>                                                                              <br> Set collection visibility to public                                          <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  Collection's name [default: None] [required]    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="share">share</h2>
+<p>A collection can be shared between different organisations to make it available for its users.</p>
+<h3 id="share-collections-between-organisations">Share collections between organisations</h3>
+<p>A collection can be shared to other organisation with the <code>share</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local share --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections share [OPTIONS] COLLECTION ORGANISATION         <br>                                                                              <br> Share the collection with the organisation                                   <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection        TEXT  Collection's name [default: None] [required]  │<br>│ *    organisation      TEXT  Organisation's name [default: None]           │<br>│                              [required]                                    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="unshare">unshare</h2>
+<p>The right to access a collection can be removed to the users of an organisation.</p>
+<h3 id="remove-collection-access-for-an-organisation">Remove collection access for an organisation</h3>
+<p>The access to a collection can be removed with the <code>unshare</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local unshare --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections unshare [OPTIONS] COLLECTION ORGANISATION       <br>                                                                              <br> Unshare the collection with the organisation                                 <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection        TEXT  Collection's name [default: None] [required]  │<br>│ *    organisation      TEXT  Organisation's name [default: None]           │<br>│                              [required]                                    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="delete">delete</h2>
+<p>A collection can be deleted. It doesn't delete the data (ES index can still exist) but it will no longer be accessible in ARLAS.</p>
+<h3 id="delete-a-collection">Delete a collection</h3>
+<p>The collection can be removed with the <code>delete</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local delete --help</span><span data-ty>                                                                              <br> Usage: arlas_cli collections delete [OPTIONS] COLLECTION                     <br>                                                                              <br> Delete a collection                                                          <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    collection      TEXT  collection's name [default: None] [required]    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
 
 

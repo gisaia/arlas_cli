@@ -12,8 +12,10 @@
         <meta name="author" content="Gisaïa - SCALING GEOSPATIAL INTELLIGENCE">
       
       
-        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/indices_5/">
+        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/concepts/">
       
+      
+        <link rel="prev" href="../iam/">
       
       
       
@@ -22,7 +24,7 @@
     
     
       
-        <title>Indices 5 - ARLAS Command Line (arlas_cli)</title>
+        <title>Concepts - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -73,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#concepts" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -105,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Indices 5
+              Concepts
             
           </span>
         </div>
@@ -185,11 +192,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -205,11 +212,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -245,11 +252,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -321,11 +328,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -346,7 +374,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -367,7 +395,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -388,28 +416,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -430,38 +437,148 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
     
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
   
+  <span class="md-ellipsis">
+    Concepts
+  </span>
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Dashboards
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Hub
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Builder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS IAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elasticsearch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      ES index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      ES mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS collection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      persistence / entry
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -483,6 +600,106 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Dashboards
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Hub
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-builder" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Builder
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-iam" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS IAM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elasticsearch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      ES index
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      ES mapping
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS collection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistence-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      persistence / entry
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -497,9 +714,69 @@
                   
 
 
-  <h1>Indices 5</h1>
+<h1 id="concepts">Concepts</h1>
+<h2 id="arlas-dashboards">ARLAS Dashboards</h2>
+<p>An ARLAS Dashboard is an interactive platform to explore datasets.</p>
+<p><img alt="Example: ARLAS dashboard" src="../images/dashboard.png" /></p>
+<p align="center" style="font-style: italic;" >
+Example: ARLAS dashboard
+</p>
 
-<p>```</p>
+<h2 id="arlas-hub">ARLAS Hub</h2>
+<p>The Hub is the interface where you visualize all the available dashboards and their data collection. </p>
+<p>You can explore and manage the dashboards.</p>
+<p><img alt="Example: ARLAS Hub to manage dashboards" src="../images/hub.png" /></p>
+<p align="center" style="font-style: italic;" >
+Example: ARLAS Hub to manage dashboards
+</p>
+
+<h2 id="arlas-builder">ARLAS Builder</h2>
+<p>ARLAS Builder is the studio to edit ARLAS Dashboards. 
+It is a no code interactive interface to configure the geographic layers, the widgets and all elements of the dashboard. </p>
+<p><img alt="Example: ARLAS Builder to configure widgets" src="../images/builder_widgets.png" /></p>
+<p align="center" style="font-style: italic;" >
+Example: ARLAS Builder to configure widgets 
+</p>
+
+<h2 id="arlas-iam">ARLAS IAM</h2>
+<p>ARLAS IAM can handle the authentication of ARLAS users. It has it's own no-code interface to manage who can access the ARLAS ressources.</p>
+<p><img alt="Example: ARLAS IAM to manage users " src="../images/iam.png" /></p>
+<p align="center" style="font-style: italic;" >
+Example: ARLAS IAM to manage users 
+</p>
+
+<h2 id="elasticsearch">Elasticsearch</h2>
+<p><a href="https://www.elastic.co/fr/elasticsearch">Elasticsearch</a> is a distributed, open-source search and analytics engine built on Apache Lucene. 
+It allows users to store, search, and analyze large volumes of structured and unstructured data in near real-time. </p>
+<p>ARLAS rely on Elasticsearch, an open-source search engine to perform quick aggregation requests over data.</p>
+<h2 id="es-index">ES index</h2>
+<p>An <a href="https://www.elastic.co/blog/what-is-an-elasticsearch-index/">Elasticsearch index</a> is a logical container that stores and organizes documents, which are the fundamental data units in Elasticsearch. 
+Each index is made up of one or more shards and can be thought of as similar to a database table, containing related data with a defined structure. 
+It allows efficient storage, search, and retrieval of data by applying indexing and mapping techniques tailored to specific use cases.</p>
+<h2 id="es-mapping">ES mapping</h2>
+<p>An <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">Elasticsearch mapping</a> defines how documents and their fields are stored and indexed in an Elasticsearch index.
+It specifies the data types (e.g., text, keyword, integer, date) and configurations for each field, influencing how data can be searched, analyzed, and retrieved.
+Mappings also allow customization of field behaviors, such as enabling full-text search, controlling case sensitivity, or defining nested structures.
+Proper mapping design is crucial for optimizing query performance and ensuring accurate search results.</p>
+<h2 id="arlas-collection">ARLAS collection</h2>
+<p>An <a href="https://docs.arlas.io/arlas-api-collection/">ARLAS collection</a> is a structured data layer within the ARLAS platform, built on top of Elasticsearch indices, that organizes and exposes geospatial and temporal data for exploration, analysis, and visualization. 
+It serves as a virtual representation of an Elasticsearch index, allowing users to define metadata, filtering rules, and settings specific to their use cases. 
+Collections enable ARLAS to efficiently handle large-scale, multidimensional data while providing APIs for querying, aggregating, and displaying the information in user-friendly formats.</p>
+<h2 id="configuration">configuration</h2>
+<p>An <code>arlas_cli</code> configuration is a set of values and credentials to target the ARLAS Stack.</p>
+<p>It is composed of several parts:</p>
+<ul>
+<li>authorization: The authentication system configuration</li>
+<li>elastic: The link to elasticsearch cluster</li>
+<li>persistence: The link to ARLAS persistence system</li>
+<li>server: The link to ARLAS server</li>
+</ul>
+<p>More details in the <a href="../configuration/">Configuration Guide</a>.</p>
+<h2 id="persistence-entry">persistence / entry</h2>
+<p>ARLAS Persistence allows you to store files within "zones" of the ARLAS stack. A zone is visible by groups. </p>
+<p>It is also possible to set the access: writers, readers and whether it is public or not.</p>
+<p>The main persistence zone is the <code>config.json</code> which contains the dashboard configurations.</p>
+<p>An entry is an element stored in the persistence.</p>
 
 
 

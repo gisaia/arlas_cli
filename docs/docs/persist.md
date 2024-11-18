@@ -1,10 +1,10 @@
 ## ARLAS Persistence
 
-ARLAS Persistence allows you to place files within **zones**. 
+ARLAS Persistence allows you to place files within **zones**.
 
 A **zone** is a group of files of the same nature (configurations, dashboard previews, bookmarks, ...)
 
-A **zone** is visible by **groups**. 
+A **zone** is visible by **groups**.
 
 It is also possible to set who can access the file.
 
@@ -70,7 +70,7 @@ For example to create an ARLAS dashboard directly from a json file, run the foll
 ```shell
 > arlas_cli persist \
     --config {local} \
-    add {path/to/config.dashboard.json} config.json \  
+    add {path/to/config.dashboard.json} config.json \
     --name {dashboard_name}
 32d2624b-d7cd-11ee-9a91-0242ac130004
 ```
