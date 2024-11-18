@@ -1,8 +1,8 @@
 ## ARLAS Collections
 
-ARLAS collection are built on top of ES index. They describe yhe basic data structure for visualization and handle data access policy.
+ARLAS collections are built on top of [elasticsearch (ES) index](concepts.md#es-index). They describe the basic data structure for its visualization and elements needed for the data access policy.
 
-`arlas_cli` provide tools to manage the ARLAS collections with the `collections` command. 
+`arlas_cli` provide tools to manage the ARLAS collections with the `collections` command.
 
 **List collections management commands**
 
@@ -13,9 +13,9 @@ ARLAS collection are built on top of ES index. They describe yhe basic data stru
 
 ## create
 
-The ARLAS Collection is linked to an index or even an index pattern.
+An ARLAS Collection is linked to an index or even an index pattern.
 
-The command line options let you specify how the index should be used by the collection. 
+The command line options let you specify how the index should be used by the collection.
 
 <!-- termynal -->
 ```shell
@@ -23,13 +23,13 @@ The command line options let you specify how the index should be used by the col
 ```
 
 !!! note "Collection visibility"
-    
+
     The visibility options (`--public`, `--private`, `--owner` and `--orgs`)  allow you to choose who can access the collection.
 
 !!! note "--owner"
-    
-    If ARLAS is used with ARLAS IAM (like ARLAS Cloud), then a collection must be associated to an organisation.
-    
+
+    If ARLAS is used with ARLAS IAM (for example with ARLAS Cloud), then a collection must be associated to an organisation.
+
     Example:
 
     `--owner your.organisation.com`
@@ -39,37 +39,37 @@ The command line options let you specify how the index should be used by the col
 
 ### Create an ARLAS collection
 
-The collection has to reference an ES index available with the [arlas_cli conf](confs.md#configurations).
+The collection has to reference an available ES index or index pattern with the [arlas_cli configuration](confs.md#configurations).
 
-The index option set the targeted index:`--index index_name`
+The index option sets the targeted index:`--index index_name`
 
 !!! tip "Index pattern"
 
-    The collection can target an index pattern. 
+    The collection can target an index pattern.
     Instead of an index name, the target is an expression using `*` to reference multiple ES indices.
 
     Example:
-    
+
     `--index index_name_prefix*`
 
     All the indices have to share exactly the same data mapping.
-    
-    The data contained in all referenced indices are then explorable together in arlas.
-    
+
+    The data contained in all referenced indices are then explorable together in ARLAS.
+
 
 The collection also describe a basic structure for spatio-temporel datasets:
 
 - **ID path**: A data field containing unique element identifier. `--id-path unique_id_field`
 - **Centroid path**: A data field containing a point geometry used for aggregations `--centroid-path point_geom_field`
 - **Geometry path**: A data field containing a geometry representing the element `--geometry-path element_geom_field`
-- **Date path**: A data field containing the date associated to each element `--date-path date_field` 
+- **Date path**: A data field containing the date associated to each element `--date-path date_field`
 
 !!! tip "Pretty name"
 
     A pretty name for the collection can be set at the creation with the `display-name` option
 
     Example:
-    
+
     `--display-name "Pretty Collection Name"`
 
 
@@ -103,7 +103,7 @@ The pretty name can be used in ARLAS to display the collection. It can also be s
 
 To set it with the `name` subcommand:
 ```shell
-> arlas_cli  collections \
+> arlas_cli collections \
    --config {local} \
    name {collection_name} {"Pretty Collection Name"}
 ```
@@ -120,7 +120,7 @@ The data fields are sometimes not very suitable in ARLAS Exploration dashboards.
 
 Each field of the data has a raw name. It can be replaced by a pretty name to display. For example:
 ```shell
-> arlas_cli  collections \
+> arlas_cli collections \
    --config {local} \
    set_alias {collection_name} \
    {raw_field_name} {"Pretty Field Name (unit)"}
@@ -184,9 +184,9 @@ The `sample` command show few data rows accessible in a collection.
 
 ## private
 
-By default, a collection is private, it can be seen only from the members of the owner or shared organisation.
+By default, a collection is private, it can only be seen by the members of the owner or shared organisation.
 
-ARLAS user has to be logged and have the correct rights to access the collection.
+In that case, an ARLAS user has to be logged and have the correct authorisations.
 
 ### Set the collection as private
 
@@ -199,7 +199,7 @@ To switch a collection from **public** to **private**, use the `private` command
 
 ## public
 
-A public collection can be accessed in ARLAS dashboards without any logging. It can be used to host demo dashboards for example.
+A public collection can be accessed in ARLAS dashboards without being logged. It can be used to host demo dashboards for example.
 
 ### Set the collection as public
 
@@ -214,7 +214,7 @@ To switch a collection from **private** to **public**, use the `public` command:
 
 A collection can be shared between different organisations to make it available for its users.
 
-###  Share collections between organisations
+### Share collections between organisations
 
 A collection can be shared to other organisation with the `share` command:
 

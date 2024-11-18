@@ -14,7 +14,7 @@ For more details, in particular for installation on Microsoft Windows, see the [
 ## Configuration
 
 !!! warning "Prerequisite"
-    For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine: 
+    For running the various examples below, ARLAS and Elasticsearch must be running on the local machine: 
     
     Clone the [ARLAS Stack Exploration](https://github.com/gisaia/ARLAS-Exploration-stack) project and run `./start.sh` at project root.
 
@@ -46,16 +46,16 @@ For more details, see the [Configuration Guide](configuration.md#configuration).
 
 In the following tutorial, you will see how to:
 
-- Generate an elasticsearch mapping based on json objects
-- Add the mapping in elasticsearch
-- List the elasticsearch indices
-- Add (index) data in the elasticsearch index
+- Generate an Elasticsearch mapping based on json objects
+- Add the mapping in Elasticsearch
+- List the Elasticsearch indices
+- Add (index) data in the Elasticsearch index
 - Get the structure of the mapping
 - Add a collection in ARLAS
 - List the ARLAS collections
 - Get the structure of a ARLAS collection
 - Delete a collection from ARLAS
-- Delete a mapping from elasticsearch
+- Delete a mapping from Elasticsearch
 - Add, describe, get, list and delete an entry from ARLAS Persistence
 - List, create, describe and delete a configuration for `arlas_cli`
 
@@ -70,7 +70,7 @@ In the following tutorial, you will see how to:
     The downloaded `sample.json` contains a sample of processed AIS data.
 
 
-### Generate the elasticsearch mapping
+### Generate the Elasticsearch mapping
 
 Writing the elasticsearch mapping for an index can be laborious. `arlas_cli` does it for you. 
 `arlas_cli` can inspect a NDJSON file (one json object per line) and generate the corresponding elasticsearch mapping file.
@@ -78,17 +78,10 @@ Writing the elasticsearch mapping for an index can be laborious. `arlas_cli` doe
 To generate the mapping file based on that sample, run the following command:
 <!-- termynal -->
 ```shell
-> arlas_cli  indices \
+> arlas_cli indices \
    --config local \
    mapping sample.json
 ```
-
-!!! tip "--nb_lines"
-    By default, the `indices mapping` function uses the first two rows to infer mapping. 
-    If a field is not present in the first rows, it will not appear in the mapping.
-
-    Make sure to take enough rows into account to get all the fields with the option `--nb_lines`
-
 
 By inspecting the mapping, we notice that the three timestamps are not identified as datetime by `arlas_cli`.
 
@@ -109,7 +102,7 @@ To generate the mapping with forced types, run the following command:
 
 The three timestamps are now well identified as datetime.
 
-For more details, see the [Indices Mapping Guide](indices.md#generate-mapping-from-a-data-file).
+For more details, see the [Indices Mapping Guide](indices.md#mapping).
 
 
 ### Create an empty index from inferred mapping
@@ -133,7 +126,7 @@ To create the associated empty index `ais_courses` with the `--push-on` option, 
    --push-on ais_courses
 ```
 
-For more details, see the [Indices Creation Guide](indices.md#create-an-index-with-its-mapping).
+For more details, see the [Indices Mapping Guide](indices.md#mapping).
 
 ### Inspect the created indices
 
@@ -196,13 +189,13 @@ To check that data has been correctly indexed, inspect the indices with:
 ```
 
 !!! success
-    The `ais_courses` index now contains 100 elements
+    The `ais_courses` index now contains 100 elements.
 
 ### Create a collection
 
-To explore the data in ARLAS, a collection has to be defined on top on an index.
+To explore the data in ARLAS, a collection has to be defined on top of an index.
 
-To create a `ais_courses` collection based on the `ais_courses` index, run the following command:
+To create an `ais_courses` collection based on the `ais_courses` index, run the following command:
 
 <!-- termynal -->
 ```shell
@@ -219,7 +212,7 @@ To create a `ais_courses` collection based on the `ais_courses` index, run the f
 
 The `--index` option define the index to use and the `--display-name` define a pretty name used for collection in ARLAS.
 
-Several options define the data structure:
+Several elements define the data structure:
 
 - `--id-path`: The data field used as unique id of each element
 
@@ -229,7 +222,7 @@ Several options define the data structure:
 
 - `--date-path`: The data field containing the date associated to each element (used for timeline)
 
-For more details, see the [Collection Creation Guide](collections.md#create-a-collection).
+For more details, see the [Collection Creation Guide](collections.md#create-an-arlas-collection).
 
 ### Inspect the created collections
 
@@ -272,7 +265,7 @@ It corresponds to the mapping of the data within the collection
 
 ### Delete an index
 
-To remove the indexed data from the local elasticsearch instance, remove the index with following command:
+To remove the indexed data from the local Elasticsearch instance, remove the index with the following command:
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local delete ais_courses
@@ -290,9 +283,9 @@ Check that `ais_courses` index no longer exists:
 ```
 
 !!! tip
-    Before reindexing data, do not forget to create [recreate the empty index from inferred mapping](#create-an-empty-index-from-inferred-mapping)
+    Before reindexing data, do not forget to [recreate the empty index from inferred mapping](#create-an-empty-index-from-inferred-mapping)
 
-    Collection do not need to be declared again
+    Collection does not need to be declared again.
 
 ### Delete a collection
 
@@ -304,9 +297,9 @@ To delete the `ais_courses` course collection
 
 ### Add an ARLAS Dashboard from configuration file
 
-The configuration of an ARLAS Dashboard describe all its elements (widgets, map layers...). A such file can be directly imported to create a dashboard.
+The configuration of an ARLAS Dashboard describes all its elements (widgets, map layers...). Such a file can be directly imported to create a dashboard.
 
-First, let's get an example of dashboard configuration file:
+First, let's get an example of a dashboard configuration file:
 <!-- termynal -->
 ```shell
 > curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/dashboard.json -o dashboard.json

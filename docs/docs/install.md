@@ -16,11 +16,11 @@ Simply run in a terminal:
 ```
 
 !!! warning "Microsoft Windows"
-    For Windows users, the install has to be made in a python virtual environment, follow the [venv guide](#python-virtual-environment) before installing.
+    For Windows users, the installation has to be made in a python virtual environment, follow the [venv guide](#python-virtual-environment) before installing.
 
 !!! success
 
-    In a new terminal, you should be able to run it:
+    In a new Terminal/Powershell, you should be able to run it:
     
     <!-- termynal -->
     ```shell
@@ -75,7 +75,7 @@ If you want to connect arlas_cli to an existing ARLAS Cloud account, simply foll
 
 ### Run ARLAS Locally
 
-To run the simplest ARLAS stack and elasticsearch on the local machine, clone the [ARLAS Stack Exploration](https://github.com/gisaia/ARLAS-Exploration-stack) project and run the stack:
+To run the simplest ARLAS stack and Elasticsearch on the local machine, clone the [ARLAS Stack Exploration](https://github.com/gisaia/ARLAS-Exploration-stack) project and run the stack:
 
 <!-- termynal -->
 ```shell

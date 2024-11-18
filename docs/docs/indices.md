@@ -2,7 +2,7 @@
 
 ## Elasticsearch index
 
-To be explored in ARLAS dashboards, the data has to be indexed in an [elasticsearch](concepts.md#elasticsearch) (ES) [index](concepts.md#es-index). 
+To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](concepts.md#elasticsearch) (ES) [index](concepts.md#es-index). 
 An index contains the data and a [mapping](concepts.md#es-mapping) to describe how fields have to be interpreted (types).
 
 `arlas_cli` provide tools to infer mapping from data and manage the ES indices with the `indices` command. 
@@ -77,13 +77,13 @@ An index contains the data and a [mapping](concepts.md#es-mapping) to describe h
 
 To generate a mapping, you need to provide a NDJSON `file` (New line delimiter JSON).
 
-The values of the first lines of the files are used for inferring the mapping for each field of the data.
+The values of the first lines of the files are used to infer the mapping for each field of the data.
 
 !!! note "--nb_lines"
-    By default, the `indices mapping` function uses the first 2 rows to infer mapping. 
+    The `indices mapping` function uses the first rows to infer mapping. 
     If a field is not present in the first rows, it will not appear in the mapping.
 
-    Make sure to take enough rows into account to get all the fields with the option `--nb_lines`
+    Make sure to take enough rows to get all the fields with the option `--nb_lines`
 
 !!! tip
     The data can be split in different NDJSON files in a folder:
@@ -97,7 +97,7 @@ The values of the first lines of the files are used for inferring the mapping fo
 
 ### Type identification
 
-The mapping associates to each field of the data a type (see [elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html))
+The mapping associates to each field of the data a type (see [Elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html))
 
 A **geometry** is identified as such if
 
@@ -114,7 +114,7 @@ A **date** is identified as such if
 !!! note "--field-mapping"
     If the mapping is wrong, you can overwrite the typing with the `--field-mapping` option.
 
-    It has the structure **field_name:field_type** (see [elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html))
+    It has the structure **field_name:field_type** (see [Elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html))
 
     Examples:
 
@@ -125,7 +125,7 @@ A **date** is identified as such if
     - `--field-mapping field_float:double`
     - `--field-mapping field_int:long`
 
-    The date fields have a format that can be specified as **field_name:date-format** with all format accepted by [elasticsearch date type](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html)
+    The date fields have a format that can be specified as **field_name:date-format** with all format accepted by [Elasticsearch date type](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html)
 
     Examples:
 
@@ -133,11 +133,12 @@ A **date** is identified as such if
     - `--field-mapping field_time_epoch_millisecond:date-epoch_millis`
     - `--field-mapping field_time_pattern:date-"yyyy-MM-dd HH:mm:ss"`
 
-By default, the keywords and text fields are searchable as fulltext to be accessible in the searchbar.
+By default, the keywords and text fields are searchable as fulltext to be accessible in the search bar.
 
 !!! note "--no-fulltext "
      
-    If it is not required for a given field, it is more optimal to deactivate fulltext search.
+    If searching through a field value is not needed, it can be deactivated. 
+    That would result in better performances for the fulltext search.
 
     Example:
 
@@ -165,7 +166,7 @@ Once you're happy with the mapping, you can either store it in a file or directl
 
 !!! note "--push-on"
 
-    To push the inferred mapping directly in an elasticsearch index, use the `--push-on` option with the target index name.
+    To push the inferred mapping directly in an Elasticsearch index, use the `--push-on` option with the target index name.
 
     Example:
     <!-- termynal -->
@@ -215,13 +216,13 @@ The `indices create` sub-function create the index from a mapping json file.
 Example:
 <!-- termynal -->
 ```shell
-> arlas_cli  indices \
+> arlas_cli indices \
    --config local \
    create {index_name} \
    --mapping {path/to/mapping.json}
 ```
 
-Once the index is created, it is ready to [ingest data](#data).
+Once the index is created, Elasticsearch can index data to fill that index.
 
 ## data
 
@@ -252,7 +253,7 @@ The `indices data` sub-function ingest the data in a given index.
 ```
 ### Ingest data
 
-For indexing data, you'll need to provide one or several NDJSON (New line delimiter JSON) file(s). 
+To index data, you'll need to provide one or several NDJSON (New line delimiter JSON) file(s). 
 Indexing uses bulks for optimal performances.
 
 Example:
@@ -266,12 +267,12 @@ Example:
 !!! warning 
     If the index already contains data, the data is added to the index.
     
-    To reindex the same data, delete the index, and do not forget to recreate it with the correct mapping before ingesting the data
+    To reindex the same data, delete the index, and do not forget to recreate it with the correct mapping before ingesting the data.
 
 !!! note "--bulk"
     Indexing uses bulks for optimal performances. 
 
-    The default size of bulk is 5000 and can be changed with the `--bulk` option
+    The size of bulk can be changed with the `--bulk` option
 
 ## list
 
@@ -460,7 +461,7 @@ Both indices co-exist with exactly the same mapping and data content.
 
 ## delete
 
-The ES index can be deleted with `indices delete` sub command to free space on ES cluster.
+The ES index can be deleted with `indices delete` sub command to free space on the ES cluster.
 
 <!-- termynal -->
 ```shell
@@ -488,7 +489,7 @@ To delete an ES index `index_name` on `local` configuration, run the following c
 > arlas_cli indices --config {local} delete {index_name}
 ```
 !!! warning 
-    Delete an index is not reversible. Make sure you don't lost any data. 
+    A deleted index cannot be restored.
 
 !!! Note Delete is not always allowed
     By default, it is not allowed to delete an index for a given configuration. 
@@ -496,7 +497,7 @@ To delete an ES index `index_name` on `local` configuration, run the following c
     To allow deleting, [edit the configuration file](configuration.md) and set `allow_delete` to `True`.
 
 !!! tip "Good practice: Set admin confs"
-    For a given ARLAS deployment, it is advised to set two configurations, with only the admin one with `allow_delete` at `True`.
+    For a given ARLAS deployment, it is advised to set two configurations, with only the admin one that can delete an index.
     
     For example:
     ```

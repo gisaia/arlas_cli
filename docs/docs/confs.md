@@ -3,9 +3,9 @@
 
 ## ARLAS configurations
 
-An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and elasticsearch.
+An ARLAS Configuration tells `arlas_cli` how to contact ARLAS Server and Elasticsearch.
 
-See [more information about configuration](confs.md).
+See [more information about configuration](configuration.md).
 
 It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS configurations.
 
@@ -102,13 +102,10 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 
 The `arlas_cli confs create` command has to be filled with options specific to your ARLAS deployment.
 
-Those options can be filled as describe in the following sections.
-
-!!! note
-
-    For ARLAS cloud deployment, a pre-filled variables file is furnished with a simple command to copy/paste.
+Those options can be filled as described in the following sections.
 
 #### ARLAS Authentication
+
 For ARLAS, keycloak and ARLAS IAM authentications are supported. 
 
 === "ARLAS IAM"
@@ -131,13 +128,13 @@ For ARLAS, keycloak and ARLAS IAM authentications are supported.
     ```
 
 === "Keycloak"
-    Default is ARLAS IAM, use `--no-auth-arlas-iam` for keycloak.
+    By default, the authentication is supposed to be with ARLAS IAM. For Keycloak, use `--no-auth-arlas-iam`
 
     Keycloak authentication details coming soon...
 
 #### ARLAS Server and Persistence
 
-The ARLAS server url (`ARLAS_SERVER_URL`) and the persistence server URL (`ARLAS_PERSISTENCE_URL`) has to be set in the configuration using the following options in the `confs create` sub-command:
+The ARLAS server URL (`ARLAS_SERVER_URL`) and the ARLAS persistence server URL (`ARLAS_PERSISTENCE_URL`) have to be set in the configuration using the following options in the `confs create` sub-command:
 ```
 --server {ARLAS_SERVER_URL}
 --headers "Content-Type:application/json"
@@ -148,13 +145,13 @@ The ARLAS server url (`ARLAS_SERVER_URL`) and the persistence server URL (`ARLAS
 
 #### Elasticsearch 
 
-The used elasticsearch instance and your credentials has to be set in the configuration:
+The used Elasticsearch instance and your credentials has to be set in the configuration:
 
-- `ELASTIC_ENDPOINT`: The used elasticsearch endpoint (eg: http://localhost:9200)
+- `ELASTIC_ENDPOINT`: The used Elasticsearch endpoint (eg: http://localhost:9200)
 - `ELASTIC_USER`: Your ES user name
 - `ELASTIC_PWD`: Your ES user password
 
-The link to ES instance is configured by using the following options in the `confs create` sub-command:
+The link to the ES instance is configured by using the following options in the `confs create` sub-command:
 ```
 --elastic {ELASTIC_ENDPOINT}
 --elastic-headers "Content-Type:application/json"
@@ -176,7 +173,9 @@ If you want to connect `arlas_cli` to an existing ARLAS Cloud account, follow th
 
 ## delete
 
-An existing configuration can be deleted with `confs delete` sub command:.
+### Delete an existing configuration
+
+An existing configuration can be deleted with the `confs delete` sub command:
 
 <!-- termynal -->
 ```shell
@@ -196,8 +195,6 @@ An existing configuration can be deleted with `confs delete` sub command:.
 
 ```
 
-### Delete an existing configuration
-
 To remove an existing configuration from the default configuration file, simply run the following command:
 
 ```shell
@@ -207,9 +204,11 @@ arlas_cli confs delete {conf_name}
 The configuration will no longer appear in the configuration file.
 
 !!! warning
-    The configuration deletion cannot be undone, make sure to not lost contained information
+    Once deleted, the configuration cannot be retrieved.
 
 ## describe
+
+### Describe the content of a configuration
 
 The content of a configuration can be detailed with `confs describe` sub command:
 
@@ -231,9 +230,8 @@ The content of a configuration can be detailed with `confs describe` sub command
 
 ```
 
-### Describe the content of a configuration
-
 For example, the default local configuration looks like:
+
 <!-- termynal -->
 ```shell
 > arlas_cli confs describe local
@@ -262,13 +260,15 @@ server:
 We get the different elements of the configurations:
 
 - authorization: The authentication system configuration
-- elastic: The link to elasticsearch cluster
-- persistence: The link to ARLAS persistence system
+- elastic: The link to Elasticsearch cluster
+- persistence: The link to ARLAS persistence
 - server: The link to ARLAS server
 
 See [more about the configuration](configuration.md).
 
 ## list
+
+### List the available configurations
 
 The list of available configurations can be obtained with `confs list` sub command:
 
@@ -285,8 +285,6 @@ The list of available configurations can be obtained with `confs list` sub comma
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
-
-### List the available configurations
 
 The `confs list` sub-command returns the list of available configuration names and their ARLAS server url.
 

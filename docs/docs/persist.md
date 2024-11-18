@@ -1,8 +1,12 @@
 ## ARLAS Persistence
 
-ARLAS Persistence allows you to place files within zones. A zone is visible by groups. 
+ARLAS Persistence allows you to place files within **zones**. 
 
-It is also possible to set the access: writers, readers and whether it is public or not.
+A **zone** is a group of files of the same nature (configurations, dashboard previews, bookmarks, ...)
+
+A **zone** is visible by **groups**. 
+
+It is also possible to set who can access the file.
 
 The main persistence zone is the `config.json` which contains the dashboard configurations.
 
@@ -158,7 +162,7 @@ For example, a dashboard configuration can be described by its metadata with the
 +------------------+--------------------------------------------+
 ```
 
-Among the metadata, we can know which organisation own the dashboard and which groups can access the dashboard as readers and writers.
+In the metadata, we can find which organisation own the dashboard and which groups can access the dashboard as readers and writers.
 
 ## get
 
@@ -195,13 +199,6 @@ The content of the configuration file of an ARLAS dashboard can be read directly
 ...
 }
 ```
-
-!!! tip
-    The content of the dashboard configuration file can be directly stored in a json file:
-    ```
-    arlas_cli persist --config {local} get {32d2624b-d7cd-11ee-9a91-0242ac130004} > {config.dashboard.json}
-    ```
-
 
 ## groups
 

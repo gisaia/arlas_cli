@@ -16,7 +16,7 @@ you (~/.arlas/cli/configuration.yaml).
 
 By default, the file is located in `$HOME/.arlas/cli/configuration.yaml`.
 
-It contains one ARLAS configurations pointing at a local deployment.
+It contains one ARLAS configuration linked to a local deployment.
 
 !!! warning 
     If you used the ARLAS Exploration Stack, it is possible that you already have a directory named `$HOME/.arlas`. 
@@ -51,23 +51,16 @@ The `arlas` section contains the different deployment configurations (here only 
 Each deployment configuration is defined by:
 
 - authorization: The authentication system configuration
-- elastic: The link to elasticsearch cluster
-- persistence: The link to ARLAS persistence system
+- elastic: The link to the elasticsearch cluster
+- persistence: The link to ARLAS persistence
 - server: The link to ARLAS server
 
-You can interact with this configuration file directly with the command line itself with the [`arlas_cli confs`](confs.md#configurations) commands.
+You can interact with this configuration file directly with the command line itself with the [`arlas_cli confs`](confs.md#configurations) commands:
 
-For exemple, you can list the available configuration contained in the file:
-
-<!-- termynal -->
-```shell
-> arlas_cli confs list     
-+-------+------------------------+
-| name  | url                    |
-+-------+------------------------+
-| local | http://localhost/arlas |
-+-------+------------------------+
-```
+- [confs list](confs.md#list): List the available configurations
+- [confs describe](confs.md#describe): Describe the content of a configuration
+- [confs create](confs.md#create): Create a new configuration
+- [confs delete](confs.md#delete): Delete a configuration
 
 ## Custom configuration file path
 
@@ -90,15 +83,6 @@ All the arlas_cli commands can then be run on this configuration file, for examp
 | local | http://localhost/arlas |
 +-------+------------------------+
 ```
-
-## Manage configurations
-
- arlas_cli allows to manage configurations with `confs` sub-commands:
-
-- [confs list](confs.md#list): List the available configurations
-- [confs describe](confs.md#describe): Describe the content of a configuration
-- [confs create](confs.md#create): Create a new configuration
-- [confs delete](confs.md#delete): Delete a configuration
 
 ## ARLAS Cloud configuration
 
@@ -221,13 +205,13 @@ First, set the environment variables provided by Gisaïa and change appropriatel
             --allow-delete
         ```
 
-Check the configurations exist:
+Check that the configurations exist:
 
 ```shell
 arlas_cli confs list
 ```
 
-You can now for example list your available collections:
+You can now, for example, list the available collections:
 
 ```shell
 arlas_cli collections --config cloud.arlas.io list

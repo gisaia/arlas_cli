@@ -2,12 +2,12 @@
 
 __ARLAS Exploration__ is an Open Source software for exploring and analysing Geo BigData. 
 
-__ARLAS Command Line__ (`arlas_cli`) is for managing the ARLAS data and configurations.
+__ARLAS Command Line__ (`arlas_cli`) is a tool to manage data and configurations in ARLAS.
 
 
-`arlas_cli` is a python command line for:
+`arlas_cli` is a Python command line for:
 
-- Managing [elasticsearch indices](concepts.md#es-index):
+- Managing [Elasticsearch indices](concepts.md#es-index):
     - Generate an index mapping based on [NDJSON data](https://jsonlines.org/)
     - Create an index
     - List indices
@@ -21,7 +21,7 @@ __ARLAS Command Line__ (`arlas_cli`) is for managing the ARLAS data and configur
     - Describe a collection
     - Delete a collection
 - Managing [arlas_cli configurations](concepts.md#configuration)
-    - Register an ARLAS/elasticsearch configuration, with headers and authentication parameters
+    - Register an ARLAS/Elasticsearch configuration, with headers and authentication parameters
     - List your configurations
     - Delete a configuration
 - Managing [ARLAS Dashboards](concepts.md#arlas-dashboards) persistence
