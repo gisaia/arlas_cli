@@ -4,13 +4,10 @@
 
 An ARLAS Dashboard is an interactive platform to explore datasets.
 
-<p align="center">
-    <img src="./images/dashboard.png" width="100%">
-</p>
+![Example: ARLAS dashboard](./images/dashboard.png)
 <p align="center" style="font-style: italic;" >
 Example: ARLAS dashboard
 </p>
-<br />
 
 ## ARLAS Hub
 
@@ -18,38 +15,29 @@ The Hub is the interface where you visualize all the available dashboards and th
 
 You can explore and manage the dashboards.
 
-<p align="center">
-    <img src="./images/hub.png" width="100%">
-</p>
+![Example: ARLAS Hub to manage dashboards](./images/hub.png)
 <p align="center" style="font-style: italic;" >
 Example: ARLAS Hub to manage dashboards
 </p>
-<br />
 
 ## ARLAS Builder
 
 ARLAS Builder is the studio to edit ARLAS Dashboards. 
 It is a no code interactive interface to configure the geographic layers, the widgets and all elements of the dashboard. 
 
-<p align="center">
-    <img src="./images/builder_widgets.png" width="100%">
-</p>
+![Example: ARLAS Builder to configure widgets](./images/builder_widgets.png)
 <p align="center" style="font-style: italic;" >
 Example: ARLAS Builder to configure widgets 
 </p>
-<br />
 
 ## ARLAS IAM
 
 ARLAS IAM can handle the authentication of ARLAS users. It has it's own no-code interface to manage who can access the ARLAS ressources.
 
-<p align="center">
-    <img src="./images/iam.png" width="100%">
-</p>
+![Example: ARLAS IAM to manage users ](./images/iam.png)
 <p align="center" style="font-style: italic;" >
 Example: ARLAS IAM to manage users 
 </p>
-<br />
 
 
 ## Elasticsearch
