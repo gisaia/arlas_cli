@@ -27,19 +27,18 @@ theme:
     accent: 'light-blue'
 
 nav:
-- arlas_cli version: version.md
 - About arlas_cli: index.md
-- Installation: install.md
 - Getting started: started.md
+- Installation: install.md
+- Configuration: configuration.md
 - Commands:
   - Getting help: help.md
-  - Indices: indices.md
-  - Collections: collections.md
-  - Persistence: persist.md
-  - Identity & Access: iam.md
-  - Configurations: confs.md
-- Configuration data model: model/model.md
-- Configuring ARLAS Cloud: arlas_cloud.md
+  - confs: confs.md
+  - indices: indices.md
+  - collections: collections.md
+  - persist: persist.md
+  - iam: iam.md
+- Concepts: concepts.md
 
 plugins:
   - termynal:

@@ -78,7 +78,7 @@ def create_configuration(
 
 @configurations.command(help="Add a configuration for ARLAS Cloud", name="login")
 def login(
-    auth_login: str = typer.Argument(help="login"),
+    auth_login: str = typer.Argument(help="ARLAS login"),
     elastic_login: str = typer.Argument(help="Elasticsearch login"),
     elastic: str = typer.Argument(help="Elasticsearch url"),
     auth_org: str = typer.Option(default=None, help="ARLAS IAM Organization, default is your email domain name"),

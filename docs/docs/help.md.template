@@ -1,0 +1,16 @@
+## Getting help
+
+At any time, if you need some help on how to use the command line or one of its sub command, simply add `--help`.
+
+Whether you are at the top level:
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli --help
+```
+
+or within a sub command:
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli indices --config local mapping --help
+```
