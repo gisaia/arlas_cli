@@ -9,8 +9,8 @@ if test -f "/tmp/arlas_cli_persist"; then
     rm -rf /tmp/arlas_cli_persist
 fi
 
-python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml --config-file /tmp/arlas_cli.yaml --version
-python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml --config-file /tmp/arlas_cli.yaml confs \
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml --version
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs \
     create tests \
     --server http://localhost:9999/arlas \
     --persistence http://localhost:9997/arlas_persistence_server \
@@ -18,6 +18,16 @@ python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml --config-file /tmp
     --elastic http://localhost:9200 \
     --elastic-headers "Content-Type:application/json" \
     --allow-delete 
+
+# ----------------------------------------------------------
+echo "TEST  configuration added with login"
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs login support@gisaia.com support@gisaia.com https://some_elastic_search_server  --auth-password toto --elastic-password titi
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs list | grep "cloud.arlas.io.support" ; then
+    echo "OK: configuration found"
+else
+    echo "ERROR: configuration not found"
+    exit 1
+fi
 
 # ----------------------------------------------------------
 echo "TEST configuration placed in /tmp/"
