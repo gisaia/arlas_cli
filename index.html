@@ -15,10 +15,8 @@
         <link rel="canonical" href="https://gisaia.github.io/arlas_cli/">
       
       
-        <link rel="prev" href="version/">
       
-      
-        <link rel="next" href="install/">
+        <link rel="next" href="started/">
       
       
       <link rel="icon" href="assets/images/favicon.png">
@@ -191,26 +189,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="version/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    arlas_cli version
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -244,6 +222,26 @@
   
   
     <li class="md-nav__item">
+      <a href="started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="install/" class="md-nav__link">
         
   
@@ -264,11 +262,11 @@
   
   
     <li class="md-nav__item">
-      <a href="started/" class="md-nav__link">
+      <a href="configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -340,11 +338,32 @@
   
   
     <li class="md-nav__item">
+      <a href="confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -365,7 +384,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -386,7 +405,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -407,28 +426,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -452,31 +450,11 @@
   
   
     <li class="md-nav__item">
-      <a href="model/model/" class="md-nav__link">
+      <a href="concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -519,55 +497,60 @@
 
 
 <h1 id="about-arlas_cli">About arlas_cli</h1>
-<p><strong>ARLAS Exploration</strong> is an Open Source software for exploring and analysing Geo BigData. <strong>ARLAS Command Line</strong> (<code>arlas_cli</code>) is for managing elasticsearch indices, ARLAS collections and elasticsearch/ARLAS endpoint configurations.</p>
-<p><code>arlas_cli</code> is a python command line for:</p>
+<p><strong>ARLAS Exploration</strong> is an Open Source software for exploring and analysing Geo BigData. </p>
+<p><strong>ARLAS Command Line</strong> (<code>arlas_cli</code>) is a tool to manage data and configurations in ARLAS.</p>
+<p><code>arlas_cli</code> is a Python command line for:</p>
 <ul>
-<li>managing elasticsearch indices:<ul>
-<li>generate an index mapping based on <a href="https://jsonlines.org/">NDJSON data</a></li>
-<li>create an index</li>
-<li>list indices</li>
-<li>describe an index</li>
-<li>delete an index</li>
+<li>Managing <a href="concepts/#es-index">Elasticsearch indices</a>:<ul>
+<li>Generate an index mapping based on <a href="https://jsonlines.org/">NDJSON data</a></li>
+<li>Create an index</li>
+<li>List indices</li>
+<li>Describe an index</li>
+<li>Clone an index</li>
+<li>Migrate an index</li>
+<li>Delete an index</li>
 </ul>
 </li>
-<li>managing <a href="https://docs.arlas.io/arlas-api-collection/">ARLAS collections</a><ul>
-<li>create a collection</li>
-<li>list collections</li>
-<li>describe a collection</li>
-<li>delete a collection</li>
+<li>Managing <a href="concepts/#arlas-collection">ARLAS collections</a><ul>
+<li>Create a collection</li>
+<li>List collections</li>
+<li>Describe a collection</li>
+<li>Delete a collection</li>
 </ul>
 </li>
-<li>managing ARLAS persistence<ul>
-<li>create a entry in a zone</li>
-<li>list entries within a zone</li>
-<li>describe an entry</li>
-<li>delete an entry</li>
-<li>get the groups accessing a zone</li>
+<li>Managing <a href="concepts/#configuration">arlas_cli configurations</a><ul>
+<li>Register an ARLAS/Elasticsearch configuration, with headers and authentication parameters</li>
+<li>Login to your ARLAS Cloud account</li>
+<li>List your configurations</li>
+<li>Delete a configuration</li>
 </ul>
 </li>
-<li>managing ARLAS Identity and Access (ARLAS IAM)<ul>
-<li>list organisations</li>
-<li>add an organisation</li>
-<li>within an oganisation:<ul>
-<li>list visible collections</li>
-<li>list groups</li>
-<li>list users</li>
-<li>list permissions</li>
-<li>add/delete a permission</li>
-<li>add/delete a group</li>
-<li>add/delete a permission to/from a group</li>
-<li>add/delete a user</li>
-<li>add/delete a user to/from a group</li>
+<li>Managing <a href="concepts/#arlas-dashboards">ARLAS Dashboards</a> persistence<ul>
+<li>Create a dashboard from a configuration file</li>
+<li>List available dashboard</li>
+<li>Describe a dashboard</li>
+<li>Delete a dashboard</li>
+<li>Get the groups accessing dashboards</li>
 </ul>
 </li>
-<li>create a user</li>
-<li>activate a user</li>
-<li>deactivate a user</li>
+<li>Managing <a href="concepts/#arlas-iam">ARLAS Identity and Access</a> (ARLAS IAM)<ul>
+<li>List organisations</li>
+<li>Add an organisation</li>
+<li>Within an organisation:<ul>
+<li>List visible collections</li>
+<li>List groups</li>
+<li>List users</li>
+<li>List permissions</li>
+<li>Add/delete a permission</li>
+<li>Add/delete a group</li>
+<li>Add/delete a permission to/from a group</li>
+<li>Add/delete a user</li>
+<li>Add/delete a user to/from a group</li>
 </ul>
 </li>
-<li>managing configurations<ul>
-<li>register an ARLAS/elasticsearch configuration, with headers and authentication parameters</li>
-<li>delete a configuration</li>
+<li>Create a user</li>
+<li>Activate a user</li>
+<li>Deactivate a user</li>
 </ul>
 </li>
 </ul>

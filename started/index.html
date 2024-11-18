@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://gisaia.github.io/arlas_cli/started/">
       
       
-        <link rel="prev" href="../install/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../help/">
+        <link rel="next" href="../install/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#initial-configuration" class="md-skip">
+        <a href="#getting-started-with-arlas-cli" class="md-skip">
           Skip to content
         </a>
       
@@ -194,51 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    arlas_cli version
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
     About arlas_cli
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../install/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Installation
   </span>
   
 
@@ -259,6 +219,8 @@
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
+      
+        
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
@@ -288,6 +250,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -296,115 +260,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#initial-configuration" class="md-nav__link">
+  <a href="#install-arlas_cli" class="md-nav__link">
     <span class="md-ellipsis">
-      Initial configuration
+      Install arlas_cli
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Running
+      Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#tutorial" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      Tutorial
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="Tutorial">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#generate-the-elasticsearch-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Generate the elasticsearch mapping
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Generate the elasticsearch mapping">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#type-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Type identification
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-the-elasticsearch-mapping_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generate the elasticsearch mapping
+      Generate the Elasticsearch mapping
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-indices" class="md-nav__link">
+  <a href="#create-an-empty-index-from-inferred-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      List indices
+      Create an empty index from inferred mapping
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-data" class="md-nav__link">
+  <a href="#inspect-the-created-indices" class="md-nav__link">
     <span class="md-ellipsis">
-      Add data
+      Inspect the created indices
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describe-an-index" class="md-nav__link">
+  <a href="#add-data-to-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Describe an index
+      Add data to index
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-a-collection" class="md-nav__link">
+  <a href="#create-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Add a collection
+      Create a collection
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-collections" class="md-nav__link">
+  <a href="#inspect-the-created-collections" class="md-nav__link">
     <span class="md-ellipsis">
-      List collections
+      Inspect the created collections
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describe-a-collection" class="md-nav__link">
+  <a href="#delete-an-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Describe a collection
+      Delete an index
     </span>
   </a>
   
@@ -420,102 +360,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#delete-an-index" class="md-nav__link">
+  <a href="#add-an-arlas-dashboard-from-configuration-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Delete an index
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#arlas-persistence" class="md-nav__link">
-    <span class="md-ellipsis">
-      ARLAS Persistence
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ARLAS Persistence">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#add-an-entry" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add an entry
+      Add an ARLAS Dashboard from configuration file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describe-an-entry" class="md-nav__link">
+  <a href="#list-available-dashboards" class="md-nav__link">
     <span class="md-ellipsis">
-      Describe an entry
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-an-entry-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get an entry value
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list-entries-within-a-zone" class="md-nav__link">
-    <span class="md-ellipsis">
-      List entries within a zone
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list-groups-accessing-a-zone" class="md-nav__link">
-    <span class="md-ellipsis">
-      List groups accessing a zone
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-an-entry" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete an entry
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configurations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-describe-and-delete-a-configuration-for-arlas_cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create, describe and delete a configuration for arlas_cli
+      List available dashboards
     </span>
   </a>
   
@@ -530,6 +386,46 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -597,11 +493,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -622,7 +539,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -643,7 +560,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -664,28 +581,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -709,31 +605,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -759,6 +635,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -767,115 +645,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#initial-configuration" class="md-nav__link">
+  <a href="#install-arlas_cli" class="md-nav__link">
     <span class="md-ellipsis">
-      Initial configuration
+      Install arlas_cli
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running" class="md-nav__link">
+  <a href="#configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Running
+      Configuration
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+  <a href="#tutorial" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      Tutorial
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="Tutorial">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#generate-the-elasticsearch-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Generate the elasticsearch mapping
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Generate the elasticsearch mapping">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#type-identification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Type identification
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-the-elasticsearch-mapping_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Generate the elasticsearch mapping
+      Generate the Elasticsearch mapping
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-indices" class="md-nav__link">
+  <a href="#create-an-empty-index-from-inferred-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      List indices
+      Create an empty index from inferred mapping
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-data" class="md-nav__link">
+  <a href="#inspect-the-created-indices" class="md-nav__link">
     <span class="md-ellipsis">
-      Add data
+      Inspect the created indices
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describe-an-index" class="md-nav__link">
+  <a href="#add-data-to-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Describe an index
+      Add data to index
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-a-collection" class="md-nav__link">
+  <a href="#create-a-collection" class="md-nav__link">
     <span class="md-ellipsis">
-      Add a collection
+      Create a collection
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#list-collections" class="md-nav__link">
+  <a href="#inspect-the-created-collections" class="md-nav__link">
     <span class="md-ellipsis">
-      List collections
+      Inspect the created collections
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describe-a-collection" class="md-nav__link">
+  <a href="#delete-an-index" class="md-nav__link">
     <span class="md-ellipsis">
-      Describe a collection
+      Delete an index
     </span>
   </a>
   
@@ -891,102 +745,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#delete-an-index" class="md-nav__link">
+  <a href="#add-an-arlas-dashboard-from-configuration-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Delete an index
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#arlas-persistence" class="md-nav__link">
-    <span class="md-ellipsis">
-      ARLAS Persistence
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ARLAS Persistence">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#add-an-entry" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add an entry
+      Add an ARLAS Dashboard from configuration file
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#describe-an-entry" class="md-nav__link">
+  <a href="#list-available-dashboards" class="md-nav__link">
     <span class="md-ellipsis">
-      Describe an entry
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#get-an-entry-value" class="md-nav__link">
-    <span class="md-ellipsis">
-      Get an entry value
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list-entries-within-a-zone" class="md-nav__link">
-    <span class="md-ellipsis">
-      List entries within a zone
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#list-groups-accessing-a-zone" class="md-nav__link">
-    <span class="md-ellipsis">
-      List groups accessing a zone
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete-an-entry" class="md-nav__link">
-    <span class="md-ellipsis">
-      Delete an entry
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configurations" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configurations
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Configurations">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#create-describe-and-delete-a-configuration-for-arlas_cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      Create, describe and delete a configuration for arlas_cli
+      List available dashboards
     </span>
   </a>
   
@@ -1012,189 +782,198 @@
                   
 
 
-  <h1>Getting started</h1>
-
-<p>Install <code>arlas_cli</code> (<a href="../install/#Prerequisite">prerequisite</a>)</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">pip install arlas_cli</span><span data-ty></span></div>
-
-<p>The version of <code>arlas_cli</code> is <code>xxx.yyy</code> where <code>xxx</code> is ARLAS Stack main version and <code>yyy</code> is the increment of arlas_cli version.</p>
+<h1 id="getting-started-with-arlas-cli">Getting started with ARLAS CLI</h1>
+<h2 id="install-arlas_cli">Install arlas_cli</h2>
+<p>To install <code>arlas_cli</code>, run the following command from the command line:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>arlas_cli
+</code></pre></div>
+<p>For more details, in particular for installation on Microsoft Windows, see the <a href="../install/#installation">Installation Guide</a>.</p>
+<h2 id="configuration">Configuration</h2>
 <div class="admonition warning">
 <p class="admonition-title">Prerequisite</p>
-<p>For running the various examples bellow, ARLAS and elasticsearch must be running on the local machine: clone the <a href="https://github.com/gisaia/ARLAS-Exploration-stack">ARLAS Stack Exploration</a> project and run <code>./start.sh</code> .</p>
+<p>For running the various examples below, ARLAS and Elasticsearch must be running on the local machine: </p>
+<p>Clone the <a href="https://github.com/gisaia/ARLAS-Exploration-stack">ARLAS Stack Exploration</a> project and run <code>./start.sh</code> at project root.</p>
 </div>
-<h2 id="initial-configuration">Initial configuration</h2>
-<p><code>arlas_cli</code> uses a yaml file for storing various ARLAS and elasticsearch configurations. By default, the file is located in <code>~/.arlas/cli/configuration.yaml</code>. <a href="https://raw.githubusercontent.com/gisaia/arlas-cli/master/configuration.yaml">One is automatically created for your convenience at the first launch</a>. It contains the ARLAS demo endpoint and the local ARLAS and elasticsearch endpoints.</p>
-<p>The configuration can also contain references to collection models for creating collections. A default one is provided for ARLAS EO. A reference can be an http url or a path to a local file.
-It can also contain references to index mappings for creating indices. A default one is provided for ARLAS EO.</p>
-<h2 id="running">Running</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --version</span><span data-ty>X.X.X<br>Warning : no configuration file found, we created an empty one for <br>you (~/.arlas/cli/configuration.yaml).<br></span></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you want to connect <code>arlas_cli</code> to an existing ARLAS Cloud account, simply follow the <a href="../configuration/#arlas-cloud-configuration">configuration guide</a>.</p>
+</div>
+<p>By default, the local configuration is created during the installation. </p>
+<p>To list the available configurations, run the following command from the command line:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs list</span><span data-ty>+----------------------+------------------------------------------+<br>| name                 | url                                      |<br>+----------------------+------------------------------------------+<br>| local                | http://localhost/arlas                   |<br>+----------------------+------------------------------------------+<br></span></div>
 
-<h2 id="examples">Examples</h2>
-<p>In the following examples, you will see how to:</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>At least the <code>local</code> configuration has to be here</p>
+</div>
+<p>It will be used in the tutorial as <code>--config local</code></p>
+<p>For more details, see the <a href="../configuration/#configuration">Configuration Guide</a>.</p>
+<h2 id="tutorial">Tutorial</h2>
+<p>In the following tutorial, you will see how to:</p>
 <ul>
-<li>generate an elasticsearch mapping based on json objects</li>
-<li>add the mapping in elasticsearch</li>
-<li>list the elasticsearch indices</li>
-<li>add (index) data in the elasticsearch index</li>
-<li>get the structure of the mapping</li>
-<li>add a collection in ARLAS</li>
-<li>list the ARLAS collections</li>
-<li>get the structure of a ARLAS collection</li>
-<li>delete a collection from ARLAS</li>
-<li>delete a mapping from elasticsearch</li>
-<li>add, describe, get, list and delete an entry from ARLAS Persistence</li>
-<li>list, create, describe and delete a configuration for <code>arlas_cli</code></li>
+<li>Generate an Elasticsearch mapping based on json objects</li>
+<li>Add the mapping in Elasticsearch</li>
+<li>List the Elasticsearch indices</li>
+<li>Add (index) data in the Elasticsearch index</li>
+<li>Get the structure of the mapping</li>
+<li>Add a collection in ARLAS</li>
+<li>List the ARLAS collections</li>
+<li>Get the structure of a ARLAS collection</li>
+<li>Delete a collection from ARLAS</li>
+<li>Delete a mapping from Elasticsearch</li>
+<li>Add, describe, get, list and delete an entry from ARLAS Persistence</li>
+<li>List, create, describe and delete a configuration for <code>arlas_cli</code></li>
 </ul>
 <p>... with the <code>arlas_cli</code> command line only!</p>
-<p>We suppose you have an elasticsearch and arlas server running.</p>
-<h3 id="generate-the-elasticsearch-mapping">Generate the elasticsearch mapping</h3>
-<p>Writing the elasticsearch mapping for an index can be laborious. <code>arlas_cli</code> does it for you. <code>arlas_cli</code> can inspect a NDJSON file (one json object per line) and generate the corresponding elasticsearch mapping file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Prerequisite</p>
 <p>First, let's get a sample data file:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/sample.json -o sample.json</span><span data-ty></span></div>
+<p><div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/sample.json -o sample.json</span><span data-ty></span></div></p>
+<p>The downloaded <code>sample.json</code> contains a sample of processed AIS data.</p>
+</div>
+<h3 id="generate-the-elasticsearch-mapping">Generate the Elasticsearch mapping</h3>
+<p>Writing the elasticsearch mapping for an index can be laborious. <code>arlas_cli</code> does it for you. 
+<code>arlas_cli</code> can inspect a NDJSON file (one json object per line) and generate the corresponding elasticsearch mapping file.</p>
+<p>To generate the mapping file based on that sample, run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices \
+   --config local \
+   mapping sample.json</span><span data-ty></span></div>
 
-<p>Now we can generate the mapping file based on that sample:</p>
+<p>By inspecting the mapping, we notice that the three timestamps are not identified as datetime by <code>arlas_cli</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">--field-mapping</p>
+<p>The <code>--field-mapping</code> option allows to overwrite the detected type.</p>
+</div>
+<p>To generate the mapping with forced types, run the following command:</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli  indices \
    --config local \
    mapping sample.json \
    --field-mapping track.timestamps.center:date-epoch_second \
    --field-mapping track.timestamps.start:date-epoch_second \
    --field-mapping track.timestamps.end:date-epoch_second \
-   --push-on courses </span><span data-ty></span></div>
+   --nb-lines 20</span><span data-ty></span></div>
 
-<p>The <code>--push-on</code> option registers the mapping in the specified index.</p>
-<p>Note that the three timestamps are not identified as datetimes by <code>arlas_cli</code>. The <code>--field-mapping</code> allows to overwrite the detected type.</p>
-<h4 id="type-identification">Type identification</h4>
-<p>A geometry is identified as such if</p>
-<ul>
-<li>it is a geojson</li>
-<li>it is a WKT string</li>
-<li>the field name contains <code>geohash</code></li>
-<li>it is a string containing two float seperated by a comma</li>
-</ul>
-<p>A date is identified as such if</p>
-<ul>
-<li>its name is one of <code>timestamp</code>, <code>date</code>, <code>start</code> or <code>end</code> and that it can be parsed as a date</li>
-<li>its name contains <code>timestamp</code>, <code>date</code>, <code>start</code> or <code>end</code> and its values are number within [631152000, 4102444800] or [631152000000, 4102444800000] (year 1990 to 2100)</li>
-</ul>
-<h3 id="generate-the-elasticsearch-mapping_1">Generate the elasticsearch mapping</h3>
-<p>To add a specific mapping, it is possible to use the `create`` command:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices \
+<p>The three timestamps are now well identified as datetime.</p>
+<p>For more details, see the <a href="../indices/#mapping">Indices Mapping Guide</a>.</p>
+<h3 id="create-an-empty-index-from-inferred-mapping">Create an empty index from inferred mapping</h3>
+<p>Once the inferred mapping is fine, an elasticsearch index based on this mapping has to be created.</p>
+<div class="admonition info">
+<p class="admonition-title">--push-on</p>
+<p>In the previous <code>arlas_cli indices mapping</code> command, the <code>--push-on</code> option registers the mapping in the specified index.</p>
+<p>An empty index is created with the inferred mapping</p>
+</div>
+<p>To create the associated empty index <code>ais_courses</code> with the <code>--push-on</code> option, run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli  indices \
    --config local \
-   create courses \
-   --mapping mapping.json  </span><span data-ty></span></div>
+   mapping sample.json \
+   --field-mapping track.timestamps.center:date-epoch_second \
+   --field-mapping track.timestamps.start:date-epoch_second \
+   --field-mapping track.timestamps.end:date-epoch_second \
+   --push-on ais_courses</span><span data-ty></span></div>
 
-<h3 id="list-indices">List indices</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local list</span><span data-ty>+----------+--------+-------+--------+<br>| name     | status | count | size   |<br>+----------+--------+-------+--------+<br>| .arlas   | open   | 4     | 11.9kb |<br>| courses  | open   | 0     | 249b   |<br>+----------+--------+-------+--------+<br></span></div>
+<p>For more details, see the <a href="../indices/#mapping">Indices Mapping Guide</a>.</p>
+<h3 id="inspect-the-created-indices">Inspect the created indices</h3>
+<p>To check that the index has been created, list the existing index:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local list</span><span data-ty>+--------------+--------+-------+--------+<br>| name         | status | count | size   |<br>+--------------+--------+-------+--------+<br>| .arlas       | open   | 4     | 11.9kb |<br>| ais_courses  | open   | 0     | 249b   |<br>+--------------+--------+-------+--------+<br></span></div>
 
-<h3 id="add-data">Add data</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local data courses sample.json</span><span data-ty></span></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>The <code>ais_courses</code> index exists and contains 0 elements</p>
+</div>
+<p>To describe the fields of the index, use the <code>arlas_cli indices describe</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local describe ais_courses</span><span data-ty>+----------------------------------------------------+-----------+<br>| field name                                         | type      |<br>+----------------------------------------------------+-----------+<br>| arrival.address.country                            | keyword   |<br>| arrival.address.port                               | keyword   |<br>| arrival.location                                   | geo_point |<br>...<br>| track.timestamps.start                             | date      |<br>| track.trail                                        | geo_shape |<br>| track.trail_geohashes_6                            | geo_point |<br>| track.visibility.proportion                        | double    |<br>+----------------------------------------------------+-----------+<br></span></div>
 
-<h3 id="describe-an-index">Describe an index</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local describe courses</span><span data-ty>+----------------------------------------------------+-----------+<br>| field name                                         | type      |<br>+----------------------------------------------------+-----------+<br>| arrival.address.country                            | keyword   |<br>| arrival.address.port                               | keyword   |<br>| arrival.location                                   | geo_point |<br>...<br>| track.timestamps.start                             | date      |<br>| track.trail                                        | geo_shape |<br>| track.trail_geohashes_6                            | geo_point |<br>| track.visibility.proportion                        | double    |<br>+----------------------------------------------------+-----------+<br></span></div>
+<p>It corresponds to the inferred mapping.</p>
+<h3 id="add-data-to-index">Add data to index</h3>
+<p>To add data to the created <code>ais_courses</code> index, use the <code>arlas_cli indices data</code> command with the data file <code>sample.json</code></p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local data ais_courses sample.json</span><span data-ty></span></div>
 
-<h3 id="add-a-collection">Add a collection</h3>
+<p>To check that data has been correctly indexed, inspect the indices with:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local list</span><span data-ty>+--------------+--------+-------+--------+<br>| name         | status | count | size   |<br>+--------------+--------+-------+--------+<br>| .arlas       | open   | 4     | 11.9kb |<br>| ais_courses  | open   | 100   | 1mb    |<br>+--------------+--------+-------+--------+<br></span></div>
+
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>The <code>ais_courses</code> index now contains 100 elements.</p>
+</div>
+<h3 id="create-a-collection">Create a collection</h3>
+<p>To explore the data in ARLAS, a collection has to be defined on top of an index.</p>
+<p>To create an <code>ais_courses</code> collection based on the <code>ais_courses</code> index, run the following command:</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections \
-   --config local \
-    create courses \
-    --index courses --display-name courses \
+    --config local \
+    create ais_courses \
+    --index ais_courses \
+    --display-name &quot;AIS Courses&quot; \
     --id-path track.id \
     --centroid-path track.location \
     --geometry-path track.trail \
-    --date-path track.timestamps.center </span><span data-ty></span></div>
+    --date-path track.timestamps.center</span><span data-ty></span></div>
 
-<h3 id="list-collections">List collections</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local list </span><span data-ty>+---------+---------+<br>| name    | index   |<br>+---------+---------+<br>| courses | courses |<br>+---------+---------+<br></span></div>
+<p>The <code>--index</code> option define the index to use and the <code>--display-name</code> define a pretty name used for collection in ARLAS.</p>
+<p>Several elements define the data structure:</p>
+<ul>
+<li>
+<p><code>--id-path</code>: The data field used as unique id of each element</p>
+</li>
+<li>
+<p><code>--centroid-path</code>: The data field containing a point geometry summarizing the location of each element (used for aggregation) </p>
+</li>
+<li>
+<p><code>--geometry-path</code>: The data field containing a geometry to represent the element (can be point, linestring, polygon)</p>
+</li>
+<li>
+<p><code>--date-path</code>: The data field containing the date associated to each element (used for timeline)</p>
+</li>
+</ul>
+<p>For more details, see the <a href="../collections/#create-an-arlas-collection">Collection Creation Guide</a>.</p>
+<h3 id="inspect-the-created-collections">Inspect the created collections</h3>
+<p>To list the available collections, run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local list </span><span data-ty>+-------------+-------------+<br>| name        | index       |<br>+-------------+-------------+<br>| ais_courses | ais_courses |<br>+-------------+-------------+<br></span></div>
 
-<h3 id="describe-a-collection">Describe a collection</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local describe courses</span><span data-ty>+----------------------------------------------------+-----------+<br>| field name                                         | type      |<br>+----------------------------------------------------+-----------+<br>| arrival.address.country                            | KEYWORD   |<br>| arrival.address.port                               | KEYWORD   |<br>| arrival.location                                   | GEO_POINT |<br>| arrival.stop_after.duration_s                      | LONG      |<br>...<br>| track.timestamps.start                             | DATE      |<br>| track.trail                                        | GEO_SHAPE |<br>| track.trail_geohashes_6                            | GEO_POINT |<br>| track.visibility.proportion                        | FLOAT     |<br>+----------------------------------------------------+-----------+<br></span></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>The <code>ais_courses</code> collection is now created</p>
+</div>
+<p>To describe the fields of the collection, use the <code>arlas_cli collections describe</code> command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local describe ais_courses</span><span data-ty>+----------------------------------------------------+-----------+<br>| field name                                         | type      |<br>+----------------------------------------------------+-----------+<br>| arrival.address.country                            | KEYWORD   |<br>| arrival.address.port                               | KEYWORD   |<br>| arrival.location                                   | GEO_POINT |<br>| arrival.stop_after.duration_s                      | LONG      |<br>...<br>| track.timestamps.start                             | DATE      |<br>| track.trail                                        | GEO_SHAPE |<br>| track.trail_geohashes_6                            | GEO_POINT |<br>| track.visibility.proportion                        | FLOAT     |<br>+----------------------------------------------------+-----------+<br></span></div>
 
+<p>It corresponds to the mapping of the data within the collection</p>
+<h3 id="delete-an-index">Delete an index</h3>
+<p>To remove the indexed data from the local Elasticsearch instance, remove the index with the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local delete ais_courses</span><span data-ty></span></div>
+
+<p>Check that <code>ais_courses</code> index no longer exists:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local list</span><span data-ty>+--------------+--------+-------+--------+<br>| name         | status | count | size   |<br>+--------------+--------+-------+--------+<br>| .arlas       | open   | 4     | 11.9kb |<br>+--------------+--------+-------+--------+<br></span></div>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before reindexing data, do not forget to <a href="#create-an-empty-index-from-inferred-mapping">recreate the empty index from inferred mapping</a></p>
+<p>Collection does not need to be declared again.</p>
+</div>
 <h3 id="delete-a-collection">Delete a collection</h3>
+<p>To delete the <code>ais_courses</code> course collection</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli collections --config local delete courses</span><span data-ty></span></div>
 
-<h3 id="delete-an-index">Delete an index</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local delete courses</span><span data-ty></span></div>
+<h3 id="add-an-arlas-dashboard-from-configuration-file">Add an ARLAS Dashboard from configuration file</h3>
+<p>The configuration of an ARLAS Dashboard describes all its elements (widgets, map layers...). Such a file can be directly imported to create a dashboard.</p>
+<p>First, let's get an example of a dashboard configuration file:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">curl -X GET https://raw.githubusercontent.com/gisaia/arlas-cli/master/tests/dashboard.json -o dashboard.json</span><span data-ty></span></div>
 
-<div class="admonition note delete is not always allowed">
+<p>The downloaded <code>dashboard.json</code> contains the configuration of a dashboard to explore AIS data.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local add ./dashboard.json config.json --name courses_dashboard</span><span data-ty>32d2624b-d7cd-11ee-9a91-0242ac130004<br></span></div>
+
+<div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>By default, it is not allowed to delete an index for a given configuration. To allow deleting, edit the configuration file and set <code>allow_delete</code> to <code>True</code>.</p>
+<p>The dashboard generated unique identifier is returned</p>
 </div>
-<h2 id="arlas-persistence">ARLAS Persistence</h2>
-<h3 id="add-an-entry">Add an entry</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local add ../arlas-stacks4tests/conf/config.json config.json --name courses_dashboard</span><span data-ty>32d2624b-d7cd-11ee-9a91-0242ac130004<br></span></div>
+<h3 id="list-available-dashboards">List available dashboards</h3>
+<p>The available dashboards can be list with the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local zone config.json</span><span data-ty>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| id                                   | name              | zone        | last_update_date | owner     |<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| 32d2624b-d7cd-11ee-9a91-0242ac130004 | courses_dashboard | config.json | 1708510231303    | anonymous |<br>...<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br></span></div>
 
-<h3 id="describe-an-entry">Describe an entry</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local describe 32d2624b-d7cd-11ee-9a91-0242ac130004</span><span data-ty>+------------------+--------------------------------------+<br>| metadata         | value                                |<br>+------------------+--------------------------------------+<br>| ID               | 6a415cec-d7cd-11ee-9a91-0242ac130004 |<br>| ispublic         | None                                 |<br>| last_update_date | 1709298774600                        |<br>| name             | courses_dashboard                    |<br>| organization     | None                                 |<br>| owner            | anonymous                            |<br>| updatable        | True                                 |<br>| zone             | config.json                          |<br>+------------------+--------------------------------------+<br></span></div>
-
-<h3 id="get-an-entry-value">Get an entry value</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local get 32d2624b-d7cd-11ee-9a91-0242ac130004</span><span data-ty>{<br>  &quot;arlas&quot;: {<br>    &quot;web&quot;: {<br>      &quot;contributors&quot;: [<br>...<br>}<br></span></div>
-
-<h3 id="list-entries-within-a-zone">List entries within a zone</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local zone config.json</span><span data-ty>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| id                                   | name              | zone        | last_update_date | owner     |<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| 66984014-d0a1-11ee-b41c-0242ac190004 | Courses           | config.json | 1708510231303    | anonymous |<br>...<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br></span></div>
-
-<h3 id="list-groups-accessing-a-zone">List groups accessing a zone</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local groups config.json</span><span data-ty>+--------------+<br>| group        |<br>+--------------+<br>| group/public |<br>+--------------+<br></span></div>
-
-<h3 id="delete-an-entry">Delete an entry</h3>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local delete 32d2624b-d7cd-11ee-9a91-0242ac130004</span><span data-ty>Resource 32d2624b-d7cd-11ee-9a91-0242ac130004 deleted.<br></span></div>
-
-<h2 id="configurations">Configurations</h2>
-<p>The command line uses the <code>${HOME}/.arlas/cli/configuration.yaml</code> configuration file:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">arlas</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">local</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">allow_delete</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">elastic</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">headers</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application/json</span>
-<span class="w">      </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9200</span>
-<span class="w">    </span><span class="nt">server</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">headers</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">Content-Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">application/json</span>
-<span class="w">      </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:9999/arlas</span>
-<span class="nt">mappings</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">arlas_eo</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">    </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/mapping.json</span>
-<span class="nt">models</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">arlas_eo</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">headers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">    </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://raw.githubusercontent.com/gisaia/ARLAS-EO/master/collection.json</span>
-</code></pre></div>
-<p>The <code>arlas</code> section contains the different deployment configurations. The mapping section lists the mapping template that you can use.
- Finally, the models are the templates for the collections. A <a href="../model/">detailed description</a> of the configuration structure is provided.</p>
-<h3 id="create-describe-and-delete-a-configuration-for-arlas_cli">Create, describe and delete a configuration for <code>arlas_cli</code></h3>
-<p>You can edit directly the <code>${HOME}/.arlas/cli/configuration.yaml</code> configuration file to update your configurations. You can also use the command line itself.</p>
-<p>To list the configurations:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs list </span><span data-ty>+-----------+-----------------------------+<br>| name      | url                         |<br>+-----------+-----------------------------+<br>| local     | http://localhost:9999/arlas |<br>| test_conf | http://localhost:9999       |<br>+-----------+-----------------------------+<br></span></div>
-
-<p>To describe a configuration:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty>arlas_cli confs describe local <br>allow_delete: true<br>authorization: null<br>elastic:<br>  headers:<br>    Content-Type: application/json<br>  location: http://localhost:9200<br>server:<br>  headers:<br>    Content-Type: application/json<br>  location: http://localhost:9999/arlas<br></span></div>
-
-<p>To create a simple configuration:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs create dev_conf \
-  --server http://localhost:9999 \
-  --headers &quot;Content-Type:application/json&quot; \
-  --elastic http://localhost:9200 \
-  --elastic-headers &quot;Content-Type:application/json&quot; \
-  --no-allow-delete</span><span data-ty></span></div>
-
-<p>For an arlas configuration with authentication:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --config-file /tmp/configuration.yaml confs \
-    create myarlas_as_user \
-    --server http://myserver/arlas \
-    --headers &quot;arlas-org-filter:my_org_name&quot; \
-    --headers &quot;Content-Type:application/json&quot; \
-    --no-allow-delete \
-    --auth-token-url http://myserver/arlas_iam_server/session \
-    --auth-login user \
-    --auth-password my_password \
-    --auth-headers &quot;Content-Type:application/json;charset=utf-8&quot;\
-    --auth-arlas-iam</span><span data-ty></span></div>
-
-<p>To delete the configuration:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli confs delete dev_conf</span><span data-ty></span></div>
-
-<p>Also, it is possible to use a different configuration file than the one placed in your home directory (<code>$HOME/.arlas/cli/configuration.yaml</code>):</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --config-file /tmp/config.yaml        </span><span data-ty>Warning : no configuration file found, we created an empty one for you (/tmp/config.yaml).<br></span></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The created dashboards can be accessed and managed in <a href="../concepts/#arlas-hub">ARLAS Hub</a> and edited with <a href="../concepts/#arlas-builder">ARLAS Builder</a>.</p>
+<p>The <code>arlas_cli</code> commands to manage dashboards are detailed in <a href="../persist/">Persistence Documentation</a>.</p>
+</div>
 
 
 

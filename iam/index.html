@@ -18,7 +18,7 @@
         <link rel="prev" href="../persist/">
       
       
-        <link rel="next" href="../confs/">
+        <link rel="next" href="../concepts/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Identity & Access - ARLAS Command Line (arlas_cli)</title>
+        <title>iam - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#manage-organisations-users-permissions-and-groups" class="md-skip">
+        <a href="#identity-access-management" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Identity & Access
+              iam
             
           </span>
         </div>
@@ -194,11 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -214,11 +214,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -254,11 +254,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -332,11 +332,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -357,7 +378,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -378,7 +399,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -401,12 +422,14 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    Identity & Access
+    iam
   </span>
   
 
@@ -417,7 +440,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
+    iam
   </span>
   
 
@@ -428,6 +451,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -463,27 +488,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -498,31 +502,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -547,6 +531,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -588,13 +574,12 @@
                   
 
 
-  <h1>Identity & Access</h1>
-
+<h1 id="identity-access-management">Identity &amp; Access Management</h1>
 <h2 id="manage-organisations-users-permissions-and-groups">Manage organisations, users, permissions and groups</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli iam --config local orgs --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli iam orgs [OPTIONS] COMMAND [ARGS]...  <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                        │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ add                           Create organisation with the given   │<br>│                               name                                 │<br>│ add_group                     Add a group to the organisation      │<br>│ add_permission                Add a permission to the organisation │<br>│ add_permission_to_group       Add a permission to a group within   │<br>│                               the organisation                     │<br>│ add_user                      Add a user to the organisation, and  │<br>│                               optionally within groups             │<br>│ add_user_to_group             Add a user to a group within the     │<br>│                               organisation                         │<br>│ collections                   List the collections of the          │<br>│                               organisation                         │<br>│ delete                        Delete the organisation              │<br>│ delete_group                  Remove the group from the            │<br>│                               organisation                         │<br>│ delete_permission             Remove the permission from the       │<br>│                               organisation                         │<br>│ delete_permission_from_group  Remove a permission to a group       │<br>│                               within the organisation              │<br>│ delete_user                   Remove the user from the             │<br>│                               organisation                         │<br>│ delete_user_from_group        Remove a user from a group within    │<br>│                               the organisation                     │<br>│ groups                        List the groups of the organisation  │<br>│ list                          List organisations                   │<br>│ permissions                   List the permissions of the          │<br>│                               organisation                         │<br>│ users                         List the users of the organisation   │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli iam --config local orgs --help</span><span data-ty>                                                                              <br> Usage: arlas_cli iam orgs [OPTIONS] COMMAND [ARGS]...                        <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ add                           Create organisation with the given name      │<br>│ add_group                     Add a group to the organisation              │<br>│ add_permission                Add a permission to the organisation         │<br>│ add_permission_to_group       Add a permission to a group within the       │<br>│                               organisation                                 │<br>│ add_user                      Add a user to the organisation, and          │<br>│                               optionally within groups                     │<br>│ add_user_to_group             Add a user to a group within the             │<br>│                               organisation                                 │<br>│ collections                   List the collections of the organisation     │<br>│ delete                        Delete the organisation                      │<br>│ delete_group                  Remove the group from the organisation       │<br>│ delete_permission             Remove the permission from the organisation  │<br>│ delete_permission_from_group  Remove a permission to a group within the    │<br>│                               organisation                                 │<br>│ delete_user                   Remove the user from the organisation        │<br>│ delete_user_from_group        Remove a user from a group within the        │<br>│                               organisation                                 │<br>│ groups                        List the groups of the organisation          │<br>│ list                          List organisations                           │<br>│ permissions                   List the permissions of the organisation     │<br>│ users                         List the users of the organisation           │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
 <h2 id="create-delete-activate-deactivate-users">Create, delete, activate / deactivate users</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli iam --config local users --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli iam users [OPTIONS] COMMAND [ARGS]... <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                        │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ activate              Activate user account                        │<br>│ add                   Create user                                  │<br>│ deactivate            Deactivate user account                      │<br>│ delete                Delete user                                  │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli iam --config local users --help</span><span data-ty>                                                                              <br> Usage: arlas_cli iam users [OPTIONS] COMMAND [ARGS]...                       <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ activate                 Activate user account                             │<br>│ add                      Create user                                       │<br>│ deactivate               Deactivate user account                           │<br>│ delete                   Delete user                                       │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
 
 

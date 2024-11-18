@@ -1,0 +1,15 @@
+# Identity & Access Management
+
+## Manage organisations, users, permissions and groups
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli iam --config local orgs --help
+```
+
+## Create, delete, activate / deactivate users
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli iam --config local users --help
+```

@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://gisaia.github.io/arlas_cli/indices/">
       
       
-        <link rel="prev" href="../help/">
+        <link rel="prev" href="../confs/">
       
       
         <link rel="next" href="../collections/">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Indices - ARLAS Command Line (arlas_cli)</title>
+        <title>indices - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#list-index-management-commands" class="md-skip">
+        <a href="#indices" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Indices
+              indices
             
           </span>
         </div>
@@ -194,11 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -214,11 +214,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -254,11 +254,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -329,6 +329,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -338,12 +359,14 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -354,7 +377,7 @@
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -366,6 +389,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -374,38 +399,245 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#list-index-management-commands" class="md-nav__link">
+  <a href="#elasticsearch-index" class="md-nav__link">
     <span class="md-ellipsis">
-      List index management commands
+      Elasticsearch index
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-mapping-from-a-data-file" class="md-nav__link">
+  <a href="#mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Generate mapping from a data file
+      mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data file
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-index-with-its-mapping" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#type-identification" class="md-nav__link">
     <span class="md-ellipsis">
-      Create an index with its mapping
+      Type identification
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#index-data" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#created-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Index data
+      Created mapping
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      create
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-es-index-with-its-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an ES index with its mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingest-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingest data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-es-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      List available ES indices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">
+      describe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="describe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describe-the-index-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describe the index mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      sample
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualize-few-rows-of-your-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualize few rows of your dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      clone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="clone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-an-index-with-a-new-index-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate an index with a new index name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      migrate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="migrate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-an-index-in-another-arlas-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy an index in another arlas configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="delete">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-an-es-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete an ES index
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -429,7 +661,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -450,7 +682,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -471,28 +703,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -516,31 +727,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -566,6 +757,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -574,38 +767,245 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#list-index-management-commands" class="md-nav__link">
+  <a href="#elasticsearch-index" class="md-nav__link">
     <span class="md-ellipsis">
-      List index management commands
+      Elasticsearch index
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#generate-mapping-from-a-data-file" class="md-nav__link">
+  <a href="#mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Generate mapping from a data file
+      mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data file
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#create-an-index-with-its-mapping" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#type-identification" class="md-nav__link">
     <span class="md-ellipsis">
-      Create an index with its mapping
+      Type identification
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#index-data" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#created-mapping" class="md-nav__link">
     <span class="md-ellipsis">
-      Index data
+      Created mapping
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create" class="md-nav__link">
+    <span class="md-ellipsis">
+      create
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="create">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-es-index-with-its-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create an ES index with its mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingest-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingest data
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-available-es-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      List available ES indices
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">
+      describe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="describe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describe-the-index-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describe the index mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      sample
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualize-few-rows-of-your-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualize few rows of your dataset
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      clone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="clone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-an-index-with-a-new-index-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate an index with a new index name
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrate" class="md-nav__link">
+    <span class="md-ellipsis">
+      migrate
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="migrate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-an-index-in-another-arlas-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy an index in another arlas configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="delete">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-an-es-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete an ES index
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -624,21 +1024,249 @@
                   
 
 
-  <h1>Indices</h1>
+<h1 id="indices">Indices</h1>
+<h2 id="elasticsearch-index">Elasticsearch index</h2>
+<p>To be explored in ARLAS dashboards, the data has to be indexed in an <a href="../concepts/#elasticsearch">Elasticsearch</a> (ES) <a href="../concepts/#es-index">index</a>.
+An index contains the data and a <a href="../concepts/#es-mapping">mapping</a> to describe how fields have to be interpreted (types).</p>
+<p><code>arlas_cli</code> provide tools to infer mapping from data and manage the ES indices with the <code>indices</code> command.</p>
+<p><strong>List index management commands</strong></p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices [OPTIONS] COMMAND [ARGS]...                         <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from your     │<br>│                       configuration file                                   │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │<br>│                       [default: None]                                      │<br>│ --help                Show this message and exit.                          │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ clone     Clone an index and set its name                                  │<br>│ create    Create an index                                                  │<br>│ data      Index data                                                       │<br>│ delete    Delete an index                                                  │<br>│ describe  Describe an index                                                │<br>│ list      List indices                                                     │<br>│ mapping   Generate the mapping based on the data                           │<br>│ migrate   Migrate an index on another arlas configuration, and set the     │<br>│           target index name                                                │<br>│ sample    Display a sample of an index                                     │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
-<h2 id="list-index-management-commands">List index management commands</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli indices [OPTIONS] COMMAND [ARGS]...   <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from  │<br>│                       your configuration file                      │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yam… │<br>│                       [default: None]                              │<br>│ --help                Show this message and exit.                  │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ clone     Clone an index and set its name                          │<br>│ create    Create an index                                          │<br>│ data      Index data                                               │<br>│ delete    Delete an index                                          │<br>│ describe  Describe an index                                        │<br>│ list      List indices                                             │<br>│ mapping   Generate the mapping based on the data                   │<br>│ migrate   Migrate an index on another arlas configuration, and set │<br>│           the target index name                                    │<br>│ sample    Display a sample of an index                             │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<h2 id="mapping">mapping</h2>
+<p><code>arlas_cli</code> provide tools to infer the ES mapping directly from a data file.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local mapping --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices mapping [OPTIONS] FILE                              <br>                                                                              <br> Generate the mapping based on the data                                       <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    file      TEXT  Path to the file containing the data. Format: NDJSON  │<br>│                      [default: None]                                       │<br>│                      [required]                                            │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --nb-lines             INTEGER  Number of line to consider for generating  │<br>│                                 the mapping. Avoid going over 10.          │<br>│                                 [default: 2]                               │<br>│ --field-mapping        TEXT     Override the mapping with the provided     │<br>│                                 field path/type. Example:                  │<br>│                                 fragment.location:geo_point. Important:    │<br>│                                 the full field path must be provided.      │<br>│ --no-fulltext          TEXT     List of keyword or text fields that should │<br>│                                 not be in the fulltext search. Important:  │<br>│                                 the field name only must be provided.      │<br>│ --push-on              TEXT     Push the generated mapping for the         │<br>│                                 provided index name                        │<br>│                                 [default: None]                            │<br>│ --help                          Show this message and exit.                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
-<h2 id="generate-mapping-from-a-data-file">Generate mapping from a data file</h2>
-<p>To generate a mapping, you need to provide a NDJSON file (New line delimiter JSON). The first N lines are used for infering the mapping. If the mapping is wrong, you can overwrite the typing with the <code>--field-mapping</code> option. Once you're happy with the mapping, you can directly push it on elasticsearch (<code>--push-on</code>).</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local mapping --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli indices mapping [OPTIONS] FILE        <br>                                                                      <br> Generate the mapping based on the data                               <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    file      TEXT  Path to the file containing the data. Format: │<br>│                      NDJSON                                        │<br>│                      [default: None]                               │<br>│                      [required]                                    │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --nb-lines             INTEGER  Number of line to consider for     │<br>│                                 generating the mapping. Avoid      │<br>│                                 going over 10.                     │<br>│                                 [default: 2]                       │<br>│ --field-mapping        TEXT     Override the mapping with the      │<br>│                                 provided field path/type. Example: │<br>│                                 fragment.location:geo_point.       │<br>│                                 Important: the full field path     │<br>│                                 must be provided.                  │<br>│ --no-fulltext          TEXT     List of keyword or text fields     │<br>│                                 that should not be in the fulltext │<br>│                                 search. Important: the field name  │<br>│                                 only must be provided.             │<br>│ --push-on              TEXT     Push the generated mapping for the │<br>│                                 provided index name                │<br>│                                 [default: None]                    │<br>│ --help                          Show this message and exit.        │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<h3 id="data-file">Data file</h3>
+<p>To generate a mapping, you need to provide a NDJSON <code>file</code> (New line delimiter JSON).</p>
+<p>The values of the first lines of the files are used to infer the mapping for each field of the data.</p>
+<div class="admonition note">
+<p class="admonition-title">--nb_lines</p>
+<p>The <code>indices mapping</code> function uses the first rows to infer mapping.
+If a field is not present in the first rows, it will not appear in the mapping.</p>
+<p>Make sure to take enough rows to get all the fields with the option <code>--nb_lines</code></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The data can be split in different NDJSON files in a folder:
+<div class="highlight"><pre><span></span><code>part-00000-[...].json
+part-00001-[...].json
+...
+</code></pre></div>
+In practice, the <code>file</code> Argument can be filed with a <strong>pattern</strong> such as <code>path/to/data.json/part-0000*.json</code> to reference all the different files.</p>
+</div>
+<h3 id="type-identification">Type identification</h3>
+<p>The mapping associates to each field of the data a type (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html">Elasticsearch type</a>)</p>
+<p>A <strong>geometry</strong> is identified as such if</p>
+<ul>
+<li>it is a geojson</li>
+<li>it is a WKT string</li>
+<li>the field name contains <code>geohash</code></li>
+<li>it is a string containing two float separated by a comma</li>
+</ul>
+<p>A <strong>date</strong> is identified as such if</p>
+<ul>
+<li>its name is one of <code>timestamp</code>, <code>date</code>, <code>start</code> or <code>end</code> and that it can be parsed as a date</li>
+<li>its name contains <code>timestamp</code>, <code>date</code>, <code>start</code> or <code>end</code> and its values are number within [631152000, 4102444800] or [631152000000, 4102444800000] (year 1990 to 2100)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">--field-mapping</p>
+<p>If the mapping is wrong, you can overwrite the typing with the <code>--field-mapping</code> option.</p>
+<p>It has the structure <strong>field_name:field_type</strong> (see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html">Elasticsearch type</a>)</p>
+<p>Examples:</p>
+<ul>
+<li><code>--field-mapping field_point:geo_point</code></li>
+<li><code>--field-mapping field_geometry:geo_shape</code></li>
+<li><code>--field-mapping field_short_text:keyword</code></li>
+<li><code>--field-mapping field_long_text:text</code></li>
+<li><code>--field-mapping field_float:double</code></li>
+<li><code>--field-mapping field_int:long</code></li>
+</ul>
+<p>The date fields have a format that can be specified as <strong>field_name:date-format</strong> with all format accepted by <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html">Elasticsearch date type</a></p>
+<p>Examples:</p>
+<ul>
+<li><code>--field-mapping field_time_epoch_second:date-epoch_second</code></li>
+<li><code>--field-mapping field_time_epoch_millisecond:date-epoch_millis</code></li>
+<li><code>--field-mapping field_time_pattern:date-"yyyy-MM-dd HH:mm:ss"</code></li>
+</ul>
+</div>
+<p>By default, the keywords and text fields are searchable as fulltext to be accessible in the search bar.</p>
+<div class="admonition note">
+<p class="admonition-title">--no-fulltext </p>
+<p>If searching through a field value is not needed, it can be deactivated.
+That would result in better performances for the fulltext search.</p>
+<p>Example:</p>
+<ul>
+<li><code>--no-fulltext field_keyword</code></li>
+</ul>
+</div>
+<h3 id="created-mapping">Created mapping</h3>
+<p>By default, the <code>arlas_cli indices mapping</code> directly returns the mapping in the command line.</p>
+<p>Once you're happy with the mapping, you can either store it in a file or directly push it on elasticsearch.</p>
+<div class="admonition tip">
+<p class="admonition-title">Store mapping in a file</p>
+<p>To store the created mapping in a <code>mapping.json</code> file, simply use <code>&gt;</code> as the end of your command.</p>
+<p>Example:</p>
+<p><div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli  indices \
+   --config {local} \
+   mapping {path/to/data.json} \
+   --field-mapping {timestamps.start:date-epoch_second} \
+   --field-mapping {timestamps.end:date-epoch_second} \
+   &gt; {path/to/mapping.json}</span><span data-ty></span></div></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">--push-on</p>
+<p>To push the inferred mapping directly in an Elasticsearch index, use the <code>--push-on</code> option with the target index name.</p>
+<p>Example:</p>
+<p><div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli  indices \
+   --config {local} \
+   mapping {path/to/data.json} \
+   --push-on {index_name}</span><span data-ty></span></div></p>
+<p>The index is then created and the <a href="#create">index creation command</a> can be skipped.</p>
+</div>
+<h2 id="create">create</h2>
+<p>Before putting the data in an elasticsearch index, the index has to be initialised with the <a href="#mapping">correct mapping</a>.</p>
+<p>The <code>indices create</code> sub-function create the index from a mapping json file.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local create --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices create [OPTIONS] INDEX                              <br>                                                                              <br> Create an index                                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    index      TEXT  index's name [default: None] [required]              │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ *  --mapping        TEXT     Name of the mapping within your               │<br>│                              configuration, or URL or file path            │<br>│                              [default: None]                               │<br>│                              [required]                                    │<br>│    --shards         INTEGER  Number of shards for the index [default: 1]   │<br>│    --help                    Show this message and exit.                   │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
-<h2 id="create-an-index-with-its-mapping">Create an index with its mapping</h2>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local create --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli indices create [OPTIONS] INDEX        <br>                                                                      <br> Create an index                                                      <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    index      TEXT  index's name [default: None] [required]      │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ *  --mapping        TEXT     Name of the mapping within your       │<br>│                              configuration, or URL or file path    │<br>│                              [default: None]                       │<br>│                              [required]                            │<br>│    --shards         INTEGER  Number of shards for the index        │<br>│                              [default: 1]                          │<br>│    --help                    Show this message and exit.           │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<h3 id="create-an-es-index-with-its-mapping">Create an ES index with its mapping</h3>
+<p>The index name and the path to the mapping json file have to be used to create the ES index.</p>
+<p>The <code>indices create</code> sub-function create the index from a mapping json file.</p>
+<p>Example:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices \
+   --config local \
+   create {index_name} \
+   --mapping {path/to/mapping.json}</span><span data-ty></span></div>
 
-<h2 id="index-data">Index data</h2>
-<p>For indexing data, you'll need to provide one ore several NDJSON file(s). Indexing uses bulks for optimal performances.</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local data --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli indices data [OPTIONS] INDEX FILES... <br>                                                                      <br> Index data                                                           <br>                                                                      <br>╭─ Arguments ────────────────────────────────────────────────────────╮<br>│ *    index      TEXT      index's name [default: None] [required]  │<br>│ *    files      FILES...  List of paths to the file(s) containing  │<br>│                           the data. Format: NDJSON                 │<br>│                           [default: None]                          │<br>│                           [required]                               │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --bulk        INTEGER  Bulk size for indexing data [default: 5000] │<br>│ --help                 Show this message and exit.                 │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<p>Once the index is created, Elasticsearch can index data to fill that index.</p>
+<h2 id="data">data</h2>
+<p>To explore data in ARLAS, it has to be indexed in the created ES index.</p>
+<p>The <code>indices data</code> sub-function ingest the data in a given index.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local data --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices data [OPTIONS] INDEX FILES...                       <br>                                                                              <br> Index data                                                                   <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    index      TEXT      index's name [default: None] [required]          │<br>│ *    files      FILES...  List of paths to the file(s) containing the      │<br>│                           data. Format: NDJSON                             │<br>│                           [default: None]                                  │<br>│                           [required]                                       │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --bulk        INTEGER  Bulk size for indexing data [default: 5000]         │<br>│ --help                 Show this message and exit.                         │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="ingest-data">Ingest data</h3>
+<p>To index data, you'll need to provide one or several NDJSON (New line delimiter JSON) file(s).
+Indexing uses bulks for optimal performances.</p>
+<p>Example:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli  indices \
+   --config {local} \
+   data {index_name} {path/to/data.json}</span><span data-ty></span></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the index already contains data, the data is added to the index.</p>
+<p>To reindex the same data, delete the index, and do not forget to recreate it with the correct mapping before ingesting the data.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">--bulk</p>
+<p>Indexing uses bulks for optimal performances.</p>
+<p>The size of bulk can be changed with the <code>--bulk</code> option</p>
+</div>
+<h2 id="list">list</h2>
+<p>To list the available ES indices, simply use the <code>indices list</code> sub-function. No arguments are required.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local list --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices list [OPTIONS]                                      <br>                                                                              <br> List indices                                                                 <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="list-available-es-indices">List available ES indices</h3>
+<p>It displays for each ES index its status, the number of elements it contains and the size of the index.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span><span class="o">{</span>local<span class="o">}</span><span class="w"> </span>list
++--------------+--------+-------+--------+
+<span class="p">|</span><span class="w"> </span>name<span class="w">         </span><span class="p">|</span><span class="w"> </span>status<span class="w"> </span><span class="p">|</span><span class="w"> </span>count<span class="w"> </span><span class="p">|</span><span class="w"> </span>size<span class="w">   </span><span class="p">|</span>
++--------------+--------+-------+--------+
+<span class="p">|</span><span class="w"> </span>.arlas<span class="w">       </span><span class="p">|</span><span class="w"> </span>open<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">4</span><span class="w">     </span><span class="p">|</span><span class="w"> </span><span class="m">11</span>.9kb<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>index_name<span class="w">   </span><span class="p">|</span><span class="w"> </span>open<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">100</span><span class="w">   </span><span class="p">|</span><span class="w"> </span>1mb<span class="w">    </span><span class="p">|</span>
++--------------+--------+-------+--------+
+</code></pre></div>
+<h2 id="describe">describe</h2>
+<p>Once the index is created, the description of the fields it contains (corresponding to the mapping) can be displayed with the <code>indices describe</code> sub function:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local data --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices data [OPTIONS] INDEX FILES...                       <br>                                                                              <br> Index data                                                                   <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    index      TEXT      index's name [default: None] [required]          │<br>│ *    files      FILES...  List of paths to the file(s) containing the      │<br>│                           data. Format: NDJSON                             │<br>│                           [default: None]                                  │<br>│                           [required]                                       │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --bulk        INTEGER  Bulk size for indexing data [default: 5000]         │<br>│ --help                 Show this message and exit.                         │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="describe-the-index-mapping">Describe the index mapping</h3>
+<p>For a given index, the description of its fields and their type can be displayed.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span><span class="o">{</span>local<span class="o">}</span><span class="w"> </span>describe<span class="w"> </span><span class="o">{</span>index_name<span class="o">}</span>
++------------------+-----------+
+<span class="p">|</span><span class="w"> </span>field<span class="w"> </span>name<span class="w">       </span><span class="p">|</span><span class="w"> </span><span class="nb">type</span><span class="w">      </span><span class="p">|</span>
++------------------+-----------+
+<span class="p">|</span><span class="w"> </span>field_keyword<span class="w">    </span><span class="p">|</span><span class="w"> </span>keyword<span class="w">   </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_point<span class="w">      </span><span class="p">|</span><span class="w"> </span>geo_point<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_long<span class="w">       </span><span class="p">|</span><span class="w"> </span>long<span class="w">      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_shape<span class="w">      </span><span class="p">|</span><span class="w"> </span>geo_shape<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_double<span class="w">     </span><span class="p">|</span><span class="w"> </span>double<span class="w">    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_date<span class="w">       </span><span class="p">|</span><span class="w"> </span>date<span class="w">      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_text<span class="w">       </span><span class="p">|</span><span class="w"> </span>text<span class="w">      </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_object<span class="w">     </span><span class="p">|</span><span class="w"> </span>object<span class="w">    </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>field_boolean<span class="w">    </span><span class="p">|</span><span class="w"> </span>boolean<span class="w">   </span><span class="p">|</span>
++------------------+-----------+
+</code></pre></div>
+<h2 id="sample">sample</h2>
+<p>The first rows of the data contained in an index can be displayed with the <code>indices sample</code> sub function.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local delete --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices delete [OPTIONS] INDEX                              <br>                                                                              <br> Delete an index                                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    index      TEXT  index's name [default: None] [required]              │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="visualize-few-rows-of-your-dataset">Visualize few rows of your dataset</h3>
+<p>For a given index <code>index_name</code>, the first rows of data can be displayed as a valid json dictionary.</p>
+<div class="admonition note">
+<p class="admonition-title">--size</p>
+<p>The number of rows to display (default 100) can be changed</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span><span class="o">{</span>local<span class="o">}</span><span class="w"> </span>sample<span class="w"> </span><span class="o">{</span>index_name<span class="o">}</span><span class="w"> </span>--size<span class="w"> </span><span class="o">{</span><span class="m">10</span><span class="o">}</span>
+</code></pre></div>
+</div>
+<p>By default, the json representation of the data is pretty printed (clear indentation and one line per field)</p>
+<div class="admonition note">
+<p class="admonition-title">--no-pretty</p>
+<p>The pretty printing can be deactivated and data is displayed in a compact way</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>arlas_cli<span class="w"> </span>indices<span class="w"> </span>--config<span class="w"> </span><span class="o">{</span>local<span class="o">}</span><span class="w"> </span>sample<span class="w"> </span><span class="o">{</span>index_name<span class="o">}</span><span class="w"> </span>--no-pretty
+</code></pre></div>
+</div>
+<h2 id="clone">clone</h2>
+<h3 id="duplicate-an-index-with-a-new-index-name">Duplicate an index with a new index name</h3>
+<p>An ES index can be cloned on the same ES deployment with the <code>indices clone</code> sub-command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local clone --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET                       <br>                                                                              <br> Clone an index and set its name                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    source      TEXT  Source index name [default: None] [required]        │<br>│ *    target      TEXT  Target cloned index name [default: None] [required] │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<p>Both indices co-exist with exactly the same mapping and data content.</p>
+<h2 id="migrate">migrate</h2>
+<h3 id="copy-an-index-in-another-arlas-configuration">Copy an index in another arlas configuration</h3>
+<p>An index can be copied from an ES instance to another.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The two instances have to be accessible by <code>arlas_cli</code> with two configurations (see <a href="../configuration/">Configuration guide</a>).</p>
+</div>
+<p>The target configuration and the name of the new created index are given to the <code>indices migrate</code> sub-command.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local clone --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET                       <br>                                                                              <br> Clone an index and set its name                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    source      TEXT  Source index name [default: None] [required]        │<br>│ *    target      TEXT  Target cloned index name [default: None] [required] │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<p>Both indices co-exist with exactly the same mapping and data content.</p>
+<h2 id="delete">delete</h2>
+<p>The ES index can be deleted with <code>indices delete</code> sub command to free space on the ES cluster.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local delete --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices delete [OPTIONS] INDEX                              <br>                                                                              <br> Delete an index                                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    index      TEXT  index's name [default: None] [required]              │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="delete-an-es-index">Delete an ES index</h3>
+<p>To delete an ES index <code>index_name</code> on <code>local</code> configuration, run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config {local} delete {index_name}</span><span data-ty></span></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A deleted index cannot be restored.</p>
+</div>
+<div class="admonition note delete is not always allowed">
+<p class="admonition-title">Note</p>
+<p>By default, it is not allowed to delete an index for a given configuration.</p>
+<p>To allow deleting, <a href="../configuration/">edit the configuration file</a> and set <code>allow_delete</code> to <code>True</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Good practice: Set admin confs</p>
+<p>For a given ARLAS deployment, it is advised to set two configurations, with only the admin one that can delete an index.</p>
+<p>For example:
+<div class="highlight"><pre><span></span><code>+----------------------+------------------------------------------+
+| name                 | url                                      |
++----------------------+------------------------------------------+
+| cloud.arlas.io       | https://cloud.arlas.io/arlas/server      |
+| cloud.arlas.io-admin | https://cloud.arlas.io/arlas/server      |
+| local                | http://localhost/arlas                   |
++----------------------+------------------------------------------+
+</code></pre></div></p>
+<p>Here the configuration <code>--config cloud.arlas.io-admin</code> has to be used to delete any index.</p>
+</div>
 
 
 

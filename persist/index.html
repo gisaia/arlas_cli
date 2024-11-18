@@ -26,7 +26,7 @@
     
     
       
-        <title>Persistence - ARLAS Command Line (arlas_cli)</title>
+        <title>persist - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#manage-persistence" class="md-skip">
+        <a href="#arlas-persistence" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Persistence
+              persist
             
           </span>
         </div>
@@ -194,11 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -214,11 +214,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -254,11 +254,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -332,11 +332,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -357,7 +378,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -385,7 +406,7 @@
           
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -396,7 +417,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -416,11 +437,155 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#manage-persistence" class="md-nav__link">
+  <a href="#arlas-persistence" class="md-nav__link">
     <span class="md-ellipsis">
-      Manage persistence
+      ARLAS Persistence
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-an-entry-from-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add an entry from a file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      zone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="zone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-entries-within-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List entries within a zone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">
+      describe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="describe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describe-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describe an entry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      get
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-an-entry-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get an entry value
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-groups-accessing-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List groups accessing a zone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="delete">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete an entry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -444,28 +609,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -489,31 +633,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -547,11 +671,155 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#manage-persistence" class="md-nav__link">
+  <a href="#arlas-persistence" class="md-nav__link">
     <span class="md-ellipsis">
-      Manage persistence
+      ARLAS Persistence
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      add
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-an-entry-from-a-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add an entry from a file
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      zone
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="zone">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-entries-within-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List entries within a zone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#describe" class="md-nav__link">
+    <span class="md-ellipsis">
+      describe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="describe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#describe-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Describe an entry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      get
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-an-entry-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get an entry value
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-groups-accessing-a-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      List groups accessing a zone
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      delete
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="delete">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delete-an-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Delete an entry
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -570,11 +838,79 @@
                   
 
 
-  <h1>Persistence</h1>
+  <h1>persist</h1>
 
-<h2 id="manage-persistence">Manage persistence</h2>
-<p>ARLAS Persistence allows you to place files within zones. A zone is visible by groups. It is also possible to set the access: writers, readers and whether it is public or not.</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --help</span><span data-ty>                                                                      <br> Usage: python -m arlas.cli.cli persist [OPTIONS] COMMAND [ARGS]...   <br>                                                                      <br>╭─ Options ──────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from  │<br>│                       your configuration file                      │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yam… │<br>│                       [default: None]                              │<br>│ --help                Show this message and exit.                  │<br>╰────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────╮<br>│ add           Add an entry, returns its ID                         │<br>│ delete        Delete an entry                                      │<br>│ describe      Describe an entry                                    │<br>│ get           Retrieve an entry                                    │<br>│ groups        List groups allowed to access a zone                 │<br>│ zone          List entries within a zone                           │<br>╰────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+<h2 id="arlas-persistence">ARLAS Persistence</h2>
+<p>ARLAS Persistence allows you to place files within <strong>zones</strong>.</p>
+<p>A <strong>zone</strong> is a group of files of the same nature (configurations, dashboard previews, bookmarks, ...)</p>
+<p>A <strong>zone</strong> is visible by <strong>groups</strong>.</p>
+<p>It is also possible to set who can access the file.</p>
+<p>The main persistence zone is the <code>config.json</code> which contains the dashboard configurations.</p>
+<p>An entry is an element stored in the persistence.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist [OPTIONS] COMMAND [ARGS]...                         <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from your     │<br>│                       configuration file                                   │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │<br>│                       [default: None]                                      │<br>│ --help                Show this message and exit.                          │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ add             Add an entry, returns its ID                               │<br>│ delete          Delete an entry                                            │<br>│ describe        Describe an entry                                          │<br>│ get             Retrieve an entry                                          │<br>│ groups          List groups allowed to access a zone                       │<br>│ zone            List entries within a zone                                 │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h2 id="add">add</h2>
+<p>The <code>persist add</code> sub-command allows to create an entry from a file.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local add --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist add [OPTIONS] FILE ZONE                             <br>                                                                              <br> Add an entry, returns its ID                                                 <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    file      TEXT  File path [default: None] [required]                  │<br>│ *    zone      TEXT  zone [default: None] [required]                       │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --name                     TEXT  name [default: none]                      │<br>│ --reader                   TEXT  Readers                                   │<br>│ --writer                   TEXT  writers                                   │<br>│ --encode    --no-encode          Encode in BASE64 [default: no-encode]     │<br>│ --help                           Show this message and exit.               │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="add-an-entry-from-a-file">Add an entry from a file</h3>
+<p>For example to create an ARLAS dashboard directly from a json file, run the following command to add the entry to the <code>config.json</code> zone:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist \
+    --config {local} \
+    add {path/to/config.dashboard.json} config.json \
+    --name {dashboard_name}</span><span data-ty>32d2624b-d7cd-11ee-9a91-0242ac130004<br></span></div>
+
+<p>The returned identifier is the entry unique identifier.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code>config.dashboard.json</code> file has to contain all the dashboard configurations merged (<code>config.json</code> and <code>config.map.json</code>).</p>
+</div>
+<h2 id="zone">zone</h2>
+<p>The available entries in a zone can be listed with the <code>persist zone</code> sub-command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local zone --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist zone [OPTIONS] ZONE                                 <br>                                                                              <br> List entries within a zone                                                   <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    zone      TEXT  Zone name [default: None] [required]                  │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="list-entries-within-a-zone">List entries within a zone</h3>
+<p>For example, to list all the available ARLAS dashboards (<code>config.json</code> zone), run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config {local} zone config.json</span><span data-ty>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| id                                   | name              | zone        | last_update_date | owner     |<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br>| 66984014-d0a1-11ee-b41c-0242ac190004 | Courses           | config.json | 1708510231303    | anonymous |<br>...<br>+--------------------------------------+-------------------+-------------+------------------+-----------+<br></span></div>
+
+<p>The <code>id</code> is the unique identifier of the entry.</p>
+<h2 id="describe">describe</h2>
+<p>An entry (defined by its unique identifier) can be described with the <code>persist describe</code> sub-command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local describe --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist describe [OPTIONS] ID                               <br>                                                                              <br> Describe an entry                                                            <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    id      TEXT  entry identifier [default: None] [required]             │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="describe-an-entry">Describe an entry</h3>
+<p>For example, a dashboard configuration can be described by its metadata with the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config {local} describe {99acb6b7-3cfd-11ef-aee2-2e6497b109c4}</span><span data-ty>+------------------+--------------------------------------------+<br>| metadata         | value                                      |<br>+------------------+--------------------------------------------+<br>| ID               | 99acb6b7-3cfd-11ef-aee2-2e6497b109c4       |<br>| name             | AIS Course                                 |<br>| zone             | config.json                                |<br>| last_update_date | 2024-10-21T18:02:59.456000                 |<br>| owner            | 6ce7f1f2-2ee3-4532-987d-26079c1b3043       |<br>| organization     | gisaia.com                                 |<br>| ispublic         | False                                      |<br>| updatable        | True                                       |<br>| readers          | group/config.json/gisaia.com, group/public |<br>| writers          | group/config.json/gisaia.com               |<br>+------------------+--------------------------------------------+<br></span></div>
+
+<p>In the metadata, we can find which organisation own the dashboard and which groups can access the dashboard as readers and writers.</p>
+<h2 id="get">get</h2>
+<p>The content of an entry can be accessed with the <code>persist get</code> sub-command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local get --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist get [OPTIONS] ID                                    <br>                                                                              <br> Retrieve an entry                                                            <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    id      TEXT  entry identifier [default: None] [required]             │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="get-an-entry-value">Get an entry value</h3>
+<p>The content of the configuration file of an ARLAS dashboard can be read directly from its entry unique identifier:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config {local} get {32d2624b-d7cd-11ee-9a91-0242ac130004}</span><span data-ty>{<br>  &quot;arlas&quot;: {<br>    &quot;web&quot;: {<br>      &quot;contributors&quot;: [<br>...<br>}<br></span></div>
+
+<h2 id="groups">groups</h2>
+<p>The groups accessing a zone can be listed with the <code>persist groups</code> sub-command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local groups --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist groups [OPTIONS] ZONE                               <br>                                                                              <br> List groups allowed to access a zone                                         <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    zone      TEXT  Zone name [default: None] [required]                  │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="list-groups-accessing-a-zone">List groups accessing a zone</h3>
+<p>For example, the groups accessing the dashboards <code>config.json</code> zone can be listed with the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config {local} groups config.json</span><span data-ty>+-------------------------------+<br>| group                         |<br>+-------------------------------+<br>| group/config.json/gisaia.com  |<br>| group/public                  |<br>+-------------------------------+<br></span></div>
+
+<h2 id="delete">delete</h2>
+<p>An entry defined by its unique identifier can be deleted with the <code>persist delete</code> sub-command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config local delete --help</span><span data-ty>                                                                              <br> Usage: arlas_cli persist delete [OPTIONS] ID                                 <br>                                                                              <br> Delete an entry                                                              <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    id      TEXT  entry identifier [default: None] [required]             │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --help          Show this message and exit.                                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
+
+<h3 id="delete-an-entry">Delete an entry</h3>
+<p>For example, to delete a dashboard from its identifier, run the following command:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli persist --config {local} delete {32d2624b-d7cd-11ee-9a91-0242ac130004}</span><span data-ty>Resource 32d2624b-d7cd-11ee-9a91-0242ac130004 deleted.<br></span></div>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A deleted entry cannot be restored.</p>
+</div>
 
 
 

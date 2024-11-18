@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://gisaia.github.io/arlas_cli/help/">
       
       
-        <link rel="prev" href="../started/">
+        <link rel="prev" href="../configuration/">
       
       
-        <link rel="next" href="../indices/">
+        <link rel="next" href="../confs/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -194,11 +194,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../version/" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    arlas_cli version
+    About arlas_cli
   </span>
   
 
@@ -214,11 +214,11 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    About arlas_cli
+    Getting started
   </span>
   
 
@@ -254,11 +254,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../started/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Getting started
+    Configuration
   </span>
   
 
@@ -377,11 +377,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../confs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    confs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Indices
+    indices
   </span>
   
 
@@ -402,7 +423,7 @@
         
   
   <span class="md-ellipsis">
-    Collections
+    collections
   </span>
   
 
@@ -423,7 +444,7 @@
         
   
   <span class="md-ellipsis">
-    Persistence
+    persist
   </span>
   
 
@@ -444,28 +465,7 @@
         
   
   <span class="md-ellipsis">
-    Identity & Access
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../confs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configurations
+    iam
   </span>
   
 
@@ -489,31 +489,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../model/model/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Configuration data model
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../arlas_cloud/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Configuring ARLAS Cloud
+    Concepts
   </span>
   
 
@@ -575,10 +555,10 @@
 <h2 id="getting-help">Getting help</h2>
 <p>At any time, if you need some help on how to use the command line or one of its sub command, simply add <code>--help</code>.</p>
 <p>Whether you are at the top level:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --help</span><span data-ty>Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...<br><br>Options:<br>  --config-file TEXT              Path to the configuration file if you do not<br>                                  want to use the default one:<br>                                  .arlas/cli/configuration.yaml.<br>  --print-curl / --no-print-curl  Print curl command  [default: no-print-curl]<br>  --version                       Print command line version<br>  --help                          Show this message and exit.<br><br>Commands:<br>  collections<br>  confs<br>  iam<br>  indices<br>  persist<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --help</span><span data-ty>                                                                              <br> Usage: arlas_cli [OPTIONS] COMMAND [ARGS]...                                 <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --config-file                       TEXT  Path to the configuration file   │<br>│                                           if you do not want to use the    │<br>│                                           default one:                     │<br>│                                           .arlas/cli/configuration.yaml.   │<br>│                                           [default: None]                  │<br>│ --print-curl     --no-print-curl          Print curl command               │<br>│                                           [default: no-print-curl]         │<br>│ --version                                 Print command line version       │<br>│ --help                                    Show this message and exit.      │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ collections                                                                │<br>│ confs                                                                      │<br>│ iam                                                                        │<br>│ indices                                                                    │<br>│ persist                                                                    │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
 <p>or within a sub command:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config demo mapping --help</span><span data-ty>Usage: arlas_cli indices mapping [OPTIONS] FILE<br><br>  Generate the mapping based on the data<br><br>Arguments:<br>  FILE  Path to the file conaining the data. Format: NDJSON  [required]<br><br>Options:<br>  --nb-lines INTEGER    Number of line to consider for generating the mapping.<br>                        Avoid going over 10.  [default: 2]<br>  --field-mapping TEXT  Overide the mapping with the provided field path/type.<br>                        Example: fragment.location:geo_point. Important: the<br>                        full field path must be provided.<br>  --no-fulltext TEXT    List of keyword or text fields that should not be in<br>                        the fulltext search. Important: the field name only<br>                        must be provided.<br>  --push-on TEXT        Push the generated mapping for the provided index name<br>  --help                Show this message and exit.<br></span></div>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --config local mapping --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices mapping [OPTIONS] FILE                              <br>                                                                              <br> Generate the mapping based on the data                                       <br>                                                                              <br>╭─ Arguments ────────────────────────────────────────────────────────────────╮<br>│ *    file      TEXT  Path to the file containing the data. Format: NDJSON  │<br>│                      [default: None]                                       │<br>│                      [required]                                            │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --nb-lines             INTEGER  Number of line to consider for generating  │<br>│                                 the mapping. Avoid going over 10.          │<br>│                                 [default: 2]                               │<br>│ --field-mapping        TEXT     Override the mapping with the provided     │<br>│                                 field path/type. Example:                  │<br>│                                 fragment.location:geo_point. Important:    │<br>│                                 the full field path must be provided.      │<br>│ --no-fulltext          TEXT     List of keyword or text fields that should │<br>│                                 not be in the fulltext search. Important:  │<br>│                                 the field name only must be provided.      │<br>│ --push-on              TEXT     Push the generated mapping for the         │<br>│                                 provided index name                        │<br>│                                 [default: None]                            │<br>│ --help                          Show this message and exit.                │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
 
 
 
