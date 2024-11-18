@@ -96,9 +96,27 @@ This is to prevent accidental data loss.
 !!! warning "--allow-delete"
     In order to allow to delete on a configuration, use the `--allow-delete` option.
 
-### ARLAS Cloud
+## login
 
-If you want to connect `arlas_cli` to an existing ARLAS Cloud account, follow the [ARLAS Cloud configuration guide](configuration.md#arlas-cloud-configuration).
+### Create configuration for ARLAS Cloud
+
+The `confs longin` allows to create a configuration linked to an ARLAS Cloud account:
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli confs login --help
+```
+
+Only your own ES and ARLAS credentials have to be set, the configuration is directly linked to the ARLAS Cloud instance.
+
+It creates a configuration based on your username (extracted from your ARLAS login)  : `cloud.arlas.io.{USER_NAME}`
+
+!!! note
+    This created configuration is used as default.
+
+    You no longer need to declare the `--config` in the arlas_cli commands
+
+See the [ARLAS Cloud configuration guide](configuration.md#arlas-cloud-configuration).
 
 ## delete
 

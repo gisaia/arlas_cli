@@ -22,6 +22,7 @@ __ARLAS Command Line__ (`arlas_cli`) is a tool to manage data and configurations
     - Delete a collection
 - Managing [arlas_cli configurations](concepts.md#configuration)
     - Register an ARLAS/Elasticsearch configuration, with headers and authentication parameters
+    - Login to your ARLAS Cloud account
     - List your configurations
     - Delete a configuration
 - Managing [ARLAS Dashboards](concepts.md#arlas-dashboards) persistence

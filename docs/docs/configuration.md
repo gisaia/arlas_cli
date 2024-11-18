@@ -86,10 +86,7 @@ All the arlas_cli commands can then be run on this configuration file, for examp
 
 ## ARLAS Cloud configuration
 
-If you have an ARLAS cloud account, you can configure `cloud.arlas.io` and `cloud.arlas.io-admin` configurations to access your space with `arlas_cli`.
-
-!!! note
-    You can name your configuration as you want, but it is advised to create an "admin" configuration which is the only one to have the right to delete data.
+If you have an ARLAS cloud account, you can directly create the configurations to access your space with `arlas_cli login`.
 
 First, set the environment variables provided by Gisaïa and change appropriately `SET_THIS_VALUE` with your own ARLAS user login/password:
 
@@ -103,51 +100,16 @@ First, set the environment variables provided by Gisaïa and change appropriatel
     export ELASTIC_PWD=<SET_THIS_VALUE>
     ```
 
-    Then run the command `arlas_cli confs create` with all the parameters to create the `cloud.arlas.io` and `cloud.arlas.io-admin` configurations:
-    
-    === "cloud.arlas.io"
-        ```shell
-        arlas_cli confs \
-            create cloud.arlas.io \
-            --server "https://cloud.arlas.io/arlas/server" \
-            --headers "arlas-org-filter:${MY_ORGANIZATION}" \
-            --headers "Content-Type:application/json" \
-            --auth-token-url https://cloud.arlas.io/arlas/iam/session \
-            --auth-login "${ARLAS_USER}" \
-            --auth-password "${ARLAS_PWD}" \
-            --auth-headers "Content-Type:application/json;charset=utf-8" \
-            --auth-org "${MY_ORGANIZATION}" \
-            --elastic "${ELASTIC_ENDPOINT}" \
-            --elastic-headers "Content-Type:application/json" \
-            --elastic-login "${ELASTIC_USER}" \
-            --elastic-password "${ELASTIC_PWD}" \
-            --persistence "https://cloud.arlas.io/arlas/persistence" \
-            --persistence-headers "Content-Type:application/json" \
-            --auth-arlas-iam \
-            --no-allow-delete
-        ```
-    
-    === "cloud.arlas.io-admin"
-        ```shell
-        arlas_cli confs \
-            create cloud.arlas.io \
-            --server "https://cloud.arlas.io/arlas/server" \
-            --headers "arlas-org-filter:${MY_ORGANIZATION}" \
-            --headers "Content-Type:application/json" \
-            --auth-token-url https://cloud.arlas.io/arlas/iam/session \
-            --auth-login "${ARLAS_USER}" \
-            --auth-password "${ARLAS_PWD}" \
-            --auth-headers "Content-Type:application/json;charset=utf-8" \
-            --auth-org "${MY_ORGANIZATION}" \
-            --elastic "${ELASTIC_ENDPOINT}" \
-            --elastic-headers "Content-Type:application/json" \
-            --elastic-login "${ELASTIC_USER}" \
-            --elastic-password "${ELASTIC_PWD}" \
-            --persistence "https://cloud.arlas.io/arlas/persistence" \
-            --persistence-headers "Content-Type:application/json" \
-            --auth-arlas-iam \
-            --allow-delete
-        ```
+    Then run the command `arlas_cli confs create` with all the parameters to create the `cloud.arlas.io.{USER_NAME}` configuration:
+
+    ```shell
+    arlas_cli confs \
+        login ${ARLAS_USER} ${ELASTIC_USER} ${ELASTIC_ENDPOINT} \
+        --auth-password "${ARLAS_PWD}" \
+        --auth-org "${MY_ORGANIZATION}" \
+        --elastic-password "${ELASTIC_PWD}" \
+        --allow-delete
+    ```
 
 === "Windows PowerShell"
     ```
@@ -159,53 +121,18 @@ First, set the environment variables provided by Gisaïa and change appropriatel
     $env:ELASTIC_PWD = "<SET_THIS_VALUE>"
     ```
 
-    Then run the command `arlas_cli confs create` with all the parameters to create the `cloud.arlas.io` and `cloud.arlas.io-admin` configurations:
-    
-    === "cloud.arlas.io"
-        ```shell
-        arlas_cli confs `
-            create cloud.arlas.io `
-            --server "https://cloud.arlas.io/arlas/server" `
-            --headers "arlas-org-filter:$env:MY_ORGANIZATION" `
-            --headers "Content-Type:application/json" `
-            --auth-token-url https://cloud.arlas.io/arlas/iam/session `
-            --auth-login "$env:ARLAS_USER" `
-            --auth-password "$env:ARLAS_PWD" `
-            --auth-headers "Content-Type:application/json;charset=utf-8" `
-            --auth-org "$env:MY_ORGANIZATION" `
-            --elastic "$env:ELASTIC_ENDPOINT" `
-            --elastic-headers "Content-Type:application/json" `
-            --elastic-login "$env:ELASTIC_USER" `
-            --elastic-password "$env:ELASTIC_PWD" `
-            --persistence "https://cloud.arlas.io/arlas/persistence" `
-            --persistence-headers "Content-Type:application/json" `
-            --auth-arlas-iam `
-            --no-allow-delete
-        ```
-    
-    === "cloud.arlas.io-admin"
-        ```shell
-        arlas_cli confs `
-            create cloud.arlas.io `
-            --server "https://cloud.arlas.io/arlas/server" `
-            --headers "arlas-org-filter:$env:MY_ORGANIZATION" `
-            --headers "Content-Type:application/json" `
-            --auth-token-url https://cloud.arlas.io/arlas/iam/session `
-            --auth-login "$env:ARLAS_USER" `
-            --auth-password "$env:ARLAS_PWD" `
-            --auth-headers "Content-Type:application/json;charset=utf-8" `
-            --auth-org "$env:MY_ORGANIZATION" `
-            --elastic "$env:ELASTIC_ENDPOINT" `
-            --elastic-headers "Content-Type:application/json" `
-            --elastic-login "$env:ELASTIC_USER" `
-            --elastic-password "$env:ELASTIC_PWD" `
-            --persistence "https://cloud.arlas.io/arlas/persistence" `
-            --persistence-headers "Content-Type:application/json" `
-            --auth-arlas-iam `
-            --allow-delete
-        ```
+    Then run the command `arlas_cli confs create` with all the parameters to create the `cloud.arlas.io.{USER_NAME}` configuration:
 
-Check that the configurations exist:
+    ```shell
+    arlas_cli confs `
+        login $env:ARLAS_USER $env:ELASTIC_USER $env:ELASTIC_ENDPOINT `
+        --auth-password "$env:ARLAS_PWD" `
+        --auth-org "$env:MY_ORGANIZATION" `
+        --elastic-password "$env:ELASTIC_PWD" `
+        --allow-delete
+    ```
+
+Check that the configuration exist:
 
 ```shell
 arlas_cli confs list
@@ -214,5 +141,5 @@ arlas_cli confs list
 You can now, for example, list the available collections:
 
 ```shell
-arlas_cli collections --config cloud.arlas.io list
+arlas_cli collections list
 ```
