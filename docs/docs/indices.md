@@ -211,6 +211,11 @@ The `indices create` sub-function create the index from a mapping json file.
 
 The index name and the path to the mapping json file have to be used to create the ES index.
 
+!!! warning
+    If the ARLAS deployment uses ARLAS IAM for authentication, the index must be associated with an organisation.
+
+    The `index_name` must follow the pattern `{organisation}@{data_index_name}` (e.g., `gisaia.com@ais_courses`).
+
 The `indices create` sub-function create the index from a mapping json file.
 
 Example:
