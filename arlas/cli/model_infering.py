@@ -141,29 +141,34 @@ def __type_node__(n, name: str = None) -> str:
     return "UNDEFINED"
 
 # from the typed tree, generate the mapping.
-def __generate_mapping__(tree, mapping, no_fulltext: list[str]):
+def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[str]):
     if type(tree) is dict:
-        for (k, v) in tree.items():
-            if k not in ["__type__", "__values__"]:
-                t: str = v.get("__type__")
-                if t == "object":
-                    mapping[k] = {"properties": {}}
-                    __generate_mapping__(v, mapping[k]["properties"], no_fulltext)
+        for (field_name, v) in tree.items():
+            if field_name not in ["__type__", "__values__"]:
+                field_type: str = v.get("__type__")
+                if field_type == "object":
+                    mapping[field_name] = {"properties": {}}
+                    __generate_mapping__(tree=v, mapping=mapping[field_name]["properties"], no_fulltext=no_fulltext,
+                                         no_index=no_index)
                 else:
-                    if t.startswith("date-"):
+                    if field_type.startswith("date-"):
                         # Dates can have format patterns containing '-'
-                        mapping[k] = {"type": "date", "format": t.split("-", 1)[1]}
+                        mapping[field_name] = {"type": "date", "format": field_type.split("-", 1)[1]}
                     else:
-                        mapping[k] = {"type": t}
-                        if t in ["keyword", "text"]:
-                            print("-->{}".format(k))
-                            if k not in no_fulltext:
-                                mapping[k]["copy_to"] = ["internal.fulltext", "internal.autocomplete"]
+                        mapping[field_name] = {"type": field_type}
+                        if field_type in ["keyword", "text"]:
+                            if field_name not in no_fulltext:
+                                mapping[field_name]["copy_to"] = ["internal.fulltext", "internal.autocomplete"]
+                    # Avoid indexing field if field in --no-index
+                    if field_name in no_index:
+                        mapping[field_name]["index"] = "false"
+                    print(f"-->{field_name}: {mapping[field_name]['type']}")
     else:
         raise Exception("Unexpected state")
 
 
-def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fulltext: list[str] = []):
+def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fulltext: list[str] = [],
+                 no_index: list[str] = []):
     tree = {}
     mapping = {}
     with open(file) as f:
@@ -176,7 +181,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
                 hit = json.loads(line)
                 __build_tree__(tree, hit)
         __type_tree__("", tree, types)
-        __generate_mapping__(tree, mapping, no_fulltext)
+        __generate_mapping__(tree, mapping, no_fulltext, no_index)
     mapping["internal"] = {
         "properties": {
             "autocomplete": {
