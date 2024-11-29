@@ -16,14 +16,15 @@ def configuration(config: str = typer.Option(default=None, help="Name of the ARL
     variables["arlas"] = Configuration.solve_config(config)
 
 
-@collections.command(help="List collections", name="list")
+@collections.command(help="List collections", name="list", epilog=variables["help_epilog"])
 def list_collections():
     config = variables["arlas"]
     collections = Service.list_collections(config)
     __print_table(collections[0], collections[1:], sortby="name")
 
 
-@collections.command(help="Count the number of hits within a collection (or all collection if not provided)")
+@collections.command(help="Count the number of hits within a collection (or all collection if not provided)",
+                     epilog=variables["help_epilog"])
 def count(
     collection: str = typer.Argument(default=None, help="Collection's name")
 ):
@@ -32,7 +33,7 @@ def count(
     __print_table(count[0], count[1:], sortby="collection name")
 
 
-@collections.command(help="Describe a collection")
+@collections.command(help="Describe a collection", epilog=variables["help_epilog"])
 def describe(
     collection: str = typer.Argument(help="Collection's name")
 ):
@@ -44,7 +45,7 @@ def describe(
     __print_table(fields[0], fields[1:], sortby=None)
 
 
-@collections.command(help="Set collection visibility to public")
+@collections.command(help="Set collection visibility to public", epilog=variables["help_epilog"])
 def public(
     collection: str = typer.Argument(help="Collection's name")
 ):
@@ -53,7 +54,7 @@ def public(
     print("{} is {}".format(collection, "public" if ispublic else "private"))
 
 
-@collections.command(help="Set collection visibility to private")
+@collections.command(help="Set collection visibility to private", epilog=variables["help_epilog"])
 def private(
     collection: str = typer.Argument(help="Collection's name")
 ):
@@ -62,7 +63,7 @@ def private(
     print("{} is {}".format(collection, "public" if ispublic else "private"))
 
 
-@collections.command(help="Share the collection with the organisation")
+@collections.command(help="Share the collection with the organisation", epilog=variables["help_epilog"])
 def share(
     collection: str = typer.Argument(help="Collection's name"),
     organisation: str = typer.Argument(help="Organisation's name")
@@ -72,7 +73,7 @@ def share(
     print("{} is shared with {}".format(collection, ", ".join(shared)))
 
 
-@collections.command(help="Unshare the collection with the organisation")
+@collections.command(help="Unshare the collection with the organisation", epilog=variables["help_epilog"])
 def unshare(
     collection: str = typer.Argument(help="Collection's name"),
     organisation: str = typer.Argument(help="Organisation's name")
@@ -82,7 +83,7 @@ def unshare(
     print("{} is shared with {}".format(collection, ", ".join(shared)))
 
 
-@collections.command(help="Set the collection display name", name="name")
+@collections.command(help="Set the collection display name", name="name", epilog=variables["help_epilog"])
 def set_display_name(
     collection: str = typer.Argument(help="Collection's name"),
     name: str = typer.Argument(help="The display name")
@@ -92,7 +93,7 @@ def set_display_name(
     print("{} display name is {}".format(collection, name))
 
 
-@collections.command(help="Set the field display name", name="set_alias")
+@collections.command(help="Set the field display name", name="set_alias", epilog=variables["help_epilog"])
 def set_field_display_name(
     collection: str = typer.Argument(help="Collection's name"),
     field_path: str = typer.Argument(help="The field path"),
@@ -103,7 +104,7 @@ def set_field_display_name(
     __print_table(fields[0], fields[1:], sortby=None)
 
 
-@collections.command(help="Display a sample of a collection")
+@collections.command(help="Display a sample of a collection", epilog=variables["help_epilog"])
 def sample(
     collection: str = typer.Argument(help="Collection's name"),
     pretty: bool = typer.Option(default=True),
@@ -114,7 +115,7 @@ def sample(
     print(json.dumps(sample.get("hits", []), indent=2 if pretty else None))
 
 
-@collections.command(help="Delete a collection")
+@collections.command(help="Delete a collection", epilog=variables["help_epilog"])
 def delete(
     collection: str = typer.Argument(help="collection's name")
 ):
@@ -128,7 +129,7 @@ def delete(
         print("{} has been deleted on {}.".format(collection, config))
 
 
-@collections.command(help="Create a collection")
+@collections.command(help="Create a collection", epilog=variables["help_epilog"])
 def create(
     collection: str = typer.Argument(help="Collection's name"),
     model: str = typer.Option(default=None, help="Name of the model within your configuration, or URL or file path"),
