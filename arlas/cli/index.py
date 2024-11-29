@@ -24,6 +24,7 @@ def list_indices():
     tab = PrettyTable(indices[0], sortby="name", align="l")
     tab.add_rows(indices[1:])
     print(tab)
+    print(f"Total count: {sum([int(index_info[2]) for index_info in indices[1:]])}")
 
 
 @indices.command(help="Describe an index")
