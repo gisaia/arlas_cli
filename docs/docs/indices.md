@@ -85,15 +85,6 @@ The values of the first lines of the files are used to infer the mapping for eac
 
     Make sure to take enough rows to get all the fields with the option `--nb_lines`
 
-!!! tip
-    The data can be split in different NDJSON files in a folder:
-    ```
-    part-00000-[...].json
-    part-00001-[...].json
-    ...
-    ```
-    In practice, the `file` Argument can be filed with a **pattern** such as `path/to/data.json/part-0000*.json` to reference all the different files.
-
 
 ### Type identification
 
@@ -135,7 +126,7 @@ A **date** is identified as such if
 
 By default, the keywords and text fields are searchable as fulltext to be accessible in the search bar.
 
-!!! note "--no-fulltext "
+!!! note "--no-fulltext"
 
     If searching through a field value is not needed, it can be deactivated.
     That would result in better performances for the fulltext search.
@@ -143,6 +134,17 @@ By default, the keywords and text fields are searchable as fulltext to be access
     Example:
 
     - `--no-fulltext field_keyword`
+
+!!! note "--no-index"
+    If a field doesn't need to be explored in the dashboard, it should be removed before indexing the data.
+
+    Alternatively, you can explicitly exclude the field from being indexed using the `--no-index` option.
+
+    Example:
+
+    - `--no-index unused_field`
+
+    The field will remain in the data but will not be indexed.
 
 ### Created mapping
 
@@ -268,6 +270,15 @@ Example:
    --config {local} \
    data {index_name} {path/to/data.json}
 ```
+
+!!! tip
+    The data can be split in different NDJSON files in a folder:
+    ```
+    part-00000-[...].json
+    part-00001-[...].json
+    ...
+    ```
+    In practice, the `files` argument can be filed with a **pattern** such as `path/to/data.json/part-0000*.json` to reference all the different files.
 
 !!! warning
     If the index already contains data, the data is added to the index.

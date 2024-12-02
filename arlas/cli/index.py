@@ -120,6 +120,7 @@ def mapping(
     nb_lines: int = typer.Option(default=2, help="Number of line to consider for generating the mapping. Avoid going over 10."),
     field_mapping: list[str] = typer.Option(default=[], help="Override the mapping with the provided field path/type. Example: fragment.location:geo_point. Important: the full field path must be provided."),
     no_fulltext: list[str] = typer.Option(default=[], help="List of keyword or text fields that should not be in the fulltext search. Important: the field name only must be provided."),
+    no_index: list[str] = typer.Option(default=[], help="List of fields that should not be indexed."),
     push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name"),
 ):
     config = variables["arlas"]
@@ -139,7 +140,7 @@ def mapping(
             else:
                 print(f"Error: invalid field_mapping \"{fm}\". The format is \"field:type\" like \"fragment.location:geo_point\"", file=sys.stderr)
                 exit(1)
-    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext)
+    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
     if push_on and config:
         Service.create_index(
             config,
