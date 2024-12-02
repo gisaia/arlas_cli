@@ -15,7 +15,7 @@ def configuration(config: str = typer.Option(default=None, help="Name of the ARL
     variables["arlas"] = Configuration.solve_config(config)
 
 
-@persist.command(help="Add an entry, returns its ID", name="add")
+@persist.command(help="Add an entry, returns its ID", name="add", epilog=variables["help_epilog"])
 def add(
     file: str = typer.Argument(help="File path"),
     zone: str = typer.Argument(help="zone"),
@@ -29,7 +29,7 @@ def add(
     print(id)
 
 
-@persist.command(help="Delete an entry", name="delete")
+@persist.command(help="Delete an entry", name="delete", epilog=variables["help_epilog"])
 def delete(
     id: str = typer.Argument(help="entry identifier")
 ):
@@ -50,7 +50,7 @@ def delete(
     print("Resource {} deleted.".format(id))
 
 
-@persist.command(help="Retrieve an entry", name="get")
+@persist.command(help="Retrieve an entry", name="get", epilog=variables["help_epilog"])
 def get(
     id: str = typer.Argument(help="entry identifier")
 ):
@@ -58,7 +58,7 @@ def get(
     print(Service.persistence_get(config, id=id).get("doc_value"), end="")
 
 
-@persist.command(help="List entries within a zone", name="zone")
+@persist.command(help="List entries within a zone", name="zone", epilog=variables["help_epilog"])
 def zone(
     zone: str = typer.Argument(help="Zone name")
 ):
@@ -69,7 +69,7 @@ def zone(
     print(tab)
 
 
-@persist.command(help="List groups allowed to access a zone", name="groups")
+@persist.command(help="List groups allowed to access a zone", name="groups", epilog=variables["help_epilog"])
 def groups(
     zone: str = typer.Argument(help="Zone name")
 ):
@@ -80,7 +80,7 @@ def groups(
     print(tab)
 
 
-@persist.command(help="Describe an entry", name="describe")
+@persist.command(help="Describe an entry", name="describe", epilog=variables["help_epilog"])
 def describe(
     id: str = typer.Argument(help="entry identifier")
 ):

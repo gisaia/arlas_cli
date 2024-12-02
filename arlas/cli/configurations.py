@@ -10,7 +10,7 @@ import arlas.cli.arlas_cloud as arlas_cloud
 configurations = typer.Typer()
 
 
-@configurations.command(help="List configurations", name="list")
+@configurations.command(help="List configurations", name="list", epilog=variables["help_epilog"])
 def list_configurations():
     confs = []
     for (name, conf) in Configuration.settings.arlas.items():
@@ -20,7 +20,7 @@ def list_configurations():
     print(tab)
 
 
-@configurations.command(help="Add a configuration", name="create")
+@configurations.command(help="Add a configuration", name="create", epilog=variables["help_epilog"])
 def create_configuration(
     name: str = typer.Argument(help="Name of the configuration"),
     server: str = typer.Option(help="ARLAS Server url"),
@@ -76,7 +76,7 @@ def create_configuration(
     print("Configuration {} created.".format(name))
 
 
-@configurations.command(help="Add a configuration for ARLAS Cloud", name="login")
+@configurations.command(help="Add a configuration for ARLAS Cloud", name="login", epilog=variables["help_epilog"])
 def login(
     auth_login: str = typer.Argument(help="ARLAS login"),
     elastic_login: str = typer.Argument(help="Elasticsearch login"),
@@ -130,7 +130,7 @@ def login(
     print("{} is now your default configuration.".format(name))
 
 
-@configurations.command(help="Delete a configuration", name="delete")
+@configurations.command(help="Delete a configuration", name="delete", epilog=variables["help_epilog"])
 def delete_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
@@ -143,7 +143,7 @@ def delete_configuration(
     print("Configuration {} deleted.".format(config))
 
 
-@configurations.command(help="Describe a configuration", name="describe")
+@configurations.command(help="Describe a configuration", name="describe", epilog=variables["help_epilog"])
 def describe_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):

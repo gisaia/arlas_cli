@@ -17,7 +17,7 @@ def configuration(config: str = typer.Option(default=None, help="Name of the ARL
     variables["arlas"] = Configuration.solve_config(config)
 
 
-@indices.command(help="List indices", name="list")
+@indices.command(help="List indices", name="list", epilog=variables["help_epilog"])
 def list_indices():
     config = variables["arlas"]
     indices = Service.list_indices(config)
@@ -27,7 +27,7 @@ def list_indices():
     print(f"Total count: {sum([int(index_info[2]) for index_info in indices[1:]])}")
 
 
-@indices.command(help="Describe an index")
+@indices.command(help="Describe an index", epilog=variables["help_epilog"])
 def describe(
     index: str = typer.Argument(help="index's name")
 ):
@@ -38,7 +38,7 @@ def describe(
     print(tab)
 
 
-@indices.command(help="Clone an index and set its name")
+@indices.command(help="Clone an index and set its name", epilog=variables["help_epilog"])
 def clone(
     source: str = typer.Argument(help="Source index name"),
     target: str = typer.Argument(help="Target cloned index name")
@@ -50,7 +50,8 @@ def clone(
     print(tab)
 
 
-@indices.command(help="Migrate an index on another arlas configuration, and set the target index name")
+@indices.command(help="Migrate an index on another arlas configuration, and set the target index name",
+                 epilog=variables["help_epilog"])
 def migrate(
     source: str = typer.Argument(help="Source index name"),
     arlas_target: str = typer.Argument(help="Target ARLAS Configuration name"),
@@ -63,7 +64,7 @@ def migrate(
     print(tab)
 
 
-@indices.command(help="Display a sample of an index")
+@indices.command(help="Display a sample of an index", epilog=variables["help_epilog"])
 def sample(
     index: str = typer.Argument(help="index's name"),
     pretty: bool = typer.Option(default=True),
@@ -74,7 +75,7 @@ def sample(
     print(json.dumps(sample["hits"].get("hits", []), indent=2 if pretty else None))
 
 
-@indices.command(help="Create an index")
+@indices.command(help="Create an index", epilog=variables["help_epilog"])
 def create(
     index: str = typer.Argument(help="index's name"),
     mapping: str = typer.Option(help="Name of the mapping within your configuration, or URL or file path"),
@@ -96,7 +97,7 @@ def create(
     print("Index {} created on {}".format(index, config))
 
 
-@indices.command(help="Index data")
+@indices.command(help="Index data", epilog=variables["help_epilog"])
 def data(
     index: str = typer.Argument(help="index's name"),
     files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON"),
@@ -114,7 +115,7 @@ def data(
         i = i + 1
 
 
-@indices.command(help="Generate the mapping based on the data")
+@indices.command(help="Generate the mapping based on the data", epilog=variables["help_epilog"])
 def mapping(
     file: str = typer.Argument(help="Path to the file containing the data. Format: NDJSON"),
     nb_lines: int = typer.Option(default=2, help="Number of line to consider for generating the mapping. Avoid going over 10."),
@@ -151,7 +152,7 @@ def mapping(
         print(json.dumps(mapping, indent=2))
 
 
-@indices.command(help="Delete an index")
+@indices.command(help="Delete an index", epilog=variables["help_epilog"])
 def delete(
     index: str = typer.Argument(help="index's name")
 ):
