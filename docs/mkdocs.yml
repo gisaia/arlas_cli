@@ -11,13 +11,10 @@ edit_uri: ""
 markdown_extensions:
   - admonition
   - codehilite
-  - markdown.extensions.admonition
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
-  - admonition
   - pymdownx.details
-  - pymdownx.superfences
 
 theme:
   name: material
@@ -41,6 +38,7 @@ nav:
 - Concepts: concepts.md
 
 plugins:
+  - search
   - termynal:
       prompt_literal_start:
         - ">"
