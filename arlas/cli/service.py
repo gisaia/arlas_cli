@@ -328,7 +328,7 @@ class Service:
 
     def count_hits(file_path: str) -> int:
         line_number = 0
-        with open(file_path) as f:
+        with open(file_path, mode="r", encoding="utf-8") as f:
             for line in f:
                 line_number = line_number + 1
         return line_number
@@ -388,7 +388,7 @@ class Service:
         line_number = 0
         line_in_bulk = 0
         bulk = []
-        with open(file_path) as f:
+        with open(file_path, mode="r", encoding="utf-8") as f:
             with alive_bar(count) as bar:
                 for line in f:
                     line_number = line_number + 1

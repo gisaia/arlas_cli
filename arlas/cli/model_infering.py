@@ -171,7 +171,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
                  no_index: list[str] = []):
     tree = {}
     mapping = {}
-    with open(file) as f:
+    with open(file, mode="r", encoding="utf-8") as f:
         i = 0
         for line in f:
             if i > nb_lines:
