@@ -11,7 +11,10 @@ else
     exit 1
 fi
 
-rm -r target
+if [ -d "target" ]; then
+  rm -r target
+  echo "Existing 'target' directory removed."
+fi
 mkdir -p target/src/arlas
 cp -r arlas target/src/
 cp -r  scripts/materials/pip/setup.py target/
