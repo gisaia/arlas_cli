@@ -22,9 +22,14 @@ python3.10 -m arlas.cli.cli --config-file /tmp/arlas-cli-release.conf --version
 cp /tmp/arlas-cli-release.conf ./configuration.yaml
 git add configuration.yaml
 
-# Generate and publish documentation
-./mkDocs.sh
-pip3.10 install mkdocs-material termynal
+# Model
+export PYTHONPATH=`pwd`
+python3.10 -m arlas.cli.settings > docs/docs/model/model.schema.json
+jsonschema2md -d docs/docs/model/ -o docs/docs/model/
+rm -r out
+git add docs/docs/model
+
+./scripts/mkdocs.sh
 mkdocs gh-deploy -f docs/mkdocs.yml
 
 git add version.txt
