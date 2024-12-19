@@ -12,24 +12,29 @@ An index contains the data and a [mapping](concepts.md#es-mapping) to describe h
 <!-- termynal -->
 ```shell
 > arlas_cli indices --help
-Usage: arlas_cli indices [OPTIONS] COMMAND [ARGS]...
+                                                                              
+ Usage: arlas_cli indices [OPTIONS] COMMAND [ARGS]...                         
+                                                                              
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --config        TEXT  Name of the ARLAS configuration to use from your     │
+│                       configuration file                                   │
+│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │
+│                       [default: None]                                      │
+│ --help                Show this message and exit.                          │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────╮
+│ clone     Clone an index and set its name                                  │
+│ create    Create an index                                                  │
+│ data      Index data                                                       │
+│ delete    Delete an index                                                  │
+│ describe  Describe an index                                                │
+│ list      List indices                                                     │
+│ mapping   Generate the mapping based on the data                           │
+│ migrate   Migrate an index on another arlas configuration, and set the     │
+│           target index name                                                │
+│ sample    Display a sample of an index                                     │
+╰────────────────────────────────────────────────────────────────────────────╯
 
-Options:
-  --config TEXT  Name of the ARLAS configuration to use from your
-                 configuration file
-                 (/home/willi/.arlas/cli/configuration.yaml).
-  --help         Show this message and exit.
-
-Commands:
-  clone     Clone an index and set its name
-  create    Create an index
-  data      Index data
-  delete    Delete an index
-  describe  Describe an index
-  list      List indices
-  mapping   Generate the mapping based on the data
-  migrate   Migrate an index on another arlas configuration, and set the...
-  sample    Display a sample of an index
 ```
 
 ## mapping
@@ -39,27 +44,37 @@ Commands:
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local mapping --help
-Usage: arlas_cli indices mapping [OPTIONS] FILE
+                                                                              
+ Usage: arlas_cli indices mapping [OPTIONS] FILE                              
+                                                                              
+ Generate the mapping based on the data                                       
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    file      TEXT  Path to the file containing the data. Format: NDJSON  │
+│                      [default: None]                                       │
+│                      [required]                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --nb-lines             INTEGER  Number of line to consider for generating  │
+│                                 the mapping. Avoid going over 10.          │
+│                                 [default: 2]                               │
+│ --field-mapping        TEXT     Override the mapping with the provided     │
+│                                 field path/type. Example:                  │
+│                                 fragment.location:geo_point. Important:    │
+│                                 the full field path must be provided.      │
+│ --no-fulltext          TEXT     List of keyword or text fields that should │
+│                                 not be in the fulltext search. Important:  │
+│                                 the field name only must be provided.      │
+│ --no-index             TEXT     List of fields that should not be indexed. │
+│ --push-on              TEXT     Push the generated mapping for the         │
+│                                 provided index name                        │
+│                                 [default: None]                            │
+│ --help                          Show this message and exit.                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Generate the mapping based on the data
-
-Arguments:
-  FILE  Path to the file containing the data. Format: NDJSON  [required]
-
-Options:
-  --nb-lines INTEGER    Number of line to consider for generating the mapping.
-                        Avoid going over 10.  [default: 2]
-  --field-mapping TEXT  Override the mapping with the provided field
-                        path/type. Example: fragment.location:geo_point.
-                        Important: the full field path must be provided.
-  --no-fulltext TEXT    List of keyword or text fields that should not be in
-                        the fulltext search. Important: the field name only
-                        must be provided.
-  --no-index TEXT       List of fields that should not be indexed.
-  --push-on TEXT        Push the generated mapping for the provided index name
-  --help                Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 ### Data file
@@ -179,20 +194,26 @@ The `indices create` sub-function create the index from a mapping json file.
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local create --help
-Usage: arlas_cli indices create [OPTIONS] INDEX
+                                                                              
+ Usage: arlas_cli indices create [OPTIONS] INDEX                              
+                                                                              
+ Create an index                                                              
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    index      TEXT  index's name [default: None] [required]              │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ *  --mapping        TEXT     Name of the mapping within your               │
+│                              configuration, or URL or file path            │
+│                              [default: None]                               │
+│                              [required]                                    │
+│    --shards         INTEGER  Number of shards for the index [default: 1]   │
+│    --help                    Show this message and exit.                   │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Create an index
-
-Arguments:
-  INDEX  index's name  [required]
-
-Options:
-  --mapping TEXT    Name of the mapping within your configuration, or URL or
-                    file path  [required]
-  --shards INTEGER  Number of shards for the index  [default: 1]
-  --help            Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 ### Create an ES index with its mapping
@@ -226,20 +247,26 @@ The `indices data` sub-function ingest the data in a given index.
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local data --help
-Usage: arlas_cli indices data [OPTIONS] INDEX FILES...
+                                                                              
+ Usage: arlas_cli indices data [OPTIONS] INDEX FILES...                       
+                                                                              
+ Index data                                                                   
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    index      TEXT      index's name [default: None] [required]          │
+│ *    files      FILES...  List of paths to the file(s) containing the      │
+│                           data. Format: NDJSON                             │
+│                           [default: None]                                  │
+│                           [required]                                       │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --bulk        INTEGER  Bulk size for indexing data [default: 5000]         │
+│ --help                 Show this message and exit.                         │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Index data
-
-Arguments:
-  INDEX     index's name  [required]
-  FILES...  List of paths to the file(s) containing the data. Format: NDJSON
-            [required]
-
-Options:
-  --bulk INTEGER  Bulk size for indexing data  [default: 5000]
-  --help          Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 ### Ingest data
 
@@ -280,14 +307,18 @@ To list the available ES indices, simply use the `indices list` sub-function. No
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local list --help
-Usage: arlas_cli indices list [OPTIONS]
+                                                                              
+ Usage: arlas_cli indices list [OPTIONS]                                      
+                                                                              
+ List indices                                                                 
+                                                                              
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  List indices
-
-Options:
-  --help  Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 ### List available ES indices
@@ -313,20 +344,26 @@ Once the index is created, the description of the fields it contains (correspond
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local data --help
-Usage: arlas_cli indices data [OPTIONS] INDEX FILES...
+                                                                              
+ Usage: arlas_cli indices data [OPTIONS] INDEX FILES...                       
+                                                                              
+ Index data                                                                   
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    index      TEXT      index's name [default: None] [required]          │
+│ *    files      FILES...  List of paths to the file(s) containing the      │
+│                           data. Format: NDJSON                             │
+│                           [default: None]                                  │
+│                           [required]                                       │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --bulk        INTEGER  Bulk size for indexing data [default: 5000]         │
+│ --help                 Show this message and exit.                         │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Index data
-
-Arguments:
-  INDEX     index's name  [required]
-  FILES...  List of paths to the file(s) containing the data. Format: NDJSON
-            [required]
-
-Options:
-  --bulk INTEGER  Bulk size for indexing data  [default: 5000]
-  --help          Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 ### Describe the index mapping
@@ -359,17 +396,21 @@ The first rows of the data contained in an index can be displayed with the `indi
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local delete --help
-Usage: arlas_cli indices delete [OPTIONS] INDEX
+                                                                              
+ Usage: arlas_cli indices delete [OPTIONS] INDEX                              
+                                                                              
+ Delete an index                                                              
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    index      TEXT  index's name [default: None] [required]              │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Delete an index
-
-Arguments:
-  INDEX  index's name  [required]
-
-Options:
-  --help  Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 ### Visualize few rows of your dataset
@@ -405,18 +446,22 @@ An ES index can be cloned on the same ES deployment with the `indices clone` sub
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local clone --help
-Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET
+                                                                              
+ Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET                       
+                                                                              
+ Clone an index and set its name                                              
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    source      TEXT  Source index name [default: None] [required]        │
+│ *    target      TEXT  Target cloned index name [default: None] [required] │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Clone an index and set its name
-
-Arguments:
-  SOURCE  Source index name  [required]
-  TARGET  Target cloned index name  [required]
-
-Options:
-  --help  Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 Both indices co-exist with exactly the same mapping and data content.
@@ -435,18 +480,22 @@ The target configuration and the name of the new created index are given to the 
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local clone --help
-Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET
+                                                                              
+ Usage: arlas_cli indices clone [OPTIONS] SOURCE TARGET                       
+                                                                              
+ Clone an index and set its name                                              
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    source      TEXT  Source index name [default: None] [required]        │
+│ *    target      TEXT  Target cloned index name [default: None] [required] │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Clone an index and set its name
-
-Arguments:
-  SOURCE  Source index name  [required]
-  TARGET  Target cloned index name  [required]
-
-Options:
-  --help  Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 Both indices co-exist with exactly the same mapping and data content.
@@ -458,17 +507,21 @@ The ES index can be deleted with `indices delete` sub command to free space on t
 <!-- termynal -->
 ```shell
 > arlas_cli indices --config local delete --help
-Usage: arlas_cli indices delete [OPTIONS] INDEX
+                                                                              
+ Usage: arlas_cli indices delete [OPTIONS] INDEX                              
+                                                                              
+ Delete an index                                                              
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    index      TEXT  index's name [default: None] [required]              │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
 
-  Delete an index
-
-Arguments:
-  INDEX  index's name  [required]
-
-Options:
-  --help  Show this message and exit.
-
-  See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/
 ```
 
 ### Delete an ES index
