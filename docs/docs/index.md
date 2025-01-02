@@ -1,9 +1,6 @@
 # About arlas_cli
 
-__ARLAS Exploration__ is an Open Source software for exploring and analysing Geo BigData. 
-
-__ARLAS Command Line__ (`arlas_cli`) is a tool to manage data and configurations in ARLAS.
-
+__ARLAS Command Line Interface__ (`arlas_cli`) is a tool to manage data and configurations in ARLAS.
 
 `arlas_cli` is a Python command line for:
 
@@ -48,3 +45,4 @@ __ARLAS Command Line__ (`arlas_cli`) is a tool to manage data and configurations
     - Activate a user
     - Deactivate a user
 
+Follow the [Getting Started Guide](started.md) to begin using ARLAS CLI.
