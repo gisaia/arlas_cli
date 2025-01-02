@@ -24,10 +24,50 @@ It contains one ARLAS configuration linked to a local deployment.
 
     The owner of the directory must be changed to the local user (`sudo chown ${USER}: $HOME/.arlas`).
 
+## ARLAS Cloud configuration
+
+If you have an ARLAS cloud account, you can directly create the configurations to access your space with `arlas_cli login`.
+
+!!! note "Provided by Gisaïa"
+    Gisaïa provides the following variables for your account:
+    
+    - `ORGANIZATION`: The name of your organization.
+    - `ELASTIC_ENDPOINT`, `ELASTIC_USER`, `ELASTIC_PWD`: The elasticsearch credentials associated with your account.
+
+!!! note "Personal ARLAS account"
+    You will also need the credentials for your personal ARLAS account:
+
+    - `ARLAS_USER`: Your login, typically your email address.
+    - `ARLAS_PWD`: The password you created when setting up your account.
+
+To create the `cloud.arlas.io.{USER_NAME}` configuration, replace the placeholder variables with your actual values and run the following command:
+
+```shell
+arlas_cli confs login ${ARLAS_USER} ${ELASTIC_USER} ${ELASTIC_ENDPOINT} --auth-password ${ARLAS_PWD} --auth-org ${MY_ORGANIZATION} --elastic-password ${ELASTIC_PWD} --allow-delete
+```
+
+Once the configuration is created, verify its existence by listing all configurations:
+
+```shell
+arlas_cli confs list
+```
+
+!!! note "Default configuration"
+    The configuration linked to your ARLAS Cloud account is automatically used as the default. 
+
+    You do not need to specify the `--config` option when using `arlas_cli`.
+
+For example, to list the available collections, use the following command:
+
+```shell
+arlas_cli collections list
+```
 
 ## Configurations file
 
-By default, the command line uses the `${HOME}/.arlas/cli/configuration.yaml` configuration file:
+### Default configurations file
+
+By default, the command line uses the `${HOME}/.arlas/cli/configuration.yaml` configuration file.
 
 For example, the default configuration file with only the `local` configuration looks like: 
 ```yaml
@@ -61,8 +101,9 @@ You can interact with this configuration file directly with the command line its
 - [confs describe](confs.md#describe): Describe the content of a configuration
 - [confs create](confs.md#create): Create a new configuration
 - [confs delete](confs.md#delete): Delete a configuration
+- [confs login](confs.md#login): Create an ARLAS Cloud configuration (see [ARLAS Cloud configuration](#arlas-cloud-configuration))
 
-## Custom configuration file path
+### Custom configuration file path
 
 It is possible to use a different configuration file than the one placed in your home directory (`$HOME/.arlas/cli/configuration.yaml`):
 
@@ -82,64 +123,4 @@ All the arlas_cli commands can then be run on this configuration file, for examp
 +-------+------------------------+
 | local | http://localhost/arlas |
 +-------+------------------------+
-```
-
-## ARLAS Cloud configuration
-
-If you have an ARLAS cloud account, you can directly create the configurations to access your space with `arlas_cli login`.
-
-First, set the environment variables provided by Gisaïa and change appropriately `SET_THIS_VALUE` with your own ARLAS user login/password:
-
-=== "Linux/Mac"
-    ```
-    export MY_ORGANIZATION=<SET_THIS_VALUE>
-    export ARLAS_USER=<SET_THIS_VALUE>
-    export ARLAS_PWD=<SET_THIS_VALUE>
-    export ELASTIC_ENDPOINT=<SET_THIS_VALUE>
-    export ELASTIC_USER=<SET_THIS_VALUE>
-    export ELASTIC_PWD=<SET_THIS_VALUE>
-    ```
-
-    Then run the command `arlas_cli confs create` with all the parameters to create the `cloud.arlas.io.{USER_NAME}` configuration:
-
-    ```shell
-    arlas_cli confs \
-        login ${ARLAS_USER} ${ELASTIC_USER} ${ELASTIC_ENDPOINT} \
-        --auth-password "${ARLAS_PWD}" \
-        --auth-org "${MY_ORGANIZATION}" \
-        --elastic-password "${ELASTIC_PWD}" \
-        --allow-delete
-    ```
-
-=== "Windows PowerShell"
-    ```
-    $env:MY_ORGANIZATION = "<SET_THIS_VALUE>"
-    $env:ARLAS_USER = "<SET_THIS_VALUE>"
-    $env:ARLAS_PWD = "<SET_THIS_VALUE>"
-    $env:ELASTIC_ENDPOINT = "<SET_THIS_VALUE>"
-    $env:ELASTIC_USER = "<SET_THIS_VALUE>"
-    $env:ELASTIC_PWD = "<SET_THIS_VALUE>"
-    ```
-
-    Then run the command `arlas_cli confs create` with all the parameters to create the `cloud.arlas.io.{USER_NAME}` configuration:
-
-    ```shell
-    arlas_cli confs `
-        login $env:ARLAS_USER $env:ELASTIC_USER $env:ELASTIC_ENDPOINT `
-        --auth-password "$env:ARLAS_PWD" `
-        --auth-org "$env:MY_ORGANIZATION" `
-        --elastic-password "$env:ELASTIC_PWD" `
-        --allow-delete
-    ```
-
-Check that the configuration exist:
-
-```shell
-arlas_cli confs list
-```
-
-You can now, for example, list the available collections:
-
-```shell
-arlas_cli collections list
 ```
