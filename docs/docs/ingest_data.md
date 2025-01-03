@@ -1,10 +1,10 @@
 # Ingest data
 
-`ARLAS CLI` can be used to ingest data in ARLAS and make it explorable in ARLAS Dashboards.
+The `ARLAS CLI` allows you to ingest data into ARLAS and make it accessible through ARLAS Dashboards.
 
 ![Ingest Data](images/ingest_data.png)
 <p align="center" style="font-style: italic;">
-Ingest Data in ARLAS Dashboards
+Ingest Data in ARLAS
 </p>
 
 ## ARLAS Data structure
