@@ -12,13 +12,13 @@
         <meta name="author" content="Gisaïa - SCALING GEOSPATIAL INTELLIGENCE">
       
       
-        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/install/">
+        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/ingest_data/">
       
       
-        <link rel="prev" href="../started/">
+        <link rel="prev" href="../configuration/">
       
       
-        <link rel="next" href="../configuration/">
+        <link rel="next" href="../help/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Installation - ARLAS Command Line (arlas_cli)</title>
+        <title>Ingest Data - ARLAS Command Line (arlas_cli)</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#ingest-data" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Ingest Data
             
           </span>
         </div>
@@ -268,30 +268,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -300,68 +280,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-arlas_cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install arlas_cli
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python-virtual-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Python Virtual environment
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -390,10 +308,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../ingest_data/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ingest Data
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -402,6 +340,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Data structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingest-with-arlas-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingest with ARLAS CLI
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -621,44 +597,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#arlas-data-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      ARLAS Data structure
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
+  <a href="#ingest-with-arlas-cli" class="md-nav__link">
     <span class="md-ellipsis">
-      Install
+      Ingest with ARLAS CLI
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Install">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#install-arlas_cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      Install arlas_cli
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python-virtual-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Python Virtual environment
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -677,72 +629,40 @@
                   
 
 
-<h1 id="installation">Installation</h1>
-<h2 id="prerequisites">Prerequisites</h2>
-<ul>
-<li>python 3.10</li>
-<li>pip </li>
-</ul>
-<h2 id="install">Install</h2>
-<h3 id="install-arlas_cli">Install arlas_cli</h3>
-<p>Simply run in a terminal:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">pip install arlas_cli</span><span data-ty></span></div>
+<h1 id="ingest-data">Ingest data</h1>
+<p>The <code>ARLAS CLI</code> allows you to ingest data into ARLAS and make it accessible through ARLAS Dashboards.</p>
+<p><img alt="Ingest Data" src="../images/ingest_data.png" /></p>
+<p align="center" style="font-style: italic;">
+Ingest Data in ARLAS
+</p>
 
-<div class="admonition warning">
-<p class="admonition-title">Microsoft Windows</p>
-<p>For Windows users, the installation has to be made in a python virtual environment, follow the <a href="#python-virtual-environment">venv guide</a> before installing.</p>
-</div>
-<div class="admonition success">
-<p class="admonition-title">Success</p>
-<p>In a new Terminal/Powershell, you should be able to run it:</p>
-<p><div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli --version</span><span data-ty>X.Y.Z<br></span></div></p>
-<p>The version of <code>arlas_cli</code> is <code>X.Y.Z</code> where <code>X</code> is ARLAS Stack main version and <code>Y.Z</code> is the increment of arlas_cli version.</p>
-</div>
-<h3 id="python-virtual-environment">Python Virtual environment</h3>
-<p>Particularly on Windows, it is advised to create a python virtual environment with <a href="https://docs.python.org/3.10/library/venv.html#creating-virtual-environments">venv</a> before installing <code>arlas_cli</code></p>
+<h2 id="arlas-data-structure">ARLAS Data structure</h2>
+<p>To be explored in ARLAS dashboards, the data has to be indexed in an <a href="../concepts/#elasticsearch">Elasticsearch</a> (ES) <a href="../concepts/#es-index">index</a>.</p>
+<p>An index contains the data and a model (<a href="../concepts/#es-mapping">mapping</a>) to describe how fields have to be interpreted (types).</p>
+<p>ARLAS <a href="../concepts/#arlas-collection">collections</a> are built on top of indices. 
+They describe the basic data structure for its visualization and elements needed for the data access policy.</p>
+<p><img alt="Data indices and collections in ARLAS" src="../images/index_collection_schema.png" /></p>
+<p align="center" style="font-style: italic;">
+Data indices and collections in ARLAS
+</p>
+
+<h2 id="ingest-with-arlas-cli">Ingest with ARLAS CLI</h2>
+<p>Once you have installed ARLAS CLI (see <a href="../install/">Installation Guide</a>) and configured it with your ARLAS instance (see <a href="../configuration/">Configuration Guide</a>), you can ingest data using the following commands:</p>
 <ul>
+<li><strong>Create an Index with a Mapping</strong>: </li>
 <li>
-<p>Create the environment:
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>env_arlas_cli
-</code></pre></div></p>
+<p>Use <a href="../indices/#mapping">arlas_cli indices mapping</a> to infer the data model from a data sample and create an empty index.</p>
 </li>
 <li>
-<p>Activate the environment:</p>
+<p><strong>Ingest Data into the Index</strong>:
+Use <a href="../indices/#data">arlas_cli indices data</a> to populate the created index with your data.</p>
+</li>
+<li>
+<p><strong>Create a Collection</strong>:
+Use <a href="../collections/#create">arlas_cli collections create</a> to define a collection based on the index.</p>
 </li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux/Mac</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p>with cmd:
-<div class="highlight"><pre><span></span><code>.\env_arlas_cli\Scripts\Activate.bat
-</code></pre></div>
-with PowerShell:
-<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">env_arlas_cli</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">Activate</span><span class="p">.</span><span class="n">ps1</span>
-</code></pre></div></p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>On Microsoft Windows, it may be required to enable the Activate.ps1 script by setting the execution policy for the user. </p>
-<p>You can do this by issuing the following PowerShell command:
-<div class="highlight"><pre><span></span><code><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
-</code></pre></div>
-See <a href="https://docs.python.org/3.10/library/venv.html#creating-virtual-environments">venv documentation</a> for more information.</p>
-</div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>env_arlas_cli/bin/activate<span class="w"> </span><span class="o">(</span>Can<span class="w"> </span>be<span class="w"> </span>added<span class="w"> </span>to<span class="w"> </span>.bashrc<span class="w"> </span>or<span class="w"> </span>.zshrc<span class="o">)</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<h1 id="arlas">ARLAS</h1>
-<p><code>arlas_cli</code> is meant to interact with a deployed ARLAS stack. </p>
-<h3 id="arlas-cloud">ARLAS Cloud</h3>
-<p>If you want to connect arlas_cli to an existing ARLAS Cloud account, simply follow the <a href="../configuration/#arlas-cloud-configuration">configuration guide</a>.</p>
-<h3 id="run-arlas-locally">Run ARLAS Locally</h3>
-<p>To run the simplest ARLAS stack and Elasticsearch on the local machine, clone the <a href="https://github.com/gisaia/ARLAS-Exploration-stack">ARLAS Stack Exploration</a> project and run the stack:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">git clone https://github.com/gisaia/ARLAS-Exploration-stack.git</span><span data-ty="input" data-ty-prompt="&gt;">cd ARLAS-Exploration-stack</span><span data-ty="input" data-ty-prompt="&gt;">./start.sh</span><span data-ty></span></div>
-
-<p>More details about deployment can be found on <a href="https://github.com/gisaia/ARLAS-Exploration-stack">ARLAS Stack Exploration project</a>.</p>
+<p>To get started with data ingestion using a tutorial sample, check out the <a href="../started/#tutorial">ARLAS CLI Getting Started Guide</a>.</p>
 
 
 
