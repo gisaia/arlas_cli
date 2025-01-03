@@ -12,24 +12,28 @@
         <meta name="author" content="Gisaïa - SCALING GEOSPATIAL INTELLIGENCE">
       
       
-        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/model/model-properties-dictionary-of-namearlas-configurations/">
+        <link rel="canonical" href="https://gisaia.github.io/arlas_cli/ingest_data/">
       
       
+        <link rel="prev" href="../configuration/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+        <link rel="next" href="../help/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
-        <title>dictionary of name/arlas configurations Schema - ARLAS Command Line (arlas_cli)</title>
+        <title>Ingest Data - ARLAS Command Line (arlas_cli)</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,9 +52,9 @@
       
     
     
-      <link rel="stylesheet" href="../../termynal.css">
+      <link rel="stylesheet" href="../termynal.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dictionary-of-namearlas-configurations-schema" class="md-skip">
+        <a href="#ingest-data" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="ARLAS Command Line (arlas_cli)" class="md-header__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
+    <a href=".." title="ARLAS Command Line (arlas_cli)" class="md-header__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -110,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              dictionary of name/arlas configurations Schema
+              Ingest Data
             
           </span>
         </div>
@@ -197,7 +201,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="ARLAS Command Line (arlas_cli)" class="md-nav__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
+    <a href=".." title="ARLAS Command Line (arlas_cli)" class="md-nav__button md-logo" aria-label="ARLAS Command Line (arlas_cli)" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -227,7 +231,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -247,7 +251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../started/" class="md-nav__link">
+      <a href="../started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -267,7 +271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../install/" class="md-nav__link">
+      <a href="../install/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -287,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../configuration/" class="md-nav__link">
+      <a href="../configuration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -304,10 +308,30 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ingest_data/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Ingest Data
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -316,6 +340,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arlas-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARLAS Data structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingest-with-arlas-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingest with ARLAS CLI
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -362,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../help/" class="md-nav__link">
+      <a href="../help/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -383,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../confs/" class="md-nav__link">
+      <a href="../confs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -404,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../indices/" class="md-nav__link">
+      <a href="../indices/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -425,7 +487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../collections/" class="md-nav__link">
+      <a href="../collections/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -446,7 +508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../persist/" class="md-nav__link">
+      <a href="../persist/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -467,7 +529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../iam/" class="md-nav__link">
+      <a href="../iam/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -495,7 +557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -535,9 +597,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#arlas-type" class="md-nav__link">
+  <a href="#arlas-data-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      arlas Type
+      ARLAS Data structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingest-with-arlas-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingest with ARLAS CLI
     </span>
   </a>
   
@@ -558,76 +629,40 @@
                   
 
 
-<h1 id="dictionary-of-namearlas-configurations-schema">dictionary of name/arlas configurations Schema</h1>
-<div class="highlight"><pre><span></span><code>airs_model#/properties/arlas
-</code></pre></div>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Abstract</th>
-<th style="text-align: left;">Extensible</th>
-<th style="text-align: left;">Status</th>
-<th style="text-align: left;">Identifiable</th>
-<th style="text-align: left;">Custom Properties</th>
-<th style="text-align: left;">Additional Properties</th>
-<th style="text-align: left;">Access Restrictions</th>
-<th style="text-align: left;">Defined In</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Can be instantiated</td>
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">Unknown status</td>
-<td style="text-align: left;">Unknown identifiability</td>
-<td style="text-align: left;">Forbidden</td>
-<td style="text-align: left;">Allowed</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;"><a href="../../../out/model.schema.json" title="open original schema">model.schema.json*</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="arlas-type">arlas Type</h2>
-<p><code>object</code> (<a href="./">dictionary of name/arlas configurations</a>)</p>
-<h1 id="arlas-properties">arlas Properties</h1>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: left;">Type</th>
-<th style="text-align: left;">Required</th>
-<th style="text-align: left;">Nullable</th>
-<th style="text-align: left;">Defined by</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Additional Properties</td>
-<td style="text-align: left;"><code>object</code></td>
-<td style="text-align: left;">Optional</td>
-<td style="text-align: left;">cannot be null</td>
-<td style="text-align: left;"><a href="../model-defs-arlas/" title="airs_model#/properties/arlas/additionalProperties">Settings</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="additional-properties">Additional Properties</h2>
-<p>Additional properties are allowed, as long as they follow this schema:</p>
+<h1 id="ingest-data">Ingest data</h1>
+<p>The <code>ARLAS CLI</code> allows you to ingest data into ARLAS and make it accessible through ARLAS Dashboards.</p>
+<p><img alt="Ingest Data" src="../images/ingest_data.png" /></p>
+<p align="center" style="font-style: italic;">
+Ingest Data in ARLAS
+</p>
+
+<h2 id="arlas-data-structure">ARLAS Data structure</h2>
+<p>To be explored in ARLAS dashboards, the data has to be indexed in an <a href="../concepts/#elasticsearch">Elasticsearch</a> (ES) <a href="../concepts/#es-index">index</a>.</p>
+<p>An index contains the data and a model (<a href="../concepts/#es-mapping">mapping</a>) to describe how fields have to be interpreted (types).</p>
+<p>ARLAS <a href="../concepts/#arlas-collection">collections</a> are built on top of indices. 
+They describe the basic data structure for its visualization and elements needed for the data access policy.</p>
+<p><img alt="Data indices and collections in ARLAS" src="../images/index_collection_schema.png" /></p>
+<p align="center" style="font-style: italic;">
+Data indices and collections in ARLAS
+</p>
+
+<h2 id="ingest-with-arlas-cli">Ingest with ARLAS CLI</h2>
+<p>Once you have installed ARLAS CLI (see <a href="../install/">Installation Guide</a>) and configured it with your ARLAS instance (see <a href="../configuration/">Configuration Guide</a>), you can ingest data using the following commands:</p>
 <ul>
+<li><strong>Create an Index with a Mapping</strong>: </li>
 <li>
-<p>is optional</p>
+<p>Use <a href="../indices/#mapping">arlas_cli indices mapping</a> to infer the data model from a data sample and create an empty index.</p>
 </li>
 <li>
-<p>Type: <code>object</code> (<a href="../model-defs-arlas/">ARLAS</a>)</p>
+<p><strong>Ingest Data into the Index</strong>:
+Use <a href="../indices/#data">arlas_cli indices data</a> to populate the created index with your data.</p>
 </li>
 <li>
-<p>cannot be null</p>
-</li>
-<li>
-<p>defined in: <a href="../model-defs-arlas/" title="airs_model#/properties/arlas/additionalProperties">Settings</a></p>
+<p><strong>Create a Collection</strong>:
+Use <a href="../collections/#create">arlas_cli collections create</a> to define a collection based on the index.</p>
 </li>
 </ul>
-<h3 id="additionalproperties-type">additionalProperties Type</h3>
-<p><code>object</code> (<a href="../model-defs-arlas/">ARLAS</a>)</p>
+<p>To get started with data ingestion using a tutorial sample, check out the <a href="../started/#tutorial">ARLAS CLI Getting Started Guide</a>.</p>
 
 
 
@@ -674,12 +709,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
-        <script src="../../termynal.js"></script>
+        <script src="../termynal.js"></script>
       
     
   </body>
