@@ -10,11 +10,25 @@ See the documentation at https://gisaia.github.io/arlas_cli/
 
 To run the commands locally from the project root, simply replace `arlas_cli` by `python3.10 -m arlas.cli.cli`
 
-### Release
+### Release process
 
-To release `arlas_cli`, make sure to be at project root on the branch `master` up to date.
+#### Prerequisites
 
-Run in the terminal:
+- docker installed
+- python3.10
+- Pypi authentication: a file `~/.pypirc` containing your Pypi account credentials (`{password}` accessible on Bitbucket)
+
+```
+[pypi]
+  username = __token__
+  password = {password}
+```
+
+#### Release
+
+To release `arlas_cli`, make sure to be on the branch `master` up to date.
+
+Run in a terminal at project root:
 
 ```
 ./scripts/release.sh {ARLAS_CLI_VERSION}
