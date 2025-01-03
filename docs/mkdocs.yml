@@ -28,6 +28,7 @@ nav:
 - Getting started: started.md
 - Installation: install.md
 - Configuration: configuration.md
+- Ingest Data: ingest_data.md
 - Commands:
   - Getting help: help.md
   - confs: confs.md
