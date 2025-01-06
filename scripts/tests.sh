@@ -40,6 +40,46 @@ else
 fi
 
 # ----------------------------------------------------------
+echo "TEST default configuration set to tests"
+python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs set tests
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs default | grep "Default configuration is tests" ; then
+    echo "OK: default is local"
+else
+    echo "ERROR: local is not default"
+    exit 1
+fi
+
+# ----------------------------------------------------------
+echo "TEST check local configuration"
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs check tests | grep "ARLAS Server: ...  ok" ; then
+    echo "OK: ARLAS Server is ok"
+else
+    echo "ERROR: ARLAS Server is not ok"
+    exit 1
+fi
+
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs check tests | grep "ARLAS Persistence: ...  ok" ; then
+    echo "OK: ARLAS Persistence is ok"
+else
+    echo "ERROR: ARLAS Persistence is not ok"
+    exit 1
+fi
+
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs check tests | grep "ARLAS IAM: ...  not ok " ; then
+    echo "OK: ARLAS IAM is not ok"
+else
+    echo "ERROR: ARLAS IAM not ok not found"
+    exit 1
+fi
+
+if python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml confs check tests | grep "Elasticsearch: ...  ok" ; then
+    echo "OK: Elasticsearch is ok"
+else
+    echo "ERROR: Elasticsearch is not ok"
+    exit 1
+fi
+
+# ----------------------------------------------------------
 echo "TEST add direct mapping on ES"
 python3.10 -m arlas.cli.cli --config-file /tmp/arlas_cli.yaml indices --config tests create direct_mappping_index --mapping tests/mapping.json
 if [ "$? -eq 0" ] ; then

@@ -6,9 +6,40 @@ from prettytable import PrettyTable
 from arlas.cli.settings import ARLAS, AuthorizationService, Configuration, Resource
 from arlas.cli.variables import variables
 import arlas.cli.arlas_cloud as arlas_cloud
+from arlas.cli.service import Service
 
 configurations = typer.Typer()
 
+
+@configurations.command(help="Set default configuration among existing configurations", name="set", epilog=variables["help_epilog"])
+def set_default_configuration(name: str = typer.Argument(help="Name of the configuration to become default")):
+    if not Configuration.settings.arlas.get(name):
+        print("Error: configuration {} not found among {}.".format(name, ",".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+        exit(1)
+    Configuration.settings.default = name
+    Configuration.save(variables["configuration_file"])
+    Configuration.init(variables["configuration_file"])
+    print("Default configuration is now {}".format(name))
+
+
+@configurations.command(help="Display the default configuration", name="default", epilog=variables["help_epilog"])
+def default():
+    print("Default configuration is {}".format(Configuration.settings.default))
+
+
+@configurations.command(help="Check the services of a configuration", name="check", epilog=variables["help_epilog"])
+def test_configuration(name: str = typer.Argument(help="Configuration to be checked")):
+    if not Configuration.settings.arlas.get(name):
+        print("Error: configuration {} not found among {}.".format(name, ",".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+        exit(1)
+    print("ARLAS Server: ... ", end="")
+    print(" {}".format(Service.test_arlas_server(name)))
+    print("ARLAS Persistence: ... ", end="")
+    print(" {}".format(Service.test_arlas_persistence(name)))
+    print("ARLAS IAM: ... ", end="")
+    print(" {}".format(Service.test_arlas_iam(name)))
+    print("Elasticsearch: ... ", end="")
+    print(" {}".format(Service.test_es(name)))
 
 @configurations.command(help="List configurations", name="list", epilog=variables["help_epilog"])
 def list_configurations():
