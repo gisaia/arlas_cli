@@ -26,6 +26,35 @@ class Services(Enum):
 class Service:
     curl: bool = False
 
+    def test_arlas_server(arlas: str):
+        try:
+            Service.__arlas__(arlas, "explore/_list", exit_on_failure=False)
+            return "ok"
+        except Exception as e:
+            return "not ok ({} ...)".format(str(e)[:20])
+
+    def test_arlas_iam(arlas: str):
+        try:
+            Service.__arlas__(arlas, "organisations", service=Services.iam, exit_on_failure=False)
+            return "ok"
+        except Exception as e:
+            return "not ok ({} ...)".format(str(e)[:20])
+
+    def test_arlas_persistence(arlas: str):
+        try:
+            url = "/".join(["persist", "resources", "config.json"]) + "?size=10000&page=1&order=desc&pretty=false"
+            Service.__arlas__(arlas, url, service=Services.persistence_server, exit_on_failure=False)
+            return "ok"
+        except Exception as e:
+            return "not ok ({} ...)".format(str(e)[:20])
+
+    def test_es(arlas: str):
+        try:
+            Service.__es__(arlas, "/".join(["*"]), exit_on_failure=False)
+            return "ok"
+        except Exception as e:
+            return "not ok ({} ...)".format(str(e)[:20])
+
     def create_user(arlas: str, email: str):
         return Service.__arlas__(arlas, "users", post=json.dumps({"email": email}), service=Services.iam)
 
@@ -427,7 +456,7 @@ class Service:
                 fields.append([".".join(o), type])
         return fields
     
-    def __arlas__(arlas: str, suffix, post=None, put=None, patch=None, delete=None, service=Services.arlas_server):
+    def __arlas__(arlas: str, suffix, post=None, put=None, patch=None, delete=None, service=Services.arlas_server, exit_on_failure: bool = False):
         configuration: ARLAS = Configuration.settings.arlas.get(arlas, None)
         if configuration is None:
             print("Error: arlas configuration {} not found among [{}] for {}.".format(arlas, ", ".join(Configuration.settings.arlas.keys()), service.name), file=sys.stderr)
@@ -469,9 +498,12 @@ class Service:
                 print(r.content)
                 exit(1)
         except Exception as e:
-            print("Error: request {} failed on {}".format(method, e), file=sys.stderr)
-            print("   url: {}".format(url), file=sys.stderr)
-            exit(1)
+            if exit_on_failure:
+                print("Error: request {} failed on {}".format(method, e), file=sys.stderr)
+                print("   url: {}".format(url), file=sys.stderr)
+                exit(1)
+            else:
+                raise e
 
     def __es__(arlas: str, suffix, post=None, put=None, delete=None, exit_on_failure: bool = True, headers: dict[str, str] = {}):
         endpoint = Configuration.settings.arlas.get(arlas)
