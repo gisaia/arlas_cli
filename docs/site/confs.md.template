@@ -71,7 +71,6 @@ The ARLAS server URL (`ARLAS_SERVER_URL`) and the ARLAS persistence server URL (
 --persistence-headers "Content-Type:application/json"
 ```
 
-
 #### Elasticsearch
 
 The used Elasticsearch instance and your credentials has to be set in the configuration:
@@ -129,8 +128,6 @@ An existing configuration can be deleted with the `confs delete` sub command:
 > !!!execute arlas_cli confs delete --help
 ```
 
-```
-
 To remove an existing configuration from the default configuration file, simply run the following command:
 
 ```shell
@@ -151,8 +148,6 @@ The content of a configuration can be detailed with `confs describe` sub command
 <!-- termynal -->
 ```shell
 > !!!execute arlas_cli confs describe --help
-```
-
 ```
 
 For example, the default local configuration looks like:
@@ -202,8 +197,6 @@ The list of available configurations can be obtained with `confs list` sub comma
 > !!!execute arlas_cli confs list --help
 ```
 
-```
-
 The `confs list` sub-command returns the list of available configuration names and their ARLAS server url.
 
 For example:
@@ -216,3 +209,76 @@ For example:
 | local | http://localhost/arlas |
 +-------+------------------------+
 ```
+
+## default
+
+### Get the current default configuration
+
+The default arlas_cli configuration can be obtained with the `confs default` subcommand:
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli confs default --help
+```
+
+!!! note
+    When a configuration is set as default, you do not need to specify `--config` option in `arlas_cli` commands.
+
+To identify which configuration is currently set as the default, run:
+
+```shell
+arlas_cli confs default
+```
+
+## set
+
+### Set the default configuration
+
+The default arlas_cli configuration can be set with the `confs set` subcommand:
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli confs set --help
+```
+
+!!! note
+    When a configuration is set as default, you do not need to specify `--config` option in `arlas_cli` commands.
+
+To set a configuration `conf_name` as the default, run:
+
+```shell
+arlas_cli confs set {conf_name}
+```
+
+## check
+
+### Check the services of a configuration
+
+You can verify the services accessible through a specific configuration using the `confs check` subcommand:
+
+<!-- termynal -->
+```shell
+> !!!execute arlas_cli confs check --help
+```
+
+This command validates that the addresses and credentials defined in the configuration are correct and ensures successful access to the services.
+
+The following services are validated:
+
+- ARLAS Server
+- ARLAS Persistence
+- ARLAS IAM
+- Elasticsearch
+
+!!! success
+    Example:
+    <!-- termynal -->
+    ```shell
+    > arlas_cli confs check cloud.arlas.io.user
+    ARLAS Server: ...  ok
+    ARLAS Persistence: ...  ok
+    ARLAS IAM: ...  ok
+    Elasticsearch: ...  ok
+    ```
+    All services are up and running, and the configuration is correctly set up.
+    
