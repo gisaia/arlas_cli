@@ -12,6 +12,18 @@ else
     exit 1
 fi
 
+send_chat_message(){
+    MESSAGE=$1
+    if [ -z "$GOOGLE_CHAT_RELEASE_CHANEL" ] ; then
+        echo "Environement variable GOOGLE_CHAT_RELEASE_CHANEL is not definied ... skipping message publishing"
+    else
+        DATA='{"text":"'${MESSAGE}'"}'
+        echo $DATA
+        curl -X POST --header "Content-Type:application/json" $GOOGLE_CHAT_RELEASE_CHANEL -d "${DATA}"
+    fi
+}
+
+
 echo "Build and release the image with version ${VERSION}"
 
 # PYTHON PIP
@@ -34,3 +46,5 @@ git commit -m "ARLAS Command line ${VERSION}"
 git tag -a ${VERSION} -m "ARLAS Command line ${VERSION}"
 git push origin ${VERSION}
 git push origin master
+
+send_chat_message "Release of arlas_cli, version ${VERSION}"
