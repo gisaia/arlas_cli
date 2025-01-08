@@ -26,7 +26,7 @@ Data indices and collections in ARLAS
 Once you have installed ARLAS CLI (see [Installation Guide](install.md)) and configured it with your ARLAS instance (see [Configuration Guide](configuration.md)), you can ingest data using the following commands:
 
 - **Create an Index with a Mapping**: 
-- Use [arlas_cli indices mapping](indices.md#mapping) to infer the data model from a data sample and create an empty index.
+Use [arlas_cli indices mapping](indices.md#mapping) to infer the data model from a data sample and create an empty index.
 
 - **Ingest Data into the Index**:
 Use [arlas_cli indices data](indices.md#data) to populate the created index with your data.
