@@ -2,7 +2,7 @@
 
 __ARLAS Command Line__ (`arlas_cli`) is for managing the ARLAS data and configurations.
 
-See the documentation at https://gisaia.github.io/arlas_cli/
+See the documentation at https://docs.arlas.io/external_docs/arlas_cli/
 
 ## Developer section
 
