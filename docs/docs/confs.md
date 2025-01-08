@@ -21,11 +21,14 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ create          Add a configuration                                        │
-│ delete          Delete a configuration                                     │
-│ describe        Describe a configuration                                   │
-│ list            List configurations                                        │
-│ login           Add a configuration for ARLAS Cloud                        │
+│ check       Check the services of a configuration                          │
+│ create      Add a configuration                                            │
+│ default     Display the default configuration                              │
+│ delete      Delete a configuration                                         │
+│ describe    Describe a configuration                                       │
+│ list        List configurations                                            │
+│ login       Add a configuration for ARLAS Cloud                            │
+│ set         Set default configuration among existing configurations        │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
@@ -367,6 +370,18 @@ The default arlas_cli configuration can be obtained with the `confs default` sub
 <!-- termynal -->
 ```shell
 > arlas_cli confs default --help
+                                                                              
+ Usage: arlas_cli confs default [OPTIONS]                                     
+                                                                              
+ Display the default configuration                                            
+                                                                              
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
+
 ```
 
 !!! note
@@ -387,6 +402,23 @@ The default arlas_cli configuration can be set with the `confs set` subcommand:
 <!-- termynal -->
 ```shell
 > arlas_cli confs set --help
+                                                                              
+ Usage: arlas_cli confs set [OPTIONS] NAME                                    
+                                                                              
+ Set default configuration among existing configurations                      
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    name      TEXT  Name of the configuration to become default           │
+│                      [default: None]                                       │
+│                      [required]                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
+
 ```
 
 !!! note
@@ -407,6 +439,22 @@ You can verify the services accessible through a specific configuration using th
 <!-- termynal -->
 ```shell
 > arlas_cli confs check --help
+                                                                              
+ Usage: arlas_cli confs check [OPTIONS] NAME                                  
+                                                                              
+ Check the services of a configuration                                        
+                                                                              
+╭─ Arguments ────────────────────────────────────────────────────────────────╮
+│ *    name      TEXT  Configuration to be checked [default: None]           │
+│                      [required]                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --help          Show this message and exit.                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+                                                                              
+
 ```
 
 This command validates that the addresses and credentials defined in the configuration are correct and ensures successful access to the services.
