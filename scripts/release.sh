@@ -29,6 +29,12 @@ echo "Build and release the image with version ${VERSION}"
 # PYTHON PIP
 ./scripts/publish.sh $VERSION
 
+# Make sure to install the published arlas_cli
+sleep 5
+pip3.10 install arlas_cli=$VERSION
+sleep 5
+pip3.10 install arlas_cli=$VERSION
+
 # CONFIG FILE
 python3.10 -m arlas.cli.cli --config-file /tmp/arlas-cli-release.conf --version
 cp /tmp/arlas-cli-release.conf ./configuration.yaml
