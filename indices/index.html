@@ -777,26 +777,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Concepts
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -1083,8 +1063,8 @@
 
 <h1 id="indices">Indices</h1>
 <h2 id="elasticsearch-index">Elasticsearch index</h2>
-<p>To be explored in ARLAS dashboards, the data has to be indexed in an <a href="../concepts/#elasticsearch">Elasticsearch</a> (ES) <a href="../concepts/#es-index">index</a>.
-An index contains the data and a <a href="../concepts/#es-mapping">mapping</a> to describe how fields have to be interpreted (types).</p>
+<p>To be explored in ARLAS dashboards, the data has to be indexed in an <a href="concepts.md#elasticsearch">Elasticsearch</a> (ES) <a href="concepts.md#es-index">index</a>.
+An index contains the data and a <a href="concepts.md#es-mapping">mapping</a> to describe how fields have to be interpreted (types).</p>
 <p><code>arlas_cli</code> provide tools to infer mapping from data and manage the ES indices with the <code>indices</code> command.</p>
 <p><strong>List index management commands</strong></p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="&gt;">arlas_cli indices --help</span><span data-ty>                                                                              <br> Usage: arlas_cli indices [OPTIONS] COMMAND [ARGS]...                         <br>                                                                              <br>╭─ Options ──────────────────────────────────────────────────────────────────╮<br>│ --config        TEXT  Name of the ARLAS configuration to use from your     │<br>│                       configuration file                                   │<br>│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │<br>│                       [default: None]                                      │<br>│ --help                Show this message and exit.                          │<br>╰────────────────────────────────────────────────────────────────────────────╯<br>╭─ Commands ─────────────────────────────────────────────────────────────────╮<br>│ clone     Clone an index and set its name                                  │<br>│ create    Create an index                                                  │<br>│ data      Index data                                                       │<br>│ delete    Delete an index                                                  │<br>│ describe  Describe an index                                                │<br>│ list      List indices                                                     │<br>│ mapping   Generate the mapping based on the data                           │<br>│ migrate   Migrate an index on another arlas configuration, and set the     │<br>│           target index name                                                │<br>│ sample    Display a sample of an index                                     │<br>╰────────────────────────────────────────────────────────────────────────────╯<br><br></span></div>
