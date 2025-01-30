@@ -35,7 +35,7 @@ cp /tmp/arlas-cli-release.conf ./configuration.yaml
 git add configuration.yaml
 
 # Generate and publish documentation
-./mkDocs.sh
+./scripts/generate_doc.sh
 pip3.10 install mkdocs-material termynal
 mkdocs gh-deploy -f docs/mkdocs.yml
 
