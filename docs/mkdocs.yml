@@ -38,7 +38,6 @@ nav:
   - collections: collections.md
   - persist: persist.md
   - iam: iam.md
-- Concepts: concepts.md
 
 plugins:
   - search
