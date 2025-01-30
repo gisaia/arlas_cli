@@ -36,7 +36,7 @@ sleep 5
 pip3.10 install arlas_cli=$VERSION
 
 # CONFIG FILE
-python3.10 -m arlas.cli.cli --config-file /tmp/arlas-cli-release.conf --version
+arlas_cli --config-file /tmp/arlas-cli-release.conf --version
 cp /tmp/arlas-cli-release.conf ./configuration.yaml
 git add configuration.yaml
 
