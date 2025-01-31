@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+RELEASE_COMMAND_LINE="$0" "$@"
+
 [ -z "$1" ] && echo "Please provide the version" && exit 1;
 VERSION=$1
 echo ${VERSION} > version.txt
@@ -54,3 +56,4 @@ git push origin ${VERSION}
 git push origin master
 
 send_chat_message "Release of arlas_cli, version ${VERSION}"
+send_chat_message "${RELEASE_COMMAND_LINE}"
