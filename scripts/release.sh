@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-RELEASE_COMMAND_LINE="$0" "$@"
+export RELEASE_COMMAND_LINE="$0 $*"
 
 [ -z "$1" ] && echo "Please provide the version" && exit 1;
 VERSION=$1
