@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://gisaia.github.io/arlas_cli/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/collections/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/configuration/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/confs/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/help/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/iam/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/indices/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/ingest_data/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/install/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/persist/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://gisaia.github.io/arlas_cli/started/</loc>
-         <lastmod>2025-01-31</lastmod>
+         <lastmod>2025-02-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
