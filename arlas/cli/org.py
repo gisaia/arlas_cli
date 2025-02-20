@@ -155,7 +155,7 @@ def delete_user_from_group(org_id: str = typer.Argument(help="Organisation's ide
     print(Service.delete_permission_from_group_in_organisation(config, org_id, user_id, group_id))
 
 
-@org.command(help="Add and returns an new API Key with permissions associated to provided groups. Use the key id and key secret with the arlas-api-key-id and arlas-api-key-secret headers.", name="add-apikey",
+@org.command(help="Add and return an new API Key with permissions associated to provided groups. Use the key id and key secret with the arlas-api-key-id and arlas-api-key-secret headers.", name="add-apikey",
              epilog=variables["help_epilog"])
 def add_apikey(org_id: str = typer.Argument(help="Organisation's identifier"),
                name: str = typer.Argument(help="API Key name"),
@@ -181,8 +181,9 @@ def delete_apikey(org_id: str = typer.Argument(help="Organisation's identifier")
 
 def __solve_user_id__(config: str, org_id: str, user_id: str):
     if not user_id:
-        if Configuration.settings.arlas.get(config) and Configuration.settings.arlas.get(config).authorization and Configuration.settings.arlas.get(config).authorization.token_url and Configuration.settings.arlas.get(config).authorization.token_url.login:
-            user_id = Service.get_user_from_organisation(config, org_id, Configuration.settings.arlas.get(config).authorization.token_url.login)[0]
+        c = Configuration.settings.arlas.get(config)
+        if c and c.authorization and c.authorization.token_url and c.authorization.token_url.login:
+            user_id = Service.get_user_from_organisation(config, org_id, c.authorization.token_url.login)[0]
             if not user_id:
                 print("Error : user id not found for {}.".format(config), file=sys.stderr)
                 sys.exit(1)
@@ -203,7 +204,7 @@ def check():
              epilog=variables["help_epilog"])
 def forbidden():
     config = variables["arlas"]
-    print(Service.forbidden_organisation(config))
+    print(Service.forbidden_organisations(config))
 
 
 @org.command(help="Forbid an organisation name.", name="forbid",

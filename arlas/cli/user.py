@@ -49,7 +49,7 @@ def deactivate(id: str = typer.Argument(help="User's identifier")):
     print(Service.deactivate(config, id).get("message"))
 
 
-@user.command(help="Deactivate user account", name="reset-password", epilog=variables["help_epilog"])
+@user.command(help="Launch reset user's password process", name="reset-password", epilog=variables["help_epilog"])
 def reset_password(email: str = typer.Argument(help="User's email")):
     config = variables["arlas"]
     print(Service.reset_password(config, email).get("message"))

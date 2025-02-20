@@ -26,6 +26,7 @@ class Services(Enum):
 class Service:
     curl: bool = False
 
+    @staticmethod
     def test_arlas_server(arlas: str):
         try:
             Service.__arlas__(arlas, "explore/_list", exit_on_failure=False)
@@ -33,6 +34,7 @@ class Service:
         except Exception as e:
             return "not ok ({} ...)".format(str(e)[:20])
 
+    @staticmethod
     def test_arlas_iam(arlas: str):
         try:
             Service.__arlas__(arlas, "organisations", service=Services.iam, exit_on_failure=False)
@@ -40,6 +42,7 @@ class Service:
         except Exception as e:
             return "not ok ({} ...)".format(str(e)[:20])
 
+    @staticmethod
     def test_arlas_persistence(arlas: str):
         try:
             url = "/".join(["persist", "resources", "config.json"]) + "?size=10000&page=1&order=desc&pretty=false"
@@ -48,6 +51,7 @@ class Service:
         except Exception as e:
             return "not ok ({} ...)".format(str(e)[:20])
 
+    @staticmethod
     def test_es(arlas: str):
         try:
             Service.__es__(arlas, "/".join(["*"]), exit_on_failure=False)
@@ -55,12 +59,15 @@ class Service:
         except Exception as e:
             return "not ok ({} ...)".format(str(e)[:20])
 
+    @staticmethod
     def create_user(arlas: str, email: str):
         return Service.__arlas__(arlas, "users", post=json.dumps({"email": email}), service=Services.iam)
 
+    @staticmethod
     def describe_user(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id]), service=Services.iam)
 
+    @staticmethod
     def update_user(arlas: str, id: str, oldPassword: str = None, newPassword: str = None, locale: str = None, timezone: str = None, firstName: str = None, lastName: str = None):
         data = {"oldPassword": oldPassword}
         if newPassword:
@@ -75,18 +82,23 @@ class Service:
             data["lastName"] = lastName
         return Service.__arlas__(arlas, "/".join(["users", id]), put=json.dumps(data), service=Services.iam)
 
+    @staticmethod
     def delete_user(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id]), delete=True, service=Services.iam)
 
+    @staticmethod
     def activate(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id, "activate"]), post="{}", service=Services.iam)
     
+    @staticmethod
     def deactivate(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id, "deactivate"]), post="{}", service=Services.iam)
 
+    @staticmethod
     def reset_password(arlas: str, email: str):
         return Service.__arlas__(arlas, "/".join(["users", "resetpassword"]), post=email, service=Services.iam)
 
+    @staticmethod
     def list_organisations(arlas: str) -> list[list[str]]:
         data = Service.__arlas__(arlas, "organisations", service=Services.iam)
         table = [["id", "name", "Am I owner?"]]
@@ -98,18 +110,23 @@ class Service:
             ])
         return table
 
+    @staticmethod
     def create_organisation(arlas: str, org: str):
         return Service.__arlas__(arlas, "/".join(["organisations", org]), post="{}", service=Services.iam)
 
+    @staticmethod
     def create_organisation_from_user_domain(arlas: str, org: str):
         return Service.__arlas__(arlas, "organisations", post="{}", service=Services.iam)
 
+    @staticmethod
     def delete_organisation(arlas: str, oid: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid]), delete=True, service=Services.iam)
 
+    @staticmethod
     def list_organisation_collections(arlas: str, oid: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "collections"]), service=Services.iam)
 
+    @staticmethod
     def list_organisation_users(arlas: str, oid: str):
         users: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), service=Services.iam)
         return list(map(lambda user: [user.get("member").get("id"),
@@ -118,6 +135,7 @@ class Service:
                                       "\n".join(list(map(lambda role: role.get("fullName"), user.get("member").get("roles"))))],
                         users))
 
+    @staticmethod
     def get_user_from_organisation(arlas: str, oid: str, user: str):
         users: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), service=Services.iam)
         users: list = list(filter(lambda u: u.get("member").get("email") == user, users))
@@ -128,6 +146,7 @@ class Service:
                                           "\n".join(list(map(lambda role: role.get("fullName"), user.get("member").get("roles"))))], users))[0]
         return None
 
+    @staticmethod
     def list_organisation_groups(arlas: str, oid: str):
         groups: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "groups"]), service=Services.iam)
         return list(map(lambda user: [user.get("id"),
@@ -138,36 +157,47 @@ class Service:
                                       ],
                         groups))
 
+    @staticmethod
     def add_user_in_organisation(arlas: str, oid: str, email: str, groups: list[str]):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), post=json.dumps({"email": email, "rids": groups}), service=Services.iam)
 
+    @staticmethod
     def delete_user_in_organisation(arlas: str, oid: str, user_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", user_id]), delete=True, service=Services.iam)
 
+    @staticmethod
     def add_group_in_organisation(arlas: str, oid: str, group_name: str, group_description: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "groups"]), post=json.dumps({"name": group_name, "description": group_description}), service=Services.iam)
 
+    @staticmethod
     def delete_group_in_organisation(arlas: str, oid: str, group_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "groups", group_id]), delete=True, service=Services.iam)
 
+    @staticmethod
     def add_permission_in_organisation(arlas: str, oid: str, permission_value: str, permission_description: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "permissions"]), post=json.dumps({"value": permission_value, "description": permission_description}), service=Services.iam)
 
+    @staticmethod
     def delete_permission_in_organisation(arlas: str, oid: str, permission_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "permissions", permission_id]), delete=True, service=Services.iam)
 
+    @staticmethod
     def add_permission_to_group_in_organisation(arlas: str, oid: str, role_id: str, permission_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id, "permissions", permission_id]), post="{}", service=Services.iam)
 
+    @staticmethod
     def delete_permission_from_group_in_organisation(arlas: str, oid: str, role_id: str, permission_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id, "permissions", permission_id]), delete=True, service=Services.iam)
 
+    @staticmethod
     def add_role_in_organisation(arlas: str, oid: str, role_name: str, role_description: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles"]), post=json.dumps({"name": role_name, "description": role_description}), service=Services.iam)
 
+    @staticmethod
     def delete_role_in_organisation(arlas: str, oid: str, role_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id]), delete=True, service=Services.iam)
 
+    @staticmethod
     def list_organisation_roles(arlas: str, oid: str):
         roles: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "roles"]), service=Services.iam)
         return list(map(lambda user: [user.get("id"),
@@ -178,6 +208,7 @@ class Service:
                                       ],
                         roles))
 
+    @staticmethod
     def list_organisation_permissions(arlas: str, oid: str):
         permissions: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "permissions"]), service=Services.iam)
         return list(map(lambda perm: [perm.get("id"),
@@ -187,6 +218,7 @@ class Service:
                                       ],
                         permissions))
 
+    @staticmethod
     def list_collections(arlas: str) -> list[list[str]]:
         data = Service.__arlas__(arlas, "explore/_list")
         table = [["name", "index"]]
@@ -197,6 +229,7 @@ class Service:
             ])
         return table
 
+    @staticmethod
     def list_indices(arlas: str, keep_only: str = None) -> list[list[str]]:
         data = json.loads(Service.__es__(arlas, "_cat/indices?format=json"))
         table = [["name", "status", "count", "size"]]
@@ -210,6 +243,7 @@ class Service:
                 ])
         return table
 
+    @staticmethod
     def set_collection_visibility(arlas: str, collection: str, public: bool):
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         doc = {
@@ -218,10 +252,12 @@ class Service:
         }
         return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("public")
 
+    @staticmethod
     def set_collection_display_name(arlas: str, collection: str, name: str):
         doc = name
         return Service.__arlas__(arlas, "/".join(["collections", collection, "display_names", "collection"]), patch=json.dumps(doc)).get("params", {}).get("display_names", {}).get("collection")
 
+    @staticmethod
     def set_collection_field_display_name(arlas: str, collection: str, field_name: str, field_display_name: str):
         collection_description = Service.__arlas__(arlas, "/".join(["collections", collection]))
         aliasses: dict[str, str] = collection_description.get("display_names", {}).get("fields", {})
@@ -236,6 +272,7 @@ class Service:
             table.append([path, name])
         return table
 
+    @staticmethod
     def share_with(arlas: str, collection: str, organisation: str):
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         orgs = description.get("params", {}).get("organisations", {}).get("shared", [])
@@ -249,6 +286,7 @@ class Service:
         }
         return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("shared")
 
+    @staticmethod
     def unshare_with(arlas: str, collection: str, organisation: str):
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         orgs: list = description.get("params", {}).get("organisations", {}).get("shared", [])
@@ -264,12 +302,14 @@ class Service:
         }
         return Service.__arlas__(arlas, "/".join(["collections", collection, "organisations"]), patch=json.dumps(doc)).get("params", {}).get("organisations", {}).get("shared")
 
+    @staticmethod
     def describe_collection(arlas: str, collection: str) -> list[list[str]]:
         description = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         table = [["field name", "type"]]
         table.extend(Service.__get_fields__([], description.get("properties", {})))
         return table
 
+    @staticmethod
     def metadata_collection(arlas: str, collection: str) -> list[list[str]]:
         d = Service.__arlas__(arlas, "/".join(["explore", collection, "_describe"]))
         table = [["metadata", "value"]]
@@ -284,18 +324,21 @@ class Service:
         table.append(["organisations", str(d.get("params", {}).get("organisations", {}).get("shared", []))])
         return table
     
+    @staticmethod
     def describe_index(arlas: str, index: str) -> list[list[str]]:
         description = json.loads(Service.__es__(arlas, "/".join([index, "_mapping"])))
         table = [["field name", "type"]]
         table.extend(Service.__get_fields__([], description.get(index, {}).get("mappings", {}).get("properties", {})))
         return table
     
+    @staticmethod
     def clone_index(arlas: str, index: str, name: str) -> list[list[str]]:
         Service.__es__(arlas, "/".join([index, "_block", "write"]), put="")
         Service.__es__(arlas, "/".join([index, "_clone", name]), put="")
         Service.__es__(arlas, "/".join([index, "_settings"]), put='{"index.blocks.write": false}')
         return Service.list_indices(arlas, keep_only=name)
     
+    @staticmethod
     def migrate_index(arlas: str, index: str, target_arlas: str, target_name: str) -> list[list[str]]:
         source = Configuration.settings.arlas.get(arlas)
         migration = {
@@ -319,14 +362,17 @@ class Service:
         print(Service.__es__(target_arlas, "/".join(["_reindex"]), post=json.dumps(migration)))
         return Service.list_indices(target_arlas, keep_only=target_name)
     
+    @staticmethod
     def sample_collection(arlas: str, collection: str, pretty: bool, size: int) -> dict:
         sample = Service.__arlas__(arlas, "/".join(["explore", collection, "_search"]) + "?size={}".format(size))
         return sample
 
+    @staticmethod
     def sample_index(arlas: str, collection: str, pretty: bool, size: int) -> dict:
         sample = json.loads(Service.__es__(arlas, "/".join([collection, "_search"]) + "?size={}".format(size)))
         return sample
     
+    @staticmethod
     def create_collection(arlas: str, collection: str, model_resource: str, index: str, display_name: str, owner: str, orgs: list[str], is_public: bool, id_path: str, centroid_path: str, geometry_path: str, date_path: str):
         if model_resource:
             model = json.loads(Service.__fetch__(model_resource))
@@ -358,6 +404,7 @@ class Service:
             model["display_names"] = display_names
         Service.__arlas__(arlas, "/".join(["collections", collection]), put=json.dumps(model))
 
+    @staticmethod
     def create_index_from_resource(arlas: str, index: str, mapping_resource: str, number_of_shards: int):
         mapping = json.loads(Service.__fetch__(mapping_resource))
         if not mapping.get("mappings"):
@@ -365,16 +412,20 @@ class Service:
             exit(1)
         Service.create_index(arlas, index, mapping, number_of_shards)
 
+    @staticmethod
     def create_index(arlas: str, index: str, mapping: str, number_of_shards: int = 1):
         index_doc = {"mappings": mapping.get("mappings"), "settings": {"number_of_shards": number_of_shards}}
         Service.__es__(arlas, "/".join([index]), put=json.dumps(index_doc))
 
+    @staticmethod
     def delete_collection(arlas: str, collection: str):
         Service.__arlas__(arlas, "/".join(["collections", collection]), delete=True)
 
+    @staticmethod
     def delete_index(arlas: str, index: str):
         Service.__es__(arlas, "/".join([index]), delete=True)
 
+    @staticmethod
     def count_collection(arlas: str, collection: str) -> list[list[str]]:
         collections = []
         if collection:
@@ -388,6 +439,7 @@ class Service:
             table.append([collection, count.get("totalnb", "UNKNOWN")])
         return table
 
+    @staticmethod
     def count_hits(file_path: str) -> int:
         line_number = 0
         with open(file_path, mode="r", encoding="utf-8") as f:
@@ -395,19 +447,23 @@ class Service:
                 line_number = line_number + 1
         return line_number
 
+    @staticmethod
     def persistence_add_file(arlas: str, file: Resource, zone: str, name: str, encode: bool = False, readers: list[str] = [], writers: list[str] = []):
         content = Service.__fetch__(file, bytes=True)
         url = "/".join(["persist", "resource", zone, name]) + "?" + "&".join(list(map(lambda r: "readers=" + urllib.parse.quote_plus(r), readers)) + list(map(lambda w: "writers=" + urllib.parse.quote_plus(w), writers)))
         return Service.__arlas__(arlas, url, post=content, service=Services.persistence_server).get("id")
 
+    @staticmethod
     def persistence_delete(arlas: str, id: str):
         url = "/".join(["persist", "resource", "id", id])
         return Service.__arlas__(arlas, url, delete=True, service=Services.persistence_server)
 
+    @staticmethod
     def persistence_get(arlas: str, id: str):
         url = "/".join(["persist", "resource", "id", id])
         return Service.__arlas__(arlas, url, service=Services.persistence_server)
     
+    @staticmethod
     def persistence_zone(arlas: str, zone: str):
         url = "/".join(["persist", "resources", zone]) + "?size=10000&page=1&order=desc&pretty=false"
         table = [["id", "name", "zone", "last_update_date", "owner"]]
@@ -416,6 +472,7 @@ class Service:
             table.append([entry["id"], entry["doc_key"], entry["doc_zone"], entry["last_update_date"], entry["doc_owner"]])
         return table
 
+    @staticmethod
     def persistence_groups(arlas: str, zone: str):
         url = "/".join(["persist", "groups", zone])
         table = [["group"]]
@@ -424,6 +481,7 @@ class Service:
             table.append([group])
         return table
 
+    @staticmethod
     def persistence_describe(arlas: str, id: str):
         url = "/".join(["persist", "resource", "id", id])
         r = Service.__arlas__(arlas, url, service=Services.persistence_server)
@@ -440,30 +498,38 @@ class Service:
         table.append(["writers", ", ".join(r.get("doc_writers", []))])
         return table
 
+    @staticmethod
     def create_api_key(arlas: str, oid: str, name: str, ttlInDays: int, uid: str, gids: list[str]):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "apikeys"]), post=json.dumps({"name": name, "ttlInDays": ttlInDays, "roleIds": gids}), service=Services.iam)
 
+    @staticmethod
     def delete_api_key(arlas: str, oid: str, uid: str, keyid: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "apikeys", keyid]), delete=True, service=Services.iam)
 
+    @staticmethod
     def check_organisation(arlas: str):
         return Service.__arlas__(arlas, "/".join(["organisations", "check"]), service=Services.iam)
 
-    def forbidden_organisation(arlas: str):
+    @staticmethod
+    def forbidden_organisations(arlas: str):
         return Service.__arlas__(arlas, "/".join(["organisations", "forbidden"]), service=Services.iam)
 
+    @staticmethod
     def forbid_organisation(arlas: str, name: str):
         return Service.__arlas__(arlas, "/".join(["organisations", "forbidden"]), post=json.dumps({"name": name}), service=Services.iam)
 
+    @staticmethod
     def authorize_organisation(arlas: str, name: str):
         return Service.__arlas__(arlas, "/".join(["organisations", "forbidden", name]), delete=True, service=Services.iam)
 
+    @staticmethod
     def __index_bulk__(arlas: str, index: str, bulk: []):
         data = os.linesep.join([json.dumps(line) for line in bulk]) + os.linesep
         result = json.loads(Service.__es__(arlas, "/".join([index, "_bulk"]), post=data, exit_on_failure=False, headers={"Content-Type": "application/x-ndjson"}))
         if result["errors"] is True:
             print("ERROR: " + json.dumps(result))
 
+    @staticmethod
     def index_hits(arlas: str, index: str, file_path: str, bulk_size: int = 5000, count: int = -1) -> dict[str, int]:
         line_number = 0
         line_in_bulk = 0
@@ -493,6 +559,7 @@ class Service:
             except RequestException as e:
                 print("Error on bulk insert between line {} and {} with code {}: {}".format(line_number, line_number - bulk_size, e.code, e.message))
 
+    @staticmethod
     def __get_fields__(origin: list[str], properties: dict[str:dict]):
         fields = []
         for field, desc in properties.items():
@@ -507,6 +574,7 @@ class Service:
                 fields.append([".".join(o), type])
         return fields
     
+    @staticmethod
     def __arlas__(arlas: str, suffix, post=None, put=None, patch=None, delete=None, service=Services.arlas_server, exit_on_failure: bool = False):
         configuration: ARLAS = Configuration.settings.arlas.get(arlas, None)
         if configuration is None:
@@ -556,6 +624,7 @@ class Service:
             else:
                 raise e
 
+    @staticmethod
     def __es__(arlas: str, suffix, post=None, put=None, delete=None, exit_on_failure: bool = True, headers: dict[str, str] = {}):
         endpoint = Configuration.settings.arlas.get(arlas)
         if endpoint is None:
@@ -591,6 +660,7 @@ class Service:
         else:
             raise RequestException(r.status_code, r.content)
 
+    @staticmethod
     def __request__(url: str, method: str, data: any = None, headers: dict[str, str] = {}, auth: tuple[str, str | None] = None) -> requests.Response:
         if Service.curl:
             print('curl -k -X {} "{}" {}'.format(method.upper(), url, " ".join(list(map(lambda h: '--header "' + h + ":" + headers.get(h) + '"', headers)))), end="")
@@ -608,6 +678,7 @@ class Service:
             r = requests.get(url, headers=headers, auth=auth, verify=False)
         return r
 
+    @staticmethod
     def __fetch__(resource: Resource, bytes: bool = False):
         if os.path.exists(resource.location):
             content = None
@@ -625,6 +696,7 @@ class Service:
             print("   url: {}".format(resource.location), file=sys.stderr)
             exit(1)
 
+    @staticmethod
     def __get_token__(arlas: str) -> str:
         auth: AuthorizationService = Configuration.settings.arlas[arlas].authorization
         if auth.arlas_iam:
