@@ -164,18 +164,9 @@ def add_apikey(org_id: str = typer.Argument(help="Organisation's identifier"),
                gids: list[str] = typer.Option(help="Group identifiers. If not provided, all groups of the user are used.", default=None)
                ):
     config = variables["arlas"]
-    if not user_id:
-        if Configuration.settings.arlas.get(config) and Configuration.settings.arlas.get(config).authorization and Configuration.settings.arlas.get(config).authorization.token_url and Configuration.settings.arlas.get(config).authorization.token_url.login:
-            user_id = Service.get_user_from_organisation(config, org_id, Configuration.settings.arlas.get(config).authorization.token_url.login)[0]
-            if not user_id:
-                print("Error : user id not found for {}.".format(config), file=sys.stderr)
-                sys.exit(1)
-        else:
-            print("Error : no login found for {}.".format(config), file=sys.stderr)
-            sys.exit(1)
     if not gids or len(gids) == 0:
         gids = list(map(lambda arr: arr[0], Service.list_organisation_groups(config, org_id) + Service.list_organisation_roles(config, org_id)))
-    print(Service.create_api_key(config, org_id, name, ttlInDays, user_id, gids))
+    print(Service.create_api_key(config, org_id, name, ttlInDays, __solve_user_id__(config, org_id, user_id), gids))
 
 
 @org.command(help="Delete an API Key", name="delete-apikey",
@@ -185,16 +176,21 @@ def delete_apikey(org_id: str = typer.Argument(help="Organisation's identifier")
                   user_id: str = typer.Option(help="User identifier", default=None),
                   ):
     config = variables["arlas"]
+    print(Service.delete_api_key(config, org_id, __solve_user_id__(config, org_id, user_id), key_id))
+
+
+def __solve_user_id__(config: str, org_id: str, user_id: str):
     if not user_id:
         if Configuration.settings.arlas.get(config) and Configuration.settings.arlas.get(config).authorization and Configuration.settings.arlas.get(config).authorization.token_url and Configuration.settings.arlas.get(config).authorization.token_url.login:
-            user_id = Service.get_user_from_organisation(config, org_id, Configuration.settings.arlas.get(config).authorization.token_url.login)[0]
+            return Service.get_user_from_organisation(config, org_id, Configuration.settings.arlas.get(config).authorization.token_url.login)[0]
             if not user_id:
                 print("Error : user id not found for {}.".format(config), file=sys.stderr)
                 sys.exit(1)
         else:
             print("Error : no login found for {}.".format(config), file=sys.stderr)
             sys.exit(1)
-    print(Service.delete_api_key(config, org_id, user_id, key_id))
+    else:
+        return user_id
 
 
 @org.command(help="Check if user's organisation exists", name="check",
