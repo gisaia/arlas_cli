@@ -182,3 +182,4 @@ def describe_configuration(
         print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
         exit(1)
     print(yaml.dump(Configuration.settings.arlas[config].model_dump()))
+

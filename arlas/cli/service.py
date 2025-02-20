@@ -58,6 +58,23 @@ class Service:
     def create_user(arlas: str, email: str):
         return Service.__arlas__(arlas, "users", post=json.dumps({"email": email}), service=Services.iam)
 
+    def describe_user(arlas: str, id: str):
+        return Service.__arlas__(arlas, "/".join(["users", id]), service=Services.iam)
+
+    def update_user(arlas: str, id: str, oldPassword: str = None, newPassword: str = None, locale: str = None, timezone: str = None, firstName: str = None, lastName: str = None):
+        data = {"oldPassword": oldPassword}
+        if newPassword:
+            data["newPassword"] = newPassword
+        if locale:
+            data["locale"] = locale
+        if timezone:
+            data["timezone"] = timezone
+        if firstName:
+            data["firstName"] = firstName
+        if lastName:
+            data["lastName"] = lastName
+        return Service.__arlas__(arlas, "/".join(["users", id]), put=json.dumps(data), service=Services.iam)
+
     def delete_user(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id]), delete=True, service=Services.iam)
 
@@ -66,6 +83,9 @@ class Service:
     
     def deactivate(arlas: str, id: str):
         return Service.__arlas__(arlas, "/".join(["users", id, "deactivate"]), post="{}", service=Services.iam)
+
+    def reset_password(arlas: str, email: str):
+        return Service.__arlas__(arlas, "/".join(["users", "resetpassword"]), post=email, service=Services.iam)
 
     def list_organisations(arlas: str) -> list[list[str]]:
         data = Service.__arlas__(arlas, "organisations", service=Services.iam)
@@ -81,8 +101,11 @@ class Service:
     def create_organisation(arlas: str, org: str):
         return Service.__arlas__(arlas, "/".join(["organisations", org]), post="{}", service=Services.iam)
 
+    def create_organisation_from_user_domain(arlas: str, org: str):
+        return Service.__arlas__(arlas, "organisations", post="{}", service=Services.iam)
+
     def delete_organisation(arlas: str, oid: str):
-        return Service.__arlas__(arlas, "/".join(["organisations", oid]), delete="{}", service=Services.iam)
+        return Service.__arlas__(arlas, "/".join(["organisations", oid]), delete=True, service=Services.iam)
 
     def list_organisation_collections(arlas: str, oid: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "collections"]), service=Services.iam)
@@ -94,6 +117,16 @@ class Service:
                                       user.get("isOwner"),
                                       "\n".join(list(map(lambda role: role.get("fullName"), user.get("member").get("roles"))))],
                         users))
+
+    def get_user_from_organisation(arlas: str, oid: str, user: str):
+        users: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "users"]), service=Services.iam)
+        users: list = list(filter(lambda u: u.get("member").get("email") == user, users))
+        if len(users) > 0:
+            return list(map(lambda user: [user.get("member").get("id"),
+                                          user.get("member").get("email"),
+                                          user.get("isOwner"),
+                                          "\n".join(list(map(lambda role: role.get("fullName"), user.get("member").get("roles"))))], users))[0]
+        return None
 
     def list_organisation_groups(arlas: str, oid: str):
         groups: list = Service.__arlas__(arlas, "/".join(["organisations", oid, "groups"]), service=Services.iam)
@@ -406,6 +439,24 @@ class Service:
         table.append(["readers", ", ".join(r.get("doc_readers", []))])
         table.append(["writers", ", ".join(r.get("doc_writers", []))])
         return table
+
+    def create_api_key(arlas: str, oid: str, name: str, ttlInDays: int, uid: str, gids: list[str]):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "apikeys"]), post=json.dumps({"name": name, "ttlInDays": ttlInDays, "roleIds": gids}), service=Services.iam)
+
+    def delete_api_key(arlas: str, oid: str, uid: str, keyid: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "apikeys", keyid]), delete=True, service=Services.iam)
+
+    def check_organisation(arlas: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", "check"]), service=Services.iam)
+
+    def forbidden_organisation(arlas: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", "forbidden"]), service=Services.iam)
+
+    def forbid_organisation(arlas: str, name: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", "forbidden"]), post=json.dumps({"name": name}), service=Services.iam)
+
+    def authorize_organisation(arlas: str, name: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", "forbidden", name]), delete=True, service=Services.iam)
 
     def __index_bulk__(arlas: str, index: str, bulk: []):
         data = os.linesep.join([json.dumps(line) for line in bulk]) + os.linesep
