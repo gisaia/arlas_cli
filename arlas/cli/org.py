@@ -182,15 +182,14 @@ def delete_apikey(org_id: str = typer.Argument(help="Organisation's identifier")
 def __solve_user_id__(config: str, org_id: str, user_id: str):
     if not user_id:
         if Configuration.settings.arlas.get(config) and Configuration.settings.arlas.get(config).authorization and Configuration.settings.arlas.get(config).authorization.token_url and Configuration.settings.arlas.get(config).authorization.token_url.login:
-            return Service.get_user_from_organisation(config, org_id, Configuration.settings.arlas.get(config).authorization.token_url.login)[0]
+            user_id = Service.get_user_from_organisation(config, org_id, Configuration.settings.arlas.get(config).authorization.token_url.login)[0]
             if not user_id:
                 print("Error : user id not found for {}.".format(config), file=sys.stderr)
                 sys.exit(1)
         else:
             print("Error : no login found for {}.".format(config), file=sys.stderr)
             sys.exit(1)
-    else:
-        return user_id
+    return user_id
 
 
 @org.command(help="Check if user's organisation exists", name="check",
