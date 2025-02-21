@@ -115,7 +115,7 @@ class Service:
         return Service.__arlas__(arlas, "/".join(["organisations", org]), post="{}", service=Services.iam)
 
     @staticmethod
-    def create_organisation_from_user_domain(arlas: str, org: str):
+    def create_organisation_from_user_domain(arlas: str):
         return Service.__arlas__(arlas, "organisations", post="{}", service=Services.iam)
 
     @staticmethod
@@ -188,6 +188,14 @@ class Service:
     @staticmethod
     def delete_permission_from_group_in_organisation(arlas: str, oid: str, role_id: str, permission_id: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id, "permissions", permission_id]), delete=True, service=Services.iam)
+
+    @staticmethod
+    def add_user_to_organisation_group(arlas: str, oid: str, uid: str, role_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "roles", role_id]), post="{}", service=Services.iam)
+
+    @staticmethod
+    def remove_user_from_organisation_group(arlas: str, oid: str, uid: str, role_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "roles", role_id]), delete=True, service=Services.iam)
 
     @staticmethod
     def add_role_in_organisation(arlas: str, oid: str, role_name: str, role_description: str):

@@ -25,7 +25,7 @@ def create_organisation(organisation: str = typer.Argument(default="", help="Org
     if organisation:
         print(Service.create_organisation(config, organisation).get("id"))
     else:
-        print(Service.create_organisation_from_user_domain(config, organisation).get("id"))
+        print(Service.create_organisation_from_user_domain(config).get("id"))
 
 
 @org.command(help="Delete the organisation", name="delete", epilog=variables["help_epilog"])
@@ -144,15 +144,15 @@ def add_user_to_group(org_id: str = typer.Argument(help="Organisation's identifi
                       user_id: str = typer.Argument(help="User identifier"),
                       group_id: str = typer.Argument(help="Group identifier")):
     config = variables["arlas"]
-    print(Service.add_permission_to_group_in_organisation(config, org_id, user_id, group_id))
+    print(Service.add_user_to_organisation_group(config, org_id, user_id, group_id))
 
 
-@org.command(help="Remove a user from a group within the organisation", name="delete_user_from_group", epilog=variables["help_epilog"])
-def delete_user_from_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+@org.command(help="Remove a user from a group within the organisation", name="remove_user_from_group", epilog=variables["help_epilog"])
+def remove_user_from_group(org_id: str = typer.Argument(help="Organisation's identifier"),
                            user_id: str = typer.Argument(help="User identifier"),
                            group_id: str = typer.Argument(help="Group identifier")):
     config = variables["arlas"]
-    print(Service.delete_permission_from_group_in_organisation(config, org_id, user_id, group_id))
+    print(Service.remove_user_from_organisation_group(config, org_id, user_id, group_id))
 
 
 @org.command(help="Add and return an new API Key with permissions associated to provided groups. Use the key id and key secret with the arlas-api-key-id and arlas-api-key-secret headers.", name="add-apikey",
