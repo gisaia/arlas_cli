@@ -25,7 +25,7 @@ def create_organisation(organisation: str = typer.Argument(default="", help="Org
     if organisation:
         print(Service.create_organisation(config, organisation).get("id"))
     else:
-        print(Service.create_organisation_from_user_domain(config, organisation).get("id"))
+        print(Service.create_organisation_from_user_domain(config).get("id"))
 
 
 @org.command(help="Delete the organisation", name="delete", epilog=variables["help_epilog"])

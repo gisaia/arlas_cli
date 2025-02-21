@@ -115,7 +115,7 @@ class Service:
         return Service.__arlas__(arlas, "/".join(["organisations", org]), post="{}", service=Services.iam)
 
     @staticmethod
-    def create_organisation_from_user_domain(arlas: str, org: str):
+    def create_organisation_from_user_domain(arlas: str):
         return Service.__arlas__(arlas, "organisations", post="{}", service=Services.iam)
 
     @staticmethod
