@@ -37,13 +37,13 @@
 │ delete_permission_from_group  Remove a permission to a group within the    │
 │                               organisation                                 │
 │ delete_user                   Remove the user from the organisation        │
-│ delete_user_from_group        Remove a user from a group within the        │
-│                               organisation                                 │
 │ forbid                        Forbid an organisation name.                 │
 │ forbidden                     List forbidden organisations.                │
 │ groups                        List the groups of the organisation          │
 │ list                          List organisations                           │
 │ permissions                   List the permissions of the organisation     │
+│ remove_user_from_group        Remove a user from a group within the        │
+│                               organisation                                 │
 │ users                         List the users of the organisation           │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
