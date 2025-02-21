@@ -190,6 +190,14 @@ class Service:
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles", role_id, "permissions", permission_id]), delete=True, service=Services.iam)
 
     @staticmethod
+    def add_user_to_organisation_group(arlas: str, oid: str, uid: str, role_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "roles", role_id]), post="{}", service=Services.iam)
+
+    @staticmethod
+    def remove_user_from_organisation_group(arlas: str, oid: str, uid: str, role_id: str):
+        return Service.__arlas__(arlas, "/".join(["organisations", oid, "users", uid, "roles", role_id]), delete=True, service=Services.iam)
+
+    @staticmethod
     def add_role_in_organisation(arlas: str, oid: str, role_name: str, role_description: str):
         return Service.__arlas__(arlas, "/".join(["organisations", oid, "roles"]), post=json.dumps({"name": role_name, "description": role_description}), service=Services.iam)
 
