@@ -9,11 +9,11 @@ Ingest Data in ARLAS
 
 ## ARLAS Data structure
 
-To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](concepts.md#elasticsearch) (ES) [index](concepts.md#es-index).
+To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](../../static_docs/concepts.md#elasticsearch) (ES) [index](../../static_docs/concepts.md#es-index).
 
-An index contains the data and a model ([mapping](concepts.md#es-mapping)) to describe how fields have to be interpreted (types).
+An index contains the data and a model ([mapping](../../static_docs/concepts.md#es-mapping)) to describe how fields have to be interpreted (types).
 
-ARLAS [collections](concepts.md#arlas-collection) are built on top of indices. 
+ARLAS [collections](../../static_docs/concepts.md#arlas-collection) are built on top of indices. 
 They describe the basic data structure for its visualization and elements needed for the data access policy.
 
 ![Data indices and collections in ARLAS](images/index_collection_schema.png)

@@ -331,6 +331,6 @@ The available dashboards can be list with the following command:
 ```
 
 !!! note
-    The created dashboards can be accessed and managed in [ARLAS Hub](concepts.md#arlas-hub) and edited with [ARLAS Builder](concepts.md#arlas-builder).
+    The created dashboards can be accessed and managed in [ARLAS Hub](../../static_docs/concepts.md#arlas-hub) and edited with [ARLAS Builder](../../static_docs/concepts.md#arlas-builder).
 
     The `arlas_cli` commands to manage dashboards are detailed in [Persistence Documentation](persist.md).
