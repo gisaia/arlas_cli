@@ -21,7 +21,7 @@ An entry is an element stored in the persistence.
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --config        TEXT  Name of the ARLAS configuration to use from your     │
 │                       configuration file                                   │
-│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │
+│                       (/home/willi/.arlas/cli/configuration.yaml).         │
 │                       [default: None]                                      │
 │ --help                Show this message and exit.                          │
 ╰────────────────────────────────────────────────────────────────────────────╯
@@ -60,7 +60,8 @@ The `persist add` sub-command allows to create an entry from a file.
 │ --help                           Show this message and exit.               │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -102,7 +103,8 @@ The available entries in a zone can be listed with the `persist zone` sub-comman
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -143,7 +145,8 @@ An entry (defined by its unique identifier) can be described with the `persist d
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -192,7 +195,8 @@ The content of an entry can be accessed with the `persist get` sub-command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -231,7 +235,8 @@ The groups accessing a zone can be listed with the `persist groups` sub-command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -270,7 +275,8 @@ An entry defined by its unique identifier can be deleted with the `persist delet
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```

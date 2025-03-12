@@ -63,7 +63,8 @@ or within a sub command:
 │ --help                          Show this message and exit.                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```

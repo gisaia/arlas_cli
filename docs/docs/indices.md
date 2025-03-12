@@ -2,8 +2,8 @@
 
 ## Elasticsearch index
 
-To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](concepts.md#elasticsearch) (ES) [index](concepts.md#es-index).
-An index contains the data and a [mapping](concepts.md#es-mapping) to describe how fields have to be interpreted (types).
+To be explored in ARLAS dashboards, the data has to be indexed in an [Elasticsearch](../../static_docs/concepts.md#elasticsearch) (ES) [index](../../static_docs/concepts.md#es-index).
+An index contains the data and a [mapping](../../static_docs/concepts.md#es-mapping) to describe how fields have to be interpreted (types).
 
 `arlas_cli` provide tools to infer mapping from data and manage the ES indices with the `indices` command.
 
@@ -18,7 +18,7 @@ An index contains the data and a [mapping](concepts.md#es-mapping) to describe h
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --config        TEXT  Name of the ARLAS configuration to use from your     │
 │                       configuration file                                   │
-│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │
+│                       (/home/willi/.arlas/cli/configuration.yaml).         │
 │                       [default: None]                                      │
 │ --help                Show this message and exit.                          │
 ╰────────────────────────────────────────────────────────────────────────────╯
@@ -72,7 +72,8 @@ An index contains the data and a [mapping](concepts.md#es-mapping) to describe h
 │ --help                          Show this message and exit.                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -92,7 +93,7 @@ The values of the first lines of the files are used to infer the mapping for eac
 
 ### Type identification
 
-The mapping associates to each field of the data a type (see [Elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html))
+The mapping associates to each field of the data a type (see [Elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html){:target="_blank"})
 
 A **geometry** is identified as such if
 
@@ -109,7 +110,7 @@ A **date** is identified as such if
 !!! note "--field-mapping"
     If the mapping is wrong, you can overwrite the typing with the `--field-mapping` option.
 
-    It has the structure **field_name:field_type** (see [Elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html))
+    It has the structure **field_name:field_type** (see [Elasticsearch type](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html){:target="_blank"})
 
     Examples:
 
@@ -120,7 +121,7 @@ A **date** is identified as such if
     - `--field-mapping field_float:double`
     - `--field-mapping field_int:long`
 
-    The date fields have a format that can be specified as **field_name:date-format** with all format accepted by [Elasticsearch date type](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html)
+    The date fields have a format that can be specified as **field_name:date-format** with all format accepted by [Elasticsearch date type](https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html){:target="_blank"}
 
     Examples:
 
@@ -211,7 +212,8 @@ The `indices create` sub-function create the index from a mapping json file.
 │    --help                    Show this message and exit.                   │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -264,7 +266,8 @@ The `indices data` sub-function ingest the data in a given index.
 │ --help                 Show this message and exit.                         │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -316,7 +319,8 @@ To list the available ES indices, simply use the `indices list` sub-function. No
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -361,7 +365,8 @@ Once the index is created, the description of the fields it contains (correspond
 │ --help                 Show this message and exit.                         │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -408,7 +413,8 @@ The first rows of the data contained in an index can be displayed with the `indi
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -459,7 +465,8 @@ An ES index can be cloned on the same ES deployment with the `indices clone` sub
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -493,7 +500,8 @@ The target configuration and the name of the new created index are given to the 
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -519,7 +527,8 @@ The ES index can be deleted with `indices delete` sub command to free space on t
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```

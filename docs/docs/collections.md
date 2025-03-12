@@ -1,6 +1,6 @@
 ## ARLAS Collections
 
-ARLAS collections are built on top of [elasticsearch (ES) index](concepts.md#es-index). They describe the basic data structure for its visualization and elements needed for the data access policy.
+ARLAS collections are built on top of [elasticsearch (ES) index](../../static_docs/concepts.md#es-index). They describe the basic data structure for its visualization and elements needed for the data access policy.
 
 `arlas_cli` provide tools to manage the ARLAS collections with the `collections` command.
 
@@ -15,7 +15,7 @@ ARLAS collections are built on top of [elasticsearch (ES) index](concepts.md#es-
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --config        TEXT  Name of the ARLAS configuration to use from your     │
 │                       configuration file                                   │
-│                       (/Users/gaudan/.arlas/cli/configuration.yaml).       │
+│                       (/home/willi/.arlas/cli/configuration.yaml).         │
 │                       [default: None]                                      │
 │ --help                Show this message and exit.                          │
 ╰────────────────────────────────────────────────────────────────────────────╯
@@ -85,7 +85,8 @@ The command line options let you specify how the index should be used by the col
 │ --help                                  Show this message and exit.        │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -176,7 +177,8 @@ The collection can be defined by a pretty name. It can be set with `name` subcom
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -219,7 +221,8 @@ The data fields are sometimes not very suitable in ARLAS Exploration dashboards.
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -274,7 +277,8 @@ The `describe` command line provides a description of the collection's structure
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -301,7 +305,8 @@ The `count` command show the total number of elements (data rows) accessible in 
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -329,7 +334,8 @@ The `sample` command show few data rows accessible in a collection.
 │ --help                              Show this message and exit.            │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -362,7 +368,8 @@ To switch a collection from **public** to **private**, use the `private` command
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -390,7 +397,8 @@ To switch a collection from **private** to **public**, use the `public` command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -420,7 +428,8 @@ A collection can be shared to other organisation with the `share` command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -450,7 +459,8 @@ The access to a collection can be removed with the `unshare` command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -478,7 +488,8 @@ The collection can be removed with the `delete` command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```

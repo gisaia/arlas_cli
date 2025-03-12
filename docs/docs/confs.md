@@ -98,7 +98,8 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 │                                                        and exit.           │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -208,7 +209,8 @@ The `confs longin` allows to create a configuration linked to an ARLAS Cloud acc
 │                                                  exit.                     │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -246,7 +248,8 @@ An existing configuration can be deleted with the `confs delete` sub command:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -284,7 +287,8 @@ The content of a configuration can be detailed with `confs describe` sub command
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -343,7 +347,8 @@ The list of available configurations can be obtained with `confs list` sub comma
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -379,7 +384,8 @@ The default arlas_cli configuration can be obtained with the `confs default` sub
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -416,7 +422,8 @@ The default arlas_cli configuration can be set with the `confs set` subcommand:
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
@@ -452,7 +459,8 @@ You can verify the services accessible through a specific configuration using th
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
- See full arlas_cli documentation at https://gisaia.github.io/arlas_cli/      
+ See full arlas_cli documentation at                                          
+ https://docs.arlas.io/external_docs/arlas_cli/                               
                                                                               
 
 ```
