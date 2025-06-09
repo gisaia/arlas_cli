@@ -7,8 +7,15 @@ from alive_progress import alive_bar
 import requests
 from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
 from datetime import datetime
+from urllib.parse import urlencode
 
 requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
+
+
+def default_handler(obj):
+    if obj is None:
+        return {}
+    raise TypeError(f'Object of type {obj.__class__.__name__} is not JSON serializable')
 
 
 class RequestException(Exception):
@@ -713,17 +720,27 @@ class Service:
                 "password": auth.token_url.password
             }
         else:
-            data = {
-                "client_id": auth.client_id,
-                "client_secret": auth.client_secret,
-                "username": auth.token_url.login,
-                "password": auth.token_url.password
-            }
+            data = {}
+            if auth.client_id:
+                data["client_id"] = auth.client_id
+            if auth.client_secret:
+                data["client_secret"] = auth.client_secret
+            if auth.token_url.login:
+                data["username"] = auth.token_url.login
+            if auth.token_url.password:
+                data["password"] = auth.token_url.password
             if auth.grant_type:
                 data["grant_type"] = auth.grant_type
+        if auth.arlas_iam:
+            data = json.dumps(data, default=default_handler)
+        else:
+            data = urlencode(data)
+        if Service.curl:
+            print('curl -k -X {} "{}" {}'.format("POST", auth.token_url.location, " ".join(list(map(lambda h: '--header "' + h + ":" + auth.token_url.headers.get(h) + '"', auth.token_url.headers)))), end="")
+            print(" -d '{}'".format(data))
         r = requests.post(
             headers=auth.token_url.headers,
-            data=json.dumps(data),
+            data=data,
             url=auth.token_url.location,
             verify=False)
         if r.status_code >= 200 and r.status_code < 300:
