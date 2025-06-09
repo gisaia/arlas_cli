@@ -14,23 +14,20 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 <!-- termynal -->
 ```shell
 > arlas_cli confs --help
-                                                                              
- Usage: arlas_cli confs [OPTIONS] COMMAND [ARGS]...                           
-                                                                              
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ check       Check the services of a configuration                          │
-│ create      Add a configuration                                            │
-│ default     Display the default configuration                              │
-│ delete      Delete a configuration                                         │
-│ describe    Describe a configuration                                       │
-│ list        List configurations                                            │
-│ login       Add a configuration for ARLAS Cloud                            │
-│ set         Set default configuration among existing configurations        │
-╰────────────────────────────────────────────────────────────────────────────╯
+Usage: arlas_cli confs [OPTIONS] COMMAND [ARGS]...
 
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  check     Check the services of a configuration
+  create    Add a configuration
+  default   Display the default configuration
+  delete    Delete a configuration
+  describe  Describe a configuration
+  list      List configurations
+  login     Add a configuration for ARLAS Cloud
+  set       Set default configuration among existing configurations
 ```
 
 
@@ -41,67 +38,40 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 <!-- termynal -->
 ```shell
 > arlas_cli confs create --help
-                                                                              
- Usage: arlas_cli confs create [OPTIONS] NAME                                 
-                                                                              
- Add a configuration                                                          
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    name      TEXT  Name of the configuration [default: None] [required]  │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ *  --server                                      TEXT  ARLAS Server url    │
-│                                                        [default: None]     │
-│                                                        [required]          │
-│    --headers                                     TEXT  header (name:value) │
-│    --persistence                                 TEXT  ARLAS Persistence   │
-│                                                        url                 │
-│                                                        [default: None]     │
-│    --persistence-head…                           TEXT  header (name:value) │
-│    --elastic                                     TEXT  elasticsearch url   │
-│                                                        [default: None]     │
-│    --elastic-login                               TEXT  elasticsearch login │
-│                                                        [default: None]     │
-│    --elastic-password                            TEXT  elasticsearch       │
-│                                                        password            │
-│                                                        [default: None]     │
-│    --elastic-headers                             TEXT  header (name:value) │
-│    --allow-delete         --no-allow-delete            Is delete command   │
-│                                                        allowed for this    │
-│                                                        configuration?      │
-│                                                        [default:           │
-│                                                        no-allow-delete]    │
-│    --auth-token-url                              TEXT  Token URL of the    │
-│                                                        authentication      │
-│                                                        service             │
-│                                                        [default: None]     │
-│    --auth-headers                                TEXT  header (name:value) │
-│    --auth-org                                    TEXT  ARLAS IAM           │
-│                                                        Organization        │
-│                                                        [default: None]     │
-│    --auth-login                                  TEXT  login               │
-│                                                        [default: None]     │
-│    --auth-password                               TEXT  password            │
-│                                                        [default: None]     │
-│    --auth-client-id                              TEXT  Client ID           │
-│                                                        [default: None]     │
-│    --auth-client-secr…                           TEXT  Client secret       │
-│                                                        [default: None]     │
-│    --auth-grant-type                             TEXT  Grant type (e.g.    │
-│                                                        password)           │
-│                                                        [default: None]     │
-│    --auth-arlas-iam       --no-auth-arlas-iam          Is it an ARLAS IAM  │
-│                                                        service?            │
-│                                                        [default:           │
-│                                                        auth-arlas-iam]     │
-│    --help                                              Show this message   │
-│                                                        and exit.           │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs create [OPTIONS] NAME
 
+  Add a configuration
+
+Arguments:
+  NAME  Name of the configuration  [required]
+
+Options:
+  --server TEXT                   ARLAS Server url  [required]
+  --headers TEXT                  header (name:value)
+  --persistence TEXT              ARLAS Persistence url
+  --persistence-headers TEXT      header (name:value)
+  --elastic TEXT                  elasticsearch url
+  --elastic-login TEXT            elasticsearch login
+  --elastic-password TEXT         elasticsearch password
+  --elastic-headers TEXT          header (name:value)
+  --allow-delete / --no-allow-delete
+                                  Is delete command allowed for this
+                                  configuration?  [default: no-allow-delete]
+  --auth-token-url TEXT           Token URL of the authentication service
+  --auth-headers TEXT             header (name:value)
+  --auth-org TEXT                 ARLAS IAM Organization
+  --auth-login TEXT               login
+  --auth-password TEXT            password
+  --auth-client-id TEXT           Client ID
+  --auth-client-secret TEXT       Client secret
+  --auth-grant-type TEXT          Grant type (e.g. password)
+  --auth-arlas-iam / --no-auth-arlas-iam
+                                  Is it an ARLAS IAM service?  [default: auth-
+                                  arlas-iam]
+  --help                          Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 
@@ -113,31 +83,82 @@ Those options can be filled as described in the following sections.
 
 #### ARLAS Authentication
 
-For ARLAS, keycloak and ARLAS IAM authentications are supported.
+Keycloak and ARLAS IAM authentications are supported. See [scripts/init_arlas_cli_confs.sh](https://github.com/gisaia/ARLAS-Exploration-stack/blob/develop/scripts/init_arlas_cli_confs.sh) script for different connection configuration examples.
 
-=== "ARLAS IAM"
 
-    To create a configuration using ARLAS IAM, the following parameters have to be set with your values:
+##### ARLAS IAM
 
-    - The IAM session url `IAM_URL`
-    - Your IAM user `ARLAS_USER`
-    - Your IAM password `ARLAS_PWD`
-    - Your ARLAS organization `ARLAS_ORGANIZATION`
+To create a configuration for ARLAS IAM, the following parameters have to be set with your values:
 
-    The following options are used by `confs create` sub-command to generate the conf:
-    ```
-    --auth-arlas-iam
-    --auth-token-url {IAM_URL}
-    --auth-login {ARLAS_USER}
-    --auth-password {ARLAS_PWD}
-    --auth-headers "Content-Type:application/json;charset=utf-8"
-    --auth-org {ARLAS_ORGANIZATION}
-    ```
+- The IAM session url `IAM_URL`
+- Your IAM user `ARLAS_USER`
+- Your IAM password `ARLAS_PWD`
+- Your ARLAS organization `ARLAS_ORGANIZATION`
 
-=== "Keycloak"
-    By default, the authentication is supposed to be with ARLAS IAM. For Keycloak, use `--no-auth-arlas-iam`
+The following options are used by `confs create` sub-command to generate the configuration:
+```
+--auth-arlas-iam
+--auth-token-url {IAM_URL}
+--auth-login {ARLAS_USER}
+--auth-password {ARLAS_PWD}
+--auth-headers "Content-Type:application/json;charset=utf-8"
+--auth-org {ARLAS_ORGANIZATION}
+```
 
-    Keycloak authentication details coming soon...
+A full example once you have set `IAM_URL`, `ARLAS_ORGANIZATION`, `ARLAS_USER` and `ARLAS_PWD`:
+```shell
+arlas_cli --config-file /tmp/arlas-cli.yaml confs create local.iam.user \
+    --server https://${ARLAS_HOST}/arlas \
+    --headers "Content-Type:application/json" \
+    --persistence https://${ARLAS_HOST}/persist \
+    --persistence-headers "Content-Type:application/json" \
+    --elastic http://localhost:9200 \
+    --elastic-headers "Content-Type:application/json" \
+    --allow-delete  \
+    --auth-token-url https://${ARLAS_HOST}/arlas_iam_server/session \
+    --auth-headers "Content-Type:application/json" \
+    --auth-login ${ARLAS_USER} \
+    --auth-password ${ARLAS_PWD} \
+    --auth-org ${ARLAS_ORGANIZATION} \
+    --auth-arlas-iam 
+```
+
+##### Keycloak
+To create a configuration for Keycloak, the following parameters have to be set with your values:
+
+- The Keycloak token url `TOKEN_URL`
+- Your user's login `ARLAS_USER`
+- Your user's password `ARLAS_PWD`
+
+
+The following options are used by `confs create` sub-command to generate the configuration:
+```
+--auth-grant-type password \
+--auth-client-id arlas-front \
+--auth-token-url ${TOKEN_URL} \
+--auth-headers "Content-Type:application/x-www-form-urlencoded" \
+--auth-login ${ARLAS_USER} \
+--auth-password ${ARLAS_PWD} \
+```
+
+A full example once you have set `TOKEN_URL`, `ARLAS_USER` and `ARLAS_PWD`:
+```shell
+arlas_cli --config-file /tmp/arlas-cli.yaml \
+    confs create local.kc.user \
+    --server https://${ARLAS_HOST}/arlas \
+    --persistence https://${ARLAS_HOST}/persist \
+    --persistence-headers "Content-Type:application/json" \
+    --elastic http://localhost:9200 \
+    --elastic-headers "Content-Type:application/json" \
+    --allow-delete  \
+    --auth-grant-type password \
+    --auth-client-id arlas-front \
+    --auth-token-url https://${ARLAS_HOST}:9443/auth/realms/arlas/protocol/openid-connect/token \
+    --auth-headers "Content-Type:application/x-www-form-urlencoded" \
+    --auth-login ${ARLAS_USER} \
+    --auth-password ${ARLAS_PWD} \
+    --no-auth-arlas-iam
+```
 
 #### ARLAS Server and Persistence
 
@@ -182,37 +203,27 @@ The `confs longin` allows to create a configuration linked to an ARLAS Cloud acc
 <!-- termynal -->
 ```shell
 > arlas_cli confs login --help
-                                                                              
- Usage: arlas_cli confs login [OPTIONS] AUTH_LOGIN ELASTIC_LOGIN ELASTIC      
-                                                                              
- Add a configuration for ARLAS Cloud                                          
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    auth_login         TEXT  ARLAS login [default: None] [required]       │
-│ *    elastic_login      TEXT  Elasticsearch login [default: None]          │
-│                               [required]                                   │
-│ *    elastic            TEXT  Elasticsearch url [default: None] [required] │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --auth-org                                 TEXT  ARLAS IAM Organization,   │
-│                                                  default is your email     │
-│                                                  domain name               │
-│                                                  [default: None]           │
-│ --allow-delete        --no-allow-delete          Is delete command allowed │
-│                                                  for this configuration?   │
-│                                                  [default: allow-delete]   │
-│ --auth-password                            TEXT  ARLAS password            │
-│                                                  [default: None]           │
-│ --elastic-password                         TEXT  elasticsearch password    │
-│                                                  [default: None]           │
-│ --help                                           Show this message and     │
-│                                                  exit.                     │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs login [OPTIONS] AUTH_LOGIN ELASTIC_LOGIN ELASTIC
 
+  Add a configuration for ARLAS Cloud
+
+Arguments:
+  AUTH_LOGIN     ARLAS login  [required]
+  ELASTIC_LOGIN  Elasticsearch login  [required]
+  ELASTIC        Elasticsearch url  [required]
+
+Options:
+  --auth-org TEXT                 ARLAS IAM Organization, default is your
+                                  email domain name
+  --allow-delete / --no-allow-delete
+                                  Is delete command allowed for this
+                                  configuration?  [default: allow-delete]
+  --auth-password TEXT            ARLAS password
+  --elastic-password TEXT         elasticsearch password
+  --help                          Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 Only your own ES and ARLAS credentials have to be set, the configuration is directly linked to the ARLAS Cloud instance.
@@ -235,23 +246,18 @@ An existing configuration can be deleted with the `confs delete` sub command:
 <!-- termynal -->
 ```shell
 > arlas_cli confs delete --help
-                                                                              
- Usage: arlas_cli confs delete [OPTIONS] CONFIG                               
-                                                                              
- Delete a configuration                                                       
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    config      TEXT  Name of the configuration [default: None]           │
-│                        [required]                                          │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs delete [OPTIONS] CONFIG
 
+  Delete a configuration
+
+Arguments:
+  CONFIG  Name of the configuration  [required]
+
+Options:
+  --help  Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 To remove an existing configuration from the default configuration file, simply run the following command:
@@ -274,23 +280,18 @@ The content of a configuration can be detailed with `confs describe` sub command
 <!-- termynal -->
 ```shell
 > arlas_cli confs describe --help
-                                                                              
- Usage: arlas_cli confs describe [OPTIONS] CONFIG                             
-                                                                              
- Describe a configuration                                                     
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    config      TEXT  Name of the configuration [default: None]           │
-│                        [required]                                          │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs describe [OPTIONS] CONFIG
 
+  Describe a configuration
+
+Arguments:
+  CONFIG  Name of the configuration  [required]
+
+Options:
+  --help  Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 For example, the default local configuration looks like:
@@ -338,19 +339,15 @@ The list of available configurations can be obtained with `confs list` sub comma
 <!-- termynal -->
 ```shell
 > arlas_cli confs list --help
-                                                                              
- Usage: arlas_cli confs list [OPTIONS]                                        
-                                                                              
- List configurations                                                          
-                                                                              
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs list [OPTIONS]
 
+  List configurations
+
+Options:
+  --help  Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 The `confs list` sub-command returns the list of available configuration names and their ARLAS server url.
@@ -375,19 +372,15 @@ The default arlas_cli configuration can be obtained with the `confs default` sub
 <!-- termynal -->
 ```shell
 > arlas_cli confs default --help
-                                                                              
- Usage: arlas_cli confs default [OPTIONS]                                     
-                                                                              
- Display the default configuration                                            
-                                                                              
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs default [OPTIONS]
 
+  Display the default configuration
+
+Options:
+  --help  Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 !!! note
@@ -408,24 +401,18 @@ The default arlas_cli configuration can be set with the `confs set` subcommand:
 <!-- termynal -->
 ```shell
 > arlas_cli confs set --help
-                                                                              
- Usage: arlas_cli confs set [OPTIONS] NAME                                    
-                                                                              
- Set default configuration among existing configurations                      
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    name      TEXT  Name of the configuration to become default           │
-│                      [default: None]                                       │
-│                      [required]                                            │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs set [OPTIONS] NAME
 
+  Set default configuration among existing configurations
+
+Arguments:
+  NAME  Name of the configuration to become default  [required]
+
+Options:
+  --help  Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 !!! note
@@ -446,23 +433,18 @@ You can verify the services accessible through a specific configuration using th
 <!-- termynal -->
 ```shell
 > arlas_cli confs check --help
-                                                                              
- Usage: arlas_cli confs check [OPTIONS] NAME                                  
-                                                                              
- Check the services of a configuration                                        
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    name      TEXT  Configuration to be checked [default: None]           │
-│                      [required]                                            │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
+Usage: arlas_cli confs check [OPTIONS] NAME
 
+  Check the services of a configuration
+
+Arguments:
+  NAME  Configuration to be checked  [required]
+
+Options:
+  --help  Show this message and exit.
+
+  See full arlas_cli documentation at
+  https://docs.arlas.io/external_docs/arlas_cli/
 ```
 
 This command validates that the addresses and credentials defined in the configuration are correct and ensures successful access to the services.
