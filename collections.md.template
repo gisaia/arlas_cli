@@ -1,6 +1,6 @@
 ## ARLAS Collections
 
-ARLAS collections are built on top of [elasticsearch (ES) index](concepts.md#es-index). They describe the basic data structure for its visualization and elements needed for the data access policy.
+ARLAS collections are built on top of [elasticsearch (ES) index](../../static_docs/concepts.md#es-index). They describe the basic data structure for its visualization and elements needed for the data access policy.
 
 `arlas_cli` provide tools to manage the ARLAS collections with the `collections` command.
 
