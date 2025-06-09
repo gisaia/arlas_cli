@@ -35,31 +35,82 @@ Those options can be filled as described in the following sections.
 
 #### ARLAS Authentication
 
-For ARLAS, keycloak and ARLAS IAM authentications are supported.
+Keycloak and ARLAS IAM authentications are supported. See [scripts/init_arlas_cli_confs.sh](https://github.com/gisaia/ARLAS-Exploration-stack/blob/develop/scripts/init_arlas_cli_confs.sh) script for different connection configuration examples.
 
-=== "ARLAS IAM"
 
-    To create a configuration using ARLAS IAM, the following parameters have to be set with your values:
+##### ARLAS IAM
 
-    - The IAM session url `IAM_URL`
-    - Your IAM user `ARLAS_USER`
-    - Your IAM password `ARLAS_PWD`
-    - Your ARLAS organization `ARLAS_ORGANIZATION`
+To create a configuration for ARLAS IAM, the following parameters have to be set with your values:
 
-    The following options are used by `confs create` sub-command to generate the conf:
-    ```
-    --auth-arlas-iam
-    --auth-token-url {IAM_URL}
-    --auth-login {ARLAS_USER}
-    --auth-password {ARLAS_PWD}
-    --auth-headers "Content-Type:application/json;charset=utf-8"
-    --auth-org {ARLAS_ORGANIZATION}
-    ```
+- The IAM session url `IAM_URL`
+- Your IAM user `ARLAS_USER`
+- Your IAM password `ARLAS_PWD`
+- Your ARLAS organization `ARLAS_ORGANIZATION`
 
-=== "Keycloak"
-    By default, the authentication is supposed to be with ARLAS IAM. For Keycloak, use `--no-auth-arlas-iam`
+The following options are used by `confs create` sub-command to generate the configuration:
+```
+--auth-arlas-iam
+--auth-token-url {IAM_URL}
+--auth-login {ARLAS_USER}
+--auth-password {ARLAS_PWD}
+--auth-headers "Content-Type:application/json;charset=utf-8"
+--auth-org {ARLAS_ORGANIZATION}
+```
 
-    Keycloak authentication details coming soon...
+A full example once you have set `IAM_URL`, `ARLAS_ORGANIZATION`, `ARLAS_USER` and `ARLAS_PWD`:
+```shell
+arlas_cli --config-file /tmp/arlas-cli.yaml confs create local.iam.user \
+    --server https://${ARLAS_HOST}/arlas \
+    --headers "Content-Type:application/json" \
+    --persistence https://${ARLAS_HOST}/persist \
+    --persistence-headers "Content-Type:application/json" \
+    --elastic http://localhost:9200 \
+    --elastic-headers "Content-Type:application/json" \
+    --allow-delete  \
+    --auth-token-url https://${ARLAS_HOST}/arlas_iam_server/session \
+    --auth-headers "Content-Type:application/json" \
+    --auth-login ${ARLAS_USER} \
+    --auth-password ${ARLAS_PWD} \
+    --auth-org ${ARLAS_ORGANIZATION} \
+    --auth-arlas-iam 
+```
+
+##### Keycloak
+To create a configuration for Keycloak, the following parameters have to be set with your values:
+
+- The Keycloak token url `TOKEN_URL`
+- Your user's login `ARLAS_USER`
+- Your user's password `ARLAS_PWD`
+
+
+The following options are used by `confs create` sub-command to generate the configuration:
+```
+--auth-grant-type password \
+--auth-client-id arlas-front \
+--auth-token-url ${TOKEN_URL} \
+--auth-headers "Content-Type:application/x-www-form-urlencoded" \
+--auth-login ${ARLAS_USER} \
+--auth-password ${ARLAS_PWD} \
+```
+
+A full example once you have set `TOKEN_URL`, `ARLAS_USER` and `ARLAS_PWD`:
+```shell
+arlas_cli --config-file /tmp/arlas-cli.yaml \
+    confs create local.kc.user \
+    --server https://${ARLAS_HOST}/arlas \
+    --persistence https://${ARLAS_HOST}/persist \
+    --persistence-headers "Content-Type:application/json" \
+    --elastic http://localhost:9200 \
+    --elastic-headers "Content-Type:application/json" \
+    --allow-delete  \
+    --auth-grant-type password \
+    --auth-client-id arlas-front \
+    --auth-token-url https://${ARLAS_HOST}:9443/auth/realms/arlas/protocol/openid-connect/token \
+    --auth-headers "Content-Type:application/x-www-form-urlencoded" \
+    --auth-login ${ARLAS_USER} \
+    --auth-password ${ARLAS_PWD} \
+    --no-auth-arlas-iam
+```
 
 #### ARLAS Server and Persistence
 
