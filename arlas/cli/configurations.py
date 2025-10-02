@@ -11,11 +11,36 @@ from arlas.cli.service import Service
 configurations = typer.Typer()
 
 
+def check_configuration_exists(name: str):
+    """Checks if a given configuration exists in the ARLAS settings.
+
+    Prints an error message to `stderr` and exits the program with an error code (1)
+    if the specified configuration is not found.
+
+    Args:
+        name (str): The name of the configuration to check in `Configuration.settings.arlas`.
+
+    Returns:
+        None: This function does not return anything. It terminates the program on failure.
+
+    Raises:
+        SystemExit: The function calls `exit(1)` if the configuration does not exist,
+                   which terminates the program with an error code.
+    """
+
+    if not Configuration.settings.arlas.get(name):
+        error_msg = f"Error: configuration '{name}' not found"
+        if len(Configuration.settings.arlas) > 0:
+            error_msg += f" among: {','.join(Configuration.settings.arlas.keys())}."
+        else:
+            error_msg += "."
+        print(error_msg, file=sys.stderr)
+        exit(1)
+
+
 @configurations.command(help="Set default configuration among existing configurations", name="set", epilog=variables["help_epilog"])
 def set_default_configuration(name: str = typer.Argument(help="Name of the configuration to become default")):
-    if not Configuration.settings.arlas.get(name):
-        print(f"Error: configuration '{name}' not found among {','.join(Configuration.settings.arlas.keys())}.", file=sys.stderr)
-        exit(1)
+    check_configuration_exists(name=name)
     Configuration.settings.default = name
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
@@ -32,10 +57,7 @@ def default():
 
 @configurations.command(help="Check the services of a configuration", name="check", epilog=variables["help_epilog"])
 def test_configuration(name: str = typer.Argument(help="Configuration to be checked")):
-    if not Configuration.settings.arlas.get(name):
-        print(f"Error: configuration '{name}' not found among {','.join(Configuration.settings.arlas.keys())}.",
-              file=sys.stderr)
-        exit(1)
+    check_configuration_exists(name=name)
     print("ARLAS Server: ... ", end="")
     print(f" {Service.test_arlas_server(name)}")
     print("ARLAS Persistence: ... ", end="")
@@ -183,10 +205,7 @@ def login(
 def delete_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
-    if Configuration.settings.arlas.get(config, None) is None:
-        print(f"Error: arlas configuration '{config}' not found among [{','.join(Configuration.settings.arlas.keys())}]",
-              file=sys.stderr)
-        exit(1)
+    check_configuration_exists(name=config)
     Configuration.settings.arlas.pop(config)
     if Configuration.settings.default == config:
         Configuration.settings.default = None
@@ -200,8 +219,5 @@ def delete_configuration(
 def describe_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
-    if Configuration.settings.arlas.get(config, None) is None:
-        print(f"Error: arlas configuration '{config}' not found among [{','.join(Configuration.settings.arlas.keys())}]",
-              file=sys.stderr)
-        exit(1)
+    check_configuration_exists(name=config)
     print(yaml.dump(Configuration.settings.arlas[config].model_dump()))
