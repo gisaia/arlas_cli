@@ -24,7 +24,10 @@ def set_default_configuration(name: str = typer.Argument(help="Name of the confi
 
 @configurations.command(help="Display the default configuration", name="default", epilog=variables["help_epilog"])
 def default():
-    print("Default configuration is {}".format(Configuration.settings.default))
+    if Configuration.settings.default is None:
+        print("No default configuration")
+    else:
+        print(f"Default configuration is {Configuration.settings.default}")
 
 
 @configurations.command(help="Check the services of a configuration", name="check", epilog=variables["help_epilog"])
