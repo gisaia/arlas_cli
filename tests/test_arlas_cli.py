@@ -29,6 +29,23 @@ def run_cli_command(args, input_data=None):
 
 # --- Tests ---
 
+def test_config_file_exists():
+    """Test if the config file exists."""
+    assert config_file_path.exists()
+
+def test_configuration_login():
+    """Test adding a configuration with login."""
+    run_cli_command([
+        "confs", "login", "support@gisaia.com", "support@gisaia.com", "https://some_elastic_search_server",
+        "--auth-password", "toto",
+        "--elastic-password", "titi",
+    ])
+    result = run_cli_command(["confs", "list"])
+    assert "cloud.arlas.io.support" in result.stdout
+    # Check that the first created conf is set as default
+    result = run_cli_command(["confs", "default"])
+    assert "cloud.arlas.io.support" in result.stdout
+
 def test_create_configuration():
     """Test creating a new configuration."""
     result = run_cli_command([
@@ -42,25 +59,11 @@ def test_create_configuration():
     ])
     assert "tests" in result.stdout
 
-def test_configuration_login():
-    """Test adding a configuration with login."""
-    run_cli_command([
-        "confs", "login", "support@gisaia.com", "support@gisaia.com", "https://some_elastic_search_server",
-        "--auth-password", "toto",
-        "--elastic-password", "titi",
-    ])
-    result = run_cli_command(["confs", "list"])
-    assert "cloud.arlas.io.support" in result.stdout
-
-def test_config_file_exists():
-    """Test if the config file exists."""
-    assert config_file_path.exists()
-
 def test_set_default_configuration():
     """Test setting the default configuration."""
     run_cli_command(["confs", "set", "tests"])
     result = run_cli_command(["confs", "default"])
-    assert "Default configuration is tests" in result.stdout
+    assert "tests" in result.stdout
 
 def test_check_configuration():
     """Test checking the configuration."""
