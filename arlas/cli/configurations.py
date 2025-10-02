@@ -14,12 +14,12 @@ configurations = typer.Typer()
 @configurations.command(help="Set default configuration among existing configurations", name="set", epilog=variables["help_epilog"])
 def set_default_configuration(name: str = typer.Argument(help="Name of the configuration to become default")):
     if not Configuration.settings.arlas.get(name):
-        print(f"Error: configuration {name} not found among {','.join(Configuration.settings.arlas.keys())}.", file=sys.stderr)
+        print(f"Error: configuration '{name}' not found among {','.join(Configuration.settings.arlas.keys())}.", file=sys.stderr)
         exit(1)
     Configuration.settings.default = name
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
-    print(f"Default configuration is now {name}")
+    print(f"Default configuration is now '{name}'")
 
 
 @configurations.command(help="Display the default configuration", name="default", epilog=variables["help_epilog"])
@@ -27,13 +27,13 @@ def default():
     if Configuration.settings.default is None:
         print("No default configuration")
     else:
-        print(f"Default configuration is {Configuration.settings.default}")
+        print(f"Default configuration is '{Configuration.settings.default}'")
 
 
 @configurations.command(help="Check the services of a configuration", name="check", epilog=variables["help_epilog"])
 def test_configuration(name: str = typer.Argument(help="Configuration to be checked")):
     if not Configuration.settings.arlas.get(name):
-        print(f"Error: configuration {name} not found among {','.join(Configuration.settings.arlas.keys())}.",
+        print(f"Error: configuration '{name}' not found among {','.join(Configuration.settings.arlas.keys())}.",
               file=sys.stderr)
         exit(1)
     print("ARLAS Server: ... ", end="")
@@ -115,12 +115,12 @@ def create_configuration(
     if len(Configuration.settings.arlas) == 0:
         # Set the first created configuration as default
         Configuration.settings.default = name
-        print(f"Default configuration is now {name}")
+        print(f"Default configuration is now '{name}'")
 
     Configuration.settings.arlas[name] = conf
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
-    print(f"Configuration {name} created.")
+    print(f"Configuration '{name}' created.")
 
 
 @configurations.command(help="Add a configuration for ARLAS Cloud", name="login", epilog=variables["help_epilog"])
@@ -141,7 +141,7 @@ def login(
     if Configuration.settings.arlas.get(name):
         print("Error: a configuration with that name already exists, please remove it first.", file=sys.stderr)
         exit(1)
-    print(f"Creating configuration for {name} ...")
+    print(f"Creating configuration '{name}' ...")
     if not auth_org:
         auth_org = auth_login.split("@")[1]
         print(f"Using {auth_org} as your organisation name.")
@@ -176,7 +176,7 @@ def login(
     Configuration.settings.default = name
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
-    print(f"{name} is now your default configuration.")
+    print(f"'{name}' is now your default configuration.")
 
 
 @configurations.command(help="Delete a configuration", name="delete", epilog=variables["help_epilog"])
@@ -184,16 +184,16 @@ def delete_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
     if Configuration.settings.arlas.get(config, None) is None:
-        print(f"Error: arlas configuration {config} not found among [{','.join(Configuration.settings.arlas.keys())}]",
+        print(f"Error: arlas configuration '{config}' not found among [{','.join(Configuration.settings.arlas.keys())}]",
               file=sys.stderr)
         exit(1)
     Configuration.settings.arlas.pop(config)
     if Configuration.settings.default == config:
         Configuration.settings.default = None
-        print(f"Configuration {config} is no longer the default configuration")
+        print(f"Configuration '{config}' is no longer the default configuration")
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
-    print(f"Configuration {config} deleted.")
+    print(f"Configuration '{config}' deleted.")
 
 
 @configurations.command(help="Describe a configuration", name="describe", epilog=variables["help_epilog"])
@@ -201,7 +201,7 @@ def describe_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
     if Configuration.settings.arlas.get(config, None) is None:
-        print(f"Error: arlas configuration {config} not found among [{','.join(Configuration.settings.arlas.keys())}]",
+        print(f"Error: arlas configuration '{config}' not found among [{','.join(Configuration.settings.arlas.keys())}]",
               file=sys.stderr)
         exit(1)
     print(yaml.dump(Configuration.settings.arlas[config].model_dump()))
