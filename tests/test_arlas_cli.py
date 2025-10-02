@@ -214,3 +214,14 @@ def test_persist_groups():
     """Test listing groups for a persisted entry."""
     result = run_cli_command(["persist", "--config", "tests", "groups", "my_zone"])
     assert "group/public" in result.stdout
+
+def test_delete_configuration():
+    """ Test deleting a configuration """
+    result = run_cli_command(["confs", "delete", "tests"])
+    assert result.returncode == 0
+    # Check that 'tests' in no longer listed
+    result = run_cli_command(["confs", "list"])
+    assert "tests" not in result.stdout
+    # Check that 'test' is no longer the default configuration
+    result = run_cli_command(["confs", "default"])
+    assert "tests" not in result.stdout
