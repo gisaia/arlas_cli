@@ -18,6 +18,7 @@ fi
 mkdir -p target/src/arlas
 cp -r arlas target/src/
 cp -r  scripts/materials/pip/setup.py target/
+cp -r  requirements.txt target/
 cp -r  scripts/materials/pip/README.md target/
 mkdir target/bin
 sed -i.bak 's/arlas_cli_versions/'${VERSION}'/' target/setup.py
