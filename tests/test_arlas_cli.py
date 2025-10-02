@@ -1,35 +1,30 @@
-import shutil
 import subprocess
-import pytest
-import os
 import time
+from pathlib import Path
 
-# Fixture to clean up before and after tests
-@pytest.fixture(autouse=True, scope="module")
-def cleanup():
-    # Remove config file and persistence directory before tests
-    config_file = "/tmp/arlas_cli.yaml"
-    persist_dir = "/tmp/arlas_cli_persist"
-    if os.path.exists(config_file):
-        os.remove(config_file)
-    if os.path.exists(persist_dir):
-        shutil.rmtree(persist_dir)
+import pytest
+
+
+# module-level context set by the autouse config_file_tests fixture
+config_file_path: Path
+
+@pytest.fixture(scope="module", autouse=True)
+def config_file_tests(tmp_path_factory):
+    """Provide a temporary configuration file (auto-used in all tests)."""
+    global config_file_path
+    config_file_path = tmp_path_factory.mktemp("arlas_cli") / "arlas_cli.yaml"
+
     run_cli_command(["--version"])
-    yield
-    # Remove config file and persistence directory after tests
-    if os.path.exists(config_file):
-        os.remove(config_file)
-    if os.path.exists(persist_dir):
-        shutil.rmtree(persist_dir)
+    yield config_file_path
 
 # Helper function to run CLI commands
 def run_cli_command(args, input_data=None):
-    cmd = ["python3.10", "-m", "arlas.cli.cli", "--config-file", "/tmp/arlas_cli.yaml"] + args
+    cmd = ["python3.10", "-m", "arlas.cli.cli", "--config-file", str(config_file_path)] + args
     result = subprocess.run(
         cmd,
         capture_output=True,
         text=True,
-        input=input_data,
+        input=input_data
     )
     return result
 
@@ -60,7 +55,7 @@ def test_configuration_login():
 
 def test_config_file_exists():
     """Test if the config file exists."""
-    assert os.path.exists("/tmp/arlas_cli.yaml")
+    assert config_file_path.exists()
 
 def test_set_default_configuration():
     """Test setting the default configuration."""
