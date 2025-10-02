@@ -178,6 +178,9 @@ def delete_configuration(
         print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
         exit(1)
     Configuration.settings.arlas.pop(config)
+    if Configuration.settings.default == config:
+        Configuration.settings.default = None
+        print(f"Configuration {config} is no longer the default configuration")
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
     print("Configuration {} deleted.".format(config))
