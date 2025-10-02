@@ -14,7 +14,6 @@ def config_file_tests(tmp_path_factory):
     global config_file_path
     config_file_path = tmp_path_factory.mktemp("arlas_cli") / "arlas_cli.yaml"
 
-    run_cli_command(["--version"])
     yield config_file_path
 
 # Helper function to run CLI commands
