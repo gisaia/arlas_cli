@@ -104,6 +104,12 @@ def create_configuration(
         )
     if elastic:
         conf.elastic = Resource(location=elastic, headers=dict(map(lambda h: (h.split(":")[0], h.split(":")[1]), elastic_headers)), login=elastic_login, password=elastic_password)
+
+    if len(Configuration.settings.arlas) == 0:
+        # Set the first created configuration as default
+        Configuration.settings.default = name
+        print(f"Default configuration is now {name}")
+
     Configuration.settings.arlas[name] = conf
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
