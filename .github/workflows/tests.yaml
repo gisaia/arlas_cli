@@ -16,6 +16,6 @@ jobs:
     - name: Start the stack
       run: scripts/start_stack.sh
     - name: Run tests
-      run: scripts/tests.sh
+      run: pytest ./tests/test_arlas_cli.py -v
     - name: Stop the stack
       run: scripts/stop_stack.sh
