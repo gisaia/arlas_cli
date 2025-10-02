@@ -45,10 +45,13 @@ def test_configuration(name: str = typer.Argument(help="Configuration to be chec
 def list_configurations():
     confs = []
     for (name, conf) in Configuration.settings.arlas.items():
+        if name == Configuration.settings.default:
+            name += " (*)"
         confs.append([name, conf.server.location])
-    tab = PrettyTable(["name", "url"], sortby="name", align="l")
+    tab = PrettyTable(["name", "ARLAS server url"], sortby="name", align="l")
     tab.add_rows(confs)
     print(tab)
+    print("(*) Default configuration")
 
 
 @configurations.command(help="Add a configuration", name="create", epilog=variables["help_epilog"])
