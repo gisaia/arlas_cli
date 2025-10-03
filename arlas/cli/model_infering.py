@@ -1,4 +1,6 @@
 import json
+import sys
+
 from shapely import wkt
 import dateutil.parser as date_parser
 
@@ -198,3 +200,34 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
             "properties": mapping
         }
     }
+
+def read_override_mapping_fields(field_mapping: list[str]) -> dict[str, str]:
+    """Parse a list of field:mapping overrides into a dictionary.
+
+    Args:
+        field_mapping: List of strings in the format "field:type" or "field:date-format".
+                      Example: ["timestamp:date-epoch_second", "location:geo_point"]
+
+    Returns:
+        dict[str, str]: Dictionary mapping field paths to their types.
+
+    Raises:
+        SystemExit: If any field_mapping entry is invalid.
+    """
+    types = {}
+
+    for mapping_entry in field_mapping:
+        # Handle date formats (which contain additional colons)
+        if ":" not in mapping_entry:
+            print(
+                f'Error: invalid field_mapping "{mapping_entry}". '
+                f'The format is "field:type" like "fragment.location:geo_point"',
+                file=sys.stderr,
+            )
+            exit(1)
+
+        # Split on first colon only to handle date formats like "date:yyyy-MM-dd"
+        field, field_type = mapping_entry.split(":", 1)
+        types[field] = field_type
+
+    return types
