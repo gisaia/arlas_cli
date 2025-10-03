@@ -131,15 +131,15 @@ def mapping(
 
     types = read_override_mapping_fields(field_mapping=field_mapping)
 
-    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
+    es_mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
     if push_on and config:
         Service.create_index(
             config,
             index=push_on,
-            mapping=mapping)
+            mapping=es_mapping)
         print("Index {} created on {}".format(push_on, config))
     else:
-        print(json.dumps(mapping, indent=2))
+        print(json.dumps(es_mapping, indent=2))
 
 
 @indices.command(help="Delete an index", epilog=variables["help_epilog"])
