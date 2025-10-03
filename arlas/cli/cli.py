@@ -45,12 +45,6 @@ def init(
         os.makedirs(os.path.dirname(variables["configuration_file"]), exist_ok=True)
         Configuration.settings = Settings(
             arlas={
-                "local": ARLAS(
-                    server=Resource(location="http://localhost/arlas", headers={"Content-Type": "application/json"}),
-                    persistence=Resource(location="http://localhost/persist", headers={"Content-Type": "application/json"}),
-                    elastic=Resource(location="http://localhost:9200", headers={"Content-Type": "application/json"}),
-                    allow_delete=True
-                )
             },
             mappings={
             },
@@ -58,7 +52,7 @@ def init(
             }
         )
         Configuration.save(variables["configuration_file"])
-        print("Warning : no configuration file found, we created a default one with a 'local' confs accessing local ARLAS exploration stack ({}).".format(variables["configuration_file"]), file=sys.stderr)
+        print(f"Warning : no configuration file found, we created a default empty one ({variables['configuration_file']}).", file=sys.stderr)
         print("Warning : no configuration available", file=sys.stderr)
 
 
