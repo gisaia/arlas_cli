@@ -29,10 +29,6 @@ def run_cli_command(args, input_data=None):
 
 # --- Tests ---
 
-def test_config_file_exists():
-    """Test if the config file exists."""
-    assert config_file_path.exists()
-
 def test_configuration_login():
     """Test adding a configuration with login."""
     run_cli_command([
@@ -45,6 +41,10 @@ def test_configuration_login():
     # Check that the first created conf is set as default
     result = run_cli_command(["confs", "default"])
     assert "cloud.arlas.io.support" in result.stdout
+
+def test_config_file_exists():
+    """Test if the config file exists."""
+    assert config_file_path.exists()
 
 def test_create_configuration():
     """Test creating a new configuration."""
