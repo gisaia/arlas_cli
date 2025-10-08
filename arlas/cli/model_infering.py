@@ -73,42 +73,17 @@ def __type_tree__(path, tree, types):
 
 # Type a node. Here is the "guessing"
 def __type_node__(items, name: str = None) -> str:
-    if items is None:
+    if not isinstance(items, list):
+        return __type_value__(field_value=items, field_name=name)
+    elif len(items) == 0:
         return "UNDEFINED"
-    if type(items) is str:
-        items: str = items
-        # Geo objects ...
-        if items.startswith("POINT "):
-            try:
-                wkt.loads(items)
-                return "geo_point"
-            except Exception:
-                ...
-        if items.startswith("LINESTRING ") or items.startswith("POLYGON ") or items.startswith("MULTIPOINT ") or items.startswith("MULTILINESTRING ") or items.startswith("MULTIPOLYGON "):
-            try:
-                wkt.loads(items)
-                return "geo_shape"
-            except Exception:
-                ...
-        if name and name.find("geohash") >= 0:
-            return "geo_point"
-        lat_lon: list[str] = items.split(",")
-        if len(lat_lon) == 2 and is_float(lat_lon[0].strip()) and is_float(lat_lon[1].strip()):
-            return "geo_point"
-        # Date objects ...
-        if name and (name.find("timestamp") >= 0 or name.find("date") >= 0 or name.find("start") >= 0 or name.find("end") >= 0):
-            try:
-                date_parser.parse(items)
-                return "date"
-            except Exception:
-                ...
-        return "text"
-    if type(items) is list and len(items) > 0:
-        if all(isinstance(x, (bool)) for x in items):
+    else:
+        if all(isinstance(x, bool) for x in items):
             return "boolean"
-        if all(isinstance(x, (int)) for x in items):
-            if name and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or name.find("start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or name.find("end_") >= 0):
-                # all between year 1950 and 2100, in second or milli second
+        if all(isinstance(x, int) for x in items):
+            if name and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or name.find(
+                    "start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or name.find("end_") >= 0):
+                # all between year 1950 and 2100, in second or millisecond
                 if all((x > 631152000 and x < 4102444800) for x in items):
                     return "date-epoch_second"
                 if all((x > 631152000000 and x < 4102444800000) for x in items):
@@ -117,10 +92,10 @@ def __type_node__(items, name: str = None) -> str:
                     return "long"
             else:
                 return "long"
-        if all(isinstance(x, (float)) for x in items):
+        if all(isinstance(x, float) for x in items):
             return "double"
-        if all(isinstance(x, (str)) for x in items):
-            t = __type_node__(items[0], name)
+        if all(isinstance(x, str) for x in items):
+            t = __type_value__(field_value=items[0], field_name=name)
             if t == "text":
                 if all(len(x) < MAX_KEYWORD_LENGTH for x in items):
                     return "keyword"
@@ -129,19 +104,62 @@ def __type_node__(items, name: str = None) -> str:
             else:
                 return t
         return "UNDEFINED"
-    if type(items) is dict:
-        if "type" in items and "coordinates" in items and "__items__" in items.get("type"):
+
+
+def __type_value__(field_value, field_name: str) -> str:
+
+    if field_value is None:
+        return "UNDEFINED"
+    elif isinstance(field_value, bool):
+        return "boolean"
+    elif isinstance(field_value, int):
+        return "long"
+    elif isinstance(field_value, str):
+        field_value: str = field_value
+        # Geo objects ...
+        if field_value.startswith("POINT "):
+            try:
+                wkt.loads(field_value)
+                return "geo_point"
+            except Exception:
+                ...
+        if field_value.startswith("LINESTRING ") or field_value.startswith("POLYGON ") or field_value.startswith(
+                "MULTIPOINT ") or field_value.startswith("MULTILINESTRING ") or field_value.startswith("MULTIPOLYGON "):
+            try:
+                wkt.loads(field_value)
+                return "geo_shape"
+            except Exception:
+                ...
+        if field_name and field_name.find("geohash") >= 0:
+            return "geo_point"
+        lat_lon: list[str] = field_value.split(",")
+        if len(lat_lon) == 2 and is_float(lat_lon[0].strip()) and is_float(lat_lon[1].strip()):
+            return "geo_point"
+        # Date objects ...
+        if field_name and (field_name.find("timestamp") >= 0 or field_name.find("date") >= 0 or field_name.find("start") >= 0 or field_name.find(
+                "end") >= 0):
+            try:
+                date_parser.parse(field_value)
+                return "date"
+            except Exception:
+                ...
+        return "text"
+
+    elif type(field_value) is dict:
+        if "type" in field_value and "coordinates" in field_value and "__items__" in field_value.get("type"):
             # looks like geojson ...
-            types = items.get("type").get("__items__")
+            types = field_value.get("type").get("__items__")
             if all([t.lower() == "point" for t in types]):
                 return "geo_point"
-            if all([t.lower() in ["point", "multipoint", "linestring", "multistring", "polygon", "multipolygon"] for t in types]):
+            if all([t.lower() in ["point", "multipoint", "linestring", "multistring", "polygon", "multipolygon"] for t
+                    in types]):
                 return "geo_shape"
             else:
                 return "object"
         else:
             return "object"
     return "UNDEFINED"
+
 
 # from the typed tree, generate the mapping.
 def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[str], field_path: str = None):
