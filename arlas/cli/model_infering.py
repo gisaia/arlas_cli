@@ -144,15 +144,19 @@ def __type_node__(items, name: str = None) -> str:
     return "UNDEFINED"
 
 # from the typed tree, generate the mapping.
-def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[str]):
+def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[str], field_path: str = None):
     if type(tree) is dict:
         for (field_name, v) in tree.items():
             if field_name not in ["__type__", "__values__"]:
                 field_type: str = v.get("__type__")
                 if field_type == "object":
                     mapping[field_name] = {"properties": {}}
+                    if field_path is None:
+                        new_field_path = field_name
+                    else:
+                        new_field_path = ".".join([field_path, field_name])
                     __generate_mapping__(tree=v, mapping=mapping[field_name]["properties"], no_fulltext=no_fulltext,
-                                         no_index=no_index)
+                                         no_index=no_index, field_path=new_field_path)
                 else:
                     if field_type.startswith("date-"):
                         # Dates can have format patterns containing '-'
@@ -165,7 +169,11 @@ def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[s
                     # Avoid indexing field if field in --no-index
                     if field_name in no_index:
                         mapping[field_name]["index"] = "false"
-                    print(f"-->{field_name}: {mapping[field_name]['type']}")
+                    if field_path is not None:
+                        full_name = ".".join([field_path, field_name])
+                    else:
+                        full_name = field_name
+                    print(f"-->{full_name}: {mapping[field_name]['type']}")
     else:
         raise Exception("Unexpected state")
 

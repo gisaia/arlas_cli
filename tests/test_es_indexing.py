@@ -23,6 +23,8 @@ def test_infer_data_json(expected_mapping):
         "indices", "--config", "tests", "mapping", "tests/data/test_data.ndjson",
         "--nb-lines", "5"
     ])
+    expected_mapping.append(("nested_field.attribute1", "keyword"))
+    expected_mapping.append(("nested_field.attribute2", "long"))
     check_inferred_types(result_output=result.stdout, expected_mapping=expected_mapping, test_name="ndjson data")
 
 
