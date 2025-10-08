@@ -1,7 +1,9 @@
+import json
 import sys
 
 from shapely import wkt
 import dateutil.parser as date_parser
+from shapely.geometry import shape
 
 from arlas.cli.readers import get_data_generator
 
@@ -72,12 +74,22 @@ def __type_tree__(path, tree, types):
         raise Exception("Unexpected state")
 
 # Type a node. Here is the "guessing"
-def __type_node__(items, name: str = None) -> str:
-    if not isinstance(items, list):
-        return __type_value__(field_value=items, field_name=name)
-    elif len(items) == 0:
-        return "UNDEFINED"
-    else:
+def __type_node__(items: list | dict, name: str = None) -> str:
+    if isinstance(items, dict):
+        # Handle geojson dict and nested fields (set as 'object' here)
+        if "type" in items and "coordinates" in items and "__items__" in items.get("type"):
+            # looks like geojson ...
+            types = items.get("type").get("__items__")
+            if all([t.lower() in ["point", "multipoint"] for t in types]):
+                return "geo_point"
+            if all([t.lower() in ["point", "multipoint", "linestring", "multistring", "polygon", "multipolygon",
+                                  "geometrycollection"] for t in types]):
+                return "geo_shape"
+            else:
+                return "object"
+        else:
+            return "object"
+        # Handle list of values
         if all(isinstance(x, bool) for x in items):
             return "boolean"
         if all(isinstance(x, int) for x in items):
@@ -114,6 +126,8 @@ def __type_value__(field_value, field_name: str) -> str:
         return "boolean"
     elif isinstance(field_value, int):
         return "long"
+    elif isinstance(field_value, float):
+        return "double"
     elif isinstance(field_value, str):
         field_value: str = field_value
         # Geo objects ...
@@ -145,19 +159,6 @@ def __type_value__(field_value, field_name: str) -> str:
                 ...
         return "text"
 
-    elif type(field_value) is dict:
-        if "type" in field_value and "coordinates" in field_value and "__items__" in field_value.get("type"):
-            # looks like geojson ...
-            types = field_value.get("type").get("__items__")
-            if all([t.lower() == "point" for t in types]):
-                return "geo_point"
-            if all([t.lower() in ["point", "multipoint", "linestring", "multistring", "polygon", "multipolygon"] for t
-                    in types]):
-                return "geo_shape"
-            else:
-                return "object"
-        else:
-            return "object"
     return "UNDEFINED"
 
 
