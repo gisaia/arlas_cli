@@ -72,67 +72,67 @@ def __type_tree__(path, tree, types):
         raise Exception("Unexpected state")
 
 # Type a node. Here is the "guessing"
-def __type_node__(n, name: str = None) -> str:
-    if n is None:
+def __type_node__(items, name: str = None) -> str:
+    if items is None:
         return "UNDEFINED"
-    if type(n) is str:
-        n: str = n
+    if type(items) is str:
+        items: str = items
         # Geo objects ...
-        if n.startswith("POINT "):
+        if items.startswith("POINT "):
             try:
-                wkt.loads(n)
+                wkt.loads(items)
                 return "geo_point"
             except Exception:
                 ...
-        if n.startswith("LINESTRING ") or n.startswith("POLYGON ") or n.startswith("MULTIPOINT ") or n.startswith("MULTILINESTRING ") or n.startswith("MULTIPOLYGON "):
+        if items.startswith("LINESTRING ") or items.startswith("POLYGON ") or items.startswith("MULTIPOINT ") or items.startswith("MULTILINESTRING ") or items.startswith("MULTIPOLYGON "):
             try:
-                wkt.loads(n)
+                wkt.loads(items)
                 return "geo_shape"
             except Exception:
                 ...
         if name and name.find("geohash") >= 0:
             return "geo_point"
-        lat_lon: list[str] = n.split(",")
+        lat_lon: list[str] = items.split(",")
         if len(lat_lon) == 2 and is_float(lat_lon[0].strip()) and is_float(lat_lon[1].strip()):
             return "geo_point"
         # Date objects ...
         if name and (name.find("timestamp") >= 0 or name.find("date") >= 0 or name.find("start") >= 0 or name.find("end") >= 0):
             try:
-                date_parser.parse(n)
+                date_parser.parse(items)
                 return "date"
             except Exception:
                 ...
         return "text"
-    if type(n) is list and len(n) > 0:
-        if all(isinstance(x, (bool)) for x in n):
+    if type(items) is list and len(items) > 0:
+        if all(isinstance(x, (bool)) for x in items):
             return "boolean"
-        if all(isinstance(x, (int)) for x in n):
+        if all(isinstance(x, (int)) for x in items):
             if name and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or name.find("start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or name.find("end_") >= 0):
                 # all between year 1950 and 2100, in second or milli second
-                if all((x > 631152000 and x < 4102444800) for x in n):
+                if all((x > 631152000 and x < 4102444800) for x in items):
                     return "date-epoch_second"
-                if all((x > 631152000000 and x < 4102444800000) for x in n):
+                if all((x > 631152000000 and x < 4102444800000) for x in items):
                     return "date-epoch_millis"
                 else:
                     return "long"
             else:
                 return "long"
-        if all(isinstance(x, (float)) for x in n):
+        if all(isinstance(x, (float)) for x in items):
             return "double"
-        if all(isinstance(x, (str)) for x in n):
-            t = __type_node__(n[0], name)
+        if all(isinstance(x, (str)) for x in items):
+            t = __type_node__(items[0], name)
             if t == "text":
-                if all(len(x) < MAX_KEYWORD_LENGTH for x in n):
+                if all(len(x) < MAX_KEYWORD_LENGTH for x in items):
                     return "keyword"
                 else:
                     return "text"
             else:
                 return t
         return "UNDEFINED"
-    if type(n) is dict:
-        if "type" in n and "coordinates" in n and "__items__" in n.get("type"):
+    if type(items) is dict:
+        if "type" in items and "coordinates" in items and "__items__" in items.get("type"):
             # looks like geojson ...
-            types = n.get("type").get("__items__")
+            types = items.get("type").get("__items__")
             if all([t.lower() == "point" for t in types]):
                 return "geo_point"
             if all([t.lower() in ["point", "multipoint", "linestring", "multistring", "polygon", "multipolygon"] for t in types]):
