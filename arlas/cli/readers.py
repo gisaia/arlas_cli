@@ -1,0 +1,144 @@
+import csv
+import json
+import re
+import sys
+from typing import Optional, Iterator, Dict, Any
+
+
+def read_ndjson_generator(
+    file_path: str,
+    max_lines: Optional[int] = None
+) -> Iterator[Dict[str, Any]]:
+    """
+    Reads a NDJSON file line by line. Handles each line as a separate JSON object.
+
+    Args:
+        file_path (str): Path to the NDJSON file.
+        max_lines (int, optional): Maximum number of lines to read. Defaults to None (read all).
+
+    Yields:
+        Iterator[Dict[str, Any]]: Each parsed JSON object from the file.
+    """
+    with open(file_path, "rb") as f:
+        for i, line in enumerate(f, 1):
+            if max_lines and i > max_lines:
+                break
+            line = line.strip()
+            if not line:  # Skip empty lines
+                continue
+            try:
+                # Parse each line individually as JSON
+                yield json.loads(line)
+            except json.JSONDecodeError as e:
+                print(f"Error parsing line {i}: {e}", file=sys.stderr)
+                continue
+
+
+def read_csv_generator(
+    file_path: str,
+    max_lines: Optional[int] = None,
+    delimiter: str = ',',
+    quotechar: str = '"',
+    encoding: str = 'utf-8'
+) -> Iterator[Dict[str, Any]]:
+    """
+    Reads a CSV file with headers line by line with efficient memory usage.
+    Optimized for large files and designed to work with CSV files that have a header row.
+
+    Args:
+        file_path (str): Path to the CSV file.
+        max_lines (int, optional): Maximum number of lines to read.
+                                None means read all lines. Defaults to None.
+        delimiter (str, optional): Delimiter character. Defaults to ','.
+        quotechar (str, optional): Character used for quoting fields. Defaults to '"'.
+        encoding (str, optional): File encoding. Defaults to 'utf-8'.
+
+    Yields:
+        Iterator[Dict[str, Any]]: Each row from the CSV file as a dictionary.
+                                   Keys are column names from the header row.
+                                   Values are converted to appropriate Python types.
+
+    Raises:
+        FileNotFoundError: If the file doesn't exist.
+        ValueError: If the file is empty or doesn't have a header row.
+    """
+    try:
+        with open(file_path, mode='r', encoding=encoding, newline='') as f:
+            reader = csv.DictReader(f, delimiter=delimiter, quotechar=quotechar, skipinitialspace=True)
+
+            # Check if file is empty
+            if not reader.fieldnames:
+                raise ValueError("CSV file is empty or has no header row")
+
+            line_count = 0
+            for row in reader:
+                line_count += 1
+                if max_lines and line_count > max_lines:
+                    break
+
+                # Convert empty strings to None and try to convert types
+                processed_row = {}
+                for key, value in row.items():
+                    if value == '':
+                        pass
+                    elif isinstance(value, str):
+                        # Try to convert to int
+                        if value.lstrip('-').isdigit():
+                            processed_row[key] = int(value)
+                        # Try to convert to float
+                        elif re.match(r'^-?\d+\.\d+$', value):
+                            processed_row[key] = float(value)
+                        # Try to convert to boolean
+                        elif value.lower() in ('true', 'false'):
+                            processed_row[key] = value.lower() == 'true'
+                        else:
+                            processed_row[key] = value
+                    else:
+                        processed_row[key] = value
+
+                yield processed_row
+
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {file_path}")
+    except Exception as e:
+        raise ValueError(f"Error reading CSV file: {e}")
+
+
+def get_data_generator(file: str, file_type: str = None, max_lines: int = None):
+    """
+    Returns a generator to read data from a file based on its type.
+
+    This function automatically selects the appropriate reader based on the file type
+    and returns a generator that yields one document at a time, making it memory-efficient
+    for large files.
+
+    Args:
+        file (str):
+            Path to the input file.
+
+        file_type (str):
+            Type of the file. Can be one of "json" for JSON/NDJSON files or "csv" for CSV files
+            If None, the function will attempt to detect the type from the file extension.
+
+        max_lines (int, optional):
+            Maximum number of lines to read from the file.
+            If None, reads all lines in the file. Defaults to None.
+
+    Returns:
+        Iterator[dict]:
+            A generator that yields one document at a time from the file.
+            Each document is a dictionary representing one record from the file.
+
+    Raises:
+        TypeError:
+            If the file type is not supported or cannot be determined.
+        FileNotFoundError:
+            If the specified file does not exist.
+    """
+    if file_type == "json" or file.endswith(".json") or file.endswith(".ndjson"):
+        data_generator = read_ndjson_generator(file_path=file, max_lines=max_lines)
+    elif file_type == "csv" or file.endswith(".csv"):
+        data_generator = read_csv_generator(file_path=file, max_lines=max_lines, delimiter=",")
+    else:
+        raise TypeError(f"Unknow type for file: '{file}'")
+    return data_generator

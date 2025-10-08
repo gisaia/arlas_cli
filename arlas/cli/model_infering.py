@@ -1,8 +1,9 @@
-import json
 import sys
 
 from shapely import wkt
 import dateutil.parser as date_parser
+
+from arlas.cli.readers import get_data_generator
 
 MAX_KEYWORD_LENGTH = 100
 
@@ -170,20 +171,22 @@ def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[s
 
 
 def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fulltext: list[str] = [],
-                 no_index: list[str] = []):
+                 no_index: list[str] = [], file_type: str = None):
+
+    # Read file
+    data_generator = get_data_generator(file=file, file_type=file_type, max_lines=nb_lines)
+
+    # Parse the file first lines values
     tree = {}
+    for hit in data_generator:
+        __build_tree__(tree, hit)
+
+    # Identify fields types
+    __type_tree__("", tree, types)
+
+    # Generate the mapping
     mapping = {}
-    with open(file, mode="r", encoding="utf-8") as f:
-        i = 0
-        for line in f:
-            if i > nb_lines:
-                break
-            else:
-                i = i + 1
-                hit = json.loads(line)
-                __build_tree__(tree, hit)
-        __type_tree__("", tree, types)
-        __generate_mapping__(tree, mapping, no_fulltext, no_index)
+    __generate_mapping__(tree, mapping, no_fulltext, no_index)
     mapping["internal"] = {
         "properties": {
             "autocomplete": {
