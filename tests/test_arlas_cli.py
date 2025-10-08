@@ -217,8 +217,12 @@ def test_persist_groups():
 
 def test_delete_configuration():
     """ Test deleting a configuration """
-    result = run_cli_command(["confs", "delete", "tests"])
-    assert result.returncode == 0
+    # Invalid deletion
+    result = run_cli_command(["confs", "delete", "tests"], input_data="no\n")
+    assert result.returncode == 1, result.stdout
+    # Valid deletion
+    result = run_cli_command(["confs", "delete", "tests"], input_data="yes\n")
+    assert result.returncode == 0, result.stderr
     # Check that 'tests' in no longer listed
     result = run_cli_command(["confs", "list"])
     assert "tests" not in result.stdout

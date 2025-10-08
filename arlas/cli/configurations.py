@@ -206,10 +206,19 @@ def delete_configuration(
     config: str = typer.Argument(help="Name of the configuration"),
 ):
     check_configuration_exists(name=config)
-    Configuration.settings.arlas.pop(config)
+
+    # Handle default configuration
     if Configuration.settings.default == config:
-        Configuration.settings.default = None
-        print(f"Configuration '{config}' is no longer the default configuration")
+        if typer.confirm(f"You are about to delete the default configuration '{config}'.\n",
+                         prompt_suffix="Do you want to continue?", default=False):
+            Configuration.settings.default = None
+            print(f"No default configuration set any more.")
+        else:
+            print(f"Error: Configuration '{config}' not deleted", file=sys.stderr)
+            exit(1)
+
+    # Delete the configuration
+    Configuration.settings.arlas.pop(config)
     Configuration.save(variables["configuration_file"])
     Configuration.init(variables["configuration_file"])
     print(f"Configuration '{config}' deleted.")
