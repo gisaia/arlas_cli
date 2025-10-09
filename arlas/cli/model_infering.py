@@ -89,10 +89,22 @@ def __type_node__(items: list | dict, name: str = None) -> str:
                 return "object"
         else:
             return "object"
+    if isinstance(items, list):
+        if len(items) == 0:
+            # Empty values
+            pass
         # Handle list of values
-        if all(isinstance(x, bool) for x in items):
+        types_list = [__type_value__(field_value=item, field_name=name) for item in items]
+        types_set = set(types_list)
+        types_set.discard("UNDEFINED")
+        if len(types_set) == 0:
+            # Only undefined types
+            pass
+        elif types_set == {"boolean"}:
             return "boolean"
-        if all(isinstance(x, int) for x in items):
+        elif types_set == {"double"} or types_set == {"double", "long"}:
+            return "double"
+        elif types_set == {"long"}:
             if name and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or name.find(
                     "start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or name.find("end_") >= 0):
                 # all between year 1950 and 2100, in second or millisecond
@@ -104,18 +116,23 @@ def __type_node__(items: list | dict, name: str = None) -> str:
                     return "long"
             else:
                 return "long"
-        if all(isinstance(x, float) for x in items):
-            return "double"
-        if all(isinstance(x, str) for x in items):
-            t = __type_value__(field_value=items[0], field_name=name)
-            if t == "text":
-                if all(len(x) < MAX_KEYWORD_LENGTH for x in items):
-                    return "keyword"
-                else:
-                    return "text"
-            else:
-                return t
+        elif types_set == {"date"}:
+            return "date"
+        elif types_set == {"geo_point"}:
+            return "geo_point"
+        elif types_set == {"geo_shape"} or types_set == {"geo_shape", "geo_point"}:
+            return "geo_shape"
+        elif types_set == {"keyword"}:
+            return "keyword"
+        elif types_set == {"text"} or types_set == {"text", "keyword"}:
+            return "text"
+
+        # No valid type has been detected
+        print(f"Error: No valid type has been found for field '{name}' with values: {items} (types: {types_set})",
+              file=sys.stderr)
         return "UNDEFINED"
+    else:
+        raise Exception(f"Unexpected state when inferring type of '{name}': {items}")
 
 
 def __type_value__(field_value, field_name: str) -> str:
