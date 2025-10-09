@@ -4,6 +4,8 @@ import re
 import sys
 from typing import Optional, Iterator, Dict, Any
 
+from arlas.cli.utils import clean_str
+
 
 def read_ndjson_generator(
     file_path: str,
@@ -79,6 +81,11 @@ def read_csv_generator(
             if not reader.fieldnames:
                 raise ValueError("CSV file is empty or has no header row")
 
+            # Clean columns names
+            clean_fields_names = clean_columns_name(list(reader.fieldnames))
+            reader.fieldnames = clean_fields_names
+
+            # Iterate rows
             line_count = 0
             for row in reader:
                 line_count += 1
@@ -151,3 +158,23 @@ def get_data_generator(file: str, file_type: str = None, max_lines: int = None):
     else:
         raise TypeError(f"Unknow type for file: '{file}'")
     return data_generator
+
+
+def clean_columns_name(columns_name: list[str]) -> list[str]:
+    """
+    Clean a list of column names to make them valid identifiers.
+    If a column name is modified, a warning message is printed to indicate the change.
+
+    Args:
+        columns_name (list[str]): List of column names to clean (can contain accents, spaces, or special characters).
+
+    Returns:
+        list[str]: List of cleaned column names, without accents, and with underscores replacing non-alphanumeric chars.
+    """
+    cleaned_columns_names = []
+    for orig_name in columns_name:
+        clean_name = clean_str(orig_name)
+        if clean_name != orig_name:
+            print(f"Warning: Column '{orig_name}' has been renamed '{clean_name}' to prevent any encoding issues")
+        cleaned_columns_names.append(clean_name)
+    return cleaned_columns_names
