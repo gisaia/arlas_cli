@@ -6,15 +6,10 @@ import dateutil.parser as date_parser
 from shapely.geometry import shape
 
 from arlas.cli.readers import get_data_generator
+from arlas.cli.utils import is_float
 
 MAX_KEYWORD_LENGTH = 100
 
-def is_float(string):
-    try:
-        float(string)
-        return True
-    except ValueError:
-        return False
 
 # Recursive parsing of the json object and dynamic building or consolidation of the tree.
 # The tree contains the same structure as the json object except that leaf nodes contains array of values (in __items__).

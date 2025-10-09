@@ -24,3 +24,20 @@ def clean_str(str_value: str) -> str:
     # Trim leading/trailing underscores
     clean_str_value = clean_str_value.strip('_')
     return clean_str_value
+
+
+def is_float(string):
+    """
+    Check if a string can be converted to a float.
+
+    Args:
+        string (str): The string to check.
+
+    Returns:
+        bool: True if the string is a valid float, False otherwise.
+    """
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
