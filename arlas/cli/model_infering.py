@@ -146,6 +146,19 @@ def __type_value__(field_value, field_name: str) -> str:
                 ...
         if field_name and field_name.find("geohash") >= 0:
             return "geo_point"
+        if ("coordinates" in field_value) and ("type" in field_value):
+            # Looks like geojson as str
+            try:
+                geo_dict = json.loads(field_value)
+                # Validate the geometry
+                shapely_geom = shape(geo_dict)
+                if shapely_geom.geom_type in ["Point", "MultiPoint"]:
+                    return "geo_point"
+                elif shapely_geom.geom_type in ["LineString", "Polygon", "MultiLinestring","MultiPolygon",
+                                                "GeometryCollection"]:
+                    return "geo_shape"
+            except Exception:
+                ...
         lat_lon: list[str] = field_value.split(",")
         if len(lat_lon) == 2 and is_float(lat_lon[0].strip()) and is_float(lat_lon[1].strip()):
             return "geo_point"
