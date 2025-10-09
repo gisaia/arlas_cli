@@ -37,8 +37,8 @@ def read_ndjson_generator(
 def read_csv_generator(
     file_path: str,
     max_lines: Optional[int] = None,
-    delimiter: str = ',',
-    quotechar: str = '"',
+    delimiter: Optional[str] = None,
+    quotechar: Optional[str] = None,
     encoding: str = 'utf-8'
 ) -> Iterator[Dict[str, Any]]:
     """
@@ -49,8 +49,8 @@ def read_csv_generator(
         file_path (str): Path to the CSV file.
         max_lines (int, optional): Maximum number of lines to read.
                                 None means read all lines. Defaults to None.
-        delimiter (str, optional): Delimiter character. Defaults to ','.
-        quotechar (str, optional): Character used for quoting fields. Defaults to '"'.
+        delimiter (str, optional): Delimiter character. Defaults to None.
+        quotechar (str, optional): Character used for quoting fields. Defaults to None.
         encoding (str, optional): File encoding. Defaults to 'utf-8'.
 
     Yields:
@@ -64,7 +64,16 @@ def read_csv_generator(
     """
     try:
         with open(file_path, mode='r', encoding=encoding, newline='') as f:
-            reader = csv.DictReader(f, delimiter=delimiter, quotechar=quotechar, skipinitialspace=True)
+            # Pre-read: Detect the file dialect (separator, quotechar) from first lines
+            NB_LINES_PREREAD = 5
+            sample = "".join([next(f) for _ in range(NB_LINES_PREREAD)])
+            dialect = csv.Sniffer().sniff(sample, delimiters=delimiter)
+            if quotechar is not None:
+                dialect.quotechar = quotechar
+            f.seek(0) # Get back to file beginning
+
+            # Read file
+            reader = csv.DictReader(f, skipinitialspace=True, dialect=dialect)
 
             # Check if file is empty
             if not reader.fieldnames:
