@@ -11,9 +11,18 @@ from arlas.cli.utils import is_float
 MAX_KEYWORD_LENGTH = 100
 
 
-# Recursive parsing of the json object and dynamic building or consolidation of the tree.
-# The tree contains the same structure as the json object except that leaf nodes contains array of values (in __items__).
 def __build_tree__(tree: dict, o: any):
+    """
+    Recursively build a tree structure from a JSON object.
+    The tree mirrors the JSON structure, with leaf nodes containing arrays of values in the "__items__" key.
+
+    Args:
+        tree (dict): The tree being built.
+        o (any): The JSON object (dict, list, or primitive value) to process.
+
+    Raises:
+        Exception: If an unexpected state is encountered.
+    """
     if o is not None:
         if type(o) is dict:
             o: dict = o
@@ -38,16 +47,28 @@ def __build_tree__(tree: dict, o: any):
         ...
 
 
-# Takes the tree of values and guess the types recursively by relying on __type_node__
-def __type_tree__(path, tree, types):
+def __type_tree__(path: str, tree: dict, forced_types: dict[str, str]):
+    """
+    Recursively infer types for nodes in the tree of values.
+
+    Uses __type_node__ to determine the type of each node based on its values.
+
+    Args:
+        path (str): The current path in the tree (e.g., "user.name").
+        tree (dict): The tree built by __build_tree__.
+        forced_types (dict[str, str]): Predefined types for specific fields.
+
+    Raises:
+        Exception: If an unexpected state is encountered.
+    """
     if type(tree) is dict:
         for (k, v) in tree.items():
             if path:
                 subpath = ".".join([path, k])
             else:
                 subpath = k
-            if subpath in types:
-                tree[k]["__type__"] = types.get(subpath)
+            if subpath in forced_types:
+                tree[k]["__type__"] = forced_types.get(subpath)
             else:
                 if k == "__type__":
                     ...
@@ -62,7 +83,7 @@ def __type_tree__(path, tree, types):
                             tree[k]["__type__"] = t
                             if t == "object":
                                 # it is an intermediate node, we dive in the node
-                                __type_tree__(subpath, v, types)
+                                __type_tree__(subpath, v, forced_types)
                     else:
                         raise Exception("Unexpected state")
     else:
@@ -70,6 +91,19 @@ def __type_tree__(path, tree, types):
 
 # Type a node. Here is the "guessing"
 def __type_node__(items: list | dict, name: str = None) -> str:
+    """
+    Infer the type of a node based on its values.
+
+    Args:
+        items (list | dict): List of values or GeoJSON dictionary.
+        name (str, optional): The field name, used for type hints (e.g., dates, geohashes).
+
+    Returns:
+        str: The inferred type ("geo_point", "date", "text", etc.).
+
+    Raises:
+        Exception: If an unexpected state is encountered.
+    """
     if isinstance(items, dict):
         # Handle geojson dict and nested fields (set as 'object' here)
         if "type" in items and "coordinates" in items and "__items__" in items.get("type"):
@@ -131,7 +165,16 @@ def __type_node__(items: list | dict, name: str = None) -> str:
 
 
 def __type_value__(field_value, field_name: str) -> str:
+    """
+    Infer the type of a single value.
 
+    Args:
+        field_value (any): The value to analyze.
+        field_name (str, optional): The field name, used for type hints (e.g., dates, geohashes).
+
+    Returns:
+        str: The inferred type ("geo_point", "date", "keyword", etc.).
+    """
     if field_value is None:
         return "UNDEFINED"
     elif isinstance(field_value, bool):
@@ -191,7 +234,21 @@ def __type_value__(field_value, field_name: str) -> str:
 
 
 # from the typed tree, generate the mapping.
-def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[str], field_path: str = None):
+def __generate_mapping__(tree: dict, mapping: dict, no_fulltext: list[str], no_index: list[str],
+                         field_path: str = None):
+    """
+    Generate an Elasticsearch mapping from the typed tree.
+
+    Args:
+        tree (dict): The typed tree.
+        mapping (dict): The Elasticsearch mapping being built.
+        no_fulltext (list[str]): Fields to exclude from full-text search.
+        no_index (list[str]): Fields to exclude from indexing.
+        field_path (str, optional): The current field path.
+
+    Raises:
+        Exception: If an unexpected state is encountered.
+    """
     if type(tree) is dict:
         for (field_name, v) in tree.items():
             if field_name not in ["__type__", "__values__"]:
@@ -227,7 +284,21 @@ def __generate_mapping__(tree, mapping, no_fulltext: list[str], no_index: list[s
 
 def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fulltext: list[str] = [],
                  no_index: list[str] = [], file_type: str = None):
+    """
+    Generate an Elasticsearch mapping from a data file.
+    Reads the first `nb_lines` lines of the file, infers field types, and generates an Elasticsearch mapping.
 
+    Args:
+        file (str): Path to the data file.
+        nb_lines (int, optional): Number of lines to analyze. Defaults to 2.
+        types (dict[str, str], optional): Predefined types for specific fields.
+        no_fulltext (list[str], optional): Fields to exclude from full-text search.
+        no_index (list[str], optional): Fields to exclude from indexing.
+        file_type (str, optional): Type of the file (e.g., "json", "ndjson").
+
+    Returns:
+        dict: The Elasticsearch mapping.
+    """
     # Read file
     data_generator = get_data_generator(file=file, file_type=file_type, max_lines=nb_lines)
 
