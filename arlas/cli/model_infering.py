@@ -146,7 +146,6 @@ def __type_value__(field_value, field_name: str) -> str:
     elif isinstance(field_value, float):
         return "double"
     elif isinstance(field_value, str):
-        field_value: str = field_value
         # Geo objects ...
         if field_value.startswith("POINT "):
             try:
