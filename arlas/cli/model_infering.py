@@ -139,6 +139,7 @@ def __type_value__(field_value, field_name: str) -> str:
                 ...
         if field_value.startswith("LINESTRING ") or field_value.startswith("POLYGON ") or field_value.startswith(
                 "MULTIPOINT ") or field_value.startswith("MULTILINESTRING ") or field_value.startswith("MULTIPOLYGON "):
+            # Looks like WKT
             try:
                 wkt.loads(field_value)
                 return "geo_shape"
@@ -163,14 +164,17 @@ def __type_value__(field_value, field_name: str) -> str:
         if len(lat_lon) == 2 and is_float(lat_lon[0].strip()) and is_float(lat_lon[1].strip()):
             return "geo_point"
         # Date objects ...
-        if field_name and (field_name.find("timestamp") >= 0 or field_name.find("date") >= 0 or field_name.find("start") >= 0 or field_name.find(
-                "end") >= 0):
+        if field_name and (field_name.find("timestamp") >= 0 or field_name.find("date") >= 0 or
+                           field_name.find("start") >= 0 or field_name.find("end") >= 0):
             try:
                 date_parser.parse(field_value)
                 return "date"
             except Exception:
                 ...
-        return "text"
+        if len(field_value) < MAX_KEYWORD_LENGTH:
+            return "keyword"
+        else:
+            return "text"
 
     return "UNDEFINED"
 
