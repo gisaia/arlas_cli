@@ -40,16 +40,19 @@ class Configuration:
     settings: Settings = None
 
     @staticmethod
-    def solve_config(config: str):
+    def solve_config(config: str, quiet: bool = False):
         if not config:
             if Configuration.settings.default:
-                print("Using default configuration {}".format(Configuration.settings.default))
+                if not quiet:
+                    print(f"Using default configuration {Configuration.settings.default}")
                 return Configuration.settings.default
             else:
-                print("Error: No default configuration, please provide one among [{}]".format(", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+                print(f"Error: No default configuration, please provide one among "
+                      f"[{','.join(Configuration.settings.arlas.keys())}]", file=sys.stderr)
                 exit(1)
         if Configuration.settings.arlas.get(config, None) is None:
-            print("Error: arlas configuration {} not found among [{}]".format(config, ", ".join(Configuration.settings.arlas.keys())), file=sys.stderr)
+            print(f"Error: arlas configuration {config} not found among "
+                  f"[{','.join(Configuration.settings.arlas.keys())}]", file=sys.stderr)
             exit(1)
         return config
 

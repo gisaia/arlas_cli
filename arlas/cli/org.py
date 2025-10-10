@@ -9,6 +9,13 @@ from arlas.cli.variables import variables
 org = typer.Typer()
 
 
+@org.callback()
+def configuration(config: str = typer.Option(default=None,
+                                             help=f"Name of the ARLAS configuration to use from your configuration file"
+                                                  f" ({variables['configuration_file']}).")):
+    variables["arlas"] = Configuration.solve_config(config)
+
+
 @org.command(help="List organisations", name="list", epilog=variables["help_epilog"])
 def list_organisations():
     config = variables["arlas"]
