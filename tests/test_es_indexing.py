@@ -3,17 +3,9 @@ import time
 from tests.conftest import run_cli_command, check_inferred_types
 
 
-def test_create_configuration():
+def test_create_configuration(configuration_parameters):
     """Test creating a new configuration."""
-    result = run_cli_command([
-        "confs", "create", "tests",
-        "--server", "http://localhost:9999/arlas",
-        "--persistence", "http://localhost:9997/arlas_persistence_server",
-        "--headers", "Content-Type:application/json",
-        "--elastic", "http://localhost:9200",
-        "--elastic-headers", "Content-Type:application/json",
-        "--allow-delete",
-    ])
+    result = run_cli_command(configuration_parameters)
     assert "tests" in result.stdout
 
 

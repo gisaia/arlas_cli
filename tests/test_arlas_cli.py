@@ -18,17 +18,9 @@ def test_configuration_login():
     result = run_cli_command(["confs", "default"])
     assert "cloud.arlas.io.support" in result.stdout, result.stderr
 
-def test_create_configuration():
+def test_create_configuration(configuration_parameters):
     """Test creating a new configuration."""
-    result = run_cli_command([
-        "confs", "create", "tests",
-        "--server", "http://localhost:9999/arlas",
-        "--persistence", "http://localhost:9997/arlas_persistence_server",
-        "--headers", "Content-Type:application/json",
-        "--elastic", "http://localhost:9200",
-        "--elastic-headers", "Content-Type:application/json",
-        "--allow-delete",
-    ])
+    result = run_cli_command(configuration_parameters)
     assert "tests" in result.stdout, result.stderr
 
 def test_set_default_configuration():
@@ -42,7 +34,7 @@ def test_check_configuration():
     result = run_cli_command(["confs", "check", "tests"])
     assert "ARLAS Server: ...  ok" in result.stdout, result.stderr
     assert "ARLAS Persistence: ...  ok" in result.stdout, result.stderr
-    assert "ARLAS IAM: ...  not ok" in result.stdout, result.stderr
+    assert "ARLAS IAM: ...  ok" in result.stdout, result.stderr
     assert "Elasticsearch: ...  ok" in result.stdout, result.stderr
 
 def test_add_and_retrieve_direct_mapping():
@@ -63,7 +55,7 @@ def test_infer_and_add_mapping():
         "--field-mapping", "track.timestamps.start:date-epoch_second",
         "--field-mapping", "track.timestamps.end:date-epoch_second",
         "--no-fulltext", "cargo_type",
-        "--push-on", "courses",
+        "--push-on", "org.com@courses",
     ])
     assert result.returncode == 0
     result = run_cli_command(["indices", "--config", "tests", "list"])
@@ -71,34 +63,34 @@ def test_infer_and_add_mapping():
 
 def test_describe_mapping():
     """Test describing the mapping from Elasticsearch."""
-    result = run_cli_command(["indices", "--config", "tests", "describe", "courses"])
+    result = run_cli_command(["indices", "--config", "tests", "describe", "org.com@courses"])
     assert "track.timestamps.center" in result.stdout
     assert "date" in result.stdout
 
 def test_add_data():
     """Test adding data to Elasticsearch."""
     result = run_cli_command([
-        "indices", "--config", "tests", "data", "courses",
+        "indices", "--config", "tests", "data", "org.com@courses",
         "tests/sample.json", "tests/sample.json",
     ])
     assert result.returncode == 0, result.stderr
     time.sleep(2)  # Wait for data to be indexed
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "courses" in result.stdout and "200" in result.stdout, result.stderr
+    assert "org.com@courses" in result.stdout and "200" in result.stdout, result.stderr
 
 def test_clone_index():
     """Test cloning an index."""
-    run_cli_command(["indices", "--config", "tests", "clone", "courses", "courses2"])
+    run_cli_command(["indices", "--config", "tests", "clone", "org.com@courses", "org.com@courses2"])
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "courses2" in result.stdout, result.stderr
+    assert "org.com@courses2" in result.stdout, result.stderr
     # Clean up
-    run_cli_command(["indices", "--config", "tests", "delete", "courses2"], input_data="yes\n")
+    run_cli_command(["indices", "--config", "tests", "delete", "org.com@courses2"], input_data="yes\n")
 
 def test_add_collection():
     """Test adding a collection."""
     result = run_cli_command([
         "collections", "--config", "tests", "create", "courses",
-        "--index", "courses",
+        "--index", "org.com@courses",
         "--display-name", "courses",
         "--id-path", "track.id",
         "--centroid-path", "track.location",
@@ -145,11 +137,13 @@ def test_delete_collection():
 
 def test_delete_index():
     """Test deleting an index."""
-    result = run_cli_command(["indices", "--config", "tests", "delete", "courses"], input_data="yes\n")
+    result = run_cli_command(["indices", "--config", "tests", "delete", "org.com@courses"], input_data="yes\n")
     assert result.returncode == 0, result.stderr
     time.sleep(2)
     result = run_cli_command(["indices", "--config", "tests", "list"])
     assert "courses" not in result.stdout, result.stderr
+    result = run_cli_command(["indices", "--config", "tests", "delete", "direct_mapping_index"], input_data="yes\n")
+    assert result.returncode == 0, result.stderr
 
 def test_list_configurations():
     """Test listing configurations."""
