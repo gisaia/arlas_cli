@@ -26,7 +26,7 @@ def clean_str(str_value: str) -> str:
     return clean_str_value
 
 
-def is_float(string):
+def is_float(string: str) -> bool:
     """
     Check if a string can be converted to a float.
 
@@ -35,6 +35,23 @@ def is_float(string):
 
     Returns:
         bool: True if the string is a valid float, False otherwise.
+    """
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
+
+def is_int(string: str) -> bool:
+    """
+    Check if a string can be converted to an int.
+
+    Args:
+        string (str): The string to check.
+
+    Returns:
+        bool: True if the string is a valid int, False otherwise.
     """
     try:
         float(string)

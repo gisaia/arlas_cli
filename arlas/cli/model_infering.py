@@ -89,8 +89,9 @@ def __type_tree__(path: str, tree: dict, forced_types: dict[str, str]):
     else:
         raise Exception("Unexpected state")
 
+
 # Type a node. Here is the "guessing"
-def __type_node__(items: list | dict, name: str = None) -> str:
+def __type_node__(items: list | dict, name: str = "") -> str:
     """
     Infer the type of a node based on its values.
 
@@ -106,9 +107,9 @@ def __type_node__(items: list | dict, name: str = None) -> str:
     """
     if isinstance(items, dict):
         # Handle geojson dict and nested fields (set as 'object' here)
-        if "type" in items and "coordinates" in items and "__items__" in items.get("type"):
+        if "type" in items and "coordinates" in items and "__items__" in items.get("type", []):
             # looks like geojson ...
-            types = items.get("type").get("__items__")
+            types = items.get("type", {}).get("__items__", [])
             if all([t.lower() in ["point", "multipoint"] for t in types]):
                 return "geo_point"
             if all([t.lower() in ["point", "multipoint", "linestring", "multistring", "polygon", "multipolygon",
@@ -134,8 +135,9 @@ def __type_node__(items: list | dict, name: str = None) -> str:
         elif types_set == {"double"} or types_set == {"double", "long"}:
             return "double"
         elif types_set == {"long"}:
-            if name and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or name.find(
-                    "start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or name.find("end_") >= 0):
+            if len(name) > 0 and (name.find("timestamp") >= 0 or name.find("_date") >= 0 or name.find("date_") >= 0 or
+                                  name.find("start_") >= 0 or name.find("_start") >= 0 or name.find("_end") >= 0 or
+                                  name.find("end_") >= 0):
                 # all between year 1950 and 2100, in second or millisecond
                 if all((x > 631152000 and x < 4102444800) for x in items):
                     return "date-epoch_second"
@@ -199,7 +201,7 @@ def __type_value__(field_value, field_name: str) -> str:
                 return "geo_shape"
             except Exception:
                 ...
-        if field_name and field_name.find("geohash") >= 0:
+        if len(field_name) > 0 and field_name.find("geohash") >= 0:
             return "geo_point"
         if ("coordinates" in field_value) and ("type" in field_value):
             # Looks like geojson as str
@@ -218,8 +220,8 @@ def __type_value__(field_value, field_name: str) -> str:
         if len(lat_lon) == 2 and is_float(lat_lon[0].strip()) and is_float(lat_lon[1].strip()):
             return "geo_point"
         # Date objects ...
-        if field_name and (field_name.find("timestamp") >= 0 or field_name.find("date") >= 0 or
-                           field_name.find("start") >= 0 or field_name.find("end") >= 0):
+        if len(field_name) > 0 and (field_name.find("timestamp") >= 0 or field_name.find("date") >= 0 or
+                                    field_name.find("start") >= 0 or field_name.find("end") >= 0):
             try:
                 date_parser.parse(field_value)
                 return "date"
@@ -300,7 +302,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
         dict: The Elasticsearch mapping.
     """
     # Read file
-    data_generator = get_data_generator(file=file, file_type=file_type, max_lines=nb_lines)
+    data_generator = get_data_generator(file_path=file, file_type=file_type, max_lines=nb_lines)
 
     # Parse the file first lines values
     tree = {}
@@ -329,6 +331,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
             "properties": mapping
         }
     }
+
 
 def read_override_mapping_fields(field_mapping: list[str]) -> dict[str, str]:
     """Parse a list of field:mapping overrides into a dictionary.

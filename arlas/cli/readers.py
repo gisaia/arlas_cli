@@ -1,29 +1,28 @@
 import csv
 import json
-import re
 import sys
 from typing import Optional, Iterator, Dict, Any
 
-from arlas.cli.utils import clean_str
+from arlas.cli.utils import clean_str, is_int, is_float
 
 
 def read_ndjson_generator(
     file_path: str,
-    max_lines: Optional[int] = None
+    max_lines: int = -1
 ) -> Iterator[Dict[str, Any]]:
     """
     Reads a NDJSON file line by line. Handles each line as a separate JSON object.
 
     Args:
         file_path (str): Path to the NDJSON file.
-        max_lines (int, optional): Maximum number of lines to read. Defaults to None (read all).
+        max_lines (int, optional): Maximum number of lines to read. Defaults to -1 (read all).
 
     Yields:
         Iterator[Dict[str, Any]]: Each parsed JSON object from the file.
     """
     with open(file_path, "rb") as f:
         for i, line in enumerate(f, 1):
-            if max_lines and i > max_lines:
+            if i > max_lines > -1:
                 break
             line = line.strip()
             if not line:  # Skip empty lines
@@ -38,7 +37,7 @@ def read_ndjson_generator(
 
 def read_csv_generator(
     file_path: str,
-    max_lines: Optional[int] = None,
+    max_lines: int = -1,
     delimiter: Optional[str] = None,
     quotechar: Optional[str] = None,
     encoding: str = 'utf-8'
@@ -50,7 +49,7 @@ def read_csv_generator(
     Args:
         file_path (str): Path to the CSV file.
         max_lines (int, optional): Maximum number of lines to read.
-                                None means read all lines. Defaults to None.
+                                   -1 means read all lines. Defaults to -1.
         delimiter (str, optional): Delimiter character. Defaults to None.
         quotechar (str, optional): Character used for quoting fields. Defaults to None.
         encoding (str, optional): File encoding. Defaults to 'utf-8'.
@@ -72,7 +71,7 @@ def read_csv_generator(
             dialect = csv.Sniffer().sniff(sample, delimiters=delimiter)
             if quotechar is not None:
                 dialect.quotechar = quotechar
-            f.seek(0) # Get back to file beginning
+            f.seek(0)  # Get back to file beginning
 
             # Read file
             reader = csv.DictReader(f, skipinitialspace=True, dialect=dialect)
@@ -89,7 +88,7 @@ def read_csv_generator(
             line_count = 0
             for row in reader:
                 line_count += 1
-                if max_lines and line_count > max_lines:
+                if line_count > max_lines > -1:
                     break
 
                 # Convert empty strings to None and try to convert types
@@ -99,10 +98,10 @@ def read_csv_generator(
                         pass
                     elif isinstance(value, str):
                         # Try to convert to int
-                        if value.lstrip('-').isdigit():
+                        if is_int(value):
                             processed_row[key] = int(value)
                         # Try to convert to float
-                        elif re.match(r'^-?\d+\.\d+$', value):
+                        elif is_float(value):
                             processed_row[key] = float(value)
                         # Try to convert to boolean
                         elif value.lower() in ('true', 'false'):
@@ -120,7 +119,7 @@ def read_csv_generator(
         raise ValueError(f"Error reading CSV file: {e}")
 
 
-def get_data_generator(file: str, file_type: str = None, max_lines: int = None):
+def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1):
     """
     Returns a generator to read data from a file based on its type.
 
@@ -129,7 +128,7 @@ def get_data_generator(file: str, file_type: str = None, max_lines: int = None):
     for large files.
 
     Args:
-        file (str):
+        file_path (str):
             Path to the input file.
 
         file_type (str):
@@ -138,7 +137,7 @@ def get_data_generator(file: str, file_type: str = None, max_lines: int = None):
 
         max_lines (int, optional):
             Maximum number of lines to read from the file.
-            If None, reads all lines in the file. Defaults to None.
+            If -1, reads all lines in the file. Defaults to -1.
 
     Returns:
         Iterator[dict]:
@@ -151,12 +150,12 @@ def get_data_generator(file: str, file_type: str = None, max_lines: int = None):
         FileNotFoundError:
             If the specified file does not exist.
     """
-    if file_type == "json" or file.endswith(".json") or file.endswith(".ndjson"):
-        data_generator = read_ndjson_generator(file_path=file, max_lines=max_lines)
-    elif file_type == "csv" or file.endswith(".csv"):
-        data_generator = read_csv_generator(file_path=file, max_lines=max_lines, delimiter=",")
+    if file_type == "json" or file_path.endswith(".json") or file_path.endswith(".ndjson"):
+        data_generator = read_ndjson_generator(file_path=file_path, max_lines=max_lines)
+    elif file_type == "csv" or file_path.endswith(".csv"):
+        data_generator = read_csv_generator(file_path=file_path, max_lines=max_lines, delimiter=",")
     else:
-        raise TypeError(f"Unknow type for file: '{file}'")
+        raise TypeError(f"Unknow type for file: '{file_path}'")
     return data_generator
 
 

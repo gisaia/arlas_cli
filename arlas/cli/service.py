@@ -553,7 +553,7 @@ class Service:
         bulk = []
 
         # Read data
-        data_generator = get_data_generator(file=file_path)
+        data_generator = get_data_generator(file_path=file_path)
 
         with alive_bar(count) as bar:
             for line in data_generator:
