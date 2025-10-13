@@ -58,3 +58,21 @@ def is_int(string: str) -> bool:
         return True
     except ValueError:
         return False
+
+
+def is_valid_uuid(uuid: str) -> bool:
+    """
+    Check if a string is a valid UUID.
+
+    Args:
+        uuid (str): The string to check.
+
+    Returns:
+        bool: True if the string is a valid UUID, False otherwise.
+    """
+    # Regular expression for a generic UUID
+    uuid_regex = re.compile(
+        r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+        re.IGNORECASE
+    )
+    return bool(uuid_regex.match(uuid))
