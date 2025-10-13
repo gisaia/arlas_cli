@@ -10,7 +10,7 @@ class Resource(BaseModel):
     location: str = Field(default=None, title="file or http location")
     headers: dict[str, str] | None = Field(default={}, title="List of headers, if needed, for http(s) requests")
     login: str | None = Field(default=None, title="user")
-    password: str | None = Field(default=None, title="pasword")
+    password: str | None = Field(default=None, title="password")
 
 
 class AuthorizationService(BaseModel):
@@ -40,7 +40,7 @@ class Configuration:
     settings: Settings = None
 
     @staticmethod
-    def solve_config(config: str, quiet: bool = False):
+    def solve_config(config: str, quiet: bool = False) -> str:
         if not config:
             if Configuration.settings.default:
                 if not quiet:
@@ -62,10 +62,10 @@ class Configuration:
             yaml.dump(Configuration.settings.model_dump(), file)
 
     @staticmethod
-    def init(configuration_file: str) -> Settings:
+    def init(configuration_file: str):
         with open(configuration_file, 'r') as file:
             data = yaml.safe_load(file)
-            Configuration.settings = Settings.parse_obj(data)
+            Configuration.settings = Settings.model_validate(data)
 
 
 def __short_titles(o):
