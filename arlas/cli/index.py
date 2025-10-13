@@ -6,7 +6,7 @@ from prettytable import PrettyTable
 
 from arlas.cli.settings import Configuration, Resource
 from arlas.cli.service import Service
-from arlas.cli.model_infering import make_mapping
+from arlas.cli.model_infering import make_mapping, read_override_mapping_fields
 from arlas.cli.variables import variables
 
 indices = typer.Typer()
@@ -128,28 +128,18 @@ def mapping(
     if not os.path.exists(file):
         print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
         exit(1)
-    types = {}
-    for fm in field_mapping:
-        tmp = fm.split(":")
-        if len(tmp) == 2:
-            types[tmp[0]] = tmp[1]
-        else:
-            if tmp[1].startswith("date-"):
-                # Dates can have format patterns containing ':'
-                tmp = fm.split(":", 1)
-                types[tmp[0]] = tmp[1]
-            else:
-                print(f"Error: invalid field_mapping \"{fm}\". The format is \"field:type\" like \"fragment.location:geo_point\"", file=sys.stderr)
-                exit(1)
-    mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
+
+    types = read_override_mapping_fields(field_mapping=field_mapping)
+
+    es_mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
     if push_on and config:
         Service.create_index(
             config,
             index=push_on,
-            mapping=mapping)
-        print("Index {} created on {}".format(push_on, config))
+            mapping=es_mapping)
+        print("Index {} created on {}".format(push_on, config))
     else:
-        print(json.dumps(mapping, indent=2))
+        print(json.dumps(es_mapping, indent=2))
 
 
 @indices.command(help="Delete an index", epilog=variables["help_epilog"])

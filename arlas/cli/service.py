@@ -5,6 +5,8 @@ import sys
 import urllib.parse
 from alive_progress import alive_bar
 import requests
+
+from arlas.cli.readers import get_data_generator
 from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
 from datetime import datetime
 from urllib.parse import urlencode
@@ -549,30 +551,35 @@ class Service:
         line_number = 0
         line_in_bulk = 0
         bulk = []
-        with open(file_path, mode="r", encoding="utf-8") as f:
-            with alive_bar(count) as bar:
-                for line in f:
-                    line_number = line_number + 1
-                    line_in_bulk = line_in_bulk + 1
-                    bulk.append({
-                        "index": {
-                            "_index": index
-                        }
-                    })
-                    bulk.append(json.loads(line))
-                    if line_in_bulk == bulk_size:
-                        try:
-                            Service.__index_bulk__(arlas, index, bulk)
-                        except RequestException as e:
-                            print("Error on bulk insert between line {} and {} with code {}: {}".format(line_number, line_number - bulk_size, e.code, e.message))
-                        bulk = []
-                        line_in_bulk = 0
-                    bar()
+
+        # Read data
+        data_generator = get_data_generator(file_path=file_path)
+
+        with alive_bar(count) as bar:
+            for line in data_generator:
+                line_number = line_number + 1
+                line_in_bulk = line_in_bulk + 1
+                bulk.append({
+                    "index": {
+                        "_index": index
+                    }
+                })
+                bulk.append(line)
+                if line_in_bulk == bulk_size:
+                    try:
+                        Service.__index_bulk__(arlas, index, bulk)
+                    except RequestException as e:
+                        print(f"Error on bulk insert between line {line_number} and {line_number - bulk_size} "
+                              f"with code {e.code}: {e.message}")
+                    bulk = []
+                    line_in_bulk = 0
+                bar()
         if len(bulk) > 0:
             try:
                 Service.__index_bulk__(arlas, index, bulk)
             except RequestException as e:
-                print("Error on bulk insert between line {} and {} with code {}: {}".format(line_number, line_number - bulk_size, e.code, e.message))
+                print(f"Error on bulk insert between line {line_number} and {line_number - bulk_size} "
+                      f"with code {e.code}: {e.message}")
 
     @staticmethod
     def __get_fields__(origin: list[str], properties: dict[str:dict]):
