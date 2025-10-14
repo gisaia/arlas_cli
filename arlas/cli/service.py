@@ -552,8 +552,10 @@ class Service:
         line_in_bulk = 0
         bulk = []
 
+        # Get index mapping
+        field_mapping = dict(Service.describe_index(arlas=arlas, index=index))
         # Read data
-        data_generator = get_data_generator(file_path=file_path)
+        data_generator = get_data_generator(file_path=file_path, fields_mapping=field_mapping)
 
         with alive_bar(count) as bar:
             for line in data_generator:
