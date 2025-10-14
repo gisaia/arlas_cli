@@ -6,7 +6,7 @@ from tests.conftest import run_cli_command, check_inferred_types
 def test_create_configuration(configuration_parameters):
     """Test creating a new configuration."""
     result = run_cli_command(configuration_parameters)
-    assert "tests" in result.stdout
+    assert "tests" in result.stdout, result.stderr
 
 
 def test_infer_data_json(expected_mapping):
@@ -36,15 +36,27 @@ def test_infer_and_add_mapping_csv():
         "--nb-lines", "5",
         "--push-on", "org.com@data_csv"
     ])
-    assert result.returncode == 0
+    assert result.returncode == 0, result.stderr
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@data_csv" in result.stdout
+    assert "org.com@data_csv" in result.stdout, result.stderr
 
 
-def test_delete_index():
-    """Test deleting an index."""
+def test_add_data_csv():
+    """Test adding csv data to Elasticsearch."""
+    result = run_cli_command([
+        "indices", "--config", "tests", "data", "org.com@data_csv",
+        "tests/data/test_data.csv"
+    ])
+    assert result.returncode == 0, result.stderr
+    time.sleep(2)  # Wait for data to be indexed
+    result = run_cli_command(["indices", "--config", "tests", "list"])
+    assert "org.com@data_csv" in result.stdout and "| 5" in result.stdout, result.stderr
+
+
+def test_clean_csv_index():
+    # Clean csv index
     result = run_cli_command(["indices", "--config", "tests", "delete", "org.com@data_csv"], input_data="yes\n")
-    assert result.returncode == 0
+    assert result.returncode == 0, result.stderr
     time.sleep(2)
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@data_csv" not in result.stdout
+    assert "org.com@data_csv" not in result.stdout, result.stderr
