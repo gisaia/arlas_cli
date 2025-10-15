@@ -1,6 +1,6 @@
 import time
 
-from tests.conftest import run_cli_command
+from tests.conftest import run_cli_command, check_inferred_types
 
 
 # --- Tests ---
@@ -47,47 +47,89 @@ def test_add_and_retrieve_direct_mapping():
     result = run_cli_command(["indices", "--config", "tests", "list"])
     assert "direct_mapping_index" in result.stdout, result.stderr
 
-def test_infer_and_add_mapping():
+def test_infer_data_ndjson(expected_mapping):
+    """Test inferring a mapping on Elasticsearch."""
+    result = run_cli_command([
+        "indices", "--config", "tests", "mapping", "tests/data/test_data.ndjson",
+        "--nb-lines", "5"
+    ])
+    expected_mapping.append(("nested_field.attribute1", "keyword"))
+    expected_mapping.append(("nested_field.attribute2", "long"))
+    check_inferred_types(result_output=result.stdout, expected_mapping=expected_mapping, test_name="ndjson data")
+
+def test_infer_and_add_mapping_ndjson():
     """Test inferring and adding a mapping on Elasticsearch."""
     result = run_cli_command([
         "indices", "--config", "tests", "mapping", "tests/data/test_data.ndjson",
         "--nb-lines", "5",
-        "--push-on", "org.com@sample_test"
+        "--push-on", "org.com@test_ndjson"
     ])
     assert result.returncode == 0
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@sample_test" in result.stdout, result.stderr
+    assert "org.com@test_ndjson" in result.stdout, result.stderr
 
 def test_describe_mapping():
     """Test describing the mapping from Elasticsearch."""
-    result = run_cli_command(["indices", "--config", "tests", "describe", "org.com@sample_test"])
+    result = run_cli_command(["indices", "--config", "tests", "describe", "org.com@test_ndjson"])
     assert "point_geometry_wkt" in result.stdout
     assert "name" in result.stdout
 
-def test_add_data():
+def test_add_data_ndjson():
     """Test adding data to Elasticsearch."""
     result = run_cli_command([
-        "indices", "--config", "tests", "data", "org.com@sample_test",
+        "indices", "--config", "tests", "data", "org.com@test_ndjson",
         "tests/data/test_data.ndjson"
     ])
     assert result.returncode == 0, result.stderr
     time.sleep(2)  # Wait for data to be indexed
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@sample_test" in result.stdout and "| 5" in result.stdout, result.stderr
+    assert "org.com@test_ndjson" in result.stdout and "| 5" in result.stdout, result.stderr
+
+def test_infer_data_csv(expected_mapping):
+    """Test inferring a mapping on Elasticsearch."""
+    result = run_cli_command([
+        "indices", "--config", "tests", "mapping", "tests/data/test_data.csv",
+        "--nb-lines", "5"
+    ])
+    check_inferred_types(result_output=result.stdout, expected_mapping=expected_mapping, test_name="csv data")
+
+
+def test_infer_and_add_mapping_csv():
+    """Test inferring and adding a mapping on Elasticsearch."""
+    result = run_cli_command([
+        "indices", "--config", "tests", "mapping", "tests/data/test_data.csv",
+        "--nb-lines", "5",
+        "--push-on", "org.com@data_csv"
+    ])
+    assert result.returncode == 0, result.stderr
+    result = run_cli_command(["indices", "--config", "tests", "list"])
+    assert "org.com@data_csv" in result.stdout, result.stderr
+
+
+def test_add_data_csv():
+    """Test adding csv data to Elasticsearch."""
+    result = run_cli_command([
+        "indices", "--config", "tests", "data", "org.com@data_csv",
+        "tests/data/test_data.csv"
+    ])
+    assert result.returncode == 0, result.stderr
+    time.sleep(2)  # Wait for data to be indexed
+    result = run_cli_command(["indices", "--config", "tests", "list"])
+    assert "org.com@data_csv" in result.stdout and "| 5" in result.stdout, result.stderr
 
 def test_clone_index():
     """Test cloning an index."""
-    run_cli_command(["indices", "--config", "tests", "clone", "org.com@sample_test", "org.com@sample_test2"])
+    run_cli_command(["indices", "--config", "tests", "clone", "org.com@test_ndjson", "org.com@test_ndjson2"])
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@sample_test2" in result.stdout, result.stderr
+    assert "org.com@test_ndjson2" in result.stdout, result.stderr
     # Clean up
-    run_cli_command(["indices", "--config", "tests", "delete", "org.com@sample_test2"], input_data="yes\n")
+    run_cli_command(["indices", "--config", "tests", "delete", "org.com@test_ndjson2"], input_data="yes\n")
 
 def test_add_collection():
     """Test adding a collection."""
     result = run_cli_command([
         "collections", "--config", "tests", "create", "sample_test_collection",
-        "--index", "org.com@sample_test",
+        "--index", "org.com@test_ndjson",
         "--display-name", "Sample Test Collection",
         "--id-path", "id",
         "--centroid-path", "point_geometry",
@@ -134,12 +176,16 @@ def test_delete_collection():
 
 def test_delete_index():
     """Test deleting an index."""
-    result = run_cli_command(["indices", "--config", "tests", "delete", "org.com@sample_test"], input_data="yes\n")
+    result = run_cli_command(["indices", "--config", "tests", "delete", "org.com@test_ndjson"], input_data="yes\n")
     assert result.returncode == 0, result.stderr
     time.sleep(2)
     result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@sample_test" not in result.stdout, result.stderr
+    assert "org.com@test_ndjson" not in result.stdout, result.stderr
+    # Clean direct mapping index
     result = run_cli_command(["indices", "--config", "tests", "delete", "direct_mapping_index"], input_data="yes\n")
+    assert result.returncode == 0, result.stderr
+    # Clean csv index
+    result = run_cli_command(["indices", "--config", "tests", "delete", "org.com@data_csv"], input_data="yes\n")
     assert result.returncode == 0, result.stderr
 
 def test_list_configurations():

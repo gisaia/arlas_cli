@@ -40,7 +40,8 @@ def read_csv_generator(
     max_lines: int = -1,
     delimiter: Optional[str] = None,
     quotechar: Optional[str] = None,
-    encoding: str = 'utf-8'
+    encoding: str = 'utf-8',
+    fields_mapping: dict = {}
 ) -> Iterator[Dict[str, Any]]:
     """
     Reads a CSV file with headers line by line with efficient memory usage.
@@ -53,6 +54,7 @@ def read_csv_generator(
         delimiter (str, optional): Delimiter character. Defaults to None.
         quotechar (str, optional): Character used for quoting fields. Defaults to None.
         encoding (str, optional): File encoding. Defaults to 'utf-8'.
+        fields_mapping (dict, optional): ES fields mapping types
 
     Yields:
         Iterator[Dict[str, Any]]: Each row from the CSV file as a dictionary.
@@ -96,21 +98,43 @@ def read_csv_generator(
                 for key, value in row.items():
                     if value == '':
                         pass
-                    elif isinstance(value, str):
-                        # Try to convert to int
-                        if is_int(value):
+                    if len(fields_mapping) > 0:
+                        # Use elastic mapping types
+                        if fields_mapping[key] == 'long':
                             processed_row[key] = int(value)
-                        # Try to convert to float
-                        elif is_float(value):
+                        elif fields_mapping[key] == 'double':
                             processed_row[key] = float(value)
-                        # Try to convert to boolean
-                        elif value.lower() in ('true', 'false'):
+                        elif fields_mapping[key] in ["geo_shape", "geo_point"]:
+                            if value.strip().startswith('{') and value.strip().endswith('}'):
+                                try:
+                                    geom = json.loads(value)
+                                    if not ("type" in geom and "coordinates" in geom):
+                                        print(f"Error: Missing geojson keys for field '{key}': {value}")
+                                    else:
+                                        processed_row[key] = geom
+                                except json.JSONDecodeError:
+                                    print(f"Error: Invalid JSON for field '{key}': {value}")
+                        elif fields_mapping[key] == 'boolean':
                             processed_row[key] = value.lower() == 'true'
                         else:
                             processed_row[key] = value
-                    else:
-                        processed_row[key] = value
 
+                    else:
+                        # Try type conversions
+                        if isinstance(value, str):
+                            # Try to convert to int
+                            if is_int(value):
+                                processed_row[key] = int(value)
+                            # Try to convert to float
+                            elif is_float(value):
+                                processed_row[key] = float(value)
+                            # Try to convert to boolean
+                            elif value.lower() in ('true', 'false'):
+                                processed_row[key] = value.lower() == 'true'
+                            else:
+                                processed_row[key] = value
+                        else:
+                            processed_row[key] = value
                 yield processed_row
 
     except FileNotFoundError:
@@ -119,7 +143,7 @@ def read_csv_generator(
         raise ValueError(f"Error reading CSV file: {e}")
 
 
-def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1):
+def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1, fields_mapping: dict = {}):
     """
     Returns a generator to read data from a file based on its type.
 
@@ -139,6 +163,9 @@ def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1)
             Maximum number of lines to read from the file.
             If -1, reads all lines in the file. Defaults to -1.
 
+        fields_mapping (dict, optional):
+            ES fields mapping types
+
     Returns:
         Iterator[dict]:
             A generator that yields one document at a time from the file.
@@ -153,7 +180,8 @@ def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1)
     if file_type == "json" or file_path.endswith(".json") or file_path.endswith(".ndjson"):
         data_generator = read_ndjson_generator(file_path=file_path, max_lines=max_lines)
     elif file_type == "csv" or file_path.endswith(".csv"):
-        data_generator = read_csv_generator(file_path=file_path, max_lines=max_lines, delimiter=",")
+        data_generator = read_csv_generator(file_path=file_path, max_lines=max_lines, delimiter=",",
+                                            fields_mapping=fields_mapping)
     else:
         raise TypeError(f"Unknow type for file: '{file_path}'")
     return data_generator

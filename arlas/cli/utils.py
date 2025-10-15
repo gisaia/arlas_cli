@@ -54,7 +54,7 @@ def is_int(string: str) -> bool:
         bool: True if the string is a valid int, False otherwise.
     """
     try:
-        float(string)
+        int(string)
         return True
     except ValueError:
         return False

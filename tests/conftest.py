@@ -67,7 +67,7 @@ def configuration_parameters() -> list:
         "--auth-arlas-iam"
     ]
 
-def check_inferred_types(result_output, expected_mapping, test_name):
+def check_inferred_types(result_output: str, expected_mapping: list[tuple[str, str]], test_name: str):
     errors = []
     for field_name, reference_field_type in expected_mapping:
         pattern = rf"-->{field_name}:\s*([^\n]+)"
