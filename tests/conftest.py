@@ -46,27 +46,6 @@ def expected_mapping() -> List[Tuple[str, str]]:
         ('rating', 'double')
     ]
 
-@pytest.fixture
-def configuration_parameters() -> list:
-    return [
-        "confs", "create", "tests",
-        "--server", "https://localhost/arlas",
-        "--headers", "Content-Type:application/json",
-        "--persistence", "https://localhost/persist",
-        "--persistence-headers", "Content-Type:application/json",
-        "--elastic", "https://localhost:9200",
-        "--elastic-login", "elastic",
-        "--elastic-password", "elastic",
-        "--elastic-headers", "Content-Type:application/json",
-        "--allow-delete",
-        "--auth-token-url", "https://localhost/arlas_iam_server/session",
-        "--auth-headers", "Content-Type:application/json",
-        "--auth-login", "user@org.com",
-        "--auth-password", "secret",
-        "--auth-org", "org.com",
-        "--auth-arlas-iam"
-    ]
-
 def check_inferred_types(result_output: str, expected_mapping: list[tuple[str, str]], test_name: str):
     errors = []
     for field_name, reference_field_type in expected_mapping:
