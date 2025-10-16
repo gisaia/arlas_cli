@@ -1,17 +1,9 @@
 import typer
 
 from arlas.cli.service import Service
-from arlas.cli.settings import Configuration
 from arlas.cli.variables import variables
 
 user = typer.Typer()
-
-
-@user.callback()
-def configuration(config: str = typer.Option(default=None,
-                                             help=f"Name of the ARLAS configuration to use from your configuration file"
-                                                  f" ({variables['configuration_file']}).")):
-    variables["arlas"] = Configuration.solve_config(config)
 
 
 @user.command(help="Create user", name="add", epilog=variables["help_epilog"])
