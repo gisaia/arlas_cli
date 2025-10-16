@@ -44,7 +44,7 @@ class Configuration:
         if not config:
             if Configuration.settings.default:
                 if not quiet:
-                    print(f"Using default configuration {Configuration.settings.default}")
+                    print(f"Using default configuration '{Configuration.settings.default}'")
                 return Configuration.settings.default
             else:
                 print(f"Error: No default configuration, please provide one among "
@@ -54,6 +54,8 @@ class Configuration:
             print(f"Error: arlas configuration {config} not found among "
                   f"[{','.join(Configuration.settings.arlas.keys())}]", file=sys.stderr)
             exit(1)
+        if not quiet:
+            print(f"Using configuration '{config}'")
         return config
 
     @staticmethod
