@@ -29,14 +29,14 @@ def create_organisation(organisation: str = typer.Argument(default="", help="Org
 
 
 @org.command(help="Delete the organisation", name="delete", epilog=variables["help_epilog"])
-def delete_organisation(org_id: str = typer.Argument(help="Organisation's identifier")):
+def delete_organisation(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.delete_organisation(config, org_uuid).get("message"))
 
 
 @org.command(help="List the collections of the organisation", name="collections", epilog=variables["help_epilog"])
-def collections(org_id: str = typer.Argument(help="Organisation's identifier")):
+def collections(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
     organisations = Service.list_organisation_collections(config, org_uuid)
@@ -47,7 +47,7 @@ def collections(org_id: str = typer.Argument(help="Organisation's identifier")):
 
 
 @org.command(help="List the users of the organisation", name="users", epilog=variables["help_epilog"])
-def users(org_id: str = typer.Argument(help="Organisation's identifier")):
+def users(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
     users = Service.list_organisation_users(config, org_uuid)
@@ -58,7 +58,7 @@ def users(org_id: str = typer.Argument(help="Organisation's identifier")):
 
 @org.command(help="Add a user to the organisation, and optionally within groups", name="add_user",
              epilog=variables["help_epilog"])
-def add_user(org_id: str = typer.Argument(help="Organisation's identifier"),
+def add_user(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
              email: str = typer.Argument(help="User's email"),
              group: list[str] = typer.Option([], help="Group identifier")):
     config = variables["arlas"]
@@ -67,7 +67,7 @@ def add_user(org_id: str = typer.Argument(help="Organisation's identifier"),
 
 
 @org.command(help="Remove the user from the organisation", name="delete_user", epilog=variables["help_epilog"])
-def delete_user(org_id: str = typer.Argument(help="Organisation's identifier"),
+def delete_user(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                 user_id: str = typer.Argument(help="User ID")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
@@ -75,7 +75,7 @@ def delete_user(org_id: str = typer.Argument(help="Organisation's identifier"),
 
 
 @org.command(help="List the groups of the organisation", name="groups", epilog=variables["help_epilog"])
-def groups(org_id: str = typer.Argument(help="Organisation's identifier")):
+def groups(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
     tab = PrettyTable(["id", "name", "description", "is technical", "type"], sortby="name", align="l")
@@ -87,7 +87,7 @@ def groups(org_id: str = typer.Argument(help="Organisation's identifier")):
 
 
 @org.command(help="List the permissions of the organisation", name="permissions", epilog=variables["help_epilog"])
-def permissions(org_id: str = typer.Argument(help="Organisation's identifier")):
+def permissions(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
     groups = Service.list_organisation_permissions(config, org_uuid)
@@ -97,7 +97,7 @@ def permissions(org_id: str = typer.Argument(help="Organisation's identifier")):
 
 
 @org.command(help="Add a group to the organisation", name="add_group", epilog=variables["help_epilog"])
-def add_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+def add_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
               name: str = typer.Argument(help="Group name"),
               description: str = typer.Argument(help="Group description")):
     config = variables["arlas"]
@@ -106,7 +106,7 @@ def add_group(org_id: str = typer.Argument(help="Organisation's identifier"),
 
 
 @org.command(help="Remove the group from the organisation", name="delete_group", epilog=variables["help_epilog"])
-def delete_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+def delete_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                  id: str = typer.Argument(help="Group ID")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
@@ -114,7 +114,7 @@ def delete_group(org_id: str = typer.Argument(help="Organisation's identifier"),
 
 
 @org.command(help="Add a permission to the organisation", name="add_permission", epilog=variables["help_epilog"])
-def add_permission(org_id: str = typer.Argument(help="Organisation's identifier"),
+def add_permission(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                    value: str = typer.Argument(help="Permission value"),
                    description: str = typer.Argument(help="Permission description")):
     config = variables["arlas"]
@@ -124,7 +124,7 @@ def add_permission(org_id: str = typer.Argument(help="Organisation's identifier"
 
 @org.command(help="Remove the permission from the organisation", name="delete_permission",
              epilog=variables["help_epilog"])
-def delete_permission(org_id: str = typer.Argument(help="Organisation's identifier"),
+def delete_permission(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                       id: str = typer.Argument(help="Permission ID")):
     config = variables["arlas"]
     org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
@@ -133,7 +133,7 @@ def delete_permission(org_id: str = typer.Argument(help="Organisation's identifi
 
 @org.command(help="Add a permission to a group within the organisation", name="add_permission_to_group",
              epilog=variables["help_epilog"])
-def add_permission_to_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+def add_permission_to_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                             group_id: str = typer.Argument(help="Group identifier"),
                             permission_id: str = typer.Argument(help="Permission identifier")):
     config = variables["arlas"]
@@ -143,7 +143,7 @@ def add_permission_to_group(org_id: str = typer.Argument(help="Organisation's id
 
 @org.command(help="Remove a permission to a group within the organisation", name="delete_permission_from_group",
              epilog=variables["help_epilog"])
-def delete_permission_from_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+def delete_permission_from_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                                  group_id: str = typer.Argument(help="Group identifier"),
                                  permission_id: str = typer.Argument(help="Permission identifier")):
     config = variables["arlas"]
@@ -153,7 +153,7 @@ def delete_permission_from_group(org_id: str = typer.Argument(help="Organisation
 
 @org.command(help="Add a user to a group within the organisation", name="add_user_to_group",
              epilog=variables["help_epilog"])
-def add_user_to_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+def add_user_to_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                       user_id: str = typer.Argument(help="User identifier"),
                       group_id: str = typer.Argument(help="Group identifier")):
     config = variables["arlas"]
@@ -162,7 +162,7 @@ def add_user_to_group(org_id: str = typer.Argument(help="Organisation's identifi
 
 
 @org.command(help="Remove a user from a group within the organisation", name="remove_user_from_group", epilog=variables["help_epilog"])
-def remove_user_from_group(org_id: str = typer.Argument(help="Organisation's identifier"),
+def remove_user_from_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                            user_id: str = typer.Argument(help="User identifier"),
                            group_id: str = typer.Argument(help="Group identifier")):
     config = variables["arlas"]
@@ -172,7 +172,7 @@ def remove_user_from_group(org_id: str = typer.Argument(help="Organisation's ide
 
 @org.command(help="Add and return an new API Key with permissions associated to provided groups. Use the key id and key secret with the arlas-api-key-id and arlas-api-key-secret headers.", name="add-apikey",
              epilog=variables["help_epilog"])
-def add_apikey(org_id: str = typer.Argument(help="Organisation's identifier"),
+def add_apikey(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                name: str = typer.Argument(help="API Key name"),
                user_id: str = typer.Option(help="User identifier", default=None),
                ttlInDays: int = typer.Option(help="Time To Live in days", default=365),
@@ -187,7 +187,7 @@ def add_apikey(org_id: str = typer.Argument(help="Organisation's identifier"),
 
 @org.command(help="Delete an API Key", name="delete-apikey",
              epilog=variables["help_epilog"])
-def delete_apikey(org_id: str = typer.Argument(help="Organisation's identifier"),
+def delete_apikey(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                   key_id: str = typer.Argument(help="API Key identifier"),
                   user_id: str = typer.Option(help="User identifier", default=None),
                   ):
