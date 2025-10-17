@@ -1,4 +1,4 @@
-
+import click
 import typer
 
 from arlas.cli.service import Service
@@ -9,10 +9,12 @@ iam = typer.Typer()
 
 
 @iam.callback()
-def configuration(config: str = typer.Option(default=None,
+def configuration(ctx: click.Context,
+                  config: str = typer.Option(default=None,
                                              help=f"Name of the ARLAS configuration to use from your configuration file"
                                                   f" ({variables['configuration_file']}).")):
-    variables["arlas"] = Configuration.solve_config(config, quiet=True)
+    quiet = ctx.invoked_subcommand in ["token"]
+    variables["arlas"] = Configuration.solve_config(config, quiet=quiet)
 
 
 @iam.command(help="Get ARLAS token", name="token", epilog=variables["help_epilog"])
