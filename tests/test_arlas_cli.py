@@ -18,8 +18,26 @@ def test_configuration_login():
     result = run_cli_command(["confs", "default"])
     assert "cloud.arlas.io.support" in result.stdout, result.stderr
 
-def test_create_configuration(configuration_parameters):
+def test_create_configuration():
     """Test creating a new configuration."""
+    configuration_parameters = [
+        "confs", "create", "tests",
+        "--server", "https://localhost/arlas",
+        "--headers", "Content-Type:application/json",
+        "--persistence", "https://localhost/persist",
+        "--persistence-headers", "Content-Type:application/json",
+        "--elastic", "https://localhost:9200",
+        "--elastic-login", "elastic",
+        "--elastic-password", "elastic",
+        "--elastic-headers", "Content-Type:application/json",
+        "--allow-delete",
+        "--auth-token-url", "https://localhost/arlas_iam_server/session",
+        "--auth-headers", "Content-Type:application/json",
+        "--auth-login", "user@org.com",
+        "--auth-password", "secret",
+        "--auth-org", "org.com",
+        "--auth-arlas-iam"
+    ]
     result = run_cli_command(configuration_parameters)
     assert "tests" in result.stdout, result.stderr
 

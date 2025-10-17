@@ -15,7 +15,9 @@ jobs:
         pip install -r requirements.txt
     - name: Start the stack
       run: scripts/start_stack.sh
-    - name: Run tests
+    - name: Run indices/collections tests
       run: pytest ./tests/test_arlas_cli.py -v
+    - name: Run iam tests
+      run: pytest ./tests/test_iam_orgs_users.py -v
     - name: Stop the stack
       run: scripts/stop_stack.sh

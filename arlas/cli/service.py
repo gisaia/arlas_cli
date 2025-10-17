@@ -3,13 +3,16 @@ import json
 import os
 import sys
 import urllib.parse
+from urllib.parse import urlencode
+from datetime import datetime
+
 from alive_progress import alive_bar
 import requests
+from prettytable import PrettyTable
 
 from arlas.cli.readers import get_data_generator
 from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
-from datetime import datetime
-from urllib.parse import urlencode
+from arlas.cli.utils import is_valid_uuid
 
 requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
@@ -765,3 +768,50 @@ class Service:
             print("Error: request to get token failed with status {}: {}".format(str(r.status_code), r.content), file=sys.stderr)
             print("   url: {}".format(auth.token_url.location), file=sys.stderr)
             exit(1)
+
+    @staticmethod
+    def get_organisation_uuid(org_id: str, arlas: str) -> str:
+        """
+        Retrieve the UUID of an organisation from its name or validate an existing UUID.
+
+        This function first checks if the provided `org_id` is a valid UUID. If it is, the UUID is
+        returned directly. If not, the function queries the ARLAS IAM service using the provided
+        `arlas` endpoint to find an organisation matching the given name. If found, its UUID is
+        returned. If no match is found, an error message is printed, the list of available
+        organisations is displayed, and the program exits with an error code.
+
+        Args:
+            org_id (str):
+                The organisation identifier. It can be either:
+                - A valid UUID (e.g., "8684d6d0-a466-4622-89e3-beda9daf7843").
+                - The name of the organisation (e.g., "my_org").
+            arlas (str):
+                Name of the ARLAS configuration to use.
+
+        Returns:
+            str:
+                The UUID of the organisation if found or validated. Example:
+                "8684d6d0-a466-4622-89e3-beda9daf7843".
+
+        Raises:
+            SystemExit:
+                Exits the program with status code 1 if the organisation is not found.
+                This occurs when:
+                - `org_id` is not a valid organisation UUID.
+                - `org_id` is not a valid organisation name
+        """
+        if is_valid_uuid(uuid=org_id):
+            return org_id
+        else:
+            # Get organisation list
+            orgs_info = Service.__arlas__(arlas, "organisations", service=Services.iam)
+            for organisation in orgs_info:
+                if organisation["name"] == org_id:
+                    return organisation["id"]
+
+        organisations = Service.list_organisations(arlas)
+        tab = PrettyTable(organisations[0], sortby="name", align="l")
+        tab.add_rows(organisations[1:])
+        print(f"Organisation '{org_id}' not found among:")
+        print(tab)
+        exit(1)
