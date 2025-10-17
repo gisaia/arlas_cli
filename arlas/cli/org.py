@@ -2,9 +2,8 @@ import sys
 import typer
 from prettytable import PrettyTable
 
-from arlas.cli.service import Service, Services
+from arlas.cli.service import Service
 from arlas.cli.settings import Configuration
-from arlas.cli.utils import is_valid_uuid
 from arlas.cli.variables import variables
 
 org = typer.Typer()
@@ -31,14 +30,14 @@ def create_organisation(organisation: str = typer.Argument(default="", help="Org
 @org.command(help="Delete the organisation", name="delete", epilog=variables["help_epilog"])
 def delete_organisation(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.delete_organisation(config, org_uuid).get("message"))
 
 
 @org.command(help="List the collections of the organisation", name="collections", epilog=variables["help_epilog"])
 def collections(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     organisations = Service.list_organisation_collections(config, org_uuid)
     tab = PrettyTable(["collection"], sortby="collection", align="l")
     for org in organisations:
@@ -49,7 +48,7 @@ def collections(org_id: str = typer.Argument(help="Organisation's name or identi
 @org.command(help="List the users of the organisation", name="users", epilog=variables["help_epilog"])
 def users(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     users = Service.list_organisation_users(config, org_uuid)
     tab = PrettyTable(["id", "email", "is owner", "groups"], sortby="email", align="l")
     tab.add_rows(users)
@@ -62,7 +61,7 @@ def add_user(org_id: str = typer.Argument(help="Organisation's name or identifie
              email: str = typer.Argument(help="User's email"),
              group: list[str] = typer.Option([], help="Group identifier")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.add_user_in_organisation(config, org_uuid, email, group))
 
 
@@ -70,14 +69,14 @@ def add_user(org_id: str = typer.Argument(help="Organisation's name or identifie
 def delete_user(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                 user_id: str = typer.Argument(help="User ID")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     Service.delete_user_in_organisation(config, org_uuid, user_id)
 
 
 @org.command(help="List the groups of the organisation", name="groups", epilog=variables["help_epilog"])
 def groups(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     tab = PrettyTable(["id", "name", "description", "is technical", "type"], sortby="name", align="l")
     groups = Service.list_organisation_groups(config, org_uuid)
     tab.add_rows(groups)
@@ -89,7 +88,7 @@ def groups(org_id: str = typer.Argument(help="Organisation's name or identifier 
 @org.command(help="List the permissions of the organisation", name="permissions", epilog=variables["help_epilog"])
 def permissions(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     groups = Service.list_organisation_permissions(config, org_uuid)
     tab = PrettyTable(["id", "name", "value", "groups"], sortby="name", align="l")
     tab.add_rows(groups)
@@ -101,7 +100,7 @@ def add_group(org_id: str = typer.Argument(help="Organisation's name or identifi
               name: str = typer.Argument(help="Group name"),
               description: str = typer.Argument(help="Group description")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.add_group_in_organisation(config, org_uuid, name, description).get("id"))
 
 
@@ -109,7 +108,7 @@ def add_group(org_id: str = typer.Argument(help="Organisation's name or identifi
 def delete_group(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                  id: str = typer.Argument(help="Group ID")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.delete_group_in_organisation(config, org_uuid, id).get("message"))
 
 
@@ -118,7 +117,7 @@ def add_permission(org_id: str = typer.Argument(help="Organisation's name or ide
                    value: str = typer.Argument(help="Permission value"),
                    description: str = typer.Argument(help="Permission description")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.add_permission_in_organisation(config, org_uuid, value, description).get("id"))
 
 
@@ -127,7 +126,7 @@ def add_permission(org_id: str = typer.Argument(help="Organisation's name or ide
 def delete_permission(org_id: str = typer.Argument(help="Organisation's name or identifier (uuid)"),
                       id: str = typer.Argument(help="Permission ID")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.delete_permission_in_organisation(config, org_uuid, id).get("message"))
 
 
@@ -137,7 +136,7 @@ def add_permission_to_group(org_id: str = typer.Argument(help="Organisation's na
                             group_id: str = typer.Argument(help="Group identifier"),
                             permission_id: str = typer.Argument(help="Permission identifier")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.add_permission_to_group_in_organisation(config, org_uuid, group_id, permission_id))
 
 
@@ -147,7 +146,7 @@ def delete_permission_from_group(org_id: str = typer.Argument(help="Organisation
                                  group_id: str = typer.Argument(help="Group identifier"),
                                  permission_id: str = typer.Argument(help="Permission identifier")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.delete_permission_from_group_in_organisation(config, org_uuid, group_id, permission_id))
 
 
@@ -157,7 +156,7 @@ def add_user_to_group(org_id: str = typer.Argument(help="Organisation's name or 
                       user_id: str = typer.Argument(help="User identifier"),
                       group_id: str = typer.Argument(help="Group identifier")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.add_user_to_organisation_group(config, org_uuid, user_id, group_id))
 
 
@@ -166,7 +165,7 @@ def remove_user_from_group(org_id: str = typer.Argument(help="Organisation's nam
                            user_id: str = typer.Argument(help="User identifier"),
                            group_id: str = typer.Argument(help="Group identifier")):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.remove_user_from_organisation_group(config, org_uuid, user_id, group_id))
 
 
@@ -179,7 +178,7 @@ def add_apikey(org_id: str = typer.Argument(help="Organisation's name or identif
                gids: list[str] = typer.Option(help="Group identifiers. If not provided, all groups of the user are used.", default=None)
                ):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     if not gids or len(gids) == 0:
         gids = list(map(lambda arr: arr[0], Service.list_organisation_groups(config, org_uuid) + Service.list_organisation_roles(config, org_uuid)))
     print(Service.create_api_key(config, org_uuid, name, ttlInDays, __solve_user_id__(config, org_uuid, user_id), gids))
@@ -192,12 +191,12 @@ def delete_apikey(org_id: str = typer.Argument(help="Organisation's name or iden
                   user_id: str = typer.Option(help="User identifier", default=None),
                   ):
     config = variables["arlas"]
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     print(Service.delete_api_key(config, org_uuid, __solve_user_id__(config, org_uuid, user_id), key_id))
 
 
 def __solve_user_id__(config: str, org_id: str, user_id: str):
-    org_uuid = get_organisation_uuid(org_id=org_id, arlas=config)
+    org_uuid = Service.get_organisation_uuid(org_id=org_id, arlas=config)
     if not user_id:
         c = Configuration.settings.arlas.get(config)
         if c and c.authorization and c.authorization.token_url and c.authorization.token_url.login:
@@ -237,47 +236,3 @@ def forbid(name: str = typer.Argument(help="Name of the organisation to forbid")
 def authorize(name: str = typer.Argument(help="Name of the organisation to authorize")):
     config = variables["arlas"]
     print(Service.authorize_organisation(config, name))
-
-
-def get_organisation_uuid(org_id: str, arlas: str) -> str:
-    """
-    Retrieve the UUID of an organisation from its name or validate an existing UUID.
-
-    This function first checks if the provided `org_id` is a valid UUID. If it is, the UUID is
-    returned directly. If not, the function queries the ARLAS IAM service using the provided
-    `arlas` endpoint to find an organisation matching the given name. If found, its UUID is
-    returned. If no match is found, an error message is printed, the list of available
-    organisations is displayed, and the program exits with an error code.
-
-    Args:
-        org_id (str):
-            The organisation identifier. It can be either:
-            - A valid UUID (e.g., "8684d6d0-a466-4622-89e3-beda9daf7843").
-            - The name of the organisation (e.g., "my_org").
-        arlas (str):
-            Name of the ARLAS configuration to use.
-
-    Returns:
-        str:
-            The UUID of the organisation if found or validated. Example:
-            "8684d6d0-a466-4622-89e3-beda9daf7843".
-
-    Raises:
-        SystemExit:
-            Exits the program with status code 1 if the organisation is not found.
-            This occurs when:
-            - `org_id` is not a valid organisation UUID.
-            - `org_id` is not a valid organisation name
-    """
-    if is_valid_uuid(uuid=org_id):
-        return org_id
-    else:
-        # Get organisation list
-        orgs_info = Service.__arlas__(arlas, "organisations", service=Services.iam)
-        for organisation in orgs_info:
-            if organisation["name"] == org_id:
-                return organisation["id"]
-
-    print(f"Organisation '{org_id}' not found among:")
-    list_organisations()
-    exit(1)
