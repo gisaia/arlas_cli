@@ -49,7 +49,7 @@ def test_create_admin_configuration():
 
 def test_create_user():
     """Test to create a user"""
-    result = run_cli_command(["iam", "--config", "tests_orgs", "users", "add", "user@org2.com"])
+    result = run_cli_command(["iam", "--config", "local.iam.admin", "users", "add", "user@org2.com"])
     assert result.returncode == 0, f"Failed to create user: {result.stderr}"
 
 def test_user_check_orgs_exists_nok_missing():
