@@ -7,11 +7,13 @@ cd tmp
 
 REPO_URL="https://github.com/gisaia/ARLAS-Exploration-stack.git"
 REPO_DIR="ARLAS-Exploration-stack"
+STACK_VERSION_TAG=27.23
 
 if [ ! -d "$REPO_DIR" ]; then
     git clone "$REPO_URL" "$REPO_DIR"
 fi
 cd "$REPO_DIR"
+git checkout $STACK_VERSION_TAG
 ./start.sh iam
 
 # Initialize ARLAS with confs an
