@@ -1,25 +1,4 @@
-arlas:
-  local:
-    allow_delete: true
-    authorization: null
-    elastic:
-      headers:
-        Content-Type: application/json
-      location: http://localhost:9200
-      login: null
-      password: null
-    persistence:
-      headers:
-        Content-Type: application/json
-      location: http://localhost/persist
-      login: null
-      password: null
-    server:
-      headers:
-        Content-Type: application/json
-      location: http://localhost/arlas
-      login: null
-      password: null
+arlas: {}
 default: null
 mappings: {}
 models: {}

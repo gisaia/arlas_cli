@@ -30,6 +30,7 @@ setuptools.setup(
                 "arlas.cli.service",
                 "arlas.cli.settings",
                 "arlas.cli.user",
+                "arlas.cli.utils",
                 "arlas.cli.variables"],
     package_dir={'': 'src'},
     install_requires=get_requirements()
