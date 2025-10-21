@@ -13,7 +13,7 @@ collections = typer.Typer()
 
 @collections.callback()
 def configuration(config: str = typer.Option(default=None, help="Name of the ARLAS configuration to use from your configuration file ({}).".format(variables["configuration_file"]))):
-    variables["arlas"] = Configuration.solve_config(config)
+    variables["arlas"] = Configuration.solve_config(config, quiet=variables["quiet"])
 
 
 @collections.command(help="List collections", name="list", epilog=variables["help_epilog"])

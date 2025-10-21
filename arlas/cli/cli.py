@@ -22,8 +22,28 @@ arlas_cli_version = "arlas_cli_versions"
 def init(
     config_file: str = typer.Option(None, help="Path to the configuration file if you do not want to use the default one: .arlas/cli/configuration.yaml."),
     print_curl: bool = typer.Option(False, help="Print curl command"),
-    version: bool = typer.Option(False, "--version", help="Print command line version")
+    version: bool = typer.Option(False, "--version", help="Print command line version"),
+    quiet: bool = typer.Option(False, help="Remove non-essential printing")
 ):
+    variables["quiet"] = quiet
+    if not quiet:
+        # Check if version is up-to-date
+        try:
+            json = requests.get('https://pypi.org/pypi/arlas.cli/json').json()
+            if json:
+                latest_version = json.get("info", {}).get("version", None)
+                if latest_version:
+                    if (arlas_cli_version == "_".join(["arlas", "cli", "versions"]) or
+                            arlas_cli_version.startswith("0.0.0.dev")):
+                        # Local dev 'python3.10 -m arlas.cli.cli' usage
+                        ...
+                    elif arlas_cli_version != latest_version:
+                        print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
+                        print("pip3.10 install arlas_cli==" + latest_version, file=sys.stderr)
+                else:
+                    print("WARNING: Can not identify arlas.cli latest version.", file=sys.stderr)
+        except Exception:
+            print("WARNING: Can not contact pypi.org to identify if this arlas_cli is the latest version.", file=sys.stderr)
     Service.curl = print_curl
     if config_file:
         variables["configuration_file"] = config_file
@@ -36,7 +56,8 @@ def init(
                 # Configuration is ok.
                 ...
             else:
-                print("Warning : no configuration available")
+                if not quiet:
+                    print("Warning : no configuration available")
         else:
             print("Error : no arlas endpoint found in {}.".format(variables["configuration_file"]), file=sys.stderr)
             sys.exit(1)
@@ -52,26 +73,12 @@ def init(
             }
         )
         Configuration.save(variables["configuration_file"])
-        print(f"Warning : no configuration file found, we created a default empty one ({variables['configuration_file']}).", file=sys.stderr)
-        print("Warning : no configuration available", file=sys.stderr)
+        if not quiet:
+            print(f"Warning : no configuration file found, we created a default empty one ({variables['configuration_file']}).", file=sys.stderr)
+            print("Warning : no configuration available", file=sys.stderr)
 
 
 def main():
-    try:
-        json = requests.get('https://pypi.org/pypi/arlas.cli/json').json()
-        if json:
-            latest_version = json.get("info", {}).get("version", None)
-            if latest_version:
-                if arlas_cli_version == "_".join(["arlas", "cli", "versions"]):
-                    # Local dev 'python3.10 -m arlas.cli.cli' usage
-                    ...
-                elif arlas_cli_version != latest_version:
-                    print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
-                    print("pip3.10 install arlas_cli==" + latest_version, file=sys.stderr)
-            else:
-                print("WARNING: Can not identify arlas.cli latest version.", file=sys.stderr)
-    except Exception:
-        print("WARNING: Can not contact pypi.org to identify if this arlas_cli is the latest version.", file=sys.stderr)
     app.add_typer(collections, name="collections")
     app.add_typer(indices, name="indices")
     app.add_typer(persist, name="persist")

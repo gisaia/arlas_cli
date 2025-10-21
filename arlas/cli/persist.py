@@ -16,7 +16,7 @@ def configuration(ctx: click.Context,
                   config: str = typer.Option(default=None,
                                              help=f"Name of the ARLAS configuration to use from your configuration file"
                                                   f" ({variables['configuration_file']}).")):
-    quiet = ctx.invoked_subcommand in ["add", "get"]
+    quiet = ctx.invoked_subcommand in ["add", "get"] or variables["quiet"]
     variables["arlas"] = Configuration.solve_config(config, quiet)
 
 
