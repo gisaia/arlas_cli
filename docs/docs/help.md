@@ -17,6 +17,8 @@ Whether you are at the top level:
 │ --print-curl     --no-print-curl          Print curl command               │
 │                                           [default: no-print-curl]         │
 │ --version                                 Print command line version       │
+│ --quiet          --no-quiet               Remove non-essential printing    │
+│                                           [default: no-quiet]              │
 │ --help                                    Show this message and exit.      │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮

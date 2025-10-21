@@ -9,30 +9,27 @@ ARLAS collections are built on top of [elasticsearch (ES) index](../../static_do
 <!-- termynal -->
 ```shell
 > arlas_cli collections --help
-                                                                              
- Usage: arlas_cli collections [OPTIONS] COMMAND [ARGS]...                     
-                                                                              
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --config        TEXT  Name of the ARLAS configuration to use from your     │
-│                       configuration file                                   │
-│                       (/home/gaudan/.arlas/cli/configuration.yaml).        │
-│ --help                Show this message and exit.                          │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ list        List collections                                               │
-│ count       Count the number of hits within a collection (or all           │
-│             collection if not provided)                                    │
-│ describe    Describe a collection                                          │
-│ public      Set collection visibility to public                            │
-│ private     Set collection visibility to private                           │
-│ share       Share the collection with the organisation                     │
-│ unshare     Unshare the collection with the organisation                   │
-│ name        Set the collection display name                                │
-│ set_alias   Set the field display name                                     │
-│ sample      Display a sample of a collection                               │
-│ delete      Delete a collection                                            │
-│ create      Create a collection                                            │
-╰────────────────────────────────────────────────────────────────────────────╯
+                                                                                                                                             
+ Usage: arlas_cli collections [OPTIONS] COMMAND [ARGS]...                                                                                    
+                                                                                                                                             
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --config        TEXT  Name of the ARLAS configuration to use from your configuration file (/home/gaudan/.arlas/cli/configuration.yaml).   │
+│ --help                Show this message and exit.                                                                                         │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ list        List collections                                                                                                              │
+│ count       Count the number of hits within a collection (or all collection if not provided)                                              │
+│ describe    Describe a collection                                                                                                         │
+│ public      Set collection visibility to public                                                                                           │
+│ private     Set collection visibility to private                                                                                          │
+│ share       Share the collection with the organisation                                                                                    │
+│ unshare     Unshare the collection with the organisation                                                                                  │
+│ name        Set the collection display name                                                                                               │
+│ set_alias   Set the field display name                                                                                                    │
+│ sample      Display a sample of a collection                                                                                              │
+│ delete      Delete a collection                                                                                                           │
+│ create      Create a collection                                                                                                           │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 ```
 
