@@ -103,7 +103,9 @@ def read_csv_generator(
                         pass
                     if len(fields_mapping) > 0:
                         # Use elastic mapping types
-                        if fields_mapping[key] == 'long':
+                        if fields_mapping[key] in ["keyword", "text"]:
+                            processed_row[key] = str(value)
+                        elif fields_mapping[key] == 'long':
                             processed_row[key] = int(value)
                         elif fields_mapping[key] == 'double':
                             processed_row[key] = float(value)
