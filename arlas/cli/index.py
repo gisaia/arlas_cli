@@ -122,16 +122,18 @@ def mapping(
     field_mapping: list[str] = typer.Option(default=[], help="Override the mapping with the provided field path/type. Example: fragment.location:geo_point. Important: the full field path must be provided."),
     no_fulltext: list[str] = typer.Option(default=[], help="List of keyword or text fields that should not be in the fulltext search. Important: the field name only must be provided."),
     no_index: list[str] = typer.Option(default=[], help="List of fields that should not be indexed."),
-    push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name"),
+    push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name."),
+    file_type: str = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
 ):
     config = variables["arlas"]
     if not os.path.exists(file):
         print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
         exit(1)
 
-    types = read_override_mapping_fields(field_mapping=field_mapping)
+    override_mapping_fields = read_override_mapping_fields(field_mapping=field_mapping)
 
-    es_mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
+    es_mapping = make_mapping(file=file, nb_lines=nb_lines, fields_type=override_mapping_fields,
+                              no_fulltext=no_fulltext, no_index=no_index, file_type=file_type)
     if push_on and config:
         Service.create_index(
             config,
