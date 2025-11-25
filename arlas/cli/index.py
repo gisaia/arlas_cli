@@ -101,7 +101,8 @@ def create(
 def data(
     index: str = typer.Argument(help="index's name"),
     files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON"),
-    bulk: int = typer.Option(default=5000, help="Bulk size for indexing data")
+    bulk: int = typer.Option(default=5000, help="Bulk size for indexing data"),
+    file_type: str = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
 ):
     config = variables["arlas"]
     i = 1
@@ -111,7 +112,7 @@ def data(
             exit(1)
         print("Processing file {}/{} ...".format(i, len(files)))
         count = Service.count_hits(file_path=file)
-        Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count)
+        Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count, file_type=file_type)
         i = i + 1
 
 

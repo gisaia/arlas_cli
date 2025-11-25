@@ -143,7 +143,7 @@ def read_csv_generator(
         raise ValueError(f"Error reading CSV file: {e}")
 
 
-def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1, fields_mapping: dict = {}):
+def get_data_generator(file_path: str, file_type: str = None, max_lines: int = -1, fields_mapping: dict = {}):
     """
     Returns a generator to read data from a file based on its type.
 
