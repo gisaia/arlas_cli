@@ -1,6 +1,7 @@
 import csv
 import json
 import sys
+from pathlib import Path
 from typing import Optional, Iterator, Dict, Any
 
 from arlas.cli.utils import clean_str, is_int, is_float
@@ -205,3 +206,29 @@ def clean_columns_name(columns_name: list[str]) -> list[str]:
             print(f"Warning: Column '{orig_name}' has been renamed '{clean_name}' to prevent any encoding issues")
         cleaned_columns_names.append(clean_name)
     return cleaned_columns_names
+
+
+def ensure_is_file(file_path: str):
+    """
+    Check if the given path exists and is a file.
+
+    Args:
+        file_path (str): Path to the file to check.
+
+    Raises:
+        FileNotFoundError: If the path does not exist.
+        IsADirectoryError: If the path is a directory.
+
+    Notes:
+        This function does not return anything. It raises an exception if the path is invalid.
+        If no exception is raised, the path is guaranteed to be an existing file.
+    """
+    file_path = Path(file_path)
+
+    # Check if the path exists
+    if not file_path.exists():
+        raise FileNotFoundError(f"The path '{file_path}' does not exist.")
+
+    # Check if the path is a directory
+    if file_path.is_dir():
+        raise IsADirectoryError(f"The path '{file_path}' is a directory, not a file.")

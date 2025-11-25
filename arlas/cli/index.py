@@ -4,6 +4,7 @@ import os
 import sys
 from prettytable import PrettyTable
 
+from arlas.cli.readers import ensure_is_file
 from arlas.cli.settings import Configuration, Resource
 from arlas.cli.service import Service
 from arlas.cli.model_infering import make_mapping, read_override_mapping_fields
@@ -107,9 +108,7 @@ def data(
     config = variables["arlas"]
     i = 1
     for file in files:
-        if not os.path.exists(file):
-            print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
-            exit(1)
+        ensure_is_file(file_path=file)
         print("Processing file {}/{} ...".format(i, len(files)))
         count = Service.count_hits(file_path=file)
         Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count, file_type=file_type)
@@ -127,9 +126,7 @@ def mapping(
     file_type: str = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
 ):
     config = variables["arlas"]
-    if not os.path.exists(file):
-        print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
-        exit(1)
+    ensure_is_file(file_path=file)
 
     override_mapping_fields = read_override_mapping_fields(field_mapping=field_mapping)
 
