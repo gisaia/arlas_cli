@@ -95,7 +95,7 @@ def create(
         index=index,
         mapping_resource=mapping_resource,
         number_of_shards=shards)
-    print("Index {} created on {}".format(index, config))
+    print("Index {} created on {}".format(index, config))
 
 
 @indices.command(help="Index data", epilog=variables["help_epilog"])
@@ -162,4 +162,4 @@ def delete(
         Service.delete_index(
             config,
             index=index)
-        print("{} has been deleted on {}.".format(index, config))
+        print("{} has been deleted on {}.".format(index, config))
