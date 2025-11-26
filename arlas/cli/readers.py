@@ -5,6 +5,9 @@ from typing import Optional, Iterator, Dict, Any
 
 from arlas.cli.utils import clean_str, is_int, is_float
 
+MAX_FIELD_SIZE = 50 * 1024 * 1024  # 50 Mo: Maximum size of a field value contained in the data
+csv.field_size_limit(MAX_FIELD_SIZE)
+
 
 def read_ndjson_generator(
     file_path: str,
@@ -100,7 +103,9 @@ def read_csv_generator(
                         pass
                     if len(fields_mapping) > 0:
                         # Use elastic mapping types
-                        if fields_mapping[key] == 'long':
+                        if fields_mapping[key] in ["keyword", "text"]:
+                            processed_row[key] = str(value)
+                        elif fields_mapping[key] == 'long':
                             processed_row[key] = int(value)
                         elif fields_mapping[key] == 'double':
                             processed_row[key] = float(value)
