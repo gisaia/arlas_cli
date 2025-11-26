@@ -7,7 +7,7 @@ cd tmp
 
 REPO_URL="https://github.com/gisaia/ARLAS-Exploration-stack.git"
 REPO_DIR="ARLAS-Exploration-stack"
-STACK_VERSION_TAG=27.23
+STACK_VERSION_TAG=27.24
 
 if [ ! -d "$REPO_DIR" ]; then
     git clone "$REPO_URL" "$REPO_DIR"
