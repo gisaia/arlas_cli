@@ -1,9 +1,11 @@
 import csv
 import json
 import sys
+from pathlib import Path
 from typing import Optional, Iterator, Dict, Any
 
 from arlas.cli.utils import clean_str, is_int, is_float
+from arlas.cli.variables import FileType
 
 MAX_FIELD_SIZE = 50 * 1024 * 1024  # 50 Mo: Maximum size of a field value contained in the data
 csv.field_size_limit(MAX_FIELD_SIZE)
@@ -148,7 +150,7 @@ def read_csv_generator(
         raise ValueError(f"Error reading CSV file: {e}")
 
 
-def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1, fields_mapping: dict = {}):
+def get_data_generator(file_path: str, file_type: FileType = None, max_lines: int = -1, fields_mapping: dict = {}):
     """
     Returns a generator to read data from a file based on its type.
 
@@ -160,7 +162,7 @@ def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1,
         file_path (str):
             Path to the input file.
 
-        file_type (str):
+        file_type (FileType):
             Type of the file. Can be one of "json" for JSON/NDJSON files or "csv" for CSV files
             If None, the function will attempt to detect the type from the file extension.
 
@@ -182,9 +184,9 @@ def get_data_generator(file_path: str, file_type: str = "", max_lines: int = -1,
         FileNotFoundError:
             If the specified file does not exist.
     """
-    if file_type == "json" or file_path.endswith(".json") or file_path.endswith(".ndjson"):
+    if file_type == FileType.JSON or file_path.endswith(".json") or file_path.endswith(".ndjson"):
         data_generator = read_ndjson_generator(file_path=file_path, max_lines=max_lines)
-    elif file_type == "csv" or file_path.endswith(".csv"):
+    elif file_type == FileType.CSV or file_path.endswith(".csv"):
         data_generator = read_csv_generator(file_path=file_path, max_lines=max_lines, delimiter=",",
                                             fields_mapping=fields_mapping)
     else:
@@ -210,3 +212,29 @@ def clean_columns_name(columns_name: list[str]) -> list[str]:
             print(f"Warning: Column '{orig_name}' has been renamed '{clean_name}' to prevent any encoding issues")
         cleaned_columns_names.append(clean_name)
     return cleaned_columns_names
+
+
+def ensure_is_file(file_path: str):
+    """
+    Check if the given path exists and is a file.
+
+    Args:
+        file_path (str): Path to the file to check.
+
+    Raises:
+        FileNotFoundError: If the path does not exist.
+        IsADirectoryError: If the path is a directory.
+
+    Notes:
+        This function does not return anything. It raises an exception if the path is invalid.
+        If no exception is raised, the path is guaranteed to be an existing file.
+    """
+    file_path = Path(file_path)
+
+    # Check if the path exists
+    if not file_path.exists():
+        raise FileNotFoundError(f"The path '{file_path}' does not exist.")
+
+    # Check if the path is a directory
+    if file_path.is_dir():
+        raise IsADirectoryError(f"The path '{file_path}' is a directory, not a file.")

@@ -4,10 +4,11 @@ import os
 import sys
 from prettytable import PrettyTable
 
+from arlas.cli.readers import ensure_is_file
 from arlas.cli.settings import Configuration, Resource
 from arlas.cli.service import Service
 from arlas.cli.model_infering import make_mapping, read_override_mapping_fields
-from arlas.cli.variables import variables
+from arlas.cli.variables import variables, FileType
 
 indices = typer.Typer()
 
@@ -94,24 +95,23 @@ def create(
         index=index,
         mapping_resource=mapping_resource,
         number_of_shards=shards)
-    print("Index {} created on {}".format(index, config))
+    print("Index {} created on {}".format(index, config))
 
 
 @indices.command(help="Index data", epilog=variables["help_epilog"])
 def data(
     index: str = typer.Argument(help="index's name"),
     files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON"),
-    bulk: int = typer.Option(default=5000, help="Bulk size for indexing data")
+    bulk: int = typer.Option(default=5000, help="Bulk size for indexing data"),
+    file_type: FileType = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
 ):
     config = variables["arlas"]
     i = 1
     for file in files:
-        if not os.path.exists(file):
-            print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
-            exit(1)
+        ensure_is_file(file_path=file)
         print("Processing file {}/{} ...".format(i, len(files)))
         count = Service.count_hits(file_path=file)
-        Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count)
+        Service.index_hits(config, index=index, file_path=file, bulk_size=bulk, count=count, file_type=file_type)
         i = i + 1
 
 
@@ -122,16 +122,16 @@ def mapping(
     field_mapping: list[str] = typer.Option(default=[], help="Override the mapping with the provided field path/type. Example: fragment.location:geo_point. Important: the full field path must be provided."),
     no_fulltext: list[str] = typer.Option(default=[], help="List of keyword or text fields that should not be in the fulltext search. Important: the field name only must be provided."),
     no_index: list[str] = typer.Option(default=[], help="List of fields that should not be indexed."),
-    push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name"),
+    push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name."),
+    file_type: FileType = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
 ):
     config = variables["arlas"]
-    if not os.path.exists(file):
-        print("Error: file \"{}\" not found.".format(file), file=sys.stderr)
-        exit(1)
+    ensure_is_file(file_path=file)
 
-    types = read_override_mapping_fields(field_mapping=field_mapping)
+    override_mapping_fields = read_override_mapping_fields(field_mapping=field_mapping)
 
-    es_mapping = make_mapping(file=file, nb_lines=nb_lines, types=types, no_fulltext=no_fulltext, no_index=no_index)
+    es_mapping = make_mapping(file=file, nb_lines=nb_lines, fields_type=override_mapping_fields,
+                              no_fulltext=no_fulltext, no_index=no_index, file_type=file_type)
     if push_on and config:
         Service.create_index(
             config,
@@ -162,4 +162,4 @@ def delete(
         Service.delete_index(
             config,
             index=index)
-        print("{} has been deleted on {}.".format(index, config))
+        print("{} has been deleted on {}.".format(index, config))

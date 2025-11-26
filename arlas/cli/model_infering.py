@@ -7,6 +7,7 @@ from shapely.geometry import shape
 
 from arlas.cli.readers import get_data_generator
 from arlas.cli.utils import is_float
+from arlas.cli.variables import FileType
 
 MAX_KEYWORD_LENGTH = 100
 
@@ -284,8 +285,8 @@ def __generate_mapping__(tree: dict, mapping: dict, no_fulltext: list[str], no_i
         raise Exception("Unexpected state")
 
 
-def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fulltext: list[str] = [],
-                 no_index: list[str] = [], file_type: str = None):
+def make_mapping(file: str, nb_lines: int = 2, fields_type: dict[str, str] = {}, no_fulltext: list[str] = [],
+                 no_index: list[str] = [], file_type: FileType = None):
     """
     Generate an Elasticsearch mapping from a data file.
     Reads the first `nb_lines` lines of the file, infers field types, and generates an Elasticsearch mapping.
@@ -293,10 +294,10 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
     Args:
         file (str): Path to the data file.
         nb_lines (int, optional): Number of lines to analyze. Defaults to 2.
-        types (dict[str, str], optional): Predefined types for specific fields.
+        fields_type (dict[str, str], optional): Predefined types for specific fields.
         no_fulltext (list[str], optional): Fields to exclude from full-text search.
         no_index (list[str], optional): Fields to exclude from indexing.
-        file_type (str, optional): Type of the file (e.g., "json", "ndjson").
+        file_type (FileType, optional): Type of the file (e.g., "json", "csv").
 
     Returns:
         dict: The Elasticsearch mapping.
@@ -310,7 +311,7 @@ def make_mapping(file: str, nb_lines: int = 2, types: dict[str, str] = {}, no_fu
         __build_tree__(tree, hit)
 
     # Identify fields types
-    __type_tree__("", tree, types)
+    __type_tree__("", tree, fields_type)
 
     # Generate the mapping
     mapping = {}
