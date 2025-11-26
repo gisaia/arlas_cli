@@ -13,6 +13,7 @@ from prettytable import PrettyTable
 from arlas.cli.readers import get_data_generator
 from arlas.cli.settings import ARLAS, Configuration, Resource, AuthorizationService
 from arlas.cli.utils import is_valid_uuid
+from arlas.cli.variables import FileType
 
 requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
 
@@ -551,7 +552,7 @@ class Service:
 
     @staticmethod
     def index_hits(arlas: str, index: str, file_path: str, bulk_size: int = 5000, count: int = -1,
-                   file_type: str = None) -> dict[str, int]:
+                   file_type: FileType = None) -> dict[str, int]:
         line_number = 0
         line_in_bulk = 0
         bulk = []
