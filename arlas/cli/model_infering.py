@@ -188,6 +188,8 @@ def __type_value__(field_value, field_name: str) -> str:
         return "double"
     elif isinstance(field_value, str):
         # Geo objects ...
+        if len(field_value) == 0:
+            return "UNDEFINED"
         if field_value.startswith("POINT "):
             try:
                 wkt.loads(field_value)
