@@ -151,6 +151,8 @@ def read_csv_generator(
     except FileNotFoundError:
         raise FileNotFoundError(f"File not found: {file_path}")
     except Exception as e:
+        if key and value:
+            e = f"{e} (columns: {key}, value:{value})"
         raise ValueError(f"Error reading CSV file: {e}")
 
 
