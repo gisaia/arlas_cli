@@ -193,7 +193,7 @@ def get_data_generator(file_path: str, file_type: FileType = None, max_lines: in
     if file_type == FileType.JSON or file_path.endswith(".json") or file_path.endswith(".ndjson"):
         data_generator = read_ndjson_generator(file_path=file_path, max_lines=max_lines)
     elif file_type == FileType.CSV or file_path.endswith(".csv"):
-        data_generator = read_csv_generator(file_path=file_path, max_lines=max_lines, delimiter=",",
+        data_generator = read_csv_generator(file_path=file_path, max_lines=max_lines, delimiter=None,
                                             fields_mapping=fields_mapping)
     else:
         raise TypeError(f"Unknow type for file: '{file_path}'")
