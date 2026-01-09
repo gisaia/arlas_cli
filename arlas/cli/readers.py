@@ -103,7 +103,7 @@ def read_csv_generator(
                 for key, value in row.items():
                     if value == '':
                         pass
-                    if len(fields_mapping) > 0:
+                    elif len(fields_mapping) > 0:
                         # Use elastic mapping types
                         if fields_mapping[key] in ["keyword", "text"]:
                             processed_row[key] = str(value)
@@ -112,6 +112,7 @@ def read_csv_generator(
                         elif fields_mapping[key] == 'double':
                             processed_row[key] = float(value)
                         elif fields_mapping[key] in ["geo_shape", "geo_point"]:
+                            # Check geometry json format
                             if value.strip().startswith('{') and value.strip().endswith('}'):
                                 try:
                                     geom = json.loads(value)
@@ -121,6 +122,9 @@ def read_csv_generator(
                                         processed_row[key] = geom
                                 except json.JSONDecodeError:
                                     print(f"Error: Invalid JSON for field '{key}': {value}")
+                            else:
+                                # Should be WKT format
+                                processed_row[key] = str(value)
                         elif fields_mapping[key] == 'boolean':
                             processed_row[key] = value.lower() == 'true'
                         else:
