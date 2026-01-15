@@ -101,7 +101,7 @@ def create(
 @indices.command(help="Index data", epilog=variables["help_epilog"])
 def data(
     index: str = typer.Argument(help="index's name"),
-    files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON"),
+    files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON or CSV file"),
     bulk: int = typer.Option(default=5000, help="Bulk size for indexing data"),
     file_type: FileType = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
 ):
