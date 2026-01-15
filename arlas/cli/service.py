@@ -560,7 +560,11 @@ class Service:
         # Get index mapping
         field_mapping = dict(Service.describe_index(arlas=arlas, index=index))
         # Read data
-        data_generator = get_data_generator(file_path=file_path, fields_mapping=field_mapping, file_type=file_type)
+        data_generator, data_type = get_data_generator(file_path=file_path, fields_mapping=field_mapping,
+                                                       file_type=file_type)
+        if data_type == FileType.CSV:
+            # Fix csv file size
+            count -= 1
 
         with alive_bar(count) as bar:
             for line in data_generator:

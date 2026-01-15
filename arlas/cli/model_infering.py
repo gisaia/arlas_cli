@@ -304,7 +304,7 @@ def make_mapping(file: str, nb_lines: int = 2, fields_type: dict[str, str] = {},
         dict: The Elasticsearch mapping.
     """
     # Read file
-    data_generator = get_data_generator(file_path=file, file_type=file_type, max_lines=nb_lines)
+    data_generator, _ = get_data_generator(file_path=file, file_type=file_type, max_lines=nb_lines)
 
     # Parse the file first lines values
     tree = {}
