@@ -117,8 +117,6 @@ def read_csv_generator(
                             else:
                                 # Should be WKT format
                                 processed_row[key] = str(value)
-                        elif fields_mapping[key] == 'boolean':
-                            processed_row[key] = value.lower() == 'true'
                         else:
                             processed_row[key] = value
 
@@ -131,9 +129,6 @@ def read_csv_generator(
                             # Try to convert to float
                             elif is_float(value):
                                 processed_row[key] = float(value)
-                            # Try to convert to boolean
-                            elif value.lower() in ('true', 'false'):
-                                processed_row[key] = value.lower() == 'true'
                             else:
                                 processed_row[key] = value
                         else:
