@@ -178,7 +178,7 @@ def __type_value__(field_value, field_name: str) -> str:
     Returns:
         str: The inferred type ("geo_point", "date", "keyword", etc.).
     """
-    if field_value is None:
+    if not field_value:
         return "UNDEFINED"
     elif isinstance(field_value, bool):
         return "boolean"
@@ -188,9 +188,8 @@ def __type_value__(field_value, field_name: str) -> str:
         return "double"
     elif isinstance(field_value, str):
         # Geo objects ...
-        if len(field_value) == 0:
-            return "UNDEFINED"
         if field_value.startswith("POINT "):
+            # Looks like WKT
             try:
                 wkt.loads(field_value)
                 return "geo_point"
