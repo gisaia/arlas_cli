@@ -97,18 +97,16 @@ def read_csv_generator(
                 # Convert empty strings to None and try to convert types
                 processed_row = {}
                 for key, value in row.items():
-                    if value == '':
+                    if not value:
                         pass
                     elif len(fields_mapping) > 0:
                         # Use elastic mapping types
-                        if fields_mapping[key] in ["keyword", "text"]:
-                            processed_row[key] = str(value)
-                        elif fields_mapping[key] == 'long':
+                        if fields_mapping[key] == 'long':
                             processed_row[key] = int(value)
                         elif fields_mapping[key] == 'double':
                             processed_row[key] = float(value)
                         elif fields_mapping[key] in ["geo_shape", "geo_point"]:
-                            # Check geometry json format
+                            # Convert string geometry to json format
                             if value.strip().startswith('{') and value.strip().endswith('}'):
                                 try:
                                     processed_row[key] = json.loads(value)
@@ -116,8 +114,9 @@ def read_csv_generator(
                                     print(f"Error: Invalid JSON for field '{key}': {value}")
                             else:
                                 # Should be WKT format
-                                processed_row[key] = str(value)
+                                processed_row[key] = value
                         else:
+                            # Other type stay str: "keyword", "text", "boolean"
                             processed_row[key] = value
 
                     else:
