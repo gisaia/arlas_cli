@@ -87,10 +87,6 @@ def read_csv_generator(
             if not reader.fieldnames:
                 raise ValueError("CSV file is empty or has no header row")
 
-            # Clean columns names
-            clean_fields_names = clean_columns_name(list(reader.fieldnames))
-            reader.fieldnames = clean_fields_names
-
             # Iterate rows
             line_count = 0
             for row in reader:
