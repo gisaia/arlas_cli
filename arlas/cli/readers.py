@@ -111,11 +111,7 @@ def read_csv_generator(
                             # Check geometry json format
                             if value.strip().startswith('{') and value.strip().endswith('}'):
                                 try:
-                                    geom = json.loads(value)
-                                    if not ("type" in geom and "coordinates" in geom):
-                                        print(f"Error: Missing geojson keys for field '{key}': {value}")
-                                    else:
-                                        processed_row[key] = geom
+                                    processed_row[key] = json.loads(value)
                                 except json.JSONDecodeError:
                                     print(f"Error: Invalid JSON for field '{key}': {value}")
                             else:
