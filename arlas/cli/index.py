@@ -103,7 +103,7 @@ def data(
     index: str = typer.Argument(help="index's name"),
     files: list[str] = typer.Argument(help="List of paths to the file(s) containing the data. Format: NDJSON"),
     bulk: int = typer.Option(default=5000, help="Bulk size for indexing data"),
-    file_type: FileType = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
+    file_type: FileType = typer.Option(default=FileType.JSON, help="Type of the file. Can only be 'json' for JSON/NDJSON files.")
 ):
     config = variables["arlas"]
     i = 1
@@ -123,7 +123,7 @@ def mapping(
     no_fulltext: list[str] = typer.Option(default=[], help="List of keyword or text fields that should not be in the fulltext search. Important: the field name only must be provided."),
     no_index: list[str] = typer.Option(default=[], help="List of fields that should not be indexed."),
     push_on: str = typer.Option(default=None, help="Push the generated mapping for the provided index name."),
-    file_type: FileType = typer.Option(default=None, help="Type of the file. Can be one of 'json' for JSON/NDJSON files or 'csv' for CSV files.")
+    file_type: FileType = typer.Option(default=None, help="Type of the file. Can only be 'json' for JSON/NDJSON files.")
 ):
     config = variables["arlas"]
     ensure_is_file(file_path=file)

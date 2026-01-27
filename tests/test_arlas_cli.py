@@ -103,38 +103,6 @@ def test_add_data_ndjson():
     result = run_cli_command(["indices", "--config", "tests", "list"])
     assert "org.com@test_ndjson" in result.stdout and "| 5" in result.stdout, result.stderr
 
-def test_infer_data_csv(expected_mapping):
-    """Test inferring a mapping on Elasticsearch."""
-    result = run_cli_command([
-        "indices", "--config", "tests", "mapping", "tests/data/test_data.csv",
-        "--nb-lines", "5"
-    ])
-    check_inferred_types(result_output=result.stdout, expected_mapping=expected_mapping, test_name="csv data")
-
-
-def test_infer_and_add_mapping_csv():
-    """Test inferring and adding a mapping on Elasticsearch."""
-    result = run_cli_command([
-        "indices", "--config", "tests", "mapping", "tests/data/test_data.csv",
-        "--nb-lines", "5",
-        "--push-on", "org.com@data_csv"
-    ])
-    assert result.returncode == 0, result.stderr
-    result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@data_csv" in result.stdout, result.stderr
-
-
-def test_add_data_csv():
-    """Test adding csv data to Elasticsearch."""
-    result = run_cli_command([
-        "indices", "--config", "tests", "data", "org.com@data_csv",
-        "tests/data/test_data.csv"
-    ])
-    assert result.returncode == 0, result.stderr
-    time.sleep(2)  # Wait for data to be indexed
-    result = run_cli_command(["indices", "--config", "tests", "list"])
-    assert "org.com@data_csv" in result.stdout and "| 5" in result.stdout, result.stderr
-
 def test_clone_index():
     """Test cloning an index."""
     run_cli_command(["indices", "--config", "tests", "clone", "org.com@test_ndjson", "org.com@test_ndjson2"])
@@ -201,9 +169,6 @@ def test_delete_index():
     assert "org.com@test_ndjson" not in result.stdout, result.stderr
     # Clean direct mapping index
     result = run_cli_command(["indices", "--config", "tests", "delete", "direct_mapping_index"], input_data="yes\n")
-    assert result.returncode == 0, result.stderr
-    # Clean csv index
-    result = run_cli_command(["indices", "--config", "tests", "delete", "org.com@data_csv"], input_data="yes\n")
     assert result.returncode == 0, result.stderr
 
 def test_list_configurations():
