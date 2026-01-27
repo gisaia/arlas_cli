@@ -552,13 +552,15 @@ class Service:
 
     @staticmethod
     def index_hits(arlas: str, index: str, file_path: str, bulk_size: int = 5000, count: int = -1,
-                   file_type: FileType = FileType.JSON) -> dict[str, int]:
+                   file_type: FileType = None) -> dict[str, int]:
         line_number = 0
         line_in_bulk = 0
         bulk = []
 
+        # Get index mapping
+        field_mapping = dict(Service.describe_index(arlas=arlas, index=index))
         # Read data
-        data_generator = get_data_generator(file_path=file_path, file_type=file_type)
+        data_generator = get_data_generator(file_path=file_path, fields_mapping=field_mapping, file_type=file_type)
 
         with alive_bar(count) as bar:
             for line in data_generator:

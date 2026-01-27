@@ -9,3 +9,4 @@ variables = {
 
 class FileType(str, Enum):
     JSON = "json"
+    CSV = "csv"
