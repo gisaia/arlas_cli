@@ -4,7 +4,7 @@ python-dateutil==2.9.0
 envyaml==1.10.211231
 PyJWT==2.10.1
 attrs==25.3.0
-python-dotenv==1.1.1
+python-dotenv==1.2.2
 requests==2.32.5
 prettytable==3.16.0
 pydantic==2.11.9
