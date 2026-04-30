@@ -5,7 +5,7 @@ envyaml==1.10.211231
 PyJWT==2.10.1
 attrs==25.3.0
 python-dotenv==1.1.1
-requests==2.32.5
+requests==2.33.0
 prettytable==3.16.0
 pydantic==2.11.9
 alive-progress==3.3.0
