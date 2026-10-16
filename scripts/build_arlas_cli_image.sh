@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-[[[ -z "$1" ]]] && echo "Please provide the version" && exit 1;
+[[ -z "$1" ]] && echo "Please provide the version" && exit 1;
 VERSION=$1
 
 ARLAS_CLI_IMAGE="gisaia/arlas_cli:$VERSION"

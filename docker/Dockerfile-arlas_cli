@@ -10,5 +10,5 @@ COPY README-ARLAS-CLI-COMMANDS.md .
 
 # Install arlas_cli
 # Create a default "local" config in order to run documentation generation
-# Warning : no configuration available the "Warning : no configuration available"
-RUN pip3 install "arlas_cli@file:///app/" && arlas_cli confs create local --server http://localhost/arlas
+# WITHOUT the "Warning : no configuration available"
+RUN pip3 install --only-binary :all: "arlas_cli@file:///app/" && arlas_cli confs create local --server http://localhost/arlas
