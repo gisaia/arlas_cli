@@ -9,27 +9,30 @@ ARLAS collections are built on top of [elasticsearch (ES) index](../../static_do
 <!-- termynal -->
 ```shell
 > arlas_cli collections --help
-                                                                                                                                             
- Usage: arlas_cli collections [OPTIONS] COMMAND [ARGS]...                                                                                    
-                                                                                                                                             
-╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --config        TEXT  Name of the ARLAS configuration to use from your configuration file (/home/gaudan/.arlas/cli/configuration.yaml).   │
-│ --help                Show this message and exit.                                                                                         │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ list        List collections                                                                                                              │
-│ count       Count the number of hits within a collection (or all collection if not provided)                                              │
-│ describe    Describe a collection                                                                                                         │
-│ public      Set collection visibility to public                                                                                           │
-│ private     Set collection visibility to private                                                                                          │
-│ share       Share the collection with the organisation                                                                                    │
-│ unshare     Unshare the collection with the organisation                                                                                  │
-│ name        Set the collection display name                                                                                               │
-│ set_alias   Set the field display name                                                                                                    │
-│ sample      Display a sample of a collection                                                                                              │
-│ delete      Delete a collection                                                                                                           │
-│ create      Create a collection                                                                                                           │
-╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                                                                              
+ Usage: arlas_cli collections [OPTIONS] COMMAND [ARGS]...                     
+                                                                              
+╭─ Options ──────────────────────────────────────────────────────────────────╮
+│ --config        TEXT  Name of the ARLAS configuration to use from your     │
+│                       configuration file                                   │
+│                       (/root/.arlas/cli/configuration.yaml).               │
+│ --help                Show this message and exit.                          │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────╮
+│ list       List collections                                                │
+│ count      Count the number of hits within a collection (or all collection │
+│            if not provided)                                                │
+│ describe   Describe a collection                                           │
+│ public     Set collection visibility to public                             │
+│ private    Set collection visibility to private                            │
+│ share      Share the collection with the organisation                      │
+│ unshare    Unshare the collection with the organisation                    │
+│ name       Set the collection display name                                 │
+│ set_alias  Set the field display name                                      │
+│ sample     Display a sample of a collection                                │
+│ delete     Delete a collection                                             │
+│ create     Create a collection                                             │
+╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
 
@@ -42,42 +45,7 @@ The command line options let you specify how the index should be used by the col
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local create --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections create [OPTIONS] COLLECTION                     
-                                                                              
- Create a collection                                                          
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [required]                    │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --model                           TEXT  Name of the model within your      │
-│                                         configuration, or URL or file path │
-│ --index                           TEXT  Name of the index referenced by    │
-│                                         the collection                     │
-│ --display-name                    TEXT  Display name of the collection     │
-│ --public           --no-public          Whether the collection is public   │
-│                                         or not                             │
-│                                         [default: no-public]               │
-│ --owner                           TEXT  Organisation's owner               │
-│ --orgs                            TEXT  List of organisations accessing    │
-│                                         the collection                     │
-│ --id-path                         TEXT  Override the JSON path to the id   │
-│                                         field.                             │
-│ --centroid-path                   TEXT  Override the JSON path to the      │
-│                                         centroid field.                    │
-│ --geometry-path                   TEXT  Override the JSON path to the      │
-│                                         geometry field.                    │
-│ --date-path                       TEXT  Override the JSON path to the date │
-│                                         field.                             │
-│ --help                                  Show this message and exit.        │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 !!! note "Collection visibility"
@@ -153,24 +121,7 @@ The collection can be defined by a pretty name. It can be set with `name` subcom
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local name --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections name [OPTIONS] COLLECTION NAME                  
-                                                                              
- Set the collection display name                                              
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [required]                    │
-│ *    name            TEXT  The display name [required]                     │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### Set a pretty name for the collection
@@ -191,28 +142,7 @@ The data fields are sometimes not very suitable in ARLAS Exploration dashboards.
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local set_alias --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections set_alias [OPTIONS] COLLECTION FIELD_PATH       
-                                        [DISPLAY_NAME]                        
-                                                                              
- Set the field display name                                                   
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection        TEXT            Collection's name [required]        │
-│ *    field_path        TEXT            The field path [required]           │
-│      display_name      [DISPLAY_NAME]  The field's display name. If none   │
-│                                        provided, then the alias is removed │
-│                                        if it existed                       │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 ### Set a pretty name for a data field
 
@@ -253,23 +183,7 @@ The `describe` command line provides a description of the collection's structure
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local describe --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections describe [OPTIONS] COLLECTION                   
-                                                                              
- Describe a collection                                                        
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [required]                    │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ## count
@@ -281,24 +195,7 @@ The `count` command show the total number of elements (data rows) accessible in 
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local count --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections count [OPTIONS] [COLLECTION]                    
-                                                                              
- Count the number of hits within a collection (or all collection if not       
- provided)                                                                    
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│   collection      [COLLECTION]  Collection's name                          │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ## sample
@@ -310,25 +207,7 @@ The `sample` command show few data rows accessible in a collection.
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local sample --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections sample [OPTIONS] COLLECTION                     
-                                                                              
- Display a sample of a collection                                             
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [required]                    │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --pretty    --no-pretty             [default: pretty]                      │
-│ --size                     INTEGER  [default: 10]                          │
-│ --help                              Show this message and exit.            │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 !!! note
@@ -347,23 +226,7 @@ To switch a collection from **public** to **private**, use the `private` command
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local private --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections private [OPTIONS] COLLECTION                    
-                                                                              
- Set collection visibility to private                                         
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [required]                    │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ## public
@@ -377,23 +240,7 @@ To switch a collection from **private** to **public**, use the `public` command:
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local public --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections public [OPTIONS] COLLECTION                     
-                                                                              
- Set collection visibility to public                                          
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  Collection's name [required]                    │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ## share
@@ -407,24 +254,7 @@ A collection can be shared to other organisation with the `share` command:
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local share --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections share [OPTIONS] COLLECTION ORGANISATION         
-                                                                              
- Share the collection with the organisation                                   
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection        TEXT  Collection's name [required]                  │
-│ *    organisation      TEXT  Organisation's name [required]                │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ## unshare
@@ -438,24 +268,7 @@ The access to a collection can be removed with the `unshare` command:
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local unshare --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections unshare [OPTIONS] COLLECTION ORGANISATION       
-                                                                              
- Unshare the collection with the organisation                                 
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection        TEXT  Collection's name [required]                  │
-│ *    organisation      TEXT  Organisation's name [required]                │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ## delete
@@ -469,21 +282,5 @@ The collection can be removed with the `delete` command:
 <!-- termynal -->
 ```shell
 > arlas_cli collections --config local delete --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli collections delete [OPTIONS] COLLECTION                     
-                                                                              
- Delete a collection                                                          
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    collection      TEXT  collection's name [required]                    │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```

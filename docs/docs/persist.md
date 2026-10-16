@@ -15,22 +15,23 @@ An entry is an element stored in the persistence.
 <!-- termynal -->
 ```shell
 > arlas_cli persist --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli persist [OPTIONS] COMMAND [ARGS]...                         
                                                                               
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --config        TEXT  Name of the ARLAS configuration to use from your     │
 │                       configuration file                                   │
-│                       (/home/gaudan/.arlas/cli/configuration.yaml).        │
+│                       (/root/.arlas/cli/configuration.yaml).               │
 │ --help                Show this message and exit.                          │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ add        Add an entry, returns its ID                                    │
-│ delete     Delete an entry                                                 │
-│ get        Retrieve an entry                                               │
-│ zone       List entries within a zone                                      │
-│ groups     List groups allowed to access a zone                            │
-│ describe   Describe an entry                                               │
+│ add       Add an entry, returns its ID                                     │
+│ delete    Delete an entry                                                  │
+│ get       Retrieve an entry                                                │
+│ zone      List entries within a zone                                       │
+│ groups    List groups allowed to access a zone                             │
+│ describe  Describe an entry                                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
@@ -42,27 +43,7 @@ The `persist add` sub-command allows to create an entry from a file.
 <!-- termynal -->
 ```shell
 > arlas_cli persist --config local add --help
-                                                                              
- Usage: arlas_cli persist add [OPTIONS] FILE ZONE                             
-                                                                              
- Add an entry, returns its ID                                                 
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    file      TEXT  File path [required]                                  │
-│ *    zone      TEXT  zone [required]                                       │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --name                     TEXT  name [default: none]                      │
-│ --reader                   TEXT  Readers                                   │
-│ --writer                   TEXT  writers                                   │
-│ --encode    --no-encode          Encode in BASE64 [default: no-encode]     │
-│ --help                           Show this message and exit.               │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### Add an entry from a file
@@ -90,23 +71,7 @@ The available entries in a zone can be listed with the `persist zone` sub-comman
 <!-- termynal -->
 ```shell
 > arlas_cli persist --config local zone --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli persist zone [OPTIONS] ZONE                                 
-                                                                              
- List entries within a zone                                                   
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    zone      TEXT  Zone name [required]                                  │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### List entries within a zone
@@ -133,23 +98,7 @@ An entry (defined by its unique identifier) can be described with the `persist d
 <!-- termynal -->
 ```shell
 > arlas_cli persist --config local describe --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli persist describe [OPTIONS] ENTRY_ID                         
-                                                                              
- Describe an entry                                                            
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    entry_id      TEXT  Entry identifier [required]                       │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### Describe an entry
@@ -184,22 +133,7 @@ The content of an entry can be accessed with the `persist get` sub-command:
 <!-- termynal -->
 ```shell
 > arlas_cli persist --config local get --help
-                                                                              
- Usage: arlas_cli persist get [OPTIONS] ENTRY_ID                              
-                                                                              
- Retrieve an entry                                                            
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    entry_id      TEXT  Entry identifier [required]                       │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### Get an entry value
@@ -224,23 +158,7 @@ The groups accessing a zone can be listed with the `persist groups` sub-command:
 <!-- termynal -->
 ```shell
 > arlas_cli persist --config local groups --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli persist groups [OPTIONS] ZONE                               
-                                                                              
- List groups allowed to access a zone                                         
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    zone      TEXT  Zone name [required]                                  │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### List groups accessing a zone
@@ -265,23 +183,7 @@ An entry defined by its unique identifier can be deleted with the `persist delet
 <!-- termynal -->
 ```shell
 > arlas_cli persist --config local delete --help
-Using configuration 'local'
-                                                                              
- Usage: arlas_cli persist delete [OPTIONS] ENTRY_ID                           
-                                                                              
- Delete an entry                                                              
-                                                                              
-╭─ Arguments ────────────────────────────────────────────────────────────────╮
-│ *    entry_id      TEXT  Entry identifier [required]                       │
-╰────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --help          Show this message and exit.                                │
-╰────────────────────────────────────────────────────────────────────────────╯
-                                                                              
- See full arlas_cli documentation at                                          
- https://docs.arlas.io/external_docs/arlas_cli/                               
-                                                                              
-
+Warning : no configuration available
 ```
 
 ### Delete an entry

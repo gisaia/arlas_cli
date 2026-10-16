@@ -14,6 +14,7 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 <!-- termynal -->
 ```shell
 > arlas_cli confs --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs [OPTIONS] COMMAND [ARGS]...                           
                                                                               
@@ -21,14 +22,14 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ set        Set default configuration among existing configurations         │
-│ default    Display the default configuration                               │
-│ check      Check the services of a configuration                           │
-│ list       List configurations                                             │
-│ create     Add a configuration                                             │
-│ login      Add a configuration for ARLAS Cloud                             │
-│ delete     Delete a configuration                                          │
-│ describe   Describe a configuration                                        │
+│ set       Set default configuration among existing configurations          │
+│ default   Display the default configuration                                │
+│ check     Check the services of a configuration                            │
+│ list      List configurations                                              │
+│ create    Add a configuration                                              │
+│ login     Add a configuration for ARLAS Cloud                              │
+│ delete    Delete a configuration                                           │
+│ describe  Describe a configuration                                         │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
@@ -41,6 +42,7 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 <!-- termynal -->
 ```shell
 > arlas_cli confs create --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs create [OPTIONS] NAME                                 
                                                                               
@@ -221,6 +223,7 @@ The `confs longin` allows to create a configuration linked to an ARLAS Cloud acc
 <!-- termynal -->
 ```shell
 > arlas_cli confs login --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs login [OPTIONS] AUTH_LOGIN ELASTIC_LOGIN ELASTIC      
                                                                               
@@ -270,6 +273,7 @@ An existing configuration can be deleted with the `confs delete` sub command:
 <!-- termynal -->
 ```shell
 > arlas_cli confs delete --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs delete [OPTIONS] CONFIG                               
                                                                               
@@ -308,6 +312,7 @@ The content of a configuration can be detailed with `confs describe` sub command
 <!-- termynal -->
 ```shell
 > arlas_cli confs describe --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs describe [OPTIONS] CONFIG                             
                                                                               
@@ -371,6 +376,7 @@ The list of available configurations can be obtained with `confs list` sub comma
 <!-- termynal -->
 ```shell
 > arlas_cli confs list --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs list [OPTIONS]                                        
                                                                               
@@ -408,6 +414,7 @@ The default arlas_cli configuration can be obtained with the `confs default` sub
 <!-- termynal -->
 ```shell
 > arlas_cli confs default --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs default [OPTIONS]                                     
                                                                               
@@ -441,6 +448,7 @@ The default arlas_cli configuration can be set with the `confs set` subcommand:
 <!-- termynal -->
 ```shell
 > arlas_cli confs set --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs set [OPTIONS] NAME                                    
                                                                               
@@ -478,6 +486,7 @@ You can verify the services accessible through a specific configuration using th
 <!-- termynal -->
 ```shell
 > arlas_cli confs check --help
+Warning : no configuration available
                                                                               
  Usage: arlas_cli confs check [OPTIONS] NAME                                  
                                                                               
