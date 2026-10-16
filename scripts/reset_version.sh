@@ -11,5 +11,3 @@ PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 # Set the right version in setup.cfg and arlas/cli/cli.py
 sed -i.bak 's/'${VERSION}'/arlas_cli_versions/' $PROJECT_DIR/setup.cfg
 sed -i.bak 's/'${VERSION}'/arlas_cli_versions/' $PROJECT_DIR/arlas/cli/cli.py
-
-

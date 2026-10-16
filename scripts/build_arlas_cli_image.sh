@@ -23,5 +23,3 @@ build_arlas_cli() {
 }
 
 build_arlas_cli
-
-
