@@ -15,7 +15,7 @@ from arlas.cli.variables import variables
 from arlas.cli.settings import ARLAS, Configuration, Resource, Settings
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
-arlas_cli_version = "arlas_cli_versions"
+arlas_cli_version = "29.0.0-alpha.5"
 
 
 @app.callback(invoke_without_command=True)
