@@ -46,7 +46,7 @@ $SCRIPT_DIR/update_readme.sh $VERSION
 # Generate and publish documentation
 $SCRIPT_DIR/generate_doc.sh $VERSION
 # Deploy documentation in Github pages
-mkdocs gh-deploy -f docs/mkdocs.yml
+# mkdocs gh-deploy -f docs/mkdocs.yml
 
 # Add changed files to git
 git add $PROJECT_DIR/arlas/cli/cli.py
@@ -61,10 +61,10 @@ git push origin ${VERSION}
 # Reset version to "arlas_cli_version" before pushing to master
 $SCRIPT_DIR/reset_version.sh $VERSION
 
-git add $PROJECT_DIR/arlas/cli/cli.py
-git add $PROJECT_DIR/setup.cfg
-git commit -m "Reset versions to 'arlas_cli_versions'"
-git push origin master
+# git add $PROJECT_DIR/arlas/cli/cli.py
+# git add $PROJECT_DIR/setup.cfg
+# git commit -m "Reset versions to 'arlas.cli.version'"
+# git push origin master
 
 send_chat_message "Release of arlas_cli, version ${VERSION}"
 send_chat_message "${RELEASE_COMMAND_LINE}"

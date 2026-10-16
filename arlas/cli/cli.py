@@ -15,7 +15,7 @@ from arlas.cli.variables import variables
 from arlas.cli.settings import ARLAS, Configuration, Resource, Settings
 
 app = typer.Typer(add_completion=False, no_args_is_help=True)
-29.0.0-rc.1 = "29.0.0-rc.1"
+arlas_cli_version = "arlas.cli.version"
 
 
 @app.callback(invoke_without_command=True)
@@ -32,11 +32,11 @@ def init(
             latest_version_response = requests.get('https://raw.githubusercontent.com/gisaia/arlas_cli/refs/heads/master/version.txt')
             latest_version_response.raise_for_status()
             latest_version = latest_version_response.text.strip()
-            if (29.0.0-rc.1 == latest_version or
-                    29.0.0-rc.1.startswith("0.0.0.dev")):
+            if (arlas_cli_version == latest_version or
+                    arlas_cli_version.startswith("0.0.0.dev")):
                 # Local dev 'python3.10 -m arlas.cli.cli' usage
                 ...
-            elif 29.0.0-rc.1 != latest_version:
+            elif arlas_cli_version != latest_version:
                 print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
                 print("pip3.10 install \"arlas_cli@git+https://github.com/gisaia/arlas_cli.git@" + latest_version +"\"", file=sys.stderr)
         except Exception:
@@ -45,7 +45,7 @@ def init(
     if config_file:
         variables["configuration_file"] = config_file
     if version:
-        print(29.0.0-rc.1)
+        print(arlas_cli_version)
     if os.path.exists(variables["configuration_file"]):
         Configuration.init(configuration_file=variables["configuration_file"])
         if "arlas" in dict(Configuration.settings):
