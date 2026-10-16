@@ -12,7 +12,7 @@ function clean_exit {
 trap clean_exit EXIT
 
 
-[ -z "$1" ] && echo "Please provide the version" && exit 1;
+[[ -z "$1" ]] && echo "Please provide the version" && exit 1;
 VERSION=$1
 echo ${VERSION} > version.txt
 

@@ -2,10 +2,13 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-COPY ../../ .
+COPY arlas/ ./arlas/
+COPY pyproject.toml .
+COPY setup.cfg .
+COPY requirements.txt .
+COPY README-ARLAS-CLI-COMMANDS.md .
 
 # Install arlas_cli
-RUN pip3 install "arlas_cli@file:///app/"
 # Create a default "local" config in order to run documentation generation
 # Warning : no configuration available the "Warning : no configuration available"
-RUN arlas_cli confs create local --server http://localhost/arlas
+RUN pip3 install "arlas_cli@file:///app/" && arlas_cli confs create local --server http://localhost/arlas

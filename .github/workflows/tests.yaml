@@ -13,6 +13,8 @@ jobs:
     - name: Test build and install arlas_cli (with requirements)
       run: |
         python -m pip install --upgrade pip
+        sed -i "s/arlas_cli_versions/0.0.0-dev.0/g" ${GITHUB_WORKSPACE}/setup.cfg
+        sed -i "s/arlas_cli_versions/0.0.0-dev.0/g" ${GITHUB_WORKSPACE}/arlas/cli/cli.py
         pip install "arlas_cli @ file://${GITHUB_WORKSPACE}"
     - name: Start the stack
       run: scripts/start_stack.sh
