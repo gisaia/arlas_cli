@@ -18,20 +18,20 @@ An index contains the data and a [mapping](../../static_docs/concepts.md#es-mapp
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --config        TEXT  Name of the ARLAS configuration to use from your     │
 │                       configuration file                                   │
-│                       (/home/gaudan/.arlas/cli/configuration.yaml).        │
+│                       (/root/.arlas/cli/configuration.yaml).               │
 │ --help                Show this message and exit.                          │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ list       List indices                                                    │
-│ describe   Describe an index                                               │
-│ clone      Clone an index and set its name                                 │
-│ migrate    Migrate an index on another arlas configuration, and set the    │
-│            target index name                                               │
-│ sample     Display a sample of an index                                    │
-│ create     Create an index                                                 │
-│ data       Index data                                                      │
-│ mapping    Generate the mapping based on the data                          │
-│ delete     Delete an index                                                 │
+│ list      List indices                                                     │
+│ describe  Describe an index                                                │
+│ clone     Clone an index and set its name                                  │
+│ migrate   Migrate an index on another arlas configuration, and set the     │
+│           target index name                                                │
+│ sample    Display a sample of an index                                     │
+│ create    Create an index                                                  │
+│ data      Index data                                                       │
+│ mapping   Generate the mapping based on the data                           │
+│ delete    Delete an index                                                  │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
@@ -66,7 +66,9 @@ Using configuration 'local'
 │                                 the field name only must be provided.      │
 │ --no-index             TEXT     List of fields that should not be indexed. │
 │ --push-on              TEXT     Push the generated mapping for the         │
-│                                 provided index name                        │
+│                                 provided index name.                       │
+│ --file-type            [json]   Type of the file. Can only be 'json' for   │
+│                                 JSON/NDJSON files.                         │
 │ --help                          Show this message and exit.                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
@@ -260,8 +262,11 @@ Using configuration 'local'
 │                           [required]                                       │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --bulk        INTEGER  Bulk size for indexing data [default: 5000]         │
-│ --help                 Show this message and exit.                         │
+│ --bulk             INTEGER  Bulk size for indexing data [default: 5000]    │
+│ --file-type        [json]   Type of the file. Can only be 'json' for       │
+│                             JSON/NDJSON files.                             │
+│                             [default: json]                                │
+│ --help                      Show this message and exit.                    │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
  See full arlas_cli documentation at                                          
@@ -360,8 +365,11 @@ Using configuration 'local'
 │                           [required]                                       │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
-│ --bulk        INTEGER  Bulk size for indexing data [default: 5000]         │
-│ --help                 Show this message and exit.                         │
+│ --bulk             INTEGER  Bulk size for indexing data [default: 5000]    │
+│ --file-type        [json]   Type of the file. Can only be 'json' for       │
+│                             JSON/NDJSON files.                             │
+│                             [default: json]                                │
+│ --help                      Show this message and exit.                    │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
  See full arlas_cli documentation at                                          

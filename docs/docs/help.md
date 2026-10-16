@@ -59,7 +59,9 @@ Using configuration 'local'
 │                                 the field name only must be provided.      │
 │ --no-index             TEXT     List of fields that should not be indexed. │
 │ --push-on              TEXT     Push the generated mapping for the         │
-│                                 provided index name                        │
+│                                 provided index name.                       │
+│ --file-type            [json]   Type of the file. Can only be 'json' for   │
+│                                 JSON/NDJSON files.                         │
 │ --help                          Show this message and exit.                │
 ╰────────────────────────────────────────────────────────────────────────────╯
                                                                               
