@@ -6,15 +6,14 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-python@v6
       with:
         python-version: '3.10'
     - name: Test build and install arlas_cli (with requirements)
       run: |
-        VERSION="0.0.0.dev${GITHUB_RUN_NUMBER}"
-        ./tests/build_library.sh $VERSION
-        pip install target/dist/arlas_cli-${VERSION}-py3-none-any.whl
+        python -m pip install --upgrade pip
+        pip install "arlas_cli @ file://${GITHUB_WORKSPACE}"
     - name: Start the stack
       run: scripts/start_stack.sh
     - name: Run indices/collections tests
