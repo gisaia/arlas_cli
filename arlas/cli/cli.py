@@ -29,21 +29,18 @@ def init(
     if not quiet:
         # Check if version is up-to-date
         try:
-            json = requests.get('https://pypi.org/pypi/arlas.cli/json').json()
-            if json:
-                latest_version = json.get("info", {}).get("version", None)
-                if latest_version:
-                    if (arlas_cli_version == "_".join(["arlas", "cli", "versions"]) or
-                            arlas_cli_version.startswith("0.0.0.dev")):
-                        # Local dev 'python3.10 -m arlas.cli.cli' usage
-                        ...
-                    elif arlas_cli_version != latest_version:
-                        print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
-                        print("pip3.10 install arlas_cli==" + latest_version, file=sys.stderr)
-                else:
-                    print("WARNING: Can not identify arlas.cli latest version.", file=sys.stderr)
+            latest_version_response = requests.get('https://raw.githubusercontent.com/gisaia/arlas_cli/refs/heads/master/version.txt')
+            latest_version_response.raise_for_status()
+            latest_version = latest_version_response.text.strip()
+            if (arlas_cli_version == latest_version or
+                    arlas_cli_version.startswith("0.0.0.dev")):
+                # Local dev 'python3.10 -m arlas.cli.cli' usage
+                ...
+            elif arlas_cli_version != latest_version:
+                print("WARNING: You are not using the latest version of arlas_cli! Please update with:", file=sys.stderr)
+                print("pip3.10 install \"arlas_cli@git+https://github.com/gisaia/arlas_cli.git@" + latest_version +"\"", file=sys.stderr)
         except Exception:
-            print("WARNING: Can not contact pypi.org to identify if this arlas_cli is the latest version.", file=sys.stderr)
+            print("WARNING: Can not contact github to identify if this arlas_cli is the latest version.", file=sys.stderr)
     Service.curl = print_curl
     if config_file:
         variables["configuration_file"] = config_file

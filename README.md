@@ -4,6 +4,14 @@ __ARLAS Command Line__ (`arlas_cli`) is for managing the ARLAS data and configur
 
 See the documentation at https://docs.arlas.io/external_docs/arlas_cli/
 
+## Install arlas_cli
+
+To install arlas_cli:
+
+```shell
+pip3.10 install "arlas_cli@@git+https://github.com/gisaia/arlas_cli.git@vx.y.z
+```
+
 ## Developer section
 
 ### Run arlas_cli commands locally
@@ -15,13 +23,9 @@ To run the commands locally from the project root, simply replace `arlas_cli` by
 #### Prerequisites
 
 - docker installed
-- python3.10
-- Pypi authentication: a file `~/.pypirc` containing your Pypi account credentials (`{password}` accessible on Bitbucket)
-
-```
-[pypi]
-  username = __token__
-  password = {password}
+- mkdocs installed (to deploy the documentation in Github pages)
+```shell
+pip3.10 install mkdocs-material termynal
 ```
 
 #### Release
