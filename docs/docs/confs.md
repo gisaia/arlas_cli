@@ -21,14 +21,14 @@ It is possible, with the `arlas_cli confs` command lines, to manage the ARLAS co
 │ --help          Show this message and exit.                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ set        Set default configuration among existing configurations         │
-│ default    Display the default configuration                               │
-│ check      Check the services of a configuration                           │
-│ list       List configurations                                             │
-│ create     Add a configuration                                             │
-│ login      Add a configuration for ARLAS Cloud                             │
-│ delete     Delete a configuration                                          │
-│ describe   Describe a configuration                                        │
+│ set       Set default configuration among existing configurations          │
+│ default   Display the default configuration                                │
+│ check     Check the services of a configuration                            │
+│ list      List configurations                                              │
+│ create    Add a configuration                                              │
+│ login     Add a configuration for ARLAS Cloud                              │
+│ delete    Delete a configuration                                           │
+│ describe  Describe a configuration                                         │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```

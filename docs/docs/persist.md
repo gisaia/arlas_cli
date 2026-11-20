@@ -21,16 +21,16 @@ An entry is an element stored in the persistence.
 ╭─ Options ──────────────────────────────────────────────────────────────────╮
 │ --config        TEXT  Name of the ARLAS configuration to use from your     │
 │                       configuration file                                   │
-│                       (/home/gaudan/.arlas/cli/configuration.yaml).        │
+│                       (/root/.arlas/cli/configuration.yaml).               │
 │ --help                Show this message and exit.                          │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────╮
-│ add        Add an entry, returns its ID                                    │
-│ delete     Delete an entry                                                 │
-│ get        Retrieve an entry                                               │
-│ zone       List entries within a zone                                      │
-│ groups     List groups allowed to access a zone                            │
-│ describe   Describe an entry                                               │
+│ add       Add an entry, returns its ID                                     │
+│ delete    Delete an entry                                                  │
+│ get       Retrieve an entry                                                │
+│ zone      List entries within a zone                                       │
+│ groups    List groups allowed to access a zone                             │
+│ describe  Describe an entry                                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
 
 ```
